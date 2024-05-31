@@ -381,7 +381,9 @@ namespace Bio.TestAutomation.IO.GenBank
 
                 string tempFilePath = FilePath.TestDir();
                 sequences = parserObj.Parse(tempFilePath);
-                sequences.GetEnumerator().MoveNext();
+                var enumerator = sequences.GetEnumerator();
+                while (enumerator.MoveNext()) { }
+               
                 Assert.Fail();
             }
             catch (InvalidOperationException)
