@@ -96,7 +96,9 @@ namespace Bio.TestUtils.SimulatorUtility
         /// <param name="stream">Stream object to be deserialized.</param>
         private object Deserialize(Stream stream)
         {
+#pragma warning disable SYSLIB0011
             BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
             return formatter.Deserialize(stream);            
         }
 
