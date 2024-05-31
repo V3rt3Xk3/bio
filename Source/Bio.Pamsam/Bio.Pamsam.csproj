@@ -20,6 +20,14 @@
     <Copyright></Copyright>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <FileAlignment>8192</FileAlignment>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <FileAlignment>8192</FileAlignment>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Bio.Core\Bio.Core.csproj" />
   </ItemGroup>

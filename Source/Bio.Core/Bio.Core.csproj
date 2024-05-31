@@ -19,6 +19,14 @@
     <Product>.NET Bio</Product>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <FileAlignment>8192</FileAlignment>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <FileAlignment>8192</FileAlignment>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="CloneLibrary\Resources\Library.txt" />
     <None Remove="SimilarityMatrices\Resources\AmbiguousDNA.txt" />
