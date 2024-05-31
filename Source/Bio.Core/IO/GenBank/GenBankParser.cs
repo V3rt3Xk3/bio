@@ -1040,19 +1040,14 @@ namespace Bio.IO.GenBank
             var sequenceBuilder = new StringBuilder();
             while ((line != null) && line[0] == ' ')
             {
-                // Using a regex is too slow.
-                int len = line.Length;
+                string[] lineParts = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                long startingBaseNumber = long.Parse(lineParts[0]);
+                if (startingBaseNumber != sequenceBuilder.Length + 1)
+                    throw new InvalidDataException("The ORIGIN of the genbank record is flawed.");
 
-                int k = 0;
-                while (k < len && (line[k] == ' ' || Char.IsNumber(line[k])))
-                    k++;
-
-                while (k < len)
+                for (int i = 1; i < lineParts.Length; i++)
                 {
-                    string seqData = line.Substring(k, Math.Min(10, len - k));
-
-                    sequenceBuilder.Append(seqData);
-                    k += 11;
+                    sequenceBuilder.Append(lineParts[i]);
                 }
 
                 line = GoToNextLine(line, stream);
