@@ -19,6 +19,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.FastQ
 {
@@ -1106,10 +1107,10 @@ namespace Bio.TestAutomation.IO.FastQ
             {
                 // Validate qualitative Sequence upon parsing FastQ file.
                 IList<IQualitativeSequence> qualSequenceList = fastQParserObj.Parse<IQualitativeSequence>(filePath).ToList();
-                Assert.AreEqual(expectedSeqCount, qualSequenceList.Count.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedQualitativeSequence, qualSequenceList[0].ConvertToString());
-                Assert.AreEqual(expectedSequenceId, qualSequenceList[0].ID.ToString(null));
-                Assert.AreEqual(alphabet, qualSequenceList[0].Alphabet);
+                ClassicAssert.AreEqual(expectedSeqCount, qualSequenceList.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedQualitativeSequence, qualSequenceList[0].ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, qualSequenceList[0].ID.ToString(null));
+                ClassicAssert.AreEqual(alphabet, qualSequenceList[0].Alphabet);
             }
         }
 
@@ -1136,20 +1137,20 @@ namespace Bio.TestAutomation.IO.FastQ
                 IList<IQualitativeSequence> qualSequenceList = fastQParserObj.Parse().ToList();
 
                 // Validate first qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedSeqCount, qualSequenceList.Count);
-                Assert.AreEqual(expectedFirstQualitativeSequence, qualSequenceList[0].ConvertToString());
-                Assert.AreEqual(expectedSequenceId, qualSequenceList[0].ID);
+                ClassicAssert.AreEqual(expectedSeqCount, qualSequenceList.Count);
+                ClassicAssert.AreEqual(expectedFirstQualitativeSequence, qualSequenceList[0].ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, qualSequenceList[0].ID);
 
                 // Validate second qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedSecondQualitativeSequence, qualSequenceList[1].ConvertToString());
-                Assert.AreEqual(expectedSequenceId, qualSequenceList[1].ID);
+                ClassicAssert.AreEqual(expectedSecondQualitativeSequence, qualSequenceList[1].ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, qualSequenceList[1].ID);
 
                 // Validate third sequence in FastQ file if it is tri sequence FastQ file.
                 if (0 == string.Compare(triSeq, "MultiSequenceFastQ", CultureInfo.CurrentCulture, CompareOptions.IgnoreCase))
                 {
                     // Validate second qualitative Sequence upon parsing FastQ file.
-                    Assert.AreEqual(expectedthirdQualitativeSequence, qualSequenceList[2].ConvertToString());
-                    Assert.AreEqual(expectedSequenceId, qualSequenceList[2].ID);
+                    ClassicAssert.AreEqual(expectedthirdQualitativeSequence, qualSequenceList[2].ConvertToString());
+                    ClassicAssert.AreEqual(expectedSequenceId, qualSequenceList[2].ID);
                 }
 
                 ApplicationLog.WriteLine(string.Format("FastQ Parser P1: The FASTQ sequence '{0}' validation after Parse() is found to be as expected.",
@@ -1197,8 +1198,8 @@ namespace Bio.TestAutomation.IO.FastQ
                     var firstSequence = seqsNew.First();
 
                     // Validate qualitative Sequence upon parsing FastQ file.
-                    Assert.AreEqual(expectedQualitativeSequence, firstSequence.ConvertToString());
-                    Assert.IsTrue(string.IsNullOrEmpty(firstSequence.ID));
+                    ClassicAssert.AreEqual(expectedQualitativeSequence, firstSequence.ConvertToString());
+                    ClassicAssert.IsTrue(string.IsNullOrEmpty(firstSequence.ID));
 
                     ApplicationLog.WriteLine(string.Format("FastQ Parser P1: The FASTQ sequence '{0}' validation after Parse() is found to be as expected.", firstSequence));
                 }
@@ -1248,8 +1249,8 @@ namespace Bio.TestAutomation.IO.FastQ
                 IQualitativeSequence firstSequence = fastQParserObjNew.ParseOne(tempFileName);
 
                 // Validate qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedQualitativeSequence, firstSequence.ConvertToString());
-                Assert.AreEqual(expectedSequenceId, firstSequence.ID);
+                ClassicAssert.AreEqual(expectedQualitativeSequence, firstSequence.ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, firstSequence.ID);
 
                 ApplicationLog.WriteLine(string.Format("FastQ Parser P1: The FASTQ sequence '{0}' validation after Parse() is found to be as expected.", firstSequence));
 
@@ -1287,12 +1288,12 @@ namespace Bio.TestAutomation.IO.FastQ
                 var secondSeqsNew = new FastQParser().Parse(Constants.StreamWriterFastQTempFileName).ToList();
 
                 // Validate Second qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedSecondQualitativeSequence, secondSeqsNew[0].ConvertToString());
-                Assert.AreEqual(expectedSecondSeqID, secondSeqsNew[0].ID);
+                ClassicAssert.AreEqual(expectedSecondQualitativeSequence, secondSeqsNew[0].ConvertToString());
+                ClassicAssert.AreEqual(expectedSecondSeqID, secondSeqsNew[0].ID);
 
                 // Validate first qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedQualitativeSequence, seqsNew[0].ConvertToString());
-                Assert.AreEqual(expectedSequenceId, seqsNew[0].ID);
+                ClassicAssert.AreEqual(expectedQualitativeSequence, seqsNew[0].ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, seqsNew[0].ID);
 
                 ApplicationLog.WriteLine(string.Format("FastQ Parser P1: The FASTQ sequence '{0}' validation after Parse() is found to be as expected.", seqsNew[0]));
 
@@ -1312,7 +1313,7 @@ namespace Bio.TestAutomation.IO.FastQ
             string expectedQualitativeSequence = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.ExpectedSequenceNode);
             string expectedSequenceId = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SequenceIdNode);
             IAlphabet alphabet = Utility.GetAlphabet(utilityObj.xmlUtil.GetTextValue(nodeName, Constants.AlphabetNameNode));
-            Assert.IsTrue(File.Exists(filepathOriginal));
+            ClassicAssert.IsTrue(File.Exists(filepathOriginal));
 
             string tempPath = Path.GetTempFileName();
 
@@ -1322,7 +1323,7 @@ namespace Bio.TestAutomation.IO.FastQ
                 
                 // Read the original file
                 IEnumerable<ISequence> seqsOriginal = fastQParserObj.Parse(filepathOriginal);
-                Assert.IsNotNull(seqsOriginal);
+                ClassicAssert.IsNotNull(seqsOriginal);
 
                 // Use the formatter to write the original sequences to a temp file               
                 var formatter = new FastQFormatter();
@@ -1332,15 +1333,15 @@ namespace Bio.TestAutomation.IO.FastQ
                 // Read the new file, then compare the sequences
                 var fastQParserObjNew = new FastQParser();
                 IEnumerable<IQualitativeSequence> seqsNew = fastQParserObjNew.Parse(tempPath);
-                Assert.IsNotNull(seqsNew);
+                ClassicAssert.IsNotNull(seqsNew);
 
                 // Validate qualitative Sequence upon parsing FastQ file.
-                Assert.AreEqual(expectedQualitativeSequence,
+                ClassicAssert.AreEqual(expectedQualitativeSequence,
                     new string(seqsOriginal.ElementAt(0).Select(a => (char) a).ToArray()));
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     seqsOriginal.ElementAt(0).ID.ToString(null),
                     expectedSequenceId);
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     seqsOriginal.ElementAt(0).Alphabet.Name,
                     alphabet.Name);
 

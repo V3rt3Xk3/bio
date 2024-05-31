@@ -12,6 +12,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -1540,7 +1541,7 @@ namespace Bio.Tests.Algorithms.Alignment
             }
 
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput,true));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput,true));
 
             ApplicationLog.WriteLine(string.Format(null, "PairwiseOverlapAligner P2 : Final Score '{0}'.", expectedScore));
             ApplicationLog.WriteLine(string.Format(null, "PairwiseOverlapAligner P2 : Aligned First Sequence is '{0}'.", expectedSequence1));
@@ -1717,7 +1718,7 @@ namespace Bio.Tests.Algorithms.Alignment
             string expectedErrorMessage = this.GetExpectedErrorMeesageWithInvalidSequenceType(nodeName,
                                                                                          sequenceType);
 
-            Assert.AreEqual(expectedErrorMessage.Replace("\\r", "").Replace("\\n", "").Replace("\t", ""),
+            ClassicAssert.AreEqual(expectedErrorMessage.Replace("\\r", "").Replace("\\n", "").Replace("\t", ""),
                             actualException.Message.Replace("\r", "").Replace("\n", "").Replace("\t", ""));
 
             ApplicationLog.WriteLine("PairwiseOverlapAligner P2 : Expected Error message is thrown ", expectedErrorMessage);
@@ -1903,7 +1904,7 @@ namespace Bio.Tests.Algorithms.Alignment
 
             // Validate that expected exception is thrown using error message.
             string expectedErrorMessage = this.GetExpectedErrorMeesageWithInvalidSimilarityMatrixType(nodeName, invalidType);
-            Assert.AreEqual(expectedErrorMessage, actualExpection.Message);
+            ClassicAssert.AreEqual(expectedErrorMessage, actualExpection.Message);
             ApplicationLog.WriteLine("PairwiseOverlapAligner P2 : Expected Error message is thrown ", expectedErrorMessage);
         }
 

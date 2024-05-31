@@ -12,6 +12,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -357,7 +358,7 @@ namespace Bio.Tests.Algorithms.Alignment
             }
 
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
 
             ApplicationLog.WriteLine(string.Format(null, "PairwiseOverlapAligner BVT : Final Score '{0}'.", expectedScore));
             ApplicationLog.WriteLine(string.Format(null, "PairwiseOverlapAligner BVT : Aligned First Sequence is '{0}'.", expectedSequence1));

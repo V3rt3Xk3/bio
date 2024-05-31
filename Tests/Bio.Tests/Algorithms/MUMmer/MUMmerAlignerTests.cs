@@ -2,6 +2,7 @@
 using System.Linq;
 using Bio.Tests.Framework;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Algorithms.MUMmer;
 using Bio.Algorithms.Alignment;
 using Bio.SimilarityMatrices;
@@ -41,7 +42,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             IList<IPairwiseSequenceAlignment> result = mummer.Align(referenceSeq, searchSeqs);
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -56,7 +57,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             };
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             IList<IPairwiseSequenceAlignment> result = mummer.AlignSimple(referenceSeq, searchSeqs);
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
             PairwiseAlignedSequence alignedSeq = new PairwiseAlignedSequence();
@@ -97,7 +98,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             alignedSeq.SecondOffset = 2;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             IList<IPairwiseSequenceAlignment> result = mummer.AlignSimple(referenceSeq, searchSeqs);
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -168,7 +169,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             alignedSeq.SecondOffset = 2;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             IList<IPairwiseSequenceAlignment> result = mummer.Align(referenceSeq, searchSeqs);
 
             // Check if output is not null
-            Assert.AreNotEqual(0, result.Count);
+            ClassicAssert.AreNotEqual(0, result.Count);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();

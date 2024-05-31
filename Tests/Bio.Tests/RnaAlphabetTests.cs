@@ -1,5 +1,6 @@
 ﻿using Bio;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -18,17 +19,17 @@ namespace Bio.Tests
             byte basicSymbols;
             RnaAlphabet rnaAlphabet = RnaAlphabet.Instance;
 
-            Assert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'A', out basicSymbols));
-            Assert.AreEqual('U', (char)basicSymbols);
+            ClassicAssert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'A', out basicSymbols));
+            ClassicAssert.AreEqual('U', (char)basicSymbols);
 
-            Assert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'U', out basicSymbols));
-            Assert.AreEqual('A', (char)basicSymbols);
+            ClassicAssert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'U', out basicSymbols));
+            ClassicAssert.AreEqual('A', (char)basicSymbols);
 
-            Assert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'G', out basicSymbols));
-            Assert.AreEqual('C', (char)basicSymbols);
+            ClassicAssert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'G', out basicSymbols));
+            ClassicAssert.AreEqual('C', (char)basicSymbols);
 
-            Assert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'C', out basicSymbols));
-            Assert.AreEqual('G', (char)basicSymbols);
+            ClassicAssert.AreEqual(true, rnaAlphabet.TryGetComplementSymbol((byte)'C', out basicSymbols));
+            ClassicAssert.AreEqual('G', (char)basicSymbols);
         }
 
         /// <summary>
@@ -39,37 +40,37 @@ namespace Bio.Tests
         {
             RnaAlphabet rnaAlphabet = RnaAlphabet.Instance;
 
-            Assert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'A', (byte)'A'));
+            ClassicAssert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'A', (byte)'A'));
 
-            Assert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'U', (byte)'U'));
+            ClassicAssert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'U', (byte)'U'));
 
-            Assert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'G', (byte)'G'));
+            ClassicAssert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'G', (byte)'G'));
 
-            Assert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'C', (byte)'C'));
+            ClassicAssert.AreEqual(true, rnaAlphabet.CompareSymbols((byte)'C', (byte)'C'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'U'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'U'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'G'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'G'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'C'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'A', (byte)'C'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'A'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'A'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'G'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'G'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'C'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'U', (byte)'C'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'A'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'A'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'U'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'U'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'C'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'G', (byte)'C'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'A'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'A'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'U'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'U'));
 
-            Assert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'G'));
+            ClassicAssert.AreEqual(false, rnaAlphabet.CompareSymbols((byte)'C', (byte)'G'));
         }
     }
 }

@@ -7,6 +7,7 @@ using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.IO.FastA;
 using Bio.SimilarityMatrices;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.Pamsam.Tests
@@ -60,17 +61,17 @@ namespace Bio.Pamsam.Tests
             //ISequence expectedSeqB = new Sequence(Alphabets.DNA, "GGGAATCAAAATCAG---");
             //ISequence expectedSeqC = new Sequence(Alphabets.DNA, "GGGA--CAAAATCAG---");
 
-            //Assert.AreEqual(expectedSeqA.ToString(), progressiveAligner.AlignedSequences[0].ToString());
-            //Assert.AreEqual(expectedSeqB.ToString(), progressiveAligner.AlignedSequences[1].ToString());
-            //Assert.AreEqual(expectedSeqC.ToString(), progressiveAligner.AlignedSequences[2].ToString());
+            //ClassicAssert.AreEqual(expectedSeqA.ToString(), progressiveAligner.AlignedSequences[0].ToString());
+            //ClassicAssert.AreEqual(expectedSeqB.ToString(), progressiveAligner.AlignedSequences[1].ToString());
+            //ClassicAssert.AreEqual(expectedSeqC.ToString(), progressiveAligner.AlignedSequences[2].ToString());
 
             string expectedSeqA = "GGGA---AAAATCAGATT";
             string expectedSeqB = "GGGAATCAAAATCAG---";
             string expectedSeqC = "GGGA--CAAAATCAG---";
 
-            Assert.AreEqual(expectedSeqA, new string(progressiveAligner.AlignedSequences[0].Select(a => (char)a).ToArray()));
-            Assert.AreEqual(expectedSeqB, new string(progressiveAligner.AlignedSequences[1].Select(a => (char)a).ToArray()));
-            Assert.AreEqual(expectedSeqC, new string(progressiveAligner.AlignedSequences[2].Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedSeqA, new string(progressiveAligner.AlignedSequences[0].Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedSeqB, new string(progressiveAligner.AlignedSequences[1].Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedSeqC, new string(progressiveAligner.AlignedSequences[2].Select(a => (char)a).ToArray()));
 
             sequences = new List<ISequence>();
             sequences.Add(new Sequence(Alphabets.DNA, "GGGAAAAATCAGATT"));

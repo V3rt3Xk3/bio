@@ -14,6 +14,7 @@ using Bio.IO.Snp;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Text;
 using Bio.Tests;
 
@@ -109,7 +110,7 @@ namespace Bio.TestAutomation.IO.Snp
             string filePath = utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format("Snp Parser P1: File Exists in the Path '{0}'.", filePath));
 
@@ -145,8 +146,8 @@ namespace Bio.TestAutomation.IO.Snp
 
                 expectedCharacters = expectedSequence.Split(',');
 
-                Assert.IsNotNull(seqList);
-                Assert.AreEqual(noOfChromos, seqList.Count.ToString((IFormatProvider)null));
+                ClassicAssert.IsNotNull(seqList);
+                ClassicAssert.AreEqual(noOfChromos, seqList.Count.ToString((IFormatProvider)null));
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Snp Parser P1: Number of Sequences found are '{0}'.",
                     seqList.Count.ToString((IFormatProvider)null)));
@@ -156,14 +157,14 @@ namespace Bio.TestAutomation.IO.Snp
                 {
                     byte item = sparseSeq[int.Parse(expectedPositions[i], (IFormatProvider)null)];
 
-                    Assert.AreEqual(encodingObj.GetBytes(expectedCharacters[i])[0].ToString((IFormatProvider)null),
+                    ClassicAssert.AreEqual(encodingObj.GetBytes(expectedCharacters[i])[0].ToString((IFormatProvider)null),
                         item.ToString((IFormatProvider)null));
                 }
 
                 string expSequenceID = utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.SequenceIdNode);
 
-                Assert.AreEqual(expSequenceID, sparseSeq.ID);
+                ClassicAssert.AreEqual(expSequenceID, sparseSeq.ID);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Snp Parser P1: The Sequence ID is '{0}' and is as expected.", sparseSeq.ID));
             }
@@ -189,12 +190,12 @@ namespace Bio.TestAutomation.IO.Snp
                     for (int j = 0; j < expectedChromoPositions.Length; j++)
                     {
                         byte item = tempSparseSeq[int.Parse(expectedChromoPositions[j], (IFormatProvider)null)];
-                        Assert.AreEqual(encodingObj.GetBytes(expectedChromoSequences[j])[0].ToString((IFormatProvider)null),
+                        ClassicAssert.AreEqual(encodingObj.GetBytes(expectedChromoSequences[j])[0].ToString((IFormatProvider)null),
                             item.ToString((IFormatProvider)null));
                     }
 
                     // Validation of Id are done in this section.
-                    Assert.AreEqual(expectedSequenceIds[i], tempSparseSeq.ID);
+                    ClassicAssert.AreEqual(expectedSequenceIds[i], tempSparseSeq.ID);
                     ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                         "Snp Parser P1: The Sequence ID is '{0}' and is as expected.", tempSparseSeq.ID));
                 }
@@ -203,8 +204,8 @@ namespace Bio.TestAutomation.IO.Snp
             ApplicationLog.WriteLine(
                 "Snp Parser P1: The Snp sequence with position is validated successfully with Parse() method.");
 
-            Assert.IsNotNull(sparseSeq.Alphabet);
-            Assert.IsTrue(sparseSeq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture).Contains(utilityObj.xmlUtil.GetTextValue(nodename,
+            ClassicAssert.IsNotNull(sparseSeq.Alphabet);
+            ClassicAssert.IsTrue(sparseSeq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture).Contains(utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.AlphabetNameNode).ToLower(CultureInfo.CurrentCulture)));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,

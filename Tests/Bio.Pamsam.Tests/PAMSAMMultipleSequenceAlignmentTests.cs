@@ -6,6 +6,7 @@ using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.IO.FastA;
 using Bio.SimilarityMatrices;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.Pamsam.Tests
@@ -20,7 +21,7 @@ namespace Bio.Pamsam.Tests
         public void TestName()
         {
             PAMSAMMultipleSequenceAligner aligner = new PAMSAMMultipleSequenceAligner();
-            Assert.AreEqual("PAMSAM (MUSCLE)", aligner.Name);
+            ClassicAssert.AreEqual("PAMSAM (MUSCLE)", aligner.Name);
         }
 
         /// <summary>
@@ -271,7 +272,7 @@ namespace Bio.Pamsam.Tests
                 new SimilarityMatrix(SimilarityMatrix.StandardSimilarityMatrix.Blosum50), 
                 -8, -1, 2, 16);
 
-            Assert.IsNotNull(msa.AlignedSequences);
+            ClassicAssert.IsNotNull(msa.AlignedSequences);
         }
 
         /// <summary>
@@ -311,7 +312,7 @@ namespace Bio.Pamsam.Tests
                profileAlignerName, profileProfileFunctionName, similarityMatrix, gapOpenPenalty, gapExtendPenalty,
                numberOfPartitions, numberOfDegrees);
 
-            Assert.IsNotNull(msa.AlignedSequences);
+            ClassicAssert.IsNotNull(msa.AlignedSequences);
         }
 
         /// <summary>
@@ -353,7 +354,7 @@ namespace Bio.Pamsam.Tests
                (sequences, kmerLength, distanceFunctionName, hierarchicalClusteringMethodName,
                profileAlignerName, profileProfileFunctionName, similarityMatrix, gapOpenPenalty, gapExtendPenalty,
                numberOfPartitions, numberOfDegrees);
-            Assert.IsNotNull(msa.AlignedSequences);
+            ClassicAssert.IsNotNull(msa.AlignedSequences);
         }
     }
 }

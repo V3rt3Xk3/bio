@@ -7,6 +7,7 @@ using Bio.Algorithms.Alignment;
 using Bio.IO;
 using Bio.IO.Phylip;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Phylip
 {
@@ -24,7 +25,7 @@ namespace Bio.Tests.IO.Phylip
         public void PhylipParse()
         {
             string filepath = @"TestUtils\Phylip\dna.phy".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 
@@ -180,7 +181,7 @@ namespace Bio.Tests.IO.Phylip
         public void PhylipParseOne()
         {
             string filepath = @"TestUtils\Phylip\dna.phy".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 
@@ -337,7 +338,7 @@ namespace Bio.Tests.IO.Phylip
         public void PhylipParsePrimates()
         {
             string filepath = @"TestUtils\Phylip\primates.phy".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 

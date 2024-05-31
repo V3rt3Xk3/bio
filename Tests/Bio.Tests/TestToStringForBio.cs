@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bio.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Util;
 using System.Globalization;
 using Bio.Algorithms.Alignment;
@@ -26,7 +27,7 @@ namespace Bio.Tests
             ISequence seq = new Sequence(Alphabets.DNA, "ATCGATCGGATCGATCGGCTACTAATATCGATCGGCTACGATCGGCTAATCGATCGATCGGCTAATCGATCGATCGGCTAGCTA");
             const string expectedValue = "TCGATCGGCT";
             string actualValue = seq.ConvertToString(10, 10);
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Bio.Tests
             DerivedSequence seq = new DerivedSequence(baseSeq, false, false);
             const string expectedValue = "TCGATCGGCT";
             string actualValue = seq.ConvertToString(10, 10);
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Bio.Tests
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                Assert.AreEqual("length", ex.ParamName);
+                ClassicAssert.AreEqual("length", ex.ParamName);
             }
         }
 
@@ -73,8 +74,8 @@ namespace Bio.Tests
             string ExpectedSmallString = "ATCG";
             string expectedLargeString = string.Format(CultureInfo.CurrentCulture, "ATCGGGGGGGGGGGGGGGGGGGGGGGGCCCCCCCCCCCCCCCCCCCCCCGGGGGGGGGGTTTTT... +[{0}]", (seqLarge.Count - Helper.AlphabetsToShowInToString));
 
-            Assert.AreEqual(ExpectedSmallString, ActualSmallString);
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(ExpectedSmallString, ActualSmallString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
         }
 
         /// <summary>
@@ -93,8 +94,8 @@ namespace Bio.Tests
             string ExpectedSmallString = "TAGC";
             string expectedLargeString = string.Format(CultureInfo.CurrentCulture, "TAGCCCCCCCCCCCCCCCCCCCCCCCCGGGGGGGGGGGGGGGGGGGGGGCCCCCCCCCCAAAAA... +[{0}]", (seqLarge.Count - Helper.AlphabetsToShowInToString));
 
-            Assert.AreEqual(ExpectedSmallString, ActualSmallString);
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(ExpectedSmallString, ActualSmallString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Bio.Tests
             QualitativeSequence seq = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Illumina_v1_3, seqData, qualityScores);
             string actualString = seq.ToString().Replace("\r\n", "\n");
             string expectedString = "ATCG\nAAAB";
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -146,12 +147,12 @@ namespace Bio.Tests
             string rnaAmbiguousStringExpected = "ACGU-NMRSWYKVHDB";
             string proteinAmbiguousStringExpected = "ACDEFGHIKLMNOPQRSTUVWY-*XZBJ";
 
-            Assert.AreEqual(dnaStringExpected, dnaStringActual);
-            Assert.AreEqual(rnaStringExpected, rnaStringActual);
-            Assert.AreEqual(proteinStringExpected, proteinStringActual);
-            Assert.AreEqual(dnaAmbiguousStringExpected, dnaAmbiguousStringActual);
-            Assert.AreEqual(rnaAmbiguousStringExpected, rnaAmbiguousStringActual);
-            Assert.AreEqual(proteinAmbiguousStringExpected, proteinAmbiguousStringActual);
+            ClassicAssert.AreEqual(dnaStringExpected, dnaStringActual);
+            ClassicAssert.AreEqual(rnaStringExpected, rnaStringActual);
+            ClassicAssert.AreEqual(proteinStringExpected, proteinStringActual);
+            ClassicAssert.AreEqual(dnaAmbiguousStringExpected, dnaAmbiguousStringActual);
+            ClassicAssert.AreEqual(rnaAmbiguousStringExpected, rnaAmbiguousStringActual);
+            ClassicAssert.AreEqual(proteinAmbiguousStringExpected, proteinAmbiguousStringActual);
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace Bio.Tests
             SequenceRange range = new SequenceRange("chr20", 0, 3);
             string actualString = range.ToString();
             string expectedString = "ID=chr20 Start=0 End=3";
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -182,7 +183,7 @@ namespace Bio.Tests
             string actualString = rangegrouping.ToString();
 
             string expectedString = "ID=chr20 Start=0 End=3\r\nID=chr21 Start=0 End=4\r\n".Replace("\r\n", Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
          /// <summary>
@@ -195,7 +196,7 @@ namespace Bio.Tests
             SequenceStatistics seqStats = new SequenceStatistics(seq);
             string actualString = seqStats.ToString();
             string expectedString = "A - 2\r\nC - 2\r\nG - 2\r\nT - 2\r\n".Replace("\r\n", Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -224,13 +225,13 @@ namespace Bio.Tests
 
             IList<ISequence> sequenceList = seqList;
             IList<ISequenceAlignment> alignmentObj = num.Align(sequenceList);
-            Assert.AreNotEqual(0, alignmentObj.Count);
+            ClassicAssert.AreNotEqual(0, alignmentObj.Count);
 
             var alignedSeqs = (AlignedSequence) alignmentObj[0].AlignedSequences[0];
 
             string actualString = alignedSeqs.ToString();
             string ExpectedString = "CAAAAGGGATTGC---\r\nCAAAAGGGATTGC---\r\nCAAAAGGGATTGC---\r\n".Replace("\r\n", Environment.NewLine);
-            Assert.AreEqual(ExpectedString, actualString);
+            ClassicAssert.AreEqual(ExpectedString, actualString);
         }
 
         /// <summary>
@@ -254,7 +255,7 @@ namespace Bio.Tests
             Cluster clust = new Cluster(extnList);
             string actualString = clust.ToString();
             string expectedString = "RefStart=0 QueryStart=0 Length=20 Score=0 WrapScore=0 IsGood=False\r\nRefStart=0 QueryStart=0 Length=30 Score=0 WrapScore=0 IsGood=False\r\n".Replace ("\r\n", Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -270,7 +271,7 @@ namespace Bio.Tests
             delta.SecondSequenceEnd = 20;
             string actualString = delta.ToString();
             string expectedString = "Ref ID= Query Id= Ref start=0 Ref End=21 Query start=0 Query End=20, Direction=FORWARD";
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
          /// <summary>
@@ -289,7 +290,7 @@ namespace Bio.Tests
 
             string actualString = alignedSeq.ToString();
             string expectedString = "AWGHE\r\nAWGHE\r\nAW-HE\r\n".Replace("\r\n", Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -310,7 +311,7 @@ namespace Bio.Tests
 
             string actualString = align.ToString();
             string expectedString = "AWGHE\r\nAWGHE\r\nAW-HE\r\n\r\n".Replace("\r\n", Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString); 
+            ClassicAssert.AreEqual(actualString, expectedString); 
         }
 
          /// <summary>
@@ -332,8 +333,8 @@ namespace Bio.Tests
             string ExpectedMatchExtnString = "RefStart=0 QueryStart=33 Length=20 Score=0 WrapScore=0 IsGood=False";
             string ExpectedMatchString = "RefStart=0 QueryStart=33 Length=20";
 
-            Assert.AreEqual(ExpectedMatchExtnString, actualMatchExtnString);
-            Assert.AreEqual(actualMatchstring, ExpectedMatchString);
+            ClassicAssert.AreEqual(ExpectedMatchExtnString, actualMatchExtnString);
+            ClassicAssert.AreEqual(actualMatchstring, ExpectedMatchString);
         }
 
         /// <summary>
@@ -363,7 +364,7 @@ namespace Bio.Tests
             const string expected = "XXIPXXXXLXXXXXXFXXXXXXLSXXLHN\r\n" +
                                     "KRIPKSQNLRSIHSIFPFLEDKLSHL--N\r\n" +
                                     "LNIPSLITLNKSIYVFSKRKKRLSGFLHN\r\n\r\n";
-            Assert.AreEqual(expected.Replace("\r\n", Environment.NewLine), alignment.ToString());
+            ClassicAssert.AreEqual(expected.Replace("\r\n", Environment.NewLine), alignment.ToString());
         }
 
         /// <summary>
@@ -399,7 +400,7 @@ namespace Bio.Tests
             string actualString = contig0.ToString();
             //string expectedString = "ACAAAAGCAACAAAAATGAAGGCAATACTAGTAGTTCTGCTATATACATTTGCAACCGCAAATG... +[1678]";
             string expectedString = "AYRAARGCAAYAMWARTRRWKSYRMTAYWWRYAKTTSYRMYMKMWAMWKYWGMMACMKYAWRTR... +[1678]";
-            Assert.AreEqual(actualString, expectedString); 
+            ClassicAssert.AreEqual(actualString, expectedString); 
         }
 
         /// <summary>
@@ -411,7 +412,7 @@ namespace Bio.Tests
             MatePair p = new MatePair("2K") {ForwardReadID = "F", ReverseReadID = "R"};
             string actualString = p.ToString();
             const string expectedString = "ForwardReadID=F, ReverseReadID=R, MeanLength=2000, Standard Deviation=100";
-            Assert.AreEqual(actualString, expectedString); 
+            ClassicAssert.AreEqual(actualString, expectedString); 
         }
 
         /// <summary>
@@ -444,15 +445,15 @@ namespace Bio.Tests
             var inputs = new List<ISequence> {seq1, seq2};
             var seqAssembly = (IOverlapDeNovoAssembly) assembler.Assemble(inputs);
 
-            Assert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
-            Assert.AreEqual(1, seqAssembly.Contigs.Count);
+            ClassicAssert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
+            ClassicAssert.AreEqual(1, seqAssembly.Contigs.Count);
             
             assembler.OverlapAlgorithm = new SmithWatermanAligner();
             seqAssembly = (IOverlapDeNovoAssembly) assembler.Assemble(inputs);
 
             string expectedString = "ACAAAAGCAACAAAAATGAAGGCAATACTAGTAGTTCTGCTATATACATTTGCAACCGCAAATG... +[1678]\r\n".Replace("\r\n",Environment.NewLine);
             string actualString = seqAssembly.ToString();
-            Assert.AreEqual(expectedString, actualString);
+            ClassicAssert.AreEqual(expectedString, actualString);
         }
     }
 }

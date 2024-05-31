@@ -18,6 +18,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.Nexus
 {

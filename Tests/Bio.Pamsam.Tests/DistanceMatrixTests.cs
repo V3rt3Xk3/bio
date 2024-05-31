@@ -1,5 +1,6 @@
 ﻿using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {
@@ -26,30 +27,30 @@ namespace Bio.Pamsam.Tests
                 }
             }
 
-            Assert.AreEqual(dimension, distanceMatrix.Dimension);
-            Assert.AreEqual(dimension, distanceMatrix.NearestNeighbors.Length);
-            Assert.AreEqual(dimension, distanceMatrix.NearestDistances.Length);
+            ClassicAssert.AreEqual(dimension, distanceMatrix.Dimension);
+            ClassicAssert.AreEqual(dimension, distanceMatrix.NearestNeighbors.Length);
+            ClassicAssert.AreEqual(dimension, distanceMatrix.NearestDistances.Length);
 
             // Test elements
             for (int i = 0; i < distanceMatrix.Dimension - 1; ++i)
             {
                 for (int j = i + 1; j < distanceMatrix.Dimension; ++j)
                 {
-                    Assert.AreEqual(i + j, distanceMatrix[i, j]);
-                    Assert.AreEqual(i + j, distanceMatrix[j, i]);
+                    ClassicAssert.AreEqual(i + j, distanceMatrix[i, j]);
+                    ClassicAssert.AreEqual(i + j, distanceMatrix[j, i]);
                 }
             }
 
             // Test NearestNeighbors
-            Assert.AreEqual(1, distanceMatrix.NearestNeighbors[0]);
-            Assert.AreEqual(0, distanceMatrix.NearestNeighbors[1]);
-            Assert.AreEqual(0, distanceMatrix.NearestNeighbors[2]);
-            Assert.AreEqual(0, distanceMatrix.NearestNeighbors[3]);
+            ClassicAssert.AreEqual(1, distanceMatrix.NearestNeighbors[0]);
+            ClassicAssert.AreEqual(0, distanceMatrix.NearestNeighbors[1]);
+            ClassicAssert.AreEqual(0, distanceMatrix.NearestNeighbors[2]);
+            ClassicAssert.AreEqual(0, distanceMatrix.NearestNeighbors[3]);
 
-            Assert.AreEqual(1, distanceMatrix.NearestDistances[0]);
-            Assert.AreEqual(1, distanceMatrix.NearestDistances[1]);
-            Assert.AreEqual(2, distanceMatrix.NearestDistances[2]);
-            Assert.AreEqual(3, distanceMatrix.NearestDistances[3]);
+            ClassicAssert.AreEqual(1, distanceMatrix.NearestDistances[0]);
+            ClassicAssert.AreEqual(1, distanceMatrix.NearestDistances[1]);
+            ClassicAssert.AreEqual(2, distanceMatrix.NearestDistances[2]);
+            ClassicAssert.AreEqual(3, distanceMatrix.NearestDistances[3]);
         }
     }
 }

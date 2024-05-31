@@ -3,6 +3,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO
 {
@@ -34,16 +35,16 @@ namespace Bio.Tests.IO
         public void ValidateSequenceParserFindParserByFileName()
         {
             ISequenceParser fastAObj = SequenceParsers.FindParserByFileName(@"TestUtils\Small_Size.fasta");
-            Assert.AreEqual(SequenceType.FastA.ToString(), fastAObj.Name);
+            ClassicAssert.AreEqual(SequenceType.FastA.ToString(), fastAObj.Name);
 
             ISequenceParser gbkObj = SequenceParsers.FindParserByFileName(@"TestUtils\Small_Size.gbk");
-            Assert.AreEqual(SequenceType.GenBank.ToString(), gbkObj.Name);
+            ClassicAssert.AreEqual(SequenceType.GenBank.ToString(), gbkObj.Name);
 
             ISequenceParser fastQObj = SequenceParsers.FindParserByFileName(@"TestUtils\Simple_Fastq_Sequence.fastq");
-            Assert.AreEqual(SequenceType.FastQ.ToString(), fastQObj.Name);
+            ClassicAssert.AreEqual(SequenceType.FastQ.ToString(), fastQObj.Name);
 
             ISequenceParser gffObj = SequenceParsers.FindParserByFileName(@"TestUtils\Simple_Gff_Dna.gff");
-            Assert.AreEqual(SequenceType.GFF.ToString(), gffObj.Name);
+            ClassicAssert.AreEqual(SequenceType.GFF.ToString(), gffObj.Name);
 
             ApplicationLog.WriteLine("Sequence Formatter BVT : Successfully validated the FindParserByFileName() method");
         }
@@ -100,16 +101,16 @@ namespace Bio.Tests.IO
         public void ValidateSequenceFormatterFindFormatterByFileName()
         {
             IFormatter fastAObj = SequenceFormatters.FindFormatterByFileName("test.fasta");
-            Assert.AreEqual(SequenceType.FastA.ToString(), fastAObj.Name);
+            ClassicAssert.AreEqual(SequenceType.FastA.ToString(), fastAObj.Name);
 
             IFormatter gbkObj = SequenceFormatters.FindFormatterByFileName("test.gbk");
-            Assert.AreEqual(SequenceType.GenBank.ToString(), gbkObj.Name);
+            ClassicAssert.AreEqual(SequenceType.GenBank.ToString(), gbkObj.Name);
 
             IFormatter fastQObj = SequenceFormatters.FindFormatterByFileName("test.fastq");
-            Assert.AreEqual(SequenceType.FastQ.ToString(), fastQObj.Name);
+            ClassicAssert.AreEqual(SequenceType.FastQ.ToString(), fastQObj.Name);
 
             IFormatter gffObj = SequenceFormatters.FindFormatterByFileName("test.gff");
-            Assert.AreEqual(SequenceType.GFF.ToString(), gffObj.Name);
+            ClassicAssert.AreEqual(SequenceType.GFF.ToString(), gffObj.Name);
 
             ApplicationLog.WriteLine("Sequence Formatter BVT : Successfully validated the FindFormatterByFileName() method");
         }
@@ -191,7 +192,7 @@ namespace Bio.Tests.IO
 
             ISequenceFormatter formatter = SequenceFormatters.FindFormatterByName(filename, formatterName);
             System.Type formatterTypes = formatter.GetType();
-            Assert.AreEqual(formatterTypes.ToString(), expectedFomatter);
+            ClassicAssert.AreEqual(formatterTypes.ToString(), expectedFomatter);
             ApplicationLog.WriteLine("Sequence Formatter BVT : Successfully validated the FindFormatterByName() method");
         }
 
@@ -221,7 +222,7 @@ namespace Bio.Tests.IO
             }
 
             ISequenceParser parser = SequenceParsers.FindParserByName(filename, parserName);
-            Assert.AreEqual(parserName, parser.Name);
+            ClassicAssert.AreEqual(parserName, parser.Name);
             ApplicationLog.WriteLine("Sequence parser BVT : Successfully validated the FindParserByName() method");
         }
 

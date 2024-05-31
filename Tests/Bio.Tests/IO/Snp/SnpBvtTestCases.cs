@@ -16,6 +16,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.Snp
 {
@@ -75,11 +76,11 @@ namespace Bio.TestAutomation.IO.Snp
             string filepath = utilityObj.xmlUtil.GetTextValue(Constants.SimpleSnpNodeName,
                Constants.FilePathNode);
             SimpleSnpParser snpParser = new SimpleSnpParser();
-            Assert.AreEqual(Constants.SnpDescription, snpParser.Description);
-            Assert.AreEqual(Constants.SnpFileTypes, snpParser.SupportedFileTypes);
-            Assert.AreEqual(Constants.SnpName, snpParser.Name);
-            Assert.IsTrue(snpParser.ParseAlleleOne);
-            Assert.AreEqual(Constants.SnpFileTypes, snpParser.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.SnpDescription, snpParser.Description);
+            ClassicAssert.AreEqual(Constants.SnpFileTypes, snpParser.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.SnpName, snpParser.Name);
+            ClassicAssert.IsTrue(snpParser.ParseAlleleOne);
+            ClassicAssert.AreEqual(Constants.SnpFileTypes, snpParser.SupportedFileTypes);
 
             ApplicationLog.WriteLine
                 ("Successfully validated all the properties of Snp Parser class.");
@@ -130,7 +131,7 @@ namespace Bio.TestAutomation.IO.Snp
             snpItem2.AlleleOne = 'A';
             snpItem2.AlleleTwo = 'G';
 
-            Assert.IsTrue(snpItem2.Equals(snpItem1));
+            ClassicAssert.IsTrue(snpItem2.Equals(snpItem1));
             ApplicationLog.WriteLine("Snp Bvt : Successfully validated Equals(snpitem).");
         }
 
@@ -149,7 +150,7 @@ namespace Bio.TestAutomation.IO.Snp
             snpItem2.AlleleOne = 'A';
             snpItem2.AlleleTwo = 'G';
 
-            Assert.IsTrue(snpItem2.Equals((object)snpItem1));
+            ClassicAssert.IsTrue(snpItem2.Equals((object)snpItem1));
             ApplicationLog.WriteLine("Snp Bvt : Successfully validated Equals(object).");
         }
 
@@ -164,7 +165,7 @@ namespace Bio.TestAutomation.IO.Snp
             snpItem1.AlleleOne = 'A';
             snpItem1.AlleleTwo = 'G';
 
-            Assert.AreEqual(0, snpItem1.GetHashCode());
+            ClassicAssert.AreEqual(0, snpItem1.GetHashCode());
             ApplicationLog.WriteLine("Snp Bvt : Successfully validated GetHashCode().");
         }
 
@@ -185,7 +186,7 @@ namespace Bio.TestAutomation.IO.Snp
             string filepath = utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Snp Parser BVT: File Exists in the Path '{0}'.",
@@ -223,8 +224,8 @@ namespace Bio.TestAutomation.IO.Snp
 
             if (null == sparseSeq)
             {
-                Assert.IsNotNull(seqList);
-                Assert.AreEqual(1, seqList.Count);
+                ClassicAssert.IsNotNull(seqList);
+                ClassicAssert.AreEqual(1, seqList.Count);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Snp Parser BVT: Number of Sequences found are '{0}'.",
                     seqList.Count.ToString((IFormatProvider)null)));
@@ -236,15 +237,15 @@ namespace Bio.TestAutomation.IO.Snp
 
                 ASCIIEncoding enc = new ASCIIEncoding();
 
-                Assert.AreEqual(enc.GetBytes(expectedCharacters[i])[0].ToString((IFormatProvider)null),
+                ClassicAssert.AreEqual(enc.GetBytes(expectedCharacters[i])[0].ToString((IFormatProvider)null),
                     item.ToString((IFormatProvider)null));
             }
 
             ApplicationLog.WriteLine(
                 "Snp Parser BVT: The Snp sequence with position is validated successfully with Parse() method.");
 
-            Assert.IsNotNull(sparseSeq.Alphabet);
-            Assert.IsTrue(sparseSeq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture).Contains(utilityObj.xmlUtil.GetTextValue(nodename,
+            ClassicAssert.IsNotNull(sparseSeq.Alphabet);
+            ClassicAssert.IsTrue(sparseSeq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture).Contains(utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.AlphabetNameNode).ToLower(CultureInfo.CurrentCulture)));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -254,7 +255,7 @@ namespace Bio.TestAutomation.IO.Snp
             string expSequenceID = utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.SequenceIdNode);
 
-            Assert.AreEqual(expSequenceID, sparseSeq.ID);
+            ClassicAssert.AreEqual(expSequenceID, sparseSeq.ID);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Snp Parser BVT: The Sequence ID is '{0}' and is as expected.", sparseSeq.ID));
         }

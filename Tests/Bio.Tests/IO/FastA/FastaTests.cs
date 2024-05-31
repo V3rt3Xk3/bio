@@ -5,6 +5,7 @@ using System.Linq;
 using Bio;
 using Bio.IO.FastA;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.FastA
 {
@@ -33,8 +34,8 @@ namespace Bio.Tests.IO.FastA
                 int i = 0;
                 foreach (ISequence seq in parser.Parse())
                 {
-                    Assert.IsNotNull(seq);
-                    Assert.AreEqual(seq.Count, sequenceCountArray[i]);
+                    ClassicAssert.IsNotNull(seq);
+                    ClassicAssert.AreEqual(seq.Count, sequenceCountArray[i]);
                     i++;
                 }
             }
@@ -61,20 +62,20 @@ namespace Bio.Tests.IO.FastA
             string filepath = System.IO.Path.Combine("TestUtils","Fasta", "186972391.fasta").TestDir();
 
 
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             FastAParser parser = new FastAParser { Alphabet = Alphabets.Protein };
             foreach (ISequence seq in parser.Parse(filepath))
             {
-                Assert.IsNotNull(seq);
-                Assert.AreEqual(434, seq.Count);
+                ClassicAssert.IsNotNull(seq);
+                ClassicAssert.AreEqual(434, seq.Count);
 
                 string actual = seq.Aggregate("", (current, b) => current + (char)b);
 
-                Assert.AreEqual(expectedSequence, actual);
-                Assert.AreEqual(seq.Alphabet.Name, "Protein");
+                ClassicAssert.AreEqual(expectedSequence, actual);
+                ClassicAssert.AreEqual(seq.Alphabet.Name, "Protein");
 
-                Assert.AreEqual("gi|186972391|gb|ACC99454.1| maturase K [Scaphosepalum rapax]", seq.ID);
+                ClassicAssert.AreEqual("gi|186972391|gb|ACC99454.1| maturase K [Scaphosepalum rapax]", seq.ID);
             }
         }
 
@@ -90,7 +91,7 @@ namespace Bio.Tests.IO.FastA
                 int sequenceCount = 300 * 1024 * 1024; // 300 MB of data
                 string filePath = CreateData(sequenceCount);
 
-                Assert.IsTrue(File.Exists(filePath));
+                ClassicAssert.IsTrue(File.Exists(filePath));
 
                 try
                 {
@@ -98,12 +99,12 @@ namespace Bio.Tests.IO.FastA
                     int count = 0;
                     foreach (ISequence seq in parser.Parse(filePath))
                     {
-                        Assert.IsNotNull(seq);
-                        Assert.AreEqual(sequenceCount, seq.Count);
-                        Assert.AreEqual(seq.Alphabet.Name, "Protein");
+                        ClassicAssert.IsNotNull(seq);
+                        ClassicAssert.AreEqual(sequenceCount, seq.Count);
+                        ClassicAssert.AreEqual(seq.Alphabet.Name, "Protein");
                         count++;
                     }
-                    Assert.AreEqual(1, count);
+                    ClassicAssert.AreEqual(1, count);
                 }
                 finally
                 {

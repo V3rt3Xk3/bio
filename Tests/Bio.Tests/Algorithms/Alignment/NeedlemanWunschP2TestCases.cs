@@ -14,6 +14,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -1269,18 +1270,18 @@ namespace Bio.Tests.Algorithms.Alignment
             na.SimilarityMatrix = new SimilarityMatrix (SimilarityMatrix.StandardSimilarityMatrix.EDnaFull);
 
             var aln = na.Align (seq1, seq2).First ().PairwiseAlignedSequences.First ();
-            Assert.AreEqual (32, aln.Score);
-            Assert.AreEqual ("CAAAAGGGATTGCAAATGTTGGAGTGAATGCCATTACCTACCGGC----TAGGAGGAGTAGTACAAAGGAGCTAT-TATCATATATTT", aln.FirstSequence.ConvertToString ());
+            ClassicAssert.AreEqual (32, aln.Score);
+            ClassicAssert.AreEqual ("CAAAAGGGATTGCAAATGTTGGAGTGAATGCCATTACCTACCGGC----TAGGAGGAGTAGTACAAAGGAGCTAT-TATCATATATTT", aln.FirstSequence.ConvertToString ());
             // Note that EMBOSS puts the "GC" neighboring the first gap after but not before, but these are equivalent
             // from a scoring perspective.
-            Assert.AreEqual ("CATTATGTATAGGTTATCATGC---GAA--CAATT--CAACAGACACTGTAGACACAGTACTAGAAAAGA---ATGTAAC--------", aln.SecondSequence.ConvertToString ());
-            Assert.AreEqual (42, aln.Metadata ["SimilarityCount"]);
+            ClassicAssert.AreEqual ("CATTATGTATAGGTTATCATGC---GAA--CAATT--CAACAGACACTGTAGACACAGTACTAGAAAAGA---ATGTAAC--------", aln.SecondSequence.ConvertToString ());
+            ClassicAssert.AreEqual (42, aln.Metadata ["SimilarityCount"]);
 
 
             // Now let's verify the simple alignment is different from the affine alignment and is optima.
             na.GapOpenCost = -1;
             aln = na.AlignSimple (seq1, seq2).First().PairwiseAlignedSequences.First();
-            Assert.AreEqual (183, aln.Score); // Needle reports a score of 181
+            ClassicAssert.AreEqual (183, aln.Score); // Needle reports a score of 181
 
             /* Again, we don't have an exact match here.  Part of this is due to
             the placement of equivalent scores .NET Bio tends to not left align,
@@ -1359,15 +1360,15 @@ namespace Bio.Tests.Algorithms.Alignment
             var netBioExpect1 = "CAAAAGGGATTGCAAATGT-T-GG--AGTG-AATGC---CA-TT-A-C---CTACC-GGCTAGGAGG-AGT-AGTAC-A-AAGGA-GCTATTATCA-TATATTT-";
             var netBioExpect2 = "CA-------TT--A--TGTATAGGTTA-T-CA-TGCGAACAATTCAACAGAC-AC-TG--TAG-A--CA--CAGTACTAGAA--AAG--A--AT--GTA-A---C";
                                      
-            Assert.AreEqual (netBioExpect1, aln.FirstSequence.ConvertToString ());
-            Assert.AreEqual (netBioExpect2, aln.SecondSequence.ConvertToString());
+            ClassicAssert.AreEqual (netBioExpect1, aln.FirstSequence.ConvertToString ());
+            ClassicAssert.AreEqual (netBioExpect2, aln.SecondSequence.ConvertToString());
 
             /* Now verify that an affine gap with the penalties set to the same as the simple alignment
              * produces the same result */
             aln = na.Align (seq1, seq2).First().PairwiseAlignedSequences.First();
-            Assert.AreEqual (183, aln.Score); // 
-            Assert.AreEqual (netBioExpect1, aln.FirstSequence.ConvertToString ());
-            Assert.AreEqual (netBioExpect2, aln.SecondSequence.ConvertToString());
+            ClassicAssert.AreEqual (183, aln.Score); // 
+            ClassicAssert.AreEqual (netBioExpect1, aln.FirstSequence.ConvertToString ());
+            ClassicAssert.AreEqual (netBioExpect2, aln.SecondSequence.ConvertToString());
         }
 
 
@@ -1449,25 +1450,25 @@ namespace Bio.Tests.Algorithms.Alignment
             NeedlemanWunschAligner alner = new NeedlemanWunschAligner();
 
             var res_affine = alner.Align (refseq, query).First().PairwiseAlignedSequences.First();
-            Assert.AreEqual (query.Count, res_affine.FirstSequence.Count);
-            Assert.AreEqual (query.Count, res_affine.SecondSequence.Count);
-            Assert.AreEqual (exp_ref, res_affine.FirstSequence.ConvertToString ());
+            ClassicAssert.AreEqual (query.Count, res_affine.FirstSequence.Count);
+            ClassicAssert.AreEqual (query.Count, res_affine.SecondSequence.Count);
+            ClassicAssert.AreEqual (exp_ref, res_affine.FirstSequence.ConvertToString ());
 
             var res_simple = alner.AlignSimple (refseq, query).First ().PairwiseAlignedSequences.First ();
-            Assert.AreEqual (query.Count, res_simple.FirstSequence.Count);
-            Assert.AreEqual (query.Count, res_simple.SecondSequence.Count);
-            Assert.AreEqual (exp_ref, res_simple.FirstSequence.ConvertToString ());
+            ClassicAssert.AreEqual (query.Count, res_simple.FirstSequence.Count);
+            ClassicAssert.AreEqual (query.Count, res_simple.SecondSequence.Count);
+            ClassicAssert.AreEqual (exp_ref, res_simple.FirstSequence.ConvertToString ());
 
             // now to flip sequence 1 and 2, try it again.
             res_affine = alner.Align (query, refseq).First().PairwiseAlignedSequences.First();
-            Assert.AreEqual (query.Count, res_affine.FirstSequence.Count);
-            Assert.AreEqual (query.Count, res_affine.SecondSequence.Count);
-            Assert.AreEqual (exp_ref, res_affine.SecondSequence.ConvertToString ());
+            ClassicAssert.AreEqual (query.Count, res_affine.FirstSequence.Count);
+            ClassicAssert.AreEqual (query.Count, res_affine.SecondSequence.Count);
+            ClassicAssert.AreEqual (exp_ref, res_affine.SecondSequence.ConvertToString ());
 
             res_simple = alner.AlignSimple (query, refseq).First ().PairwiseAlignedSequences.First ();
-            Assert.AreEqual (query.Count, res_simple.FirstSequence.Count);
-            Assert.AreEqual (query.Count, res_simple.SecondSequence.Count);
-            Assert.AreEqual (exp_ref, res_simple.SecondSequence.ConvertToString ());
+            ClassicAssert.AreEqual (query.Count, res_simple.FirstSequence.Count);
+            ClassicAssert.AreEqual (query.Count, res_simple.SecondSequence.Count);
+            ClassicAssert.AreEqual (exp_ref, res_simple.SecondSequence.ConvertToString ());
 
                 
         }
@@ -1710,7 +1711,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format(null, "NeedlemanWunschAligner P2 : Aligned Second Sequence is '{0}'.",
                                                    expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -1873,7 +1874,7 @@ namespace Bio.Tests.Algorithms.Alignment
             string expectedErrorMessage = this.GetExpectedErrorMeesageWithInvalidSequenceType(
                 nodeName, sequenceType);
 
-            Assert.AreEqual(expectedErrorMessage, actualException.Message);
+            ClassicAssert.AreEqual(expectedErrorMessage, actualException.Message);
 
             ApplicationLog.WriteLine(string.Concat(
                 "NeedlemanWunschAligner P2 : Expected Error message is thrown ",
@@ -2050,7 +2051,7 @@ namespace Bio.Tests.Algorithms.Alignment
             // Validate that expected exception is thrown using error message.
             string expectedErrorMessage =
                 this.GetExpectedErrorMeesageWithInvalidSimilarityMatrixType(nodeName, invalidType);
-            Assert.AreEqual(expectedErrorMessage, actualExpection.Message);
+            ClassicAssert.AreEqual(expectedErrorMessage, actualExpection.Message);
 
             ApplicationLog.WriteLine(string.Concat(
                 "NeedlemanWunschAligner P2 : Expected Error message is thrown ",

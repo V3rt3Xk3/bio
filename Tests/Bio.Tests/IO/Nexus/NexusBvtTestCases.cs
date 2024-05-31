@@ -19,6 +19,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio;
 using Bio.Tests;
 
@@ -124,15 +125,15 @@ namespace Bio.TestAutomation.IO.Nexus
         public void ValidateNexusParserProperties()
         {
             NexusParser parser = new NexusParser();
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 utilityObj.xmlUtil.GetTextValue(Constants.NexusPropertyNode,
                 Constants.NexusDescriptionNode),
                 parser.Description);
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 utilityObj.xmlUtil.GetTextValue(Constants.NexusPropertyNode,
                 Constants.NexusNameNode),
                 parser.Name);
-            Assert.AreEqual(null, parser.Alphabet);
+            ClassicAssert.AreEqual(null, parser.Alphabet);
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace Bio.TestAutomation.IO.Nexus
 
             IEnumerable<ISequenceAlignment> alignment = parser.Parse(filePath);
 
-            Assert.AreEqual(1, alignment.Count());
+            ClassicAssert.AreEqual(1, alignment.Count());
         }
 
         #endregion Nexus Parser BVT Test cases
@@ -169,7 +170,7 @@ namespace Bio.TestAutomation.IO.Nexus
             // Gets the Filename
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsFalse(string.IsNullOrEmpty(filePath));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(filePath));
             ApplicationLog.WriteLine($"Nexus Parser BVT: Reading the File from location '{filePath}'");
 
             // Get the rangelist after parsing.
@@ -220,7 +221,7 @@ namespace Bio.TestAutomation.IO.Nexus
             sequenceAlignmentList = new List<ISequenceAlignment> { sequenceAlignment };
             expectedAlignmentList.Add(expectedAlignmentObj);
 
-            Assert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
+            ClassicAssert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
             ApplicationLog.WriteLine("Nexus Parser BVT: Successfully validated all the Alignment Sequences");
         }
 

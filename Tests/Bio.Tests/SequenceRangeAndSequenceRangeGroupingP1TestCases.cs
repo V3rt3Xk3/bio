@@ -7,6 +7,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -361,16 +362,16 @@ namespace Bio.Tests
                 // Validate result sequence range.
                 foreach (ISequenceRange range in rangeList)
                 {
-                    Assert.AreEqual(expectedRangeIdsArray[i], range.ID);
-                    Assert.AreEqual(expectedStartIndexArray[i], range.Start.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedEndIndexArray[i], range.End.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedRangeIdsArray[i], range.ID);
+                    ClassicAssert.AreEqual(expectedStartIndexArray[i], range.Start.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedEndIndexArray[i], range.End.ToString((IFormatProvider) null));
                     i++;
                 }
             }
 
             // Validate ParentSeqRange.
             bool result = ValidateParentSeqRange(operationResult, referenceGroup, queryGroup, isParentSeqRangeRequired);
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             ApplicationLog.WriteLine("Bed Operations BVT: Successfully validated the BED SequenceID, Start and End Ranges");
         }
@@ -400,7 +401,7 @@ namespace Bio.Tests
             int result = seqRange.CompareTo(secondSeqRange);
 
             // Validate result of comparison.
-            Assert.AreEqual(Convert.ToInt32(expectedResults, null), result);
+            ClassicAssert.AreEqual(Convert.ToInt32(expectedResults, null), result);
             ApplicationLog.WriteLine("SequenceRange P1 : Successfully validated the SequenceRange comparison");
         }
 

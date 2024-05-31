@@ -7,6 +7,7 @@ using Bio.Variant;
 using Bio.Algorithms.Alignment;
 using Bio.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -50,17 +51,17 @@ namespace Bio.Tests
             // Need to add in the QV Values.
             ConvertAlignedSequenceToQualSeq(aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (4, variant.QV);
-            Assert.AreEqual (2, variant.StartPosition);
-            Assert.AreEqual (VariantType.INDEL, variant.Type);
+            ClassicAssert.AreEqual (4, variant.QV);
+            ClassicAssert.AreEqual (2, variant.StartPosition);
+            ClassicAssert.AreEqual (VariantType.INDEL, variant.Type);
             var vi = variant as IndelVariant;
-            Assert.AreEqual ("C", vi.InsertedOrDeletedBases);
-            Assert.AreEqual ('C', vi.HomopolymerBase);
-            Assert.AreEqual (3, vi.HomopolymerLengthInReference);
-            Assert.AreEqual (true, vi.InHomopolymer);
-            Assert.AreEqual (vi.InsertionOrDeletion, IndelType.Insertion);
+            ClassicAssert.AreEqual ("C", vi.InsertedOrDeletedBases);
+            ClassicAssert.AreEqual ('C', vi.HomopolymerBase);
+            ClassicAssert.AreEqual (3, vi.HomopolymerLengthInReference);
+            ClassicAssert.AreEqual (true, vi.InHomopolymer);
+            ClassicAssert.AreEqual (vi.InsertionOrDeletion, IndelType.Insertion);
         }
 
         [Test]
@@ -76,17 +77,17 @@ namespace Bio.Tests
             // Need to add in the QV Values.
             ConvertAlignedSequenceToQualSeq(aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (2, variant.QV);
-            Assert.AreEqual (2, variant.StartPosition);
-            Assert.AreEqual (VariantType.INDEL, variant.Type);
+            ClassicAssert.AreEqual (2, variant.QV);
+            ClassicAssert.AreEqual (2, variant.StartPosition);
+            ClassicAssert.AreEqual (VariantType.INDEL, variant.Type);
             var vi = variant as IndelVariant;
-            Assert.AreEqual ("C", vi.InsertedOrDeletedBases);
-            Assert.AreEqual ('C', vi.HomopolymerBase);
-            Assert.AreEqual (4, vi.HomopolymerLengthInReference);
-            Assert.AreEqual (true, vi.InHomopolymer);
-            Assert.AreEqual (vi.InsertionOrDeletion, IndelType.Deletion);
+            ClassicAssert.AreEqual ("C", vi.InsertedOrDeletedBases);
+            ClassicAssert.AreEqual ('C', vi.HomopolymerBase);
+            ClassicAssert.AreEqual (4, vi.HomopolymerLengthInReference);
+            ClassicAssert.AreEqual (true, vi.InHomopolymer);
+            ClassicAssert.AreEqual (vi.InsertionOrDeletion, IndelType.Deletion);
         }
 
         [Test]
@@ -102,17 +103,17 @@ namespace Bio.Tests
             var aln = aligner.Align (refseq, query).First();
             ConvertAlignedSequenceToQualSeq (aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (3, variant.QV);
-            Assert.AreEqual (5, variant.StartPosition);
-            Assert.AreEqual (variant.Type, VariantType.SNP);
+            ClassicAssert.AreEqual (3, variant.QV);
+            ClassicAssert.AreEqual (5, variant.StartPosition);
+            ClassicAssert.AreEqual (variant.Type, VariantType.SNP);
             var vi = variant as SNPVariant;
-            Assert.AreEqual (1, vi.Length);
-            Assert.AreEqual ('T', vi.AltBP);
-            Assert.AreEqual ('C', vi.RefBP);
-            Assert.AreEqual (VariantType.SNP, vi.Type);
-            Assert.AreEqual (false, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (1, vi.Length);
+            ClassicAssert.AreEqual ('T', vi.AltBP);
+            ClassicAssert.AreEqual ('C', vi.RefBP);
+            ClassicAssert.AreEqual (VariantType.SNP, vi.Type);
+            ClassicAssert.AreEqual (false, vi.AtEndOfAlignment);
         } 
 
         [Test]
@@ -128,17 +129,17 @@ namespace Bio.Tests
             var aln = aligner.Align (refseq, query).First();
             ConvertAlignedSequenceToQualSeq (aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (10, variant.QV);
-            Assert.AreEqual (8, variant.StartPosition);
-            Assert.AreEqual (variant.Type, VariantType.SNP);
+            ClassicAssert.AreEqual (10, variant.QV);
+            ClassicAssert.AreEqual (8, variant.StartPosition);
+            ClassicAssert.AreEqual (variant.Type, VariantType.SNP);
             var vi = variant as SNPVariant;
-            Assert.AreEqual (1, vi.Length);
-            Assert.AreEqual ('T', vi.AltBP);
-            Assert.AreEqual ('C', vi.RefBP);
-            Assert.AreEqual (VariantType.SNP, vi.Type);
-            Assert.AreEqual (true, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (1, vi.Length);
+            ClassicAssert.AreEqual ('T', vi.AltBP);
+            ClassicAssert.AreEqual ('C', vi.RefBP);
+            ClassicAssert.AreEqual (VariantType.SNP, vi.Type);
+            ClassicAssert.AreEqual (true, vi.AtEndOfAlignment);
         } 
 
         [Test]
@@ -154,17 +155,17 @@ namespace Bio.Tests
             var aln = aligner.Align (refseq, query).First();
             ConvertAlignedSequenceToQualSeq (aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (10, variant.QV);
-            Assert.AreEqual (0, variant.StartPosition);
-            Assert.AreEqual (variant.Type, VariantType.SNP);
+            ClassicAssert.AreEqual (10, variant.QV);
+            ClassicAssert.AreEqual (0, variant.StartPosition);
+            ClassicAssert.AreEqual (variant.Type, VariantType.SNP);
             var vi = variant as SNPVariant;
-            Assert.AreEqual (1, vi.Length);
-            Assert.AreEqual ('T', vi.AltBP);
-            Assert.AreEqual ('C', vi.RefBP);
-            Assert.AreEqual (VariantType.SNP, vi.Type);
-            Assert.AreEqual (true, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (1, vi.Length);
+            ClassicAssert.AreEqual ('T', vi.AltBP);
+            ClassicAssert.AreEqual ('C', vi.RefBP);
+            ClassicAssert.AreEqual (VariantType.SNP, vi.Type);
+            ClassicAssert.AreEqual (true, vi.AtEndOfAlignment);
         } 
 
         [Test]
@@ -187,12 +188,12 @@ namespace Bio.Tests
             var laq = aln.PairwiseAlignedSequences [0].SecondSequence.ConvertToString();
             var exprefseq =   "ACAATAAAAGCGCGCGCGCGTTACG--TATATATGGATAT";
             var expqueryseq = "ACAAT-AAA----GCGCGCGTTACGTATATATATGGATAT";
-            Assert.AreEqual (exprefseq, lar);
-            Assert.AreEqual (expqueryseq, laq);
+            ClassicAssert.AreEqual (exprefseq, lar);
+            ClassicAssert.AreEqual (expqueryseq, laq);
 
             // And it's hard, so we might as well check the variants
             var variants = tpl.Item2;
-            Assert.AreEqual (3, variants.Count);
+            ClassicAssert.AreEqual (3, variants.Count);
             string[] bases = new string[] { "A", "GCGC", "TA" };
             char[] hpbases = new char[] { 'A', 'G', 'T' };
             bool[] inHp = new bool[] { true, false, false };
@@ -200,14 +201,14 @@ namespace Bio.Tests
             int[] starts = new int[] { 4, 8, 24 };
             IndelType[] types = new IndelType[] { IndelType.Deletion, IndelType.Deletion, IndelType.Insertion };
             for (int i = 0; i < 3; i++) {
-                Assert.AreEqual (VariantType.INDEL, variants [i].Type);
+                ClassicAssert.AreEqual (VariantType.INDEL, variants [i].Type);
                 var vi = variants [i] as IndelVariant;
-                Assert.AreEqual (hpbases[i], vi.HomopolymerBase);
-                Assert.AreEqual (starts [i], vi.StartPosition);
-                Assert.AreEqual (lengths [i], vi.Length);
-                Assert.AreEqual (bases [i], vi.InsertedOrDeletedBases);
-                Assert.AreEqual (inHp [i], vi.InHomopolymer);
-                Assert.AreEqual (types [i], vi.InsertionOrDeletion);
+                ClassicAssert.AreEqual (hpbases[i], vi.HomopolymerBase);
+                ClassicAssert.AreEqual (starts [i], vi.StartPosition);
+                ClassicAssert.AreEqual (lengths [i], vi.Length);
+                ClassicAssert.AreEqual (bases [i], vi.InsertedOrDeletedBases);
+                ClassicAssert.AreEqual (inHp [i], vi.InHomopolymer);
+                ClassicAssert.AreEqual (types [i], vi.InsertionOrDeletion);
 
             }
         
@@ -230,20 +231,20 @@ namespace Bio.Tests
             VariantCallTests.ConvertAlignedSequenceToQualSeq (aln, seq2qual.Reverse ().ToArray ());
             aln.PairwiseAlignedSequences [0].Sequences [1].MarkAsReverseComplement ();
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (2, variant.QV);
-            Assert.AreEqual (5, variant.StartPosition);
-            Assert.AreEqual (VariantType.INDEL, variant.Type);
+            ClassicAssert.AreEqual (2, variant.QV);
+            ClassicAssert.AreEqual (5, variant.StartPosition);
+            ClassicAssert.AreEqual (VariantType.INDEL, variant.Type);
             var vi = variant as IndelVariant;
-            Assert.AreEqual (IndelType.Deletion, vi.InsertionOrDeletion);
-            Assert.AreEqual ('G', vi.HomopolymerBase);
-            Assert.AreEqual (1, vi.Length);
-            Assert.AreEqual (4, vi.HomopolymerLengthInReference);
-            Assert.AreEqual (true, vi.InHomopolymer);
-            Assert.AreEqual ("G", vi.InsertedOrDeletedBases);
-            Assert.AreEqual (false, vi.AtEndOfAlignment);
-            Assert.AreEqual (6, vi.EndPosition);
+            ClassicAssert.AreEqual (IndelType.Deletion, vi.InsertionOrDeletion);
+            ClassicAssert.AreEqual ('G', vi.HomopolymerBase);
+            ClassicAssert.AreEqual (1, vi.Length);
+            ClassicAssert.AreEqual (4, vi.HomopolymerLengthInReference);
+            ClassicAssert.AreEqual (true, vi.InHomopolymer);
+            ClassicAssert.AreEqual ("G", vi.InsertedOrDeletedBases);
+            ClassicAssert.AreEqual (false, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (6, vi.EndPosition);
         }
 
 
@@ -265,14 +266,14 @@ namespace Bio.Tests
             VariantCallTests.ConvertAlignedSequenceToQualSeq (aln, seq2qual.Reverse ().ToArray ());
             aln.PairwiseAlignedSequences [0].Sequences [1].MarkAsReverseComplement ();
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (1, variants.Count);
+            ClassicAssert.AreEqual (1, variants.Count);
             var variant = variants.First ();
-            Assert.AreEqual (VariantType.SNP, variant.Type);
-            Assert.AreEqual (2, variant.QV);
+            ClassicAssert.AreEqual (VariantType.SNP, variant.Type);
+            ClassicAssert.AreEqual (2, variant.QV);
 
             var vs = variant as SNPVariant; 
-            Assert.AreEqual ('T', vs.AltBP);
-            Assert.AreEqual ('A', vs.RefBP);
+            ClassicAssert.AreEqual ('T', vs.AltBP);
+            ClassicAssert.AreEqual ('A', vs.RefBP);
         }
 
         [Test]
@@ -287,18 +288,18 @@ namespace Bio.Tests
             // Need to add in the QV Values.
             ConvertAlignedSequenceToQualSeq(aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (4, variant.QV);
-            Assert.AreEqual (2, variant.StartPosition);
-            Assert.AreEqual (VariantType.INDEL, variant.Type);
+            ClassicAssert.AreEqual (4, variant.QV);
+            ClassicAssert.AreEqual (2, variant.StartPosition);
+            ClassicAssert.AreEqual (VariantType.INDEL, variant.Type);
             var vi = variant as IndelVariant;
-            Assert.AreEqual ("C", vi.InsertedOrDeletedBases);
-            Assert.AreEqual ('C', vi.HomopolymerBase);
-            Assert.AreEqual (true, vi.AtEndOfAlignment);
-            Assert.AreEqual (3, vi.HomopolymerLengthInReference);
-            Assert.AreEqual (true, vi.InHomopolymer);
-            Assert.AreEqual (vi.InsertionOrDeletion, IndelType.Insertion);
+            ClassicAssert.AreEqual ("C", vi.InsertedOrDeletedBases);
+            ClassicAssert.AreEqual ('C', vi.HomopolymerBase);
+            ClassicAssert.AreEqual (true, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (3, vi.HomopolymerLengthInReference);
+            ClassicAssert.AreEqual (true, vi.InHomopolymer);
+            ClassicAssert.AreEqual (vi.InsertionOrDeletion, IndelType.Insertion);
         }
 
 
@@ -314,18 +315,18 @@ namespace Bio.Tests
             // Need to add in the QV Values.
             ConvertAlignedSequenceToQualSeq(aln, seq2qual);
             var variants = VariantCaller.CallVariants (aln);
-            Assert.AreEqual (variants.Count, 1);
+            ClassicAssert.AreEqual (variants.Count, 1);
             var variant = variants.First ();
-            Assert.AreEqual (4, variant.QV);
-            Assert.AreEqual (2, variant.StartPosition);
-            Assert.AreEqual (VariantType.INDEL, variant.Type);
+            ClassicAssert.AreEqual (4, variant.QV);
+            ClassicAssert.AreEqual (2, variant.StartPosition);
+            ClassicAssert.AreEqual (VariantType.INDEL, variant.Type);
             var vi = variant as IndelVariant;
-            Assert.AreEqual ("C", vi.InsertedOrDeletedBases);
-            Assert.AreEqual ('C', vi.HomopolymerBase);
-            Assert.AreEqual (true, vi.AtEndOfAlignment);
-            Assert.AreEqual (4, vi.HomopolymerLengthInReference);
-            Assert.AreEqual (true, vi.InHomopolymer);
-            Assert.AreEqual (vi.InsertionOrDeletion, IndelType.Deletion);
+            ClassicAssert.AreEqual ("C", vi.InsertedOrDeletedBases);
+            ClassicAssert.AreEqual ('C', vi.HomopolymerBase);
+            ClassicAssert.AreEqual (true, vi.AtEndOfAlignment);
+            ClassicAssert.AreEqual (4, vi.HomopolymerLengthInReference);
+            ClassicAssert.AreEqual (true, vi.InHomopolymer);
+            ClassicAssert.AreEqual (vi.InsertionOrDeletion, IndelType.Deletion);
         }
 
         [Test]

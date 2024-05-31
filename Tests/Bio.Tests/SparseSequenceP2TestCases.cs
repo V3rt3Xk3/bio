@@ -7,6 +7,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -64,8 +65,8 @@ namespace Bio.Tests
             }
 
             string updatedActualError = Regex.Replace(actualError, "[\r\n\t]", "");
-            Assert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
+            ClassicAssert.IsNull(sparseSeq);
 
             // Log to GUI.
             ApplicationLog.WriteLine(string.Format(null, "SparseSequence P2: SparseSequence Exception was validated successfully {0}",
@@ -99,8 +100,8 @@ namespace Bio.Tests
 
             string updatedActualError = Regex.Replace(actualError, "[\r\n\t]", "");
 
-            Assert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
+            ClassicAssert.IsNull(sparseSeq);
 
             // Log to GUI.
             ApplicationLog.WriteLine(string.Format(null,
@@ -155,8 +156,8 @@ namespace Bio.Tests
             }
 
             string updatedActualError = Regex.Replace(actualError, "[\r\n\t]", "");
-            Assert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
+            ClassicAssert.IsNull(sparseSeq);
 
             // Log to GUI.
             ApplicationLog.WriteLine(string.Format(null, "SparseSequence P2: SparseSequence Exception was validated successfully {0}",
@@ -277,7 +278,7 @@ namespace Bio.Tests
             // sequence or not.
             foreach (byte bt in sparseSeq)
             {
-                Assert.AreNotEqual(bt, Alphabets.RNA.U);
+                ClassicAssert.AreNotEqual(bt, Alphabets.RNA.U);
             }
 
             ApplicationLog.WriteLine("SparseSequence P2: SparseSequence error was validated successfully");
@@ -308,7 +309,7 @@ namespace Bio.Tests
             // sequence or not.
             foreach (byte bt in sparseSeq)
             {
-                Assert.AreNotEqual(bt, Alphabets.Protein.D);
+                ClassicAssert.AreNotEqual(bt, Alphabets.Protein.D);
             }
 
             ApplicationLog.WriteLine("SparseSequence P2: SparseSequence error was validated successfully.");
@@ -339,7 +340,7 @@ namespace Bio.Tests
             // sequence or not.
             foreach (byte bt in sparseSeq)
             {
-                Assert.AreNotEqual(bt, Alphabets.Protein.D);
+                ClassicAssert.AreNotEqual(bt, Alphabets.Protein.D);
             }
 
             ApplicationLog.WriteLine("SparseSequence P2: SparseSequence error was validated successfully.");
@@ -372,7 +373,7 @@ namespace Bio.Tests
             }
 
             string updatedActualError = Regex.Replace(actualError, "[\r\n\t]", "");
-            Assert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
+            ClassicAssert.AreEqual(expectedErrorMessage.ToUpperInvariant(), updatedActualError.ToUpperInvariant());
 
             // Log to GUI.
             ApplicationLog.WriteLine(string.Format(null,
@@ -404,7 +405,7 @@ namespace Bio.Tests
 
             foreach (byte bt in sparseSeq)
             {
-                Assert.AreNotEqual(bt, Alphabets.RNA.U);
+                ClassicAssert.AreNotEqual(bt, Alphabets.RNA.U);
             }
 
             // Log to GUI.
@@ -433,7 +434,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>
@@ -458,7 +459,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>
@@ -483,7 +484,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>
@@ -510,7 +511,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>
@@ -537,7 +538,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>
@@ -564,7 +565,7 @@ namespace Bio.Tests
                 LogMessage(ex.Message);
             }
 
-            Assert.IsNull(sparseSeq);
+            ClassicAssert.IsNull(sparseSeq);
         }
 
         /// <summary>

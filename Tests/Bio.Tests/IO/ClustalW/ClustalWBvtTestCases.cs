@@ -16,6 +16,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.ClustalW
 {
@@ -130,17 +131,17 @@ namespace Bio.TestAutomation.IO.ClustalW
             var parserObj = new ClustalWParser();
 
             //Validate Description for ClustalW Parser. 
-            Assert.AreEqual(description, parserObj.Description);
+            ClassicAssert.AreEqual(description, parserObj.Description);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "ClustalW Parser BVT: Successfully validated description"));
 
             //Validate Name for Clustal W parser.
-            Assert.AreEqual(name, parserObj.Name);
+            ClassicAssert.AreEqual(name, parserObj.Name);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "ClustalW Parser BVT: Successfully validated Name"));
 
             //Validate supported file types for Clustal W parser.
-            Assert.AreEqual(supportedFileTypes, parserObj.SupportedFileTypes);
+            ClassicAssert.AreEqual(supportedFileTypes, parserObj.SupportedFileTypes);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "ClustalW Parser BVT: Successfully validated Supported File types."));
         }
@@ -160,7 +161,7 @@ namespace Bio.TestAutomation.IO.ClustalW
             // Gets the Filename
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsFalse(string.IsNullOrEmpty(filePath));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(filePath));
             ApplicationLog.WriteLine(string.Format("ClustalW Parser BVT: Reading the File from location '{0}'", filePath));
 
             // Get the range list after parsing.
@@ -218,7 +219,7 @@ namespace Bio.TestAutomation.IO.ClustalW
 
             var expectedAlignmentList = new List<Dictionary<string, string>> { expectedAlignmentObj };
 
-            Assert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
+            ClassicAssert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
             ApplicationLog.WriteLine("ClustalW Parser BVT: Successfully validated all the Alignment Sequences");
         }
 

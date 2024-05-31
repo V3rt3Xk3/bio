@@ -7,6 +7,7 @@ using Bio.Algorithms.Alignment;
 using Bio.IO;
 using Bio.IO.ClustalW;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.ClustalW
 {
@@ -24,7 +25,7 @@ namespace Bio.Tests.IO.ClustalW
         public void ClustalWParse()
         {
             string filepath = @"TestUtils\ClustalW\AlignmentData.aln".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 
@@ -74,7 +75,7 @@ namespace Bio.Tests.IO.ClustalW
         public void ClustalWParseOne()
         {
             string filepath = @"TestUtils\ClustalW\AlignmentData.aln".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 

@@ -13,6 +13,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -1970,12 +1971,12 @@ namespace Bio.Tests.Algorithms.Alignment
             sequenceAlignmentObj.Add(seqAlignObj);
 
             // Validate all properties of sequence alignment class. 
-            Assert.AreEqual(seqCount, seqAlignObj.Count.ToString((IFormatProvider) null));
-            Assert.AreEqual(origSequence1, new string(seqAlignObj.FirstSequence.Select(a => (char) a).ToArray()));
-            Assert.AreEqual(origSequence2, new string(seqAlignObj.SecondSequence.Select(a => (char) a).ToArray()));
-            Assert.IsFalse(seqAlignObj.IsReadOnly);
-            Assert.IsNull(seqAlignObj.Documentation);
-            Assert.AreEqual(seqCount, seqAlignObj.PairwiseAlignedSequences.Count.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(seqCount, seqAlignObj.Count.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(origSequence1, new string(seqAlignObj.FirstSequence.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(origSequence2, new string(seqAlignObj.SecondSequence.Select(a => (char) a).ToArray()));
+            ClassicAssert.IsFalse(seqAlignObj.IsReadOnly);
+            ClassicAssert.IsNull(seqAlignObj.Documentation);
+            ClassicAssert.AreEqual(seqCount, seqAlignObj.PairwiseAlignedSequences.Count.ToString((IFormatProvider) null));
 
             ApplicationLog.WriteLine("SequenceAlignment P1 : Successfully validated the IsRead Property");
             ApplicationLog.WriteLine("SequenceAlignment P1 : Successfully validated the Count Property");
@@ -2146,12 +2147,12 @@ namespace Bio.Tests.Algorithms.Alignment
                 string filePath2 = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode2).TestDir();
                 var parseObjectForFile1 = new FastAParser { Alphabet = alphabet };
                 ISequence originalSequence1 = parseObjectForFile1.Parse(filePath1).FirstOrDefault();
-                Assert.IsNotNull(originalSequence1);
+                ClassicAssert.IsNotNull(originalSequence1);
                 aInput = new Sequence(alphabet, originalSequence1.ConvertToString());
 
                 var parseObjectForFile2 = new FastAParser { Alphabet = alphabet };
                 ISequence originalSequence2 = parseObjectForFile2.Parse(filePath2).FirstOrDefault();
-                Assert.IsNotNull(originalSequence2);
+                ClassicAssert.IsNotNull(originalSequence2);
                 bInput = new Sequence(alphabet, originalSequence2.ConvertToString());
             }
 
@@ -2272,7 +2273,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format("NeedlemanWunschAligner P1 : Aligned First Sequence is '{0}'.", expectedSequence1));
             ApplicationLog.WriteLine(string.Format("NeedlemanWunschAligner P1 : Aligned Second Sequence is '{0}'.", expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -2330,12 +2331,12 @@ namespace Bio.Tests.Algorithms.Alignment
 
                 var parseObjectForFile1 = new FastAParser { Alphabet = alphabet };
                 ISequence originalSequence1 = parseObjectForFile1.Parse(filePath1).FirstOrDefault();
-                Assert.IsNotNull(originalSequence1);
+                ClassicAssert.IsNotNull(originalSequence1);
                 aInput = new Sequence(alphabet, originalSequence1.ConvertToString());
 
                 var parseObjectForFile2 = new FastAParser { Alphabet = alphabet };
                 ISequence originalSequence2 = parseObjectForFile2.Parse(filePath2).FirstOrDefault();
-                Assert.IsNotNull(originalSequence2);
+                ClassicAssert.IsNotNull(originalSequence2);
                 bInput = new Sequence(alphabet, originalSequence2.ConvertToString());
             }
 
@@ -2459,7 +2460,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format("SmithWatermanAligner P1 : Aligned Second Sequence is '{0}'.",
                                                    expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
 
@@ -2508,11 +2509,11 @@ namespace Bio.Tests.Algorithms.Alignment
                 string score = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.MatchScoreNode);
                 string seqCount = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SequenceCountNode);
 
-                Assert.IsFalse(sequenceAlignmentObj.IsReadOnly);
-                Assert.AreEqual(sequenceAlignmentObj.Count.ToString((IFormatProvider) null), seqCount);
-                Assert.AreEqual(
+                ClassicAssert.IsFalse(sequenceAlignmentObj.IsReadOnly);
+                ClassicAssert.AreEqual(sequenceAlignmentObj.Count.ToString((IFormatProvider) null), seqCount);
+                ClassicAssert.AreEqual(
                     sequenceAlignmentObj[0].PairwiseAlignedSequences[0].Score.ToString((IFormatProvider) null), score);
-                Assert.AreEqual(sequenceAlignmentObj.Count.ToString((IFormatProvider) null), seqCount);
+                ClassicAssert.AreEqual(sequenceAlignmentObj.Count.ToString((IFormatProvider) null), seqCount);
 
                 ApplicationLog.WriteLine("SequenceAlignment P1 : Successfully validated the IsRead Property");
                 ApplicationLog.WriteLine("SequenceAlignment P1 : Successfully validated the Count Property");
@@ -2520,9 +2521,9 @@ namespace Bio.Tests.Algorithms.Alignment
             }
             else
             {
-                Assert.AreEqual(new String(newAlignedSequences[0].FirstSequence.Select(a => (char) a).ToArray()),
+                ClassicAssert.AreEqual(new String(newAlignedSequences[0].FirstSequence.Select(a => (char) a).ToArray()),
                                 origSequence1);
-                Assert.AreEqual(new String(newAlignedSequences[0].SecondSequence.Select(a => (char) a).ToArray()),
+                ClassicAssert.AreEqual(new String(newAlignedSequences[0].SecondSequence.Select(a => (char) a).ToArray()),
                                 origSequence2);
             }
         }
@@ -2584,40 +2585,40 @@ namespace Bio.Tests.Algorithms.Alignment
             {
                 case SeqAlignmentMethods.Add:
                     seqAlignObj.Add(alignSeq);
-                    Assert.AreEqual(seqCount,
+                    ClassicAssert.AreEqual(seqCount,
                                     seqAlignObj.PairwiseAlignedSequences.Count.ToString((IFormatProvider) null));
                     break;
                 case SeqAlignmentMethods.Clear:
                     seqAlignObj.Clear();
-                    Assert.AreEqual(0, seqAlignObj.PairwiseAlignedSequences.Count);
+                    ClassicAssert.AreEqual(0, seqAlignObj.PairwiseAlignedSequences.Count);
                     break;
                 case SeqAlignmentMethods.Contains:
-                    Assert.IsTrue(seqAlignObj.Contains(newAlignedSequences[0]));
+                    ClassicAssert.IsTrue(seqAlignObj.Contains(newAlignedSequences[0]));
                     break;
                 case SeqAlignmentMethods.CopyTo:
                     seqAlignObj.CopyTo(alignedSeqItems, Index);
 
                     // Validate Copied array.
-                    Assert.AreEqual(alignedSeqItems[Index].FirstSequence, seqAlignObj.FirstSequence);
-                    Assert.AreEqual(alignedSeqItems[Index].SecondSequence, seqAlignObj.SecondSequence);
+                    ClassicAssert.AreEqual(alignedSeqItems[Index].FirstSequence, seqAlignObj.FirstSequence);
+                    ClassicAssert.AreEqual(alignedSeqItems[Index].SecondSequence, seqAlignObj.SecondSequence);
                     break;
                 case SeqAlignmentMethods.Remove:
                     seqAlignObj.Remove(newAlignedSequences[0]);
 
                     // Validate whether removed item is deleted from SequenceAlignment.
-                    Assert.AreEqual(0, newAlignedSequences.Count);
+                    ClassicAssert.AreEqual(0, newAlignedSequences.Count);
                     break;
                 case SeqAlignmentMethods.AddSequence:
                     seqAlignObj.AddSequence(newAlignedSequences[0]);
 
                     // Validate SeqAlignObj after adding aligned sequence.
-                    Assert.AreEqual(alignedSeqCountAfterAddSeq, seqAlignObj.Count.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(alignedSeqCountAfterAddSeq, seqAlignObj.Count.ToString((IFormatProvider) null));
                     break;
                 case SeqAlignmentMethods.GetEnumerator:
                     IEnumerator<PairwiseAlignedSequence> alignedSeqList = seqAlignObj.GetEnumerator();
 
                     // Aligned Sequence list after iterating through ailgnedSeq collection.
-                    Assert.IsNotNull(alignedSeqList);
+                    ClassicAssert.IsNotNull(alignedSeqList);
                     break;
                 default:
                     break;

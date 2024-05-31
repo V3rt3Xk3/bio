@@ -9,6 +9,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Wiggle
 {
@@ -54,7 +55,7 @@ namespace Bio.Tests.IO.Wiggle
             // Gets the filepath  from the Xml
             string filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.
                               SimpleWiggleWithFixedStepNodeName, Constants.FilePathNode).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             // Logs information to the log file            
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -73,10 +74,10 @@ namespace Bio.Tests.IO.Wiggle
             //Parse the file
             var annotation = parser.Parse(filePath);
 
-            Assert.IsNotNull(annotation);
-            Assert.AreEqual(expectedDescription, parser.Description);
-            Assert.AreEqual(expectedName, parser.Name);
-            Assert.AreEqual(expectedFileType, parser.SupportedFileTypes);
+            ClassicAssert.IsNotNull(annotation);
+            ClassicAssert.AreEqual(expectedDescription, parser.Description);
+            ClassicAssert.AreEqual(expectedName, parser.Name);
+            ClassicAssert.AreEqual(expectedFileType, parser.SupportedFileTypes);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Wiggle Parser BVT: Validation of all public properties is successful"));
@@ -162,9 +163,9 @@ namespace Bio.Tests.IO.Wiggle
                         SimpleWiggleWithFixedStepNodeName, Constants.FileTypesNode);
 
             WiggleFormatter formatter = new WiggleFormatter();
-            Assert.AreEqual(expectedDescription, formatter.Description);
-            Assert.AreEqual(expectedName, formatter.Name);
-            Assert.AreEqual(expectedFileType, formatter.SupportedFileTypes);
+            ClassicAssert.AreEqual(expectedDescription, formatter.Description);
+            ClassicAssert.AreEqual(expectedName, formatter.Name);
+            ClassicAssert.AreEqual(expectedFileType, formatter.SupportedFileTypes);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Wiggle Formatter BVT: Validation of all public properties is successful"));
@@ -186,7 +187,7 @@ namespace Bio.Tests.IO.Wiggle
             // Gets the filepath  from the Xml
             string filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.
                               SimpleWiggleWithFixedStepNodeName, Constants.FilePathNode).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             // Logs information to the log file            
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -216,24 +217,24 @@ namespace Bio.Tests.IO.Wiggle
             //Parse the file
             annotation = parser.ParseOne(filePath);
 
-            Assert.AreEqual(long.Parse(expectedbasePosition, CultureInfo.InvariantCulture)
+            ClassicAssert.AreEqual(long.Parse(expectedbasePosition, CultureInfo.InvariantCulture)
                             , annotation.BasePosition);
-            Assert.AreEqual(expectedchromosome, annotation.Chromosome);
-            Assert.AreEqual(long.Parse(expectedannotationCount, CultureInfo.InvariantCulture)
+            ClassicAssert.AreEqual(expectedchromosome, annotation.Chromosome);
+            ClassicAssert.AreEqual(long.Parse(expectedannotationCount, CultureInfo.InvariantCulture)
                             , annotation.Count);
-            Assert.AreEqual(int.Parse(expectedSpan,
+            ClassicAssert.AreEqual(int.Parse(expectedSpan,
                             CultureInfo.InvariantCulture), annotation.Span);
-            Assert.AreEqual(int.Parse(expectedStep,
+            ClassicAssert.AreEqual(int.Parse(expectedStep,
                             CultureInfo.InvariantCulture), annotation.Step);
-            Assert.AreEqual(annotationTypeNode, annotation.AnnotationType.ToString());
+            ClassicAssert.AreEqual(annotationTypeNode, annotation.AnnotationType.ToString());
 
             Dictionary<string, string> annotationMetadata = annotation.Metadata;
 
             //Validate Annotation Metadata.
             for (int i = 0; i < annotationMetadata.Count; i++)
             {
-                Assert.AreEqual(keys[i], annotationMetadata.ElementAt(i).Key);
-                Assert.AreEqual(values[i], annotationMetadata.ElementAt(i).Value);
+                ClassicAssert.AreEqual(keys[i], annotationMetadata.ElementAt(i).Key);
+                ClassicAssert.AreEqual(values[i], annotationMetadata.ElementAt(i).Value);
             }
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -274,9 +275,9 @@ namespace Bio.Tests.IO.Wiggle
             //Validate keys and values of the parsed file.
             foreach (KeyValuePair<long, float> keyvaluePair in annotation)
             {
-                Assert.AreEqual(float.Parse(annotationKeys[index],
+                ClassicAssert.AreEqual(float.Parse(annotationKeys[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Key);
-                Assert.AreEqual(long.Parse(expectedValues[index],
+                ClassicAssert.AreEqual(long.Parse(expectedValues[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Value);
                 index++;
             }
@@ -317,7 +318,7 @@ namespace Bio.Tests.IO.Wiggle
             //Validate the values from GetValueArray.
             foreach (float value in dataNew)
             {
-                Assert.AreEqual(data[index], value);
+                ClassicAssert.AreEqual(data[index], value);
                 index++;
             }
         }
@@ -335,7 +336,7 @@ namespace Bio.Tests.IO.Wiggle
         {
             // Gets the filepath.
             String filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             int index = 0;
             WiggleAnnotation annotation = null;
@@ -367,9 +368,9 @@ namespace Bio.Tests.IO.Wiggle
             //Validate keys and values of the parsed file.
             foreach (KeyValuePair<long, float> keyvaluePair in annotation)
             {
-                Assert.AreEqual(long.Parse(expectedPoints[index],
+                ClassicAssert.AreEqual(long.Parse(expectedPoints[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Key);
-                Assert.AreEqual(float.Parse(expectedValues[index],
+                ClassicAssert.AreEqual(float.Parse(expectedValues[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Value);
                 index++;
             }
@@ -387,7 +388,7 @@ namespace Bio.Tests.IO.Wiggle
         {
             // Gets the filepath.
             String filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             WiggleAnnotation annotation = null, annotationNew = null;
 
             string[] expectedValues = this.utilityObj.xmlUtil.GetTextValue(nodeName,
@@ -427,9 +428,9 @@ namespace Bio.Tests.IO.Wiggle
             //Validate keys and values of the parsed file.
             foreach (KeyValuePair<long, float> keyvaluePair in annotationNew)
             {
-                Assert.AreEqual(long.Parse(expectedPoints[index],
+                ClassicAssert.AreEqual(long.Parse(expectedPoints[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Key);
-                Assert.AreEqual(float.Parse(expectedValues[index],
+                ClassicAssert.AreEqual(float.Parse(expectedValues[index],
                             CultureInfo.InvariantCulture), keyvaluePair.Value);
                 index++;
             }

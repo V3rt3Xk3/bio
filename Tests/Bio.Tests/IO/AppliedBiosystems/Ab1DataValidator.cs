@@ -5,6 +5,7 @@ using System.Linq;
 using Bio.IO.AppliedBiosystems.DataParsers;
 using Bio.IO.AppliedBiosystems.DataTypes;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework.IO.AppliedBiosystems
 {
@@ -81,11 +82,11 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
 
         private static void ValidateAreEqual<T>(IList<T> expected, IList<T> actual)
         {
-            Assert.AreEqual(expected.Count, actual.Count);
+            ClassicAssert.AreEqual(expected.Count, actual.Count);
 
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i], actual[i]);
+                ClassicAssert.AreEqual(expected[i], actual[i]);
             }
         }
 
@@ -123,7 +124,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             }
             else
             {
-                Assert.AreEqual(tag.Value, new string(item.Value));
+                ClassicAssert.AreEqual(tag.Value, new string(item.Value));
             }
         }
 
@@ -189,7 +190,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             if (item == null) throw new ArgumentNullException("item");
             // TODO: Test file does not hit this yet.
             AB_RootDataTag tag = RetrieveTag(item);
-            Assert.AreEqual(GetData(tag.Value, value => double.Parse(value, CultureInfo.InvariantCulture)), item.Value);
+            ClassicAssert.AreEqual(GetData(tag.Value, value => double.Parse(value, CultureInfo.InvariantCulture)), item.Value);
         }
 
         /// <summary>
@@ -201,7 +202,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             if (item == null) throw new ArgumentNullException("item");
             AB_RootDataTag tag = RetrieveTag(item);
             DateTime value = DateTime.Parse(tag.Value, CultureInfo.InvariantCulture);
-            Assert.IsTrue(value.Equals(item.Value));
+            ClassicAssert.IsTrue(value.Equals(item.Value));
         }
 
         /// <summary>
@@ -213,7 +214,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             if (item == null) throw new ArgumentNullException("item");
             AB_RootDataTag tag = RetrieveTag(item);
             DateTime value = DateTime.Parse(tag.Value, CultureInfo.InvariantCulture);
-            Assert.IsTrue(value.Equals(item.Value));
+            ClassicAssert.IsTrue(value.Equals(item.Value));
         }
 
         /// <summary>
@@ -224,7 +225,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
         {
             if (item == null) throw new ArgumentNullException("item");
             AB_RootDataTag tag = RetrieveTag(item);
-            Assert.AreEqual(tag.Value, "\"" + item.Value + "\"");
+            ClassicAssert.AreEqual(tag.Value, "\"" + item.Value + "\"");
         }
 
         /// <summary>
@@ -268,7 +269,7 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
         {
             if (item == null) throw new ArgumentNullException("item");
             AB_RootDataTag tag = RetrieveTag(item);
-            Assert.AreEqual(tag.Value, "\"" + item.Value + "\"");
+            ClassicAssert.AreEqual(tag.Value, "\"" + item.Value + "\"");
         }
 
         #endregion

@@ -14,6 +14,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -164,7 +165,7 @@ namespace Bio.Tests.Algorithms.Alignment
             var res = al.Align(lr, lh);
             var results = res.First();
             var alignedSeq = results.AlignedSequences[0].Sequences[1].ToString();
-            Assert.AreEqual(alignedSeq, longHapOrg);
+            ClassicAssert.AreEqual(alignedSeq, longHapOrg);
         }
 
 
@@ -1579,7 +1580,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format(null, "SmithWatermanAligner P2 : Aligned Second Sequence is '{0}'.",
                                                    expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -1755,7 +1756,7 @@ namespace Bio.Tests.Algorithms.Alignment
             string expectedErrorMessage = this.GetExpectedErrorMeesageWithInvalidSequenceType(nodeName,
                                                                                          sequenceType);
 
-            Assert.AreEqual(expectedErrorMessage, actualException.Message);
+            ClassicAssert.AreEqual(expectedErrorMessage, actualException.Message);
 
             ApplicationLog.WriteLine(string.Concat(
                 "SmithWatermanAligner P2 : Expected Error message is thrown ", expectedErrorMessage));
@@ -1942,7 +1943,7 @@ namespace Bio.Tests.Algorithms.Alignment
             // Validate that expected exception is thrown using error message.
             string expectedErrorMessage = this.GetExpectedErrorMeesageWithInvalidSimilarityMatrixType(nodeName,
                                                                                                  invalidType);
-            Assert.AreEqual(expectedErrorMessage, actualExpection.Message);
+            ClassicAssert.AreEqual(expectedErrorMessage, actualExpection.Message);
 
             ApplicationLog.WriteLine(string.Concat(
                 "SmithWatermanAligner P2 : Expected Error message is thrown ", expectedErrorMessage));

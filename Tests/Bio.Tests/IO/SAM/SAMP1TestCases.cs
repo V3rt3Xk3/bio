@@ -16,6 +16,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.IO;
 using System;
 using System.Runtime.Serialization;
@@ -70,7 +71,7 @@ namespace Bio.TestAutomation.IO.SAM
             SAMParser parser = new SAMParser();
             {
                 SequenceAlignmentMap alignment = parser.ParseOne<SequenceAlignmentMap>(fn);
-                Assert.IsNotNull(alignment);
+                ClassicAssert.IsNotNull(alignment);
             }
         }
 
@@ -134,7 +135,7 @@ namespace Bio.TestAutomation.IO.SAM
                             count < alignments.QuerySequences[index].Sequences.Count;
                             count++)
                         {
-                            Assert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
+                            ClassicAssert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
                                 new string(alignments.QuerySequences[index].Sequences[count].Select(a => (char)a).ToArray()));
                         }
                     }
@@ -184,7 +185,7 @@ namespace Bio.TestAutomation.IO.SAM
                             count < alignments.QuerySequences[index].Sequences.Count;
                             count++)
                         {
-                            Assert.AreEqual(
+                            ClassicAssert.AreEqual(
                                 new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
                                 new string(alignments.QuerySequences[index].Sequences[count].Select(a => (char)a).ToArray()));
                         }

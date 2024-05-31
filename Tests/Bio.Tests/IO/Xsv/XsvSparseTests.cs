@@ -8,6 +8,7 @@ using Bio.IO.Xsv;
 using Bio.TestAutomation.Util;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Xsv
 {
@@ -68,11 +69,11 @@ namespace Bio.Tests.IO.Xsv
             XsvSparseFormatter formatterObj = new XsvSparseFormatter(',', '#');
             using (formatterObj.Open(XsvTempFileName))
             {
-                Assert.AreEqual("Sparse Sequence formatter to character separated value file", formatterObj.Description);
-                Assert.AreEqual("csv,tsv", formatterObj.SupportedFileTypes);
-                Assert.AreEqual("XsvSparseFormatter", formatterObj.Name);
-                Assert.AreEqual(',', formatterObj.Separator);
-                Assert.AreEqual('#', formatterObj.SequenceIDPrefix);
+                ClassicAssert.AreEqual("Sparse Sequence formatter to character separated value file", formatterObj.Description);
+                ClassicAssert.AreEqual("csv,tsv", formatterObj.SupportedFileTypes);
+                ClassicAssert.AreEqual("XsvSparseFormatter", formatterObj.Name);
+                ClassicAssert.AreEqual(',', formatterObj.Separator);
+                ClassicAssert.AreEqual('#', formatterObj.SequenceIDPrefix);
             }
 
             if (File.Exists(XsvTempFileName))
@@ -91,7 +92,7 @@ namespace Bio.Tests.IO.Xsv
             // Gets the expected sequence from the Xml
             string filePathObj = XsvFilename.TestDir();
             string xsvTempFileName = Path.GetTempFileName();
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
 
             // Read the contigs
             Contig contig = new XsvContigParser(Alphabets.DNA, ',', '#')
@@ -109,12 +110,12 @@ namespace Bio.Tests.IO.Xsv
             string expectedseqId = expectedContig.Sequences.Aggregate(string.Empty, (current, seq) => current + (seq.Sequence.ID + ","));
 
             // Validate parsed temp file with original Xsv file.
-            Assert.AreEqual(contig.Length, expectedContig.Length);
-            Assert.AreEqual(contig.Consensus.Count, expectedContig.Consensus.Count);
-            Assert.AreEqual(contig.Consensus.ID, expectedContig.Consensus.ID);
-            Assert.AreEqual(contig.Sequences.Count, expectedContig.Sequences.Count);
-            Assert.AreEqual(seqId.Length, expectedseqId.Length);
-            Assert.AreEqual(seqId, expectedseqId);
+            ClassicAssert.AreEqual(contig.Length, expectedContig.Length);
+            ClassicAssert.AreEqual(contig.Consensus.Count, expectedContig.Consensus.Count);
+            ClassicAssert.AreEqual(contig.Consensus.ID, expectedContig.Consensus.ID);
+            ClassicAssert.AreEqual(contig.Sequences.Count, expectedContig.Sequences.Count);
+            ClassicAssert.AreEqual(seqId.Length, expectedseqId.Length);
+            ClassicAssert.AreEqual(seqId, expectedseqId);
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace Bio.Tests.IO.Xsv
             // Gets the expected sequence from the Xml
             string filePathObj = XsvFilename.TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
             XsvContigParser parserObj = new XsvContigParser(Alphabets.DNA, ',', '#');
             
             string expectedSeqIds = "Chr22+Chr22+Chr22+Chr22,m;Chr22;16,m;Chr22;17,m;Chr22;29,m;Chr22;32,m;Chr22;39,m;Chr22;54,m;Chr22;72,m;Chr22;82,m;Chr22;85,m;Chr22;96,m;Chr22;99,m;Chr22;118,m;Chr22;119,m;Chr22;129,m;Chr22;136,m;Chr22;146,m;Chr22;153,m;Chr22;161,m;Chr22;162,m;Chr22;174,m;Chr22;183,m;Chr22;209,m;Chr22;210,m;Chr22;224,m;Chr22;241,m;Chr22;243,m;Chr22;253,m;Chr22;267,m;Chr22;309,m;Chr22;310,m;Chr22;313,m;Chr22;331,m;Chr22;333,m;Chr22;338,m;Chr22;348,m;Chr22;352,m;Chr22;355,m;Chr22;357,m;Chr22;368,m;Chr22;370,m;Chr22;380,m;Chr22;382,m;Chr22;402,m;Chr22;418,m;Chr22;419,m;Chr22;429,m;Chr22;432,m;Chr22;450,m;Chr22;462,m;Chr22;482,m;Chr22;484,m;Chr22;485,m;Chr22;494,m;Chr22;508,m;Chr22;509,m;Chr22;512,";
@@ -137,8 +138,8 @@ namespace Bio.Tests.IO.Xsv
             if (null == sparseSeq)
             {
                 string expCount = "57";
-                Assert.IsNotNull(seqList);
-                Assert.AreEqual(expCount, seqList.ToList().Count);
+                ClassicAssert.IsNotNull(seqList);
+                ClassicAssert.AreEqual(expCount, seqList.ToList().Count);
 
                 StringBuilder actualId = new StringBuilder();
                 foreach (ISequence seq in seqList)
@@ -148,12 +149,12 @@ namespace Bio.Tests.IO.Xsv
                     actualId.Append(",");
                 }
 
-                Assert.AreEqual(expectedSeqIds, actualId.ToString());
+                ClassicAssert.AreEqual(expectedSeqIds, actualId.ToString());
             }
             else
             {
                 string[] idArray = expectedSeqIds.Split(',');
-                Assert.AreEqual(sparseSeq.ID, idArray[0]);
+                ClassicAssert.AreEqual(sparseSeq.ID, idArray[0]);
             }
 
             string XsvTempFileName = Path.GetTempFileName();
@@ -175,11 +176,11 @@ namespace Bio.Tests.IO.Xsv
                 actualOutput = readerDest.ReadToEnd();
             }
            
-            Assert.AreEqual(Utility.CleanupWhiteSpace(expectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(expectedOutput),
                             Utility.CleanupWhiteSpace(actualOutput));
 
 
-            Assert.IsNotNull(sparseSeq.Alphabet);
+            ClassicAssert.IsNotNull(sparseSeq.Alphabet);
             // Delete the temporary file.
             if (File.Exists(XsvTempFileName))
                 File.Delete(XsvTempFileName);
@@ -196,7 +197,7 @@ namespace Bio.Tests.IO.Xsv
             // Gets the expected sequence from the Xml
             string filePathObj = XsvFilename.TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
 
             XsvContigParser parserObj = new XsvContigParser(Alphabets.DNA, ',', '#');
             IEnumerable<ISequence> seqList = parserObj.Parse(filePathObj);
@@ -228,11 +229,11 @@ namespace Bio.Tests.IO.Xsv
 
                 var expectedSparseSeqItems = expectedSeq.GetKnownSequenceItems();
 
-                Assert.AreEqual(sparseSeqItems.Count, expectedSparseSeqItems.Count);
+                ClassicAssert.AreEqual(sparseSeqItems.Count, expectedSparseSeqItems.Count);
                 for (int i = 0; i < sparseSeqItems.Count; i++)
                 {
-                    Assert.AreEqual(sparseSeqItems.ElementAt(i).Index, expectedSparseSeqItems.ElementAt(i).Index);
-                    Assert.AreEqual(sparseSeqItems.ElementAt(i).Item, expectedSparseSeqItems.ElementAt(i).Item);
+                    ClassicAssert.AreEqual(sparseSeqItems.ElementAt(i).Index, expectedSparseSeqItems.ElementAt(i).Index);
+                    ClassicAssert.AreEqual(sparseSeqItems.ElementAt(i).Item, expectedSparseSeqItems.ElementAt(i).Item);
                 }
 
             }

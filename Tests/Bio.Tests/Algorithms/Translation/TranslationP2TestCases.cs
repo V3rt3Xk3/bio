@@ -5,6 +5,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Translation
 {
@@ -42,7 +43,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P2: Amino Acid {0} is expected.", aminoAcid));
@@ -74,7 +75,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P2: Amino Acid {0} is expected.", aminoAcid));
@@ -106,7 +107,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P2: Amino Acid {0} is expected.", aminoAcid));
@@ -141,7 +142,7 @@ namespace Bio.Tests.Algorithms.Translation
             string aminoAcid = Codons.Lookup(transcribe, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P2: Amino Acid {0} is expected.", aminoAcid));
@@ -174,7 +175,7 @@ namespace Bio.Tests.Algorithms.Translation
                 Exthrown = true;
             }
             // Validate if Reverse Transcribe method is throwing an exception.
-            Assert.IsTrue(Exthrown);
+            ClassicAssert.IsTrue(Exthrown);
             ApplicationLog.WriteLine(
                 "Translation P2: Reverse Transcribe method was throwing an expection for null value.");
         }
@@ -201,7 +202,7 @@ namespace Bio.Tests.Algorithms.Translation
             }
 
             // Validate if Translate method is throwing an exception.
-            Assert.IsTrue(Exthrown);
+            ClassicAssert.IsTrue(Exthrown);
             ApplicationLog.WriteLine(
                 "Translation P2: Translate method was throwing an expection for null value.");
         }
@@ -228,7 +229,7 @@ namespace Bio.Tests.Algorithms.Translation
                 Exthrown = true;
             }
             // Validate if Translate method is throwing an exception.
-            Assert.IsTrue(Exthrown);
+            ClassicAssert.IsTrue(Exthrown);
             ApplicationLog.WriteLine(
                 "Translation P2: Translate method was throwing an expection for null value.");
         }
@@ -261,7 +262,7 @@ namespace Bio.Tests.Algorithms.Translation
                 Exthrown = true;
             }
             // Validate if Translate method is throwing an exception.
-            Assert.IsTrue(Exthrown);
+            ClassicAssert.IsTrue(Exthrown);
             ApplicationLog.WriteLine(
                 "Translation P2: Translate method was throwing an expection for null value.");
         }
@@ -294,7 +295,7 @@ namespace Bio.Tests.Algorithms.Translation
                 Exthrown = true;
             }
             // Validate if Translate method is throwing an exception.
-            Assert.IsTrue(Exthrown);
+            ClassicAssert.IsTrue(Exthrown);
             ApplicationLog.WriteLine(
                 "Translation P2: Translate method was throwing an expection for ambiguous RNA.");
         }

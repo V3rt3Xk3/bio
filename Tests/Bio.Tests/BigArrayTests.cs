@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework
 {
@@ -28,7 +29,7 @@ namespace Bio.Tests.Framework
                 Assert.Fail();
             }
 
-            Assert.IsNotNull(bigArray);
+            ClassicAssert.IsNotNull(bigArray);
         }
 
         /// <summary>
@@ -48,8 +49,8 @@ namespace Bio.Tests.Framework
                 Assert.Fail();
             }
 
-            Assert.IsNotNull(bigArray);
-            Assert.IsTrue(bigArray.Length == size);
+            ClassicAssert.IsNotNull(bigArray);
+            ClassicAssert.IsTrue(bigArray.Length == size);
         }
 
         #region Commented Test cases - these test requires more memory.
@@ -70,9 +71,9 @@ namespace Bio.Tests.Framework
         //        Assert.Fail();
         //    }
 
-        //    Assert.IsNotNull(bigArray);
-        //    Assert.IsTrue(bigArray.Length == size);
-        //    Assert.IsTrue(bigArray.BlockSize < size);
+        //    ClassicAssert.IsNotNull(bigArray);
+        //    ClassicAssert.IsTrue(bigArray.Length == size);
+        //    ClassicAssert.IsTrue(bigArray.BlockSize < size);
 
         //    try
         //    {
@@ -113,9 +114,9 @@ namespace Bio.Tests.Framework
         //        Assert.Fail();
         //    }
 
-        //    Assert.IsNotNull(bigArray);
-        //    Assert.IsTrue(bigArray.Length == size);
-        //    Assert.IsTrue(bigArray.BlockSize < size);
+        //    ClassicAssert.IsNotNull(bigArray);
+        //    ClassicAssert.IsTrue(bigArray.Length == size);
+        //    ClassicAssert.IsTrue(bigArray.BlockSize < size);
 
         //    try
         //    {
@@ -158,11 +159,11 @@ namespace Bio.Tests.Framework
             bigArray[8] = 7;
             bigArray[9] = 8;
 
-            Assert.IsTrue(bigArray.IndexOf(0) == -1);
-            Assert.IsTrue(bigArray.IndexOf(1) == 0);
-            Assert.IsTrue(bigArray.IndexOf(1, 1) == 2);
-            Assert.IsTrue(bigArray.IndexOf(1, 2, 6) == 2);
-            Assert.IsTrue(bigArray.IndexOf(1, 3, 4) == 6);
+            ClassicAssert.IsTrue(bigArray.IndexOf(0) == -1);
+            ClassicAssert.IsTrue(bigArray.IndexOf(1) == 0);
+            ClassicAssert.IsTrue(bigArray.IndexOf(1, 1) == 2);
+            ClassicAssert.IsTrue(bigArray.IndexOf(1, 2, 6) == 2);
+            ClassicAssert.IsTrue(bigArray.IndexOf(1, 3, 4) == 6);
         }
 
         /// <summary>
@@ -183,13 +184,13 @@ namespace Bio.Tests.Framework
             bigArray[8] = 7;
             bigArray[9] = 8;
 
-            Assert.IsTrue(bigArray.IndexOf(0) == -1);
+            ClassicAssert.IsTrue(bigArray.IndexOf(0) == -1);
             bigArray.Clear(3, 1);
-            Assert.IsTrue(bigArray.IndexOf(0) == 3);
+            ClassicAssert.IsTrue(bigArray.IndexOf(0) == 3);
             bigArray.Clear();
             for (int i = 0; i < 10; i++)
             {
-                Assert.IsTrue(bigArray[i] == 0);
+                ClassicAssert.IsTrue(bigArray[i] == 0);
             }
         }
 
@@ -202,7 +203,7 @@ namespace Bio.Tests.Framework
             try
             {
                 BigArray<int> bigArray = new BigArray<int>(5);
-                Assert.IsTrue(bigArray.Length == 5);
+                ClassicAssert.IsTrue(bigArray.Length == 5);
                 bigArray[0] = 1;
                 bigArray[1] = 2;
                 bigArray[2] = 1;
@@ -214,7 +215,7 @@ namespace Bio.Tests.Framework
                 bigArray[7] = 6;
                 bigArray[8] = 7;
                 bigArray[9] = 8;
-                Assert.IsTrue(bigArray.Length == 10);
+                ClassicAssert.IsTrue(bigArray.Length == 10);
             }
             catch
             {

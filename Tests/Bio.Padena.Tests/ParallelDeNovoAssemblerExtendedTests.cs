@@ -3,6 +3,7 @@ using Bio.Algorithms.Assembly.Padena;
 using Bio.Tests.Framework;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {

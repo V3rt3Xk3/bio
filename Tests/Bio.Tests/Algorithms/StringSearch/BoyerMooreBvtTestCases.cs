@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.StringSearch
 {
@@ -41,7 +42,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             IList<int> indexList = boyerMoore.FindMatch(boyerMooreSeq,
                                                         referenceSequence);
 
-            Assert.AreEqual(expectedMatch, indexList[0].ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedMatch, indexList[0].ToString((IFormatProvider) null));
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Bio.Tests.Algorithms.StringSearch
 
             IDictionary<string, IList<int>> indexList = boyerMoore.FindMatch(boyerMooreSeq, referenceSeqs);
 
-            Assert.AreEqual(expectedMatch, indexList[referenceSequence][0].ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedMatch, indexList[referenceSequence][0].ToString((IFormatProvider) null));
         }
 
         #endregion BoyerMoore Align Test Cases

@@ -3,6 +3,7 @@ using System.Linq;
 using Bio.Algorithms.Assembly;
 using Bio.Algorithms.Assembly.Padena.Utility;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -28,15 +29,15 @@ namespace Bio.Padena.Tests
             reads.Add(read);
             const int kmerLength = 6;
             IList<Contig> alignment = ReadAlignment.ReadContigAlignment(contigs, reads, kmerLength);
-            Assert.AreEqual(alignment.Count, contigs.Count);
+            ClassicAssert.AreEqual(alignment.Count, contigs.Count);
             Contig contig = alignment.First();
             Contig.AssembledSequence sequence = contig.Sequences.First();
-            Assert.AreEqual(sequence.Length, 9);
-            Assert.AreEqual(sequence.Position, 1);
-            Assert.AreEqual(sequence.ReadPosition, 0);
-            Assert.AreEqual(sequence.Sequence, reads.First());
-            Assert.AreEqual(sequence.IsComplemented, false);
-            Assert.AreEqual(sequence.IsReversed, false);
+            ClassicAssert.AreEqual(sequence.Length, 9);
+            ClassicAssert.AreEqual(sequence.Position, 1);
+            ClassicAssert.AreEqual(sequence.ReadPosition, 0);
+            ClassicAssert.AreEqual(sequence.Sequence, reads.First());
+            ClassicAssert.AreEqual(sequence.IsComplemented, false);
+            ClassicAssert.AreEqual(sequence.IsReversed, false);
         }
 
         /// <summary>
@@ -55,15 +56,15 @@ namespace Bio.Padena.Tests
             reads.Add(read);
             const int kmerLength = 6;
             IList<Contig> alignment = ReadAlignment.ReadContigAlignment(contigs, reads, kmerLength);
-            Assert.AreEqual(alignment.Count, contigs.Count);
+            ClassicAssert.AreEqual(alignment.Count, contigs.Count);
             Contig contig = alignment.First();
             Contig.AssembledSequence sequence = contig.Sequences.First();
-            Assert.AreEqual(sequence.Length, 9);
-            Assert.AreEqual(sequence.Position, 1);
-            Assert.AreEqual(sequence.ReadPosition, 0);
-            Assert.AreEqual(sequence.Sequence, reads.First());
-            Assert.AreEqual(sequence.IsComplemented, true);
-            Assert.AreEqual(sequence.IsReversed, true);
+            ClassicAssert.AreEqual(sequence.Length, 9);
+            ClassicAssert.AreEqual(sequence.Position, 1);
+            ClassicAssert.AreEqual(sequence.ReadPosition, 0);
+            ClassicAssert.AreEqual(sequence.Sequence, reads.First());
+            ClassicAssert.AreEqual(sequence.IsComplemented, true);
+            ClassicAssert.AreEqual(sequence.IsReversed, true);
         }
 
         /// <summary>
@@ -96,37 +97,37 @@ namespace Bio.Padena.Tests
 
             IList<Contig> maps = ReadAlignment.ReadContigAlignment(contigs, readSeqs, kmerLength);
             Contig contig = maps.First();
-            Assert.AreEqual(contig.Consensus, contigs.First());
+            ClassicAssert.AreEqual(contig.Consensus, contigs.First());
             IList<Contig.AssembledSequence> readMap = Sort(contig.Sequences);
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].Position, 4);
-            Assert.AreEqual(readMap[0].ReadPosition, 0);
-            Assert.AreEqual(readMap[0].IsComplemented, false);
-            Assert.AreEqual(readMap[0].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].Position, 4);
+            ClassicAssert.AreEqual(readMap[0].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[0].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[0].IsReversed, false);
 
-            Assert.AreEqual(readMap[1].Length, 8);
-            Assert.AreEqual(readMap[1].Position, 0);
-            Assert.AreEqual(readMap[1].ReadPosition, 0);
-            Assert.AreEqual(readMap[1].IsComplemented, false);
-            Assert.AreEqual(readMap[1].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[1].Length, 8);
+            ClassicAssert.AreEqual(readMap[1].Position, 0);
+            ClassicAssert.AreEqual(readMap[1].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[1].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[1].IsReversed, false);
 
-            Assert.AreEqual(readMap[2].Length, 9);
-            Assert.AreEqual(readMap[2].Position, 3);
-            Assert.AreEqual(readMap[2].ReadPosition, 0);
-            Assert.AreEqual(readMap[2].IsComplemented, false);
-            Assert.AreEqual(readMap[2].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[2].Length, 9);
+            ClassicAssert.AreEqual(readMap[2].Position, 3);
+            ClassicAssert.AreEqual(readMap[2].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[2].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[2].IsReversed, false);
 
-            Assert.AreEqual(readMap[3].Length, 7);
-            Assert.AreEqual(readMap[3].Position, 6);
-            Assert.AreEqual(readMap[3].ReadPosition, 0);
-            Assert.AreEqual(readMap[3].IsComplemented, false);
-            Assert.AreEqual(readMap[3].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[3].Length, 7);
+            ClassicAssert.AreEqual(readMap[3].Position, 6);
+            ClassicAssert.AreEqual(readMap[3].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[3].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[3].IsReversed, false);
 
-            Assert.AreEqual(readMap[4].Length, 8);
-            Assert.AreEqual(readMap[4].Position, 2);
-            Assert.AreEqual(readMap[4].ReadPosition, 0);
-            Assert.AreEqual(readMap[3].IsComplemented, false);
-            Assert.AreEqual(readMap[3].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[4].Length, 8);
+            ClassicAssert.AreEqual(readMap[4].Position, 2);
+            ClassicAssert.AreEqual(readMap[4].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[3].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[3].IsReversed, false);
         }
 
         /// <summary>
@@ -162,45 +163,45 @@ namespace Bio.Padena.Tests
 
             IList<Contig> maps = 
                 ReadAlignment.ReadContigAlignment(contigs, readSeqs, kmerLength).OrderBy(t => t.Consensus.ToString()).ToList();
-            Assert.AreEqual(maps.Count, contigs.Count);
+            ClassicAssert.AreEqual(maps.Count, contigs.Count);
             IList<Contig.AssembledSequence> readMap = Sort(maps.First().Sequences);
 
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].Position, 1);
-            Assert.AreEqual(readMap[0].ReadPosition, 0);
-            Assert.AreEqual(readMap[0].IsComplemented, false);
-            Assert.AreEqual(readMap[0].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].Position, 1);
+            ClassicAssert.AreEqual(readMap[0].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[0].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[0].IsReversed, false);
 
-            Assert.AreEqual(readMap[1].Length, 10);
-            Assert.AreEqual(readMap[1].Position, 0);
-            Assert.AreEqual(readMap[1].ReadPosition, 0);
-            Assert.AreEqual(readMap[1].IsComplemented, false);
-            Assert.AreEqual(readMap[1].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[1].Length, 10);
+            ClassicAssert.AreEqual(readMap[1].Position, 0);
+            ClassicAssert.AreEqual(readMap[1].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[1].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[1].IsReversed, false);
 
-            Assert.AreEqual(readMap[2].Length, 10);
-            Assert.AreEqual(readMap[2].Position, 2);
-            Assert.AreEqual(readMap[2].ReadPosition, 0);
-            Assert.AreEqual(readMap[2].IsComplemented, false);
-            Assert.AreEqual(readMap[2].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[2].Length, 10);
+            ClassicAssert.AreEqual(readMap[2].Position, 2);
+            ClassicAssert.AreEqual(readMap[2].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[2].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[2].IsReversed, false);
 
             readMap = Sort(maps[1].Sequences);
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].Position, 2);
-            Assert.AreEqual(readMap[0].ReadPosition, 0);
-            Assert.AreEqual(readMap[0].IsComplemented, false);
-            Assert.AreEqual(readMap[0].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].Position, 2);
+            ClassicAssert.AreEqual(readMap[0].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[0].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[0].IsReversed, false);
 
-            Assert.AreEqual(readMap[1].Length, 10);
-            Assert.AreEqual(readMap[1].Position, 1);
-            Assert.AreEqual(readMap[1].ReadPosition, 0);
-            Assert.AreEqual(readMap[1].IsComplemented, false);
-            Assert.AreEqual(readMap[1].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[1].Length, 10);
+            ClassicAssert.AreEqual(readMap[1].Position, 1);
+            ClassicAssert.AreEqual(readMap[1].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[1].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[1].IsReversed, false);
 
-            Assert.AreEqual(readMap[2].Length, 10);
-            Assert.AreEqual(readMap[2].Position, 0);
-            Assert.AreEqual(readMap[2].ReadPosition, 0);
-            Assert.AreEqual(readMap[2].IsComplemented, false);
-            Assert.AreEqual(readMap[2].IsReversed, false);
+            ClassicAssert.AreEqual(readMap[2].Length, 10);
+            ClassicAssert.AreEqual(readMap[2].Position, 0);
+            ClassicAssert.AreEqual(readMap[2].ReadPosition, 0);
+            ClassicAssert.AreEqual(readMap[2].IsComplemented, false);
+            ClassicAssert.AreEqual(readMap[2].IsReversed, false);
         }
 
         /// <summary>

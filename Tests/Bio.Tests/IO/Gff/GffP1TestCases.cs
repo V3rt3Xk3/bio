@@ -17,6 +17,7 @@ using Bio.IO.Gff;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
    namespace Bio.TestAutomation.IO.GFF
@@ -565,7 +566,7 @@ using NUnit.Framework;
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -594,15 +595,15 @@ using NUnit.Framework;
                     seqs = parserObj.Parse(reader).ToList();
             }
 
-            Assert.IsNotNull(seqs);
+            ClassicAssert.IsNotNull(seqs);
             int expectedCount = 1;
-            Assert.AreEqual(expectedCount, seqs.Count);
+            ClassicAssert.AreEqual(expectedCount, seqs.Count);
             ApplicationLog.WriteLine(string.Format("Gff Parser P1 : Number of Sequences found are '{0}'.",
                 seqs.Count.ToString((IFormatProvider)null)));
 
             bool valFeat = ValidateFeatures(seqs[0], nodeName);
 
-            Assert.IsTrue(valFeat);
+            ClassicAssert.IsTrue(valFeat);
             ApplicationLog.WriteLine(
                 "Gff Parser P1 : Successfully validated all the Features for a give Sequence in GFF File.");
 
@@ -610,10 +611,10 @@ using NUnit.Framework;
                 Constants.ExpectedSequenceNode);
 
             Sequence seq = (Sequence)seqs[0];
-            Assert.IsNotNull(seq);                   
+            ClassicAssert.IsNotNull(seq);                   
             string sequenceInString = new string(seq.Select(x => (char)x).ToArray());
 
-            Assert.AreEqual(expectedSequence, sequenceInString);
+            ClassicAssert.AreEqual(expectedSequence, sequenceInString);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,   
                 "Gff Parser P1: The Gff sequence '{0}' validation after Parse() is found to be as expected.",
                 sequenceInString));
@@ -625,7 +626,7 @@ using NUnit.Framework;
                 TempSeqData1[i] = seq[i];
             }
 
-            Assert.AreEqual(expectedSequence.Length, TempSeqData1.Length);
+            ClassicAssert.AreEqual(expectedSequence.Length, TempSeqData1.Length);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Gff Parser P1: The Gff Length sequence '{0}' is as expected.",
                 expectedSequence.Length));
@@ -633,8 +634,8 @@ using NUnit.Framework;
             string expectedAlphabet = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.AlphabetNameNode).ToLower(CultureInfo.CurrentCulture);
 
-            Assert.IsNotNull(seq.Alphabet);
-            Assert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
+            ClassicAssert.IsNotNull(seq.Alphabet);
+            ClassicAssert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
                 expectedAlphabet);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Gff Parser P1: The Sequence Alphabet is '{0}' and is as expected.",
@@ -642,7 +643,7 @@ using NUnit.Framework;
 
             string expectedSequenceId = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.SequenceIdNode);
-            Assert.AreEqual(expectedSequenceId, seq.ID);
+            ClassicAssert.AreEqual(expectedSequenceId, seq.ID);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Gff Parser P1: The Sequence ID is '{0}' and is as expected.", seq.ID));
         }
@@ -661,7 +662,7 @@ using NUnit.Framework;
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -684,8 +685,8 @@ using NUnit.Framework;
 
             int expectedNoOfSeqs = int.Parse(utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.NumberOfSequencesNode), null);
-            Assert.IsNotNull(seqs);
-            Assert.AreEqual(expectedNoOfSeqs, seqs.Count);
+            ClassicAssert.IsNotNull(seqs);
+            ClassicAssert.AreEqual(expectedNoOfSeqs, seqs.Count);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Gff Parser P1 : Number of Sequences found are '{0}'.",
                 seqs.Count.ToString((IFormatProvider)null)));
@@ -701,12 +702,12 @@ using NUnit.Framework;
             {
                 bool valFeat = ValidateMultiSequenceFeatures(seqs[i], i + 1, nodeName);
 
-                Assert.IsTrue(valFeat);
+                ClassicAssert.IsTrue(valFeat);
                 ApplicationLog.WriteLine(
                     "Gff Parser P1 : Successfully validated all the Features for a give Sequence in GFF File.");
 
                 Sequence seq = (Sequence)seqs[i];
-                Assert.IsNotNull(seq);                
+                ClassicAssert.IsNotNull(seq);                
                 string sequenceInString1 = new string(seq.Select(x => (char)x).ToArray());
 
                 if (string.Compare(sequenceInString1, sequenceInString1.ToUpper(CultureInfo.CurrentCulture)) == 0)
@@ -717,24 +718,24 @@ using NUnit.Framework;
                 {
                     expectedSequences[i] = expectedSequences[i].ToLower(CultureInfo.CurrentCulture);
                 }
-                Assert.AreEqual(expectedSequences[i], sequenceInString1);
+                ClassicAssert.AreEqual(expectedSequences[i], sequenceInString1);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Parser P1: The Gff sequence '{0}' validation after Parse() is found to be as expected.",
                     sequenceInString1));
 
-                Assert.AreEqual(expectedSequences[i].Length, sequenceInString1.Length);
+                ClassicAssert.AreEqual(expectedSequences[i].Length, sequenceInString1.Length);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Parser P1: The Gff Length sequence '{0}' is as expected.",
                     expectedSequences[i].Length));
 
-                Assert.IsNotNull(seq.Alphabet);
-                Assert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
+                ClassicAssert.IsNotNull(seq.Alphabet);
+                ClassicAssert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
                     alphabets[i]);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Parser P1: The Sequence Alphabet is '{0}' and is as expected.",
                     seq.Alphabet.Name));
 
-                Assert.AreEqual(seqIds[i], seq.ID);
+                ClassicAssert.AreEqual(seqIds[i], seq.ID);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Parser P1: The Sequence ID is '{0}' and is as expected.", seq.ID));
             }
@@ -1103,7 +1104,7 @@ using NUnit.Framework;
             // Gets the expected sequence from the Xml
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             GffParser parserObj = new GffParser();
             IList<ISequence> seqs = parserObj.Parse(filePath).ToList();
             var originalSequence = seqs[0];
@@ -1131,22 +1132,22 @@ using NUnit.Framework;
             ISequence seqTemp = seqsNew.First();
             string sequenceInString = seqTemp.ConvertToString();
 
-            Assert.IsNotNull(seqTemp);
+            ClassicAssert.IsNotNull(seqTemp);
             ApplicationLog.WriteLine(string.Format("Gff Formatter P1: New Sequence is '{0}'.", sequenceInString));
 
             bool val = ValidateFeatures(seqTemp, nodeName);
-            Assert.IsTrue(val);
+            ClassicAssert.IsTrue(val);
             ApplicationLog.WriteLine("GFF Formatter P1 : All the features validated successfully.");
 
             // Now compare the sequences.
             int countNew = seqsNew.Count();
-            Assert.AreEqual(1, countNew);
+            ClassicAssert.AreEqual(1, countNew);
             ApplicationLog.WriteLine("The Number of sequences are matching.");
-            Assert.AreEqual(originalSequence.ID, seqTemp.ID);           
+            ClassicAssert.AreEqual(originalSequence.ID, seqTemp.ID);           
             string orgSeq = new string(originalSequence.Select(x => (char)x).ToArray());           
             string newSeq = new string(seqTemp.Select(x => (char)x).ToArray());
 
-            Assert.AreEqual(orgSeq, newSeq);
+            ClassicAssert.AreEqual(orgSeq, newSeq);
             ApplicationLog.WriteLine(string.Format("Gff Formatter P1: The Gff sequences '{0}' are matching with Format() method.", newSeq));
 
             // Passed all the tests, delete the tmp file. If we failed an Assert,
@@ -1166,7 +1167,7 @@ using NUnit.Framework;
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             IList<ISequence> seqs = null;
             GffParser parserObj = new GffParser();
             seqs = parserObj.Parse(filePath).ToList();
@@ -1190,7 +1191,7 @@ using NUnit.Framework;
             string modifedformatString =
                 formatString.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
 
-            Assert.AreEqual(expectedString.ToLower(CultureInfo.CurrentCulture),
+            ClassicAssert.AreEqual(expectedString.ToLower(CultureInfo.CurrentCulture),
                 modifedformatString.ToLower(CultureInfo.CurrentCulture));
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Gff Formatter P1: The Gff Format String '{0}' are matching with FormatString() method and is as expected.",
@@ -1213,7 +1214,7 @@ using NUnit.Framework;
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             IList<ISequence> seqs = null;
             GffParser parserObj = new GffParser();
             seqs = parserObj.Parse(filePath).ToList();
@@ -1228,8 +1229,8 @@ using NUnit.Framework;
 
             int noOfSeqs = int.Parse(utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.NumberOfSequencesNode), null);
-            Assert.IsNotNull(seqs);
-            Assert.AreEqual(noOfSeqs, seqs.Count);
+            ClassicAssert.IsNotNull(seqs);
+            ClassicAssert.AreEqual(noOfSeqs, seqs.Count);
             ApplicationLog.WriteLine(string.Format("Gff Formatter P1 : Number of Sequences found are '{0}'.",
                 seqs.Count.ToString((IFormatProvider)null)));
 
@@ -1244,12 +1245,12 @@ using NUnit.Framework;
             {
                 bool valFeat = ValidateMultiSequenceFeatures(seqs[i], i + 1, nodeName);
 
-                Assert.IsTrue(valFeat);
+                ClassicAssert.IsTrue(valFeat);
                 ApplicationLog.WriteLine(
                     "Gff Formatter P1 : Successfully validated all the Features for a give Sequence in GFF File.");
 
                 Sequence seq = (Sequence)seqs[i];
-                Assert.IsNotNull(seq);
+                ClassicAssert.IsNotNull(seq);
 
                 string newSeq = new string(seq.Select(x => (char)x).ToArray());
 
@@ -1261,7 +1262,7 @@ using NUnit.Framework;
                 {
                     expectedSequences[i] = expectedSequences[i].ToLower(CultureInfo.CurrentCulture);
                 }
-                Assert.AreEqual(expectedSequences[i], newSeq);
+                ClassicAssert.AreEqual(expectedSequences[i], newSeq);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Formatter P1: The Gff sequence '{0}' validation after Parse() is found to be as expected.",
                     newSeq));
@@ -1272,19 +1273,19 @@ using NUnit.Framework;
                     TempSeqData[j] = seq[j];
                 }
 
-                Assert.AreEqual(expectedSequences[i].Length, TempSeqData.Length);
+                ClassicAssert.AreEqual(expectedSequences[i].Length, TempSeqData.Length);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Formatter P1: The Gff Length sequence '{0}' is as expected.",
                     expectedSequences[i].Length));
 
-                Assert.IsNotNull(seq.Alphabet);
-                Assert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
+                ClassicAssert.IsNotNull(seq.Alphabet);
+                ClassicAssert.AreEqual(seq.Alphabet.Name.ToLower(CultureInfo.CurrentCulture),
                     alphabets[i]);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Formatter P1: The Sequence Alphabet is '{0}' and is as expected.",
                     seq.Alphabet.Name));
 
-                Assert.AreEqual(seqIds[i], seq.ID);
+                ClassicAssert.AreEqual(seqIds[i], seq.ID);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "Gff Formatter P1: The Sequence ID is '{0}' and is as expected.",
                     seq.ID));

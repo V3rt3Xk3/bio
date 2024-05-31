@@ -9,6 +9,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment.NUCmer
 {
@@ -91,7 +92,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             };
 
             IList<ISequenceAlignment> seqAlign = nucmerObj.Align(refSeqList, searchSeqList);
-            Assert.AreEqual(0, seqAlign.Count);
+            ClassicAssert.AreEqual(0, seqAlign.Count);
         }
 
         #endregion InValidate Align NUCmer Test Cases
@@ -213,9 +214,9 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             // Gets all the aligned sequences in comma separated format
             foreach (PairwiseAlignedSequence alignedSeq in alignSimple.Cast<IPairwiseSequenceAlignment>().SelectMany(seqAlignment => seqAlignment))
             {
-                Assert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
+                ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
                 ++j;
-                Assert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
+                ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
                 j++;
             }
 

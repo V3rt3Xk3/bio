@@ -16,6 +16,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
 namespace Bio.TestAutomation.IO.GenBank
@@ -473,59 +474,59 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             List<Variation> variations = metadata.Features.Variations;
 
             // Validate GenBank Features.
-            Assert.AreEqual(minus10Signal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(minus35Signal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(threePrimeUTR.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(fivePrimeUTR.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(caatSignal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(attenuator.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(displacementLoop.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(minus10Signal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(minus35Signal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(threePrimeUTR.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(fivePrimeUTR.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(caatSignal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(attenuator.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(displacementLoop.Count, Convert.ToInt32(zeroValue, null));
 
-            Assert.AreEqual(enhancer.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(gcsSignal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(genesList.Count.ToString((IFormatProvider) null), GenesCount);
-            Assert.AreEqual(interveningDNA.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(LTR.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(matPeptide.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(miscBinding.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(enhancer.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(gcsSignal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(genesList.Count.ToString((IFormatProvider) null), GenesCount);
+            ClassicAssert.AreEqual(interveningDNA.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(LTR.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(matPeptide.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscBinding.Count, Convert.ToInt32(zeroValue, null));
 
 
-            Assert.AreEqual(miscDifference.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(miscFeatures.Count.ToString((IFormatProvider) null), miscFeaturesCount);
-            Assert.AreEqual(miscRecobination.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(miscSignal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(modifierBase.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(miscRNA.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(miscStructure.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(mRNA.Count.ToString((IFormatProvider) null), mRNAFeatureCount);
-            Assert.AreEqual(nonCodingRNA.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(operonRegion.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscDifference.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscFeatures.Count.ToString((IFormatProvider) null), miscFeaturesCount);
+            ClassicAssert.AreEqual(miscRecobination.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscSignal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(modifierBase.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscRNA.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(miscStructure.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(mRNA.Count.ToString((IFormatProvider) null), mRNAFeatureCount);
+            ClassicAssert.AreEqual(nonCodingRNA.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(operonRegion.Count, Convert.ToInt32(zeroValue, null));
 
-            Assert.AreEqual(polySignal.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(polySites.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(precursorRNA.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(proteinBindingSites.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(rBindingSites.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(repliconOrigin.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(polySignal.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(polySites.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(precursorRNA.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(proteinBindingSites.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(rBindingSites.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(repliconOrigin.Count, Convert.ToInt32(zeroValue, null));
 
-            Assert.AreEqual(rRNA.Count.ToString((IFormatProvider) null), rRNACount);
-            Assert.AreEqual(signalPeptide.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(stemLoop.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(tataSignals.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(repeatRegion.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(terminator.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(tmRNA.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(variations.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(rRNA.Count.ToString((IFormatProvider) null), rRNACount);
+            ClassicAssert.AreEqual(signalPeptide.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(stemLoop.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(tataSignals.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(repeatRegion.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(terminator.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(tmRNA.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(variations.Count, Convert.ToInt32(zeroValue, null));
 
-            Assert.AreEqual(tRNA.Count.ToString((IFormatProvider) null), tRNACount);
-            Assert.AreEqual(transitPeptide.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(unSecureRegion.Count, Convert.ToInt32(zeroValue, null));
-            Assert.AreEqual(stemLoop.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(tRNA.Count.ToString((IFormatProvider) null), tRNACount);
+            ClassicAssert.AreEqual(transitPeptide.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(unSecureRegion.Count, Convert.ToInt32(zeroValue, null));
+            ClassicAssert.AreEqual(stemLoop.Count, Convert.ToInt32(zeroValue, null));
 
-            Assert.AreEqual(allFeatures.Count, Convert.ToInt32(allFeaturesCount, null));
-            Assert.AreEqual(CDS.Count, Convert.ToInt32(cdsFeatureCount, null));
-            Assert.AreEqual(exonList.Count, Convert.ToInt32(exonFeatureCount, null));
-            Assert.AreEqual(intronList.Count, Convert.ToInt32(intronFeatureCount, null));
+            ClassicAssert.AreEqual(allFeatures.Count, Convert.ToInt32(allFeaturesCount, null));
+            ClassicAssert.AreEqual(CDS.Count, Convert.ToInt32(cdsFeatureCount, null));
+            ClassicAssert.AreEqual(exonList.Count, Convert.ToInt32(exonFeatureCount, null));
+            ClassicAssert.AreEqual(intronList.Count, Convert.ToInt32(intronFeatureCount, null));
         }
 
         /// <summary>
@@ -695,15 +696,15 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             var sequenceString = new string(firstFeatureSeq.Select(a => (char) a).ToArray());
 
             // Validate SubSequence.            
-            Assert.AreEqual(sequenceString, subSequence);
-            Assert.AreEqual(metadata.Features.All[0].Location.LocationStart.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(sequenceString, subSequence);
+            ClassicAssert.AreEqual(metadata.Features.All[0].Location.LocationStart.ToString((IFormatProvider) null),
                             subSequenceStart);
-            Assert.AreEqual(metadata.Features.All[0].Location.LocationEnd.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(metadata.Features.All[0].Location.LocationEnd.ToString((IFormatProvider) null),
                             subSequenceEnd);
-            Assert.IsNull(metadata.Features.All[0].Location.Accession);
-            Assert.AreEqual(metadata.Features.All[0].Location.StartData,
+            ClassicAssert.IsNull(metadata.Features.All[0].Location.Accession);
+            ClassicAssert.AreEqual(metadata.Features.All[0].Location.StartData,
                             subSequenceStart);
-            Assert.AreEqual(metadata.Features.All[0].Location.EndData,
+            ClassicAssert.AreEqual(metadata.Features.All[0].Location.EndData,
                             subSequenceEnd);
 
             // Log to VSTest GUI
@@ -836,21 +837,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata = (GenBankMetadata) sequence.Metadata[Constants.GenBank];
 
                 // Validate formatted temporary file GenBank Features.
-                Assert.AreEqual(metadata.Features.All.Count,
+                ClassicAssert.AreEqual(metadata.Features.All.Count,
                                 Convert.ToInt32(allFeaturesCount, null));
-                Assert.AreEqual(metadata.Features.CodingSequences.Count,
+                ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count,
                                 Convert.ToInt32(cdsFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Exons.Count,
+                ClassicAssert.AreEqual(metadata.Features.Exons.Count,
                                 Convert.ToInt32(exonFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Introns.Count,
+                ClassicAssert.AreEqual(metadata.Features.Introns.Count,
                                 Convert.ToInt32(intronFeatureCount, null));
-                Assert.AreEqual(metadata.Features.MessengerRNAs.Count,
+                ClassicAssert.AreEqual(metadata.Features.MessengerRNAs.Count,
                                 Convert.ToInt32(mRNAFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Attenuators.Count, 0);
-                Assert.AreEqual(metadata.Features.CAATSignals.Count, 0);
-                Assert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
-                Assert.AreEqual(metadata.Features.Enhancers.Count, 0);
-                Assert.AreEqual(metadata.Features.Genes.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Attenuators.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.CAATSignals.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Enhancers.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Genes.Count, 0);
 
                 if ((0 == string.Compare(methodName, "DNA",
                                          CultureInfo.CurrentCulture, CompareOptions.IgnoreCase))
@@ -858,11 +859,11 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                             CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
                 {
                     IList<FeatureItem> featureList = metadata.Features.All;
-                    Assert.AreEqual(featureList[0].Key.ToString(null), sourceKeyName);
-                    Assert.AreEqual(featureList[1].Key.ToString(null), mRNAKey);
-                    Assert.AreEqual(featureList[3].Key.ToString(null), expectedCDSKey);
-                    Assert.AreEqual(featureList[5].Key.ToString(null), expectedExonKey);
-                    Assert.AreEqual(featureList[6].Key.ToString(null), expectedIntronKey);
+                    ClassicAssert.AreEqual(featureList[0].Key.ToString(null), sourceKeyName);
+                    ClassicAssert.AreEqual(featureList[1].Key.ToString(null), mRNAKey);
+                    ClassicAssert.AreEqual(featureList[3].Key.ToString(null), expectedCDSKey);
+                    ClassicAssert.AreEqual(featureList[5].Key.ToString(null), expectedExonKey);
+                    ClassicAssert.AreEqual(featureList[6].Key.ToString(null), expectedIntronKey);
                     ApplicationLog.WriteLine(
                         "GenBank Features BVT: Successfully validated the GenBank Features");
                     ApplicationLog.WriteLine(string.Format(null,
@@ -875,9 +876,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 else
                 {
                     IList<FeatureItem> proFeatureList = metadata.Features.All;
-                    Assert.AreEqual(proFeatureList[0].Key.ToString(null), sourceKeyName);
-                    Assert.AreEqual(proFeatureList[1].Key.ToString(null), proteinKey);
-                    Assert.AreEqual(proFeatureList[2].Key.ToString(null), expectedCDSKey);
+                    ClassicAssert.AreEqual(proFeatureList[0].Key.ToString(null), sourceKeyName);
+                    ClassicAssert.AreEqual(proFeatureList[1].Key.ToString(null), proteinKey);
+                    ClassicAssert.AreEqual(proFeatureList[2].Key.ToString(null), expectedCDSKey);
                     ApplicationLog.WriteLine(
                         "GenBank Features BVT: Successfully validated the GenBank Features");
                     ApplicationLog.WriteLine(string.Format(null,
@@ -961,12 +962,12 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         metadata.Features.All.Add(feature);
 
                         // Validate added GenBank features.
-                        Assert.AreEqual(metadata.Features.All[0].Key.ToString(null), addFirstKey);
-                        Assert.AreEqual(
+                        ClassicAssert.AreEqual(metadata.Features.All[0].Key.ToString(null), addFirstKey);
+                        ClassicAssert.AreEqual(
                             localBuilderObj.GetLocationString(metadata.Features.All[0].Location),
                             addFirstLocation);
-                        Assert.AreEqual(metadata.Features.All[1].Key.ToString(null), addSecondKey);
-                        Assert.AreEqual(localBuilderObj.GetLocationString(metadata.Features.All[1].Location),
+                        ClassicAssert.AreEqual(metadata.Features.All[1].Key.ToString(null), addSecondKey);
+                        ClassicAssert.AreEqual(localBuilderObj.GetLocationString(metadata.Features.All[1].Location),
                                         addSecondLocation);
 
                         parserObj.Close();
@@ -1019,30 +1020,30 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                         CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
             {
                 // Validate standard features keys.
-                Assert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
                                 expectedCondingSeqCount);
-                Assert.AreEqual(metadata.Features.Exons.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.Exons.Count.ToString((IFormatProvider) null),
                                 exonFeatureCount);
-                Assert.AreEqual(metadata.Features.TransferRNAs.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.TransferRNAs.Count.ToString((IFormatProvider) null),
                                 expectedtRNA);
-                Assert.AreEqual(metadata.Features.Genes.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.Genes.Count.ToString((IFormatProvider) null),
                                 expectedGeneCount);
-                Assert.AreEqual(metadata.Features.MiscFeatures.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.MiscFeatures.Count.ToString((IFormatProvider) null),
                                 miscFeatureCount);
-                Assert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
+                ClassicAssert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
                                 expectedCDSKey);
-                Assert.AreEqual(StandardFeatureKeys.Intron.ToString(null),
+                ClassicAssert.AreEqual(StandardFeatureKeys.Intron.ToString(null),
                                 expectedIntronKey);
-                Assert.AreEqual(StandardFeatureKeys.MessengerRna.ToString(null),
+                ClassicAssert.AreEqual(StandardFeatureKeys.MessengerRna.ToString(null),
                                 mRNAKey);
-                Assert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
                                 allFeaturesCount);
             }
             else
             {
-                Assert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
                                 expectedCondingSeqCount);
-                Assert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
+                ClassicAssert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
                                 expectedCDSKey);
             }
         }
@@ -1083,12 +1084,12 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                          CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
                 {
                     // Validate GetFeature within specified range.
-                    Assert.AreEqual(metadata.GetFeatures(accessionNumber,
+                    ClassicAssert.AreEqual(metadata.GetFeatures(accessionNumber,
                                                          Convert.ToInt32(expectedFirstRangeStartPoint, null),
                                                          Convert.ToInt32(expectedFirstRangeEndPoint, null))
                                             .Count.ToString((IFormatProvider) null),
                                     expectedCountWithinFirstRange);
-                    Assert.AreEqual(metadata.GetFeatures(accessionNumber,
+                    ClassicAssert.AreEqual(metadata.GetFeatures(accessionNumber,
                                                          Convert.ToInt32(expectedSecondRangeStartPoint, null),
                                                          Convert.ToInt32(expectedSecondRangeEndPoint, null))
                                             .Count.ToString((IFormatProvider) null),
@@ -1097,11 +1098,11 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 else
                 {
                     // Validate GetFeature within specified range.
-                    Assert.AreEqual(metadata.GetFeatures(
+                    ClassicAssert.AreEqual(metadata.GetFeatures(
                         Convert.ToInt32(expectedFirstRangeStartPoint, null),
                         Convert.ToInt32(expectedFirstRangeEndPoint, null)).Count.ToString((IFormatProvider) null),
                                     expectedCountWithinFirstRange);
-                    Assert.AreEqual(metadata.GetFeatures(
+                    ClassicAssert.AreEqual(metadata.GetFeatures(
                         Convert.ToInt32(expectedSecondRangeStartPoint, null),
                         Convert.ToInt32(expectedSecondRangeEndPoint, null)).Count.ToString((IFormatProvider) null),
                                     expectedCountWithinSecondRange);
@@ -1134,7 +1135,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     metadata.GetCitationsReferredInFeatures();
 
                 // Validate citation referenced present in GenBank features.
-                Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                 expectedCitationReferenced);
             }
         }
@@ -1163,7 +1164,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 List<CitationReference> citationReferenceList =
                     metadata.GetCitationsReferredInFeature(featureList[0]);
 
-                Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                 expectedCitationReferenced);
             }
         }
@@ -1210,29 +1211,29 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     || (0 == string.Compare(methodName, "RNA",
                                             CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
                 {
-                    Assert.AreEqual(cdsQualifiers[0].Label,
+                    ClassicAssert.AreEqual(cdsQualifiers[0].Label,
                                     expectedCDSLabel);
-                    Assert.AreEqual(cdsQualifiers[0].Exception.ToString(null),
+                    ClassicAssert.AreEqual(cdsQualifiers[0].Exception.ToString(null),
                                     expectedCDSException);
-                    Assert.AreEqual(productValue[0],
+                    ClassicAssert.AreEqual(productValue[0],
                                     expectedCDSProduct);
-                    Assert.AreEqual(codonStartValue[0],
+                    ClassicAssert.AreEqual(codonStartValue[0],
                                     expectedCDSCodonStart);
-                    Assert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
-                    Assert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
-                    Assert.AreEqual(DBReferenceValue[0],
+                    ClassicAssert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
+                    ClassicAssert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
+                    ClassicAssert.AreEqual(DBReferenceValue[0],
                                     expectedCDSDBReference);
-                    Assert.AreEqual(cdsQualifiers[0].GeneSymbol,
+                    ClassicAssert.AreEqual(cdsQualifiers[0].GeneSymbol,
                                     expectedGeneSymbol);
                 }
                 else
                 {
-                    Assert.AreEqual(cdsQualifiers[0].Label, expectedCDSLabel);
-                    Assert.AreEqual(cdsQualifiers[0].Exception.ToString(null), expectedCDSException);
-                    Assert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
-                    Assert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
-                    Assert.AreEqual(DBReferenceValue[0], expectedCDSDBReference);
-                    Assert.AreEqual(cdsQualifiers[0].GeneSymbol, expectedGeneSymbol);
+                    ClassicAssert.AreEqual(cdsQualifiers[0].Label, expectedCDSLabel);
+                    ClassicAssert.AreEqual(cdsQualifiers[0].Exception.ToString(null), expectedCDSException);
+                    ClassicAssert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
+                    ClassicAssert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
+                    ClassicAssert.AreEqual(DBReferenceValue[0], expectedCDSDBReference);
+                    ClassicAssert.AreEqual(cdsQualifiers[0].GeneSymbol, expectedGeneSymbol);
                 }
             }
         }
@@ -1272,44 +1273,44 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             expectedLocationString = locationBuilderObj.GetLocationString(location);
 
             // Validate constructed location starts,end and location string.
-            Assert.AreEqual(locationStartPosition, location.LocationStart.ToString((IFormatProvider) null));
-            Assert.AreEqual(locationString, expectedLocationString);
-            Assert.AreEqual(locationEndPosition, location.LocationEnd.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(locationStartPosition, location.LocationStart.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(locationString, expectedLocationString);
+            ClassicAssert.AreEqual(locationEndPosition, location.LocationEnd.ToString((IFormatProvider) null));
 
             switch (operatorPam)
             {
                 case LocationOperatorParameter.Join:
-                    Assert.AreEqual(LocationOperator.Join, location.Operator);
+                    ClassicAssert.AreEqual(LocationOperator.Join, location.Operator);
                     break;
                 case LocationOperatorParameter.Complement:
-                    Assert.AreEqual(LocationOperator.Complement, location.Operator);
+                    ClassicAssert.AreEqual(LocationOperator.Complement, location.Operator);
                     break;
                 case LocationOperatorParameter.Order:
-                    Assert.AreEqual(LocationOperator.Order, location.Operator);
+                    ClassicAssert.AreEqual(LocationOperator.Order, location.Operator);
                     break;
                 default:
-                    Assert.AreEqual(LocationOperator.None, location.Operator);
-                    Assert.AreEqual(locationSeperatorNode,
+                    ClassicAssert.AreEqual(LocationOperator.None, location.Operator);
+                    ClassicAssert.AreEqual(locationSeperatorNode,
                                     location.Separator.ToString(null));
-                    Assert.IsTrue(string.IsNullOrEmpty(location.Accession));
-                    Assert.IsNotNull(location.SubLocations);
+                    ClassicAssert.IsTrue(string.IsNullOrEmpty(location.Accession));
+                    ClassicAssert.IsNotNull(location.SubLocations);
                     break;
             }
 
             if (isOperator)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(location.Separator));
-                Assert.AreEqual(sublocationEndPosition,
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(location.Separator));
+                ClassicAssert.AreEqual(sublocationEndPosition,
                                 location.SubLocations[0].LocationEnd.ToString((IFormatProvider) null));
-                Assert.AreEqual(sublocationSeperatorNode,
+                ClassicAssert.AreEqual(sublocationSeperatorNode,
                                 location.SubLocations[0].Separator.ToString(null));
-                Assert.AreEqual(Convert.ToInt32(subLocationsCount, null),
+                ClassicAssert.AreEqual(Convert.ToInt32(subLocationsCount, null),
                                 location.SubLocations.Count);
-                Assert.AreEqual(sublocationStartPosition,
+                ClassicAssert.AreEqual(sublocationStartPosition,
                                 location.SubLocations[0].LocationStart.ToString((IFormatProvider) null));
-                Assert.AreEqual(LocationOperator.None,
+                ClassicAssert.AreEqual(LocationOperator.None,
                                 location.SubLocations[0].Operator);
-                Assert.AreEqual(0,
+                ClassicAssert.AreEqual(0,
                                 location.SubLocations[0].SubLocations.Count);
             }
         }
@@ -1364,11 +1365,11 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
             // Validate sub features .
             List<FeatureItem> subFeatures = firstItem.GetSubFeatures(seqFeatures);
-            Assert.AreEqual(Convert.ToInt32(featuresCount, null), subFeatures.Count);
+            ClassicAssert.AreEqual(Convert.ToInt32(featuresCount, null), subFeatures.Count);
             subFeatures = secondItem.GetSubFeatures(seqFeatures);
-            Assert.AreEqual(Convert.ToInt32(secondCount, null), subFeatures.Count);
+            ClassicAssert.AreEqual(Convert.ToInt32(secondCount, null), subFeatures.Count);
             subFeatures = thirdItem.GetSubFeatures(seqFeatures);
-            Assert.AreEqual(Convert.ToInt32(thirdCount, null), subFeatures.Count);
+            ClassicAssert.AreEqual(Convert.ToInt32(thirdCount, null), subFeatures.Count);
         }
 
         /// <summary>
@@ -1398,15 +1399,15 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 firstFeatureSeq = metadata.Features.All[0].GetSubSequence(seq.ElementAt(0));
                 var sequenceString = new string(firstFeatureSeq.Select(a => (char) a).ToArray());
                 // Validate SubSequence.
-                Assert.AreEqual(sequenceString, subSequence);
-                Assert.AreEqual(metadata.Features.All[0].Location.LocationStart.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(sequenceString, subSequence);
+                ClassicAssert.AreEqual(metadata.Features.All[0].Location.LocationStart.ToString((IFormatProvider) null),
                                 subSequenceStart);
-                Assert.AreEqual(metadata.Features.All[0].Location.LocationEnd.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(metadata.Features.All[0].Location.LocationEnd.ToString((IFormatProvider) null),
                                 subSequenceEnd);
-                Assert.IsNull(metadata.Features.All[0].Location.Accession);
-                Assert.AreEqual(metadata.Features.All[0].Location.StartData,
+                ClassicAssert.IsNull(metadata.Features.All[0].Location.Accession);
+                ClassicAssert.AreEqual(metadata.Features.All[0].Location.StartData,
                                 subSequenceStart);
-                Assert.AreEqual(metadata.Features.All[0].Location.EndData,
+                ClassicAssert.AreEqual(metadata.Features.All[0].Location.EndData,
                                 subSequenceEnd);
             }
         }

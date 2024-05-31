@@ -6,6 +6,7 @@ using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.IO.FastA;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.Pamsam.Tests
@@ -37,10 +38,10 @@ namespace Bio.Pamsam.Tests
             PAMSAMMultipleSequenceAligner.ParallelOption = new ParallelOptions { MaxDegreeOfParallelism = 2 };
             IHierarchicalClustering hierarchicalClustering = new HierarchicalClusteringParallel(distanceMatrix);
 
-            Assert.AreEqual(7, hierarchicalClustering.Nodes.Count);
+            ClassicAssert.AreEqual(7, hierarchicalClustering.Nodes.Count);
             for (int i = 0; i < dimension * 2 - 1; ++i)
             {
-                Assert.AreEqual(i, hierarchicalClustering.Nodes[i].ID);
+                ClassicAssert.AreEqual(i, hierarchicalClustering.Nodes[i].ID);
             }
 
             for (int i = dimension; i < hierarchicalClustering.Nodes.Count; ++i)
@@ -86,23 +87,23 @@ namespace Bio.Pamsam.Tests
             hierarchicalClustering = new HierarchicalClusteringParallel(kmerDistanceMatrixGenerator.DistanceMatrix);
             for (int i = 0; i < hierarchicalClustering.Nodes.Count; ++i)
             {
-                Assert.AreEqual(true, hierarchicalClustering.Nodes[i].NeedReAlignment);
+                ClassicAssert.AreEqual(true, hierarchicalClustering.Nodes[i].NeedReAlignment);
             }
 
             BinaryGuideTree tree = new BinaryGuideTree(hierarchicalClustering);
             for (int i = 0; i < tree.Nodes.Count; ++i)
             {
-                Assert.AreEqual(true, tree.Nodes[i].NeedReAlignment);
+                ClassicAssert.AreEqual(true, tree.Nodes[i].NeedReAlignment);
             }
 
 
             // SimilarityMatrix similarityMatrix = new SimilarityMatrix(SimilarityMatrix.StandardSimilarityMatrix.AmbiguousDna);
-            //Assert.AreEqual(0, hierarchicalClustering.Nodes[4].LeftChildren.ID);
-            //Assert.AreEqual(1, hierarchicalClustering.Nodes[4].RightChildren.ID);
-            //Assert.AreEqual(2, hierarchicalClustering.Nodes[5].LeftChildren.ID);
-            //Assert.AreEqual(4, hierarchicalClustering.Nodes[5].RightChildren.ID);
-            //Assert.AreEqual(3, hierarchicalClustering.Nodes[6].LeftChildren.ID);
-            //Assert.AreEqual(5, hierarchicalClustering.Nodes[6].RightChildren.ID);
+            //ClassicAssert.AreEqual(0, hierarchicalClustering.Nodes[4].LeftChildren.ID);
+            //ClassicAssert.AreEqual(1, hierarchicalClustering.Nodes[4].RightChildren.ID);
+            //ClassicAssert.AreEqual(2, hierarchicalClustering.Nodes[5].LeftChildren.ID);
+            //ClassicAssert.AreEqual(4, hierarchicalClustering.Nodes[5].RightChildren.ID);
+            //ClassicAssert.AreEqual(3, hierarchicalClustering.Nodes[6].LeftChildren.ID);
+            //ClassicAssert.AreEqual(5, hierarchicalClustering.Nodes[6].RightChildren.ID);
 
             // Test on larger dataset
             string filepath = @"TestUtils\Fasta\RV11_BBS_all.afa".TestDir();

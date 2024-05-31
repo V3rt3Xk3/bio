@@ -6,6 +6,7 @@ using Bio;
 using Bio.IO;
 using Bio.IO.FastQ;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Properties;
 
 namespace Bio.Tests.IO.FastQ
@@ -29,7 +30,7 @@ namespace Bio.Tests.IO.FastQ
             
             // Parse
             ISequence seq = new FastQParser().ParseOne(filepath);
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
 
             FastQParser fqParser = new FastQParser
             {
@@ -39,7 +40,7 @@ namespace Bio.Tests.IO.FastQ
             using (fqParser.Open(filepath))
             {
                 var qualSeq = fqParser.Parse().First() as QualitativeSequence;
-                Assert.IsNotNull(qualSeq);
+                ClassicAssert.IsNotNull(qualSeq);
             }
         }
 
@@ -53,7 +54,7 @@ namespace Bio.Tests.IO.FastQ
         public void FastQFormatter()
         {
             string FilepathOriginal = @"TestUtils\FastQ\SRR002012_5.fastq".TestDir();
-            Assert.IsTrue(File.Exists(FilepathOriginal));
+            ClassicAssert.IsTrue(File.Exists(FilepathOriginal));
             
             IList<IQualitativeSequence> seqsOriginal;
             string filepathTmp = Path.GetTempFileName();
@@ -63,7 +64,7 @@ namespace Bio.Tests.IO.FastQ
             {
                 // Read the original file
                 seqsOriginal = parser.Parse().ToList();
-                Assert.IsNotNull(seqsOriginal);
+                ClassicAssert.IsNotNull(seqsOriginal);
 
                 // Use the formatter to write the original sequences to a temp file
                 new FastQFormatter()
@@ -74,12 +75,12 @@ namespace Bio.Tests.IO.FastQ
             using (parser.Open(filepathTmp))
             {
                 IList<IQualitativeSequence> seqsNew = parser.Parse().ToList();
-                Assert.IsNotNull(seqsNew);
+                ClassicAssert.IsNotNull(seqsNew);
 
                 // Now compare the sequences.
                 int countOriginal = seqsOriginal.Count;
                 int countNew = seqsNew.Count;
-                Assert.AreEqual(countOriginal, countNew);
+                ClassicAssert.AreEqual(countOriginal, countNew);
 
                 int i;
                 for (i = 0; i < countOriginal; i++)
@@ -87,13 +88,13 @@ namespace Bio.Tests.IO.FastQ
                     var orgSequence = seqsOriginal[i];
                     var sequence = seqsNew[i];
 
-                    Assert.AreEqual(seqsOriginal[i].ID, sequence.ID);
+                    ClassicAssert.AreEqual(seqsOriginal[i].ID, sequence.ID);
                     string orgSeq = Encoding.ASCII.GetString(orgSequence.ToArray());
                     string newSeq = Encoding.ASCII.GetString(sequence.ToArray());
                     string orgscores = Encoding.ASCII.GetString(orgSequence.GetEncodedQualityScores());
                     string newscores = Encoding.ASCII.GetString(sequence.GetEncodedQualityScores());
-                    Assert.AreEqual(orgSeq, newSeq);
-                    Assert.AreEqual(orgscores, newscores);
+                    ClassicAssert.AreEqual(orgSeq, newSeq);
+                    ClassicAssert.AreEqual(orgscores, newscores);
                 }
             }
 
@@ -113,7 +114,7 @@ namespace Bio.Tests.IO.FastQ
         public void FastQFormatterUsingInterface()
         {
             string FilepathOriginal = @"TestUtils\FastQ\SRR002012_5.fastq".TestDir();
-            Assert.IsTrue(File.Exists(FilepathOriginal));
+            ClassicAssert.IsTrue(File.Exists(FilepathOriginal));
 
             string filepathTmp = Path.GetTempFileName();
 
@@ -135,18 +136,18 @@ namespace Bio.Tests.IO.FastQ
             // Now compare the sequences.
             int countOriginal = seqsOriginal.Count;
             int countNew = seqsNew.Count;
-            Assert.AreEqual(countOriginal, countNew);
+            ClassicAssert.AreEqual(countOriginal, countNew);
 
             int i;
             for (i = 0; i < countOriginal; i++)
             {
-                Assert.AreEqual(seqsOriginal[i].ID, seqsNew[i].ID);
+                ClassicAssert.AreEqual(seqsOriginal[i].ID, seqsNew[i].ID);
                 string orgSeq = Encoding.ASCII.GetString(seqsOriginal[i].ToArray());
                 string newSeq = Encoding.ASCII.GetString(seqsNew[i].ToArray());
                 string orgscores = Encoding.ASCII.GetString(seqsOriginal[i].GetEncodedQualityScores());
                 string newscores = Encoding.ASCII.GetString(seqsNew[i].GetEncodedQualityScores());
-                Assert.AreEqual(orgSeq, newSeq);
-                Assert.AreEqual(orgscores, newscores);
+                ClassicAssert.AreEqual(orgSeq, newSeq);
+                ClassicAssert.AreEqual(orgscores, newscores);
             }
 
             // Passed all the tests, delete the tmp file. If we failed an Assert,
@@ -162,7 +163,7 @@ namespace Bio.Tests.IO.FastQ
         public void FastQParserForManyFiles()
         {
             string Path = @"TestUtils\FastQ".TestDir();
-            Assert.IsTrue(Directory.Exists(Path));
+            ClassicAssert.IsTrue(Directory.Exists(Path));
             int count = 0;
            
             var di = new DirectoryInfo(Path);
@@ -173,11 +174,11 @@ namespace Bio.Tests.IO.FastQ
                             .Parse(fi.FullName)
                             .Cast<QualitativeSequence>()))
             {
-                Assert.IsNotNull(seq);
+                ClassicAssert.IsNotNull(seq);
                 count++;
             }
 
-            Assert.IsTrue(count >= 3);
+            ClassicAssert.IsTrue(count >= 3);
         }
 
         /// <summary>
@@ -189,14 +190,14 @@ namespace Bio.Tests.IO.FastQ
         public void FastQProperties()
         {
             FastQParser parser = new FastQParser();
-            Assert.AreEqual(parser.Name, Resource.FastQName);
-            Assert.AreEqual(parser.Description, Resource.FASTQPARSER_DESCRIPTION);
-            Assert.AreEqual(parser.SupportedFileTypes, Resource.FASTQ_FILEEXTENSION);
+            ClassicAssert.AreEqual(parser.Name, Resource.FastQName);
+            ClassicAssert.AreEqual(parser.Description, Resource.FASTQPARSER_DESCRIPTION);
+            ClassicAssert.AreEqual(parser.SupportedFileTypes, Resource.FASTQ_FILEEXTENSION);
 
             FastQFormatter formatter = new FastQFormatter();
-            Assert.AreEqual(formatter.Name, Resource.FastQName);
-            Assert.AreEqual(formatter.Description, Resource.FASTQFORMATTER_DESCRIPTION);
-            Assert.AreEqual(formatter.SupportedFileTypes, Resource.FASTQ_FILEEXTENSION);
+            ClassicAssert.AreEqual(formatter.Name, Resource.FastQName);
+            ClassicAssert.AreEqual(formatter.Description, Resource.FASTQFORMATTER_DESCRIPTION);
+            ClassicAssert.AreEqual(formatter.SupportedFileTypes, Resource.FASTQ_FILEEXTENSION);
         }
 
         /// <summary>
@@ -207,7 +208,7 @@ namespace Bio.Tests.IO.FastQ
         public void TestDefaultFastQFormatType()
         {
             FastQParser parser = new FastQParser();
-            Assert.AreEqual(parser.FormatType, FastQFormatType.Illumina_v1_8);
+            ClassicAssert.AreEqual(parser.FormatType, FastQFormatType.Illumina_v1_8);
         }
     }
 }

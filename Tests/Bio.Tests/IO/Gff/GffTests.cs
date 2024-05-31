@@ -7,6 +7,7 @@ using Bio.IO;
 using Bio.IO.Gff;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Properties;
 using Bio.TestAutomation.Util;
 
@@ -24,8 +25,8 @@ namespace Bio.Tests.IO.Gff
         /// </summary>
         static GffTests()
         {
-            Assert.IsTrue(File.Exists(_singleSeqGffFilename));
-            Assert.IsTrue(File.Exists(_multipleSeqGffFilename));
+            ClassicAssert.IsTrue(File.Exists(_singleSeqGffFilename));
+            ClassicAssert.IsTrue(File.Exists(_multipleSeqGffFilename));
         }
 
         #region Fields
@@ -217,13 +218,13 @@ NC_001143.7	RefSeq	CDS	49010	49810	.	-	0	ID=NC_001143.7:ADD66:unknown_transcript
             ISequence seq = parser.Parse(_singleSeqGffFilename).FirstOrDefault();
 
             // test the non-metadata properties
-            Assert.AreEqual(Alphabets.DNA, seq.Alphabet);
-            Assert.AreEqual("NC_001133.7", seq.ID);
+            ClassicAssert.AreEqual(Alphabets.DNA, seq.Alphabet);
+            ClassicAssert.AreEqual("NC_001133.7", seq.ID);
 
             // just test the formatting; if that's good, the parsing was good
             GffFormatter formatter = new GffFormatter();
             string actual = formatter.FormatString(seq);
-            Assert.AreEqual(Utility.CleanupWhiteSpace(_singleSeqGffFileExpectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(_singleSeqGffFileExpectedOutput),
                             Utility.CleanupWhiteSpace(actual));
         }
 
@@ -246,11 +247,11 @@ NC_001143.7	RefSeq	CDS	49010	49810	.	-	0	ID=NC_001143.7:ADD66:unknown_transcript
 
                 if (item != null)
                 {
-                    Assert.AreEqual("NCBI", item.SubItems["source"]);
-                    Assert.AreEqual("C++", item.SubItems["version"]);
+                    ClassicAssert.AreEqual("NCBI", item.SubItems["source"]);
+                    ClassicAssert.AreEqual("C++", item.SubItems["version"]);
                 }
 
-                Assert.AreEqual(DateTime.Parse("2009-10-27", null), seq.Metadata["date"]);
+                ClassicAssert.AreEqual(DateTime.Parse("2009-10-27", null), seq.Metadata["date"]);
             }
 
             // just test the formatting; if that's good, the parsing was good
@@ -264,7 +265,7 @@ NC_001143.7	RefSeq	CDS	49010	49810	.	-	0	ID=NC_001143.7:ADD66:unknown_transcript
             }
             
             File.Delete(TempGFFFileName);
-            Assert.AreEqual(Utility.CleanupWhiteSpace(_multipleSeqGffFileExpectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(_multipleSeqGffFileExpectedOutput),
                             Utility.CleanupWhiteSpace(actual));
             
         }
@@ -305,14 +306,14 @@ NC_001143.7	RefSeq	CDS	49010	49810	.	-	0	ID=NC_001143.7:ADD66:unknown_transcript
         public void GffProperties()
         {
             GffParser parser = new GffParser();
-            Assert.AreEqual(parser.Name, Resource.GFF_NAME);
-            Assert.AreEqual(parser.Description, Resource.GFFPARSER_DESCRIPTION);
-            Assert.AreEqual(parser.SupportedFileTypes, Resource.GFF_FILEEXTENSION);
+            ClassicAssert.AreEqual(parser.Name, Resource.GFF_NAME);
+            ClassicAssert.AreEqual(parser.Description, Resource.GFFPARSER_DESCRIPTION);
+            ClassicAssert.AreEqual(parser.SupportedFileTypes, Resource.GFF_FILEEXTENSION);
 
             GffFormatter formatter = new GffFormatter();
-            Assert.AreEqual(formatter.Name, Resource.GFF_NAME);
-            Assert.AreEqual(formatter.Description, Resource.GFFFORMATTER_DESCRIPTION);
-            Assert.AreEqual(formatter.SupportedFileTypes, Resource.GFF_FILEEXTENSION);
+            ClassicAssert.AreEqual(formatter.Name, Resource.GFF_NAME);
+            ClassicAssert.AreEqual(formatter.Description, Resource.GFFFORMATTER_DESCRIPTION);
+            ClassicAssert.AreEqual(formatter.SupportedFileTypes, Resource.GFF_FILEEXTENSION);
         }
     }
 }

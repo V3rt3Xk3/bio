@@ -14,6 +14,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment.NUCmer
 {
@@ -156,7 +157,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             string filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.SmallSizeSequenceNodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsNotNull(filePath);
+            ClassicAssert.IsNotNull(filePath);
 
             FastAParser parser = new FastAParser();
             IEnumerable<ISequence> refSeqList = parser.Parse(filePath);
@@ -165,7 +166,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(Constants.SmallSizeSequenceNodeName,
                 Constants.SearchSequenceFilePathNode).TestDir();
 
-            Assert.IsNotNull(queryFilePath);
+            ClassicAssert.IsNotNull(queryFilePath);
 
             FastAParser queryParser = new FastAParser();
             IEnumerable<ISequence> searchSeqList = queryParser.Parse(queryFilePath);
@@ -195,9 +196,9 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             {
                 foreach (PairwiseAlignedSequence alignedSeq in seqAlignment)
                 {
-                    Assert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
+                    ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
                     ++j;
-                    Assert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
+                    ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
                     j++;
                 }
             }
@@ -226,14 +227,14 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
         public void NUCmerAlignerProperties()
         {
             NucmerPairwiseAligner nucmerObj = new NucmerPairwiseAligner();
-            Assert.AreEqual(Constants.NUCLength, nucmerObj.LengthOfMUM.ToString((IFormatProvider)null));
-            Assert.AreEqual(200, nucmerObj.BreakLength);
-            Assert.AreEqual(-8, nucmerObj.GapExtensionCost);
-            Assert.AreEqual(-13, nucmerObj.GapOpenCost);
-            Assert.AreEqual(Constants.NUCFixedSeperation, nucmerObj.FixedSeparation.ToString(CultureInfo.InvariantCulture));
-            Assert.AreEqual(Constants.NUCMaximumSeparation, nucmerObj.MaximumSeparation.ToString(CultureInfo.InvariantCulture));
-            Assert.AreEqual(Constants.NUCMinimumScore, nucmerObj.MinimumScore.ToString(CultureInfo.InvariantCulture));
-            Assert.AreEqual(Constants.NUCSeparationFactor, nucmerObj.SeparationFactor.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(Constants.NUCLength, nucmerObj.LengthOfMUM.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(200, nucmerObj.BreakLength);
+            ClassicAssert.AreEqual(-8, nucmerObj.GapExtensionCost);
+            ClassicAssert.AreEqual(-13, nucmerObj.GapOpenCost);
+            ClassicAssert.AreEqual(Constants.NUCFixedSeperation, nucmerObj.FixedSeparation.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(Constants.NUCMaximumSeparation, nucmerObj.MaximumSeparation.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(Constants.NUCMinimumScore, nucmerObj.MinimumScore.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(Constants.NUCSeparationFactor, nucmerObj.SeparationFactor.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -264,7 +265,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             string clustCount1 = this.utilityObj.xmlUtil.GetTextValue(
                 Constants.MediumSizeSequenceNodeName, Constants.ClustCount1Node);
 
-            Assert.AreEqual(clustCount1, clusts.Count.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(clustCount1, clusts.Count.ToString(CultureInfo.InvariantCulture));
         }
 
         #endregion NUCmer Align Test Cases
@@ -319,7 +320,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 
                 FastAParser parser = new FastAParser();
                 IEnumerable<ISequence> referenceSeqList = parser.Parse(filePath);
@@ -335,7 +336,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
 
                 IEnumerable<ISequence> querySeqList = parser.Parse(queryFilePath);
                 searchSeqList.AddRange(querySeqList);
@@ -390,11 +391,11 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             {
                 case AdditionalParameters.FindUniqueMatches:
                     // Validates the Unique Matches.
-                    Assert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, additionalParam, isFilePath));
+                    ClassicAssert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, additionalParam, isFilePath));
                     break;
                 case AdditionalParameters.PerformClusterBuilder:
                     // Validates the Unique Matches.
-                    Assert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, additionalParam, isFilePath));
+                    ClassicAssert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, additionalParam, isFilePath));
                     break;
                 default:
                     break;
@@ -414,8 +415,8 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             {
                 // Gets the reference sequence from the FastA file
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
-                Assert.IsNotNull(filePath);
-                Assert.IsTrue(File.Exists(filePath));
+                ClassicAssert.IsNotNull(filePath);
+                ClassicAssert.IsTrue(File.Exists(filePath));
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
                 FastAParser parser = new FastAParser();
@@ -423,8 +424,8 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
 
                 // Gets the query sequence from the FastA file
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode).TestDir();
-                Assert.IsNotNull(queryFilePath);
-                Assert.IsTrue(File.Exists(queryFilePath));
+                ClassicAssert.IsNotNull(queryFilePath);
+                ClassicAssert.IsTrue(File.Exists(queryFilePath));
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer BVT : Successfully validated the File Path '{0}'.", queryFilePath));
 
                 searchSeqList = parser.Parse(queryFilePath).ToList();
@@ -464,10 +465,10 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 foreach (PairwiseAlignedSequence alignedSeq in seqAlignment)
                 {
                     string actualStr = alignedSeq.FirstSequence.ConvertToString();
-                    Assert.IsTrue(expSeqArray.Contains(actualStr));
+                    ClassicAssert.IsTrue(expSeqArray.Contains(actualStr));
 
                     actualStr = alignedSeq.SecondSequence.ConvertToString();
-                    Assert.IsTrue(expSeqArray.Contains(actualStr));
+                    ClassicAssert.IsTrue(expSeqArray.Contains(actualStr));
                 }
             }
         }
@@ -673,9 +674,9 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             {
                 foreach (PairwiseAlignedSequence alignedSeq in seqAlignment)
                 {
-                    Assert.AreEqual(expSeqArray[j], new string(alignedSeq.FirstSequence.Select(a => (char)a).ToArray()));
+                    ClassicAssert.AreEqual(expSeqArray[j], new string(alignedSeq.FirstSequence.Select(a => (char)a).ToArray()));
                     ++j;
-                    Assert.AreEqual(expSeqArray[j], new string(alignedSeq.SecondSequence.Select(a => (char)a).ToArray()));
+                    ClassicAssert.AreEqual(expSeqArray[j], new string(alignedSeq.SecondSequence.Select(a => (char)a).ToArray()));
                     j++;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Bio.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Extensions
 {
@@ -58,7 +59,7 @@ namespace Bio.Tests.Extensions
         {
             ISequence sequence = new Sequence(DnaAlphabet.Instance, SmallSequence);
             string theString = sequence.ConvertToString();
-            Assert.AreEqual(SmallSequence, theString);
+            ClassicAssert.AreEqual(SmallSequence, theString);
         }
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace Bio.Tests.Extensions
         {
             ISequence sequence = new Sequence(DnaAlphabet.Instance, SmallSequence);
             string theString = sequence.ConvertToString(2,4);
-            Assert.AreEqual(SmallSequence.Substring(2,4), theString);
+            ClassicAssert.AreEqual(SmallSequence.Substring(2,4), theString);
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Bio.Tests.Extensions
         {
             ISequence sequence = new Sequence(DnaAlphabet.Instance, SmallSequence);
             string theString = sequence.ConvertToString(5);
-            Assert.AreEqual(SmallSequence.Substring(5), theString);
+            ClassicAssert.AreEqual(SmallSequence.Substring(5), theString);
         }
 
         /// <summary>

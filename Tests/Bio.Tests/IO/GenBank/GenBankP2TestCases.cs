@@ -11,6 +11,7 @@ using Bio.IO.GenBank;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
     namespace Bio.TestAutomation.IO.GenBank

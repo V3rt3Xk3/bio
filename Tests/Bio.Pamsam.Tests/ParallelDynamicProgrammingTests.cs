@@ -5,6 +5,7 @@ using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.SimilarityMatrices;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {

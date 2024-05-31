@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bio.Algorithms.StringSearch;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio;
 
 namespace Bio.Tests.Algorithms.StringSearch
@@ -25,7 +26,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             HashSet<int> expected = new HashSet<int>();
             expected.Add(0);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             expected.Add(0);
             expected.Add(3);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             indices = new HashSet<int>();
             expected.Add("AAAAA", indices);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             indices.Add(13);
             expected.Add("AAAAA", indices);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             HashSet<int> expected = new HashSet<int>();
             expected.Add(0);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         /// <summary>
@@ -131,7 +132,7 @@ namespace Bio.Tests.Algorithms.StringSearch
             HashSet<int> expected = new HashSet<int>();
             expected.Add(0);
 
-            Assert.IsTrue(Compare(expected, actual));
+            ClassicAssert.IsTrue(Compare(expected, actual));
         }
 
         private static bool Compare(IDictionary<string, HashSet<int>> expected, IDictionary<string, IList<int>> actual)

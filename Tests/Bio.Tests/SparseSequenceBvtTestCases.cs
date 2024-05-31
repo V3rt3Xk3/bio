@@ -6,6 +6,7 @@ using System.Text;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -26,9 +27,9 @@ namespace Bio.Tests
         public void ValidateDnaSparseSequenceConstAlp()
         {
             var sparseSeq = new SparseSequence(Alphabets.DNA);
-            Assert.IsNotNull(sparseSeq);
-            Assert.AreEqual(0, sparseSeq.Count);
-            Assert.IsNotNull(sparseSeq.Statistics);
+            ClassicAssert.IsNotNull(sparseSeq);
+            ClassicAssert.AreEqual(0, sparseSeq.Count);
+            ClassicAssert.IsNotNull(sparseSeq.Statistics);
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of SparseSequence(alp) constructor is completed");
         }
 
@@ -41,9 +42,9 @@ namespace Bio.Tests
         public void ValidateDnaSparseSequenceConstAlpIndex()
         {
             var sparseSeq = new SparseSequence(Alphabets.DNA, 0);
-            Assert.IsNotNull(sparseSeq);
-            Assert.AreEqual(0, sparseSeq.Count);
-            Assert.IsNotNull(sparseSeq.Statistics);
+            ClassicAssert.IsNotNull(sparseSeq);
+            ClassicAssert.AreEqual(0, sparseSeq.Count);
+            ClassicAssert.IsNotNull(sparseSeq.Statistics);
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of SparseSequence(alp, index) constructor is completed");
         }
 
@@ -57,10 +58,10 @@ namespace Bio.Tests
         {
             byte[] byteArrayObj = Encoding.ASCII.GetBytes("AGCT");
             var sparseSeq = new SparseSequence(Alphabets.DNA, 1, byteArrayObj[0]);
-            Assert.IsNotNull(sparseSeq);
-            Assert.IsNotNull(sparseSeq.Statistics);
+            ClassicAssert.IsNotNull(sparseSeq);
+            ClassicAssert.IsNotNull(sparseSeq.Statistics);
             SequenceStatistics seqStatObj = sparseSeq.Statistics;
-            Assert.AreEqual(1, seqStatObj.GetCount('A'));
+            ClassicAssert.AreEqual(1, seqStatObj.GetCount('A'));
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of SparseSequence(alp, index, byte) constructor is completed");
         }
 
@@ -78,14 +79,14 @@ namespace Bio.Tests
                 new List<Byte> {byteArrayObj[0], byteArrayObj[1], byteArrayObj[2], byteArrayObj[3]};
 
             var sparseSeq = new SparseSequence(Alphabets.DNA, 4, seqItems);
-            Assert.IsNotNull(sparseSeq);
-            Assert.IsNotNull(sparseSeq.Statistics);
-            Assert.AreEqual(8, sparseSeq.Count);
+            ClassicAssert.IsNotNull(sparseSeq);
+            ClassicAssert.IsNotNull(sparseSeq.Statistics);
+            ClassicAssert.AreEqual(8, sparseSeq.Count);
             SequenceStatistics seqStatObj = sparseSeq.Statistics;
-            Assert.AreEqual(1, seqStatObj.GetCount('A'));
-            Assert.AreEqual(1, seqStatObj.GetCount('G'));
-            Assert.AreEqual(1, seqStatObj.GetCount('C'));
-            Assert.AreEqual(1, seqStatObj.GetCount('T'));
+            ClassicAssert.AreEqual(1, seqStatObj.GetCount('A'));
+            ClassicAssert.AreEqual(1, seqStatObj.GetCount('G'));
+            ClassicAssert.AreEqual(1, seqStatObj.GetCount('C'));
+            ClassicAssert.AreEqual(1, seqStatObj.GetCount('T'));
 
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of SparseSequence(alp, index, seq items) constructor is completed");
         }
@@ -109,12 +110,12 @@ namespace Bio.Tests
             var sparseSequence = new SparseSequence(alphabet, insertPosition, sequenceList);
 
             //Validate all properties
-            Assert.AreEqual(alphabet.Count + insertPosition, sparseSequence.Count);
-            Assert.AreEqual(alphabet, sparseSequence.Alphabet);
-            Assert.IsTrue(string.IsNullOrEmpty(sparseSequence.ID));
-            Assert.IsNotNull(sparseSequence.Metadata);
-            Assert.IsNotNull(sparseSequence.Statistics);
-            Assert.IsNotNull(sparseSequence.GetKnownSequenceItems());
+            ClassicAssert.AreEqual(alphabet.Count + insertPosition, sparseSequence.Count);
+            ClassicAssert.AreEqual(alphabet, sparseSequence.Alphabet);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(sparseSequence.ID));
+            ClassicAssert.IsNotNull(sparseSequence.Metadata);
+            ClassicAssert.IsNotNull(sparseSequence.Statistics);
+            ClassicAssert.IsNotNull(sparseSequence.GetKnownSequenceItems());
 
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of all properties of sparse sequence instance is completed");
         }
@@ -130,8 +131,8 @@ namespace Bio.Tests
             sparseSeqObj[8] = Alphabets.DNA.Gap;
             sparseSeqObj[9] = Alphabets.DNA.A;
 
-            Assert.AreEqual(9, sparseSeqObj.IndexOfNonGap(8));
-            Assert.AreEqual(9, sparseSeqObj.IndexOfNonGap(9));
+            ClassicAssert.AreEqual(9, sparseSeqObj.IndexOfNonGap(8));
+            ClassicAssert.AreEqual(9, sparseSeqObj.IndexOfNonGap(9));
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of IndexOfNonGap(startPos) method successfully completed");
         }
@@ -147,8 +148,8 @@ namespace Bio.Tests
             sparseSeqObj[2] = Alphabets.DNA.Gap;
             sparseSeqObj[1] = Alphabets.DNA.A;
 
-            Assert.AreEqual(1, sparseSeqObj.LastIndexOfNonGap(2));
-            Assert.AreEqual(1, sparseSeqObj.LastIndexOfNonGap(1));
+            ClassicAssert.AreEqual(1, sparseSeqObj.LastIndexOfNonGap(2));
+            ClassicAssert.AreEqual(1, sparseSeqObj.LastIndexOfNonGap(1));
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of LastIndexOfNonGap() method successfully completed");
         }
@@ -164,7 +165,7 @@ namespace Bio.Tests
             sparseSeqObj[0] = Alphabets.DNA.Gap;
             sparseSeqObj[1] = Alphabets.DNA.A;
 
-            Assert.AreEqual(1, sparseSeqObj.IndexOfNonGap());
+            ClassicAssert.AreEqual(1, sparseSeqObj.IndexOfNonGap());
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of IndexOfNonGap() method successfully completed");
         }
@@ -180,7 +181,7 @@ namespace Bio.Tests
             sparseSeqObj[1] = Alphabets.DNA.Gap;
             sparseSeqObj[0] = Alphabets.DNA.A;
 
-            Assert.AreEqual(0, sparseSeqObj.LastIndexOfNonGap());
+            ClassicAssert.AreEqual(0, sparseSeqObj.LastIndexOfNonGap());
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of LastIndexOfNonGap() method successfully completed");
         }
 
@@ -203,7 +204,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < byteArrayObj.Length; i++)
             {
-                Assert.AreEqual(byteArrayObj[i], revSeqObj[i]);
+                ClassicAssert.AreEqual(byteArrayObj[i], revSeqObj[i]);
             }
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of GetReversedSequence() method successfully completed");
@@ -226,7 +227,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < byteArrayObj.Length; i++)
             {
-                Assert.AreEqual(byteArrayObj[i], revSeqObj[i]);
+                ClassicAssert.AreEqual(byteArrayObj[i], revSeqObj[i]);
             }
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of GetReverseComplementedSequence() method successfully completed");
@@ -249,8 +250,8 @@ namespace Bio.Tests
             long i = 0;
             foreach (var by in revSeqObj)
             {
-                Assert.AreEqual(i, by.Index);
-                Assert.AreEqual(byteArrayObj[i], by.Item);
+                ClassicAssert.AreEqual(i, by.Index);
+                ClassicAssert.AreEqual(byteArrayObj[i], by.Item);
                 i++;
             }
 
@@ -276,7 +277,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < byteArrayObj.Length; i++)
             {
-                Assert.AreEqual(byteArrayObj[i], revSeqObj[i]);
+                ClassicAssert.AreEqual(byteArrayObj[i], revSeqObj[i]);
             }
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of GetComplementedSequence() method successfully completed");
@@ -304,18 +305,18 @@ namespace Bio.Tests
             var sparseSeq = new SparseSequence(Alphabets.DNA, 0, byteList);
 
             ISequence result = sparseSeq.GetSubSequence(0, 3);
-            Assert.AreEqual(3, result.Count);
-            Assert.AreEqual(Alphabets.DNA.Gap, result[0]);
-            Assert.AreEqual(Alphabets.DNA.G, result[1]);
-            Assert.AreEqual(Alphabets.DNA.A, result[2]);
+            ClassicAssert.AreEqual(3, result.Count);
+            ClassicAssert.AreEqual(Alphabets.DNA.Gap, result[0]);
+            ClassicAssert.AreEqual(Alphabets.DNA.G, result[1]);
+            ClassicAssert.AreEqual(Alphabets.DNA.A, result[2]);
 
             result = sparseSeq.GetSubSequence(0, 0);
-            Assert.AreEqual(0, result.Count);
+            ClassicAssert.AreEqual(0, result.Count);
 
             result = sparseSeq.GetSubSequence(3, 2);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(Alphabets.DNA.Gap, result[0]);
-            Assert.AreEqual(Alphabets.DNA.T, result[1]);
+            ClassicAssert.AreEqual(2, result.Count);
+            ClassicAssert.AreEqual(Alphabets.DNA.Gap, result[0]);
+            ClassicAssert.AreEqual(Alphabets.DNA.T, result[1]);
 
             ApplicationLog.WriteLine("SparseSequenceBVT: Validation of GetSubSequence() method successfully completed");
         }
@@ -337,13 +338,13 @@ namespace Bio.Tests
             int i = 0;
             while (seqObj.MoveNext())
             {
-                Assert.AreEqual(byteArrayObj[i], seqObj.Current);
+                ClassicAssert.AreEqual(byteArrayObj[i], seqObj.Current);
                 i++;
             }
             i = 0;
             foreach (byte alp in sparseSeqObj)
             {
-                Assert.AreEqual(byteArrayObj[i], alp);
+                ClassicAssert.AreEqual(byteArrayObj[i], alp);
                 i++;
             }
 
@@ -373,7 +374,7 @@ namespace Bio.Tests
             byte seqItem = new Sequence(Alphabets.DNA, "AGCT")[0];
 
             sparseSeq[0] = seqItem;
-            Assert.AreEqual(65, sparseSeq[0]);
+            ClassicAssert.AreEqual(65, sparseSeq[0]);
 
             ApplicationLog.WriteLine("SparseSequence BVT: Validation of Indexer successfully completed");
         }
@@ -404,7 +405,7 @@ namespace Bio.Tests
             sparseSeq.CopyTo(array, 0, byteList.Count);
             for (int i = 0; i < byteList.Count; i++)
             {
-                Assert.AreEqual(byteList.ElementAt(i), array[i]);
+                ClassicAssert.AreEqual(byteList.ElementAt(i), array[i]);
             }
 
             //check for a part of the sequence
@@ -412,7 +413,7 @@ namespace Bio.Tests
             sparseSeq.CopyTo(array, 0, 5);
             for (int i = 0; i < 5; i++)
             {
-                Assert.AreEqual(byteList.ElementAt(i), array[i]);
+                ClassicAssert.AreEqual(byteList.ElementAt(i), array[i]);
             }
         }
 

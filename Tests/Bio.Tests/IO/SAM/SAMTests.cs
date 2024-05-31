@@ -9,6 +9,7 @@ using Bio.IO.SAM;
 using Bio.Util.ArgumentParser;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.SAM
 {
@@ -28,9 +29,9 @@ namespace Bio.Tests.IO.SAM
             string filePath = @"TestUtils\SAM\SeqAlignment1.sam".TestDir();
             ISequenceAlignmentParser parser = new SAMParser();
             IList<ISequenceAlignment> alignments = parser.Parse(filePath).ToList();
-            Assert.IsTrue(alignments != null);
-            Assert.AreEqual(alignments.Count, 1);
-            Assert.AreEqual(alignments[0].AlignedSequences.Count, 2);
+            ClassicAssert.IsTrue(alignments != null);
+            ClassicAssert.AreEqual(alignments.Count, 1);
+            ClassicAssert.AreEqual(alignments[0].AlignedSequences.Count, 2);
         }
 
         /// <summary>
@@ -45,9 +46,9 @@ namespace Bio.Tests.IO.SAM
             ISequenceAlignmentParser parser = new SAMParser();
             IList<ISequenceAlignment> alignments = parser.Parse(filePath).ToList();
 
-            Assert.IsTrue(alignments != null);
-            Assert.AreEqual(alignments.Count, 1);
-            Assert.AreEqual(alignments[0].AlignedSequences.Count, 2);
+            ClassicAssert.IsTrue(alignments != null);
+            ClassicAssert.AreEqual(alignments.Count, 1);
+            ClassicAssert.AreEqual(alignments[0].AlignedSequences.Count, 2);
 
             try
             {
@@ -56,9 +57,9 @@ namespace Bio.Tests.IO.SAM
 
                 alignments = parser.Parse(outputfilePath).ToList();
 
-                Assert.IsTrue(alignments != null);
-                Assert.AreEqual(alignments.Count, 1);
-                Assert.AreEqual(alignments[0].AlignedSequences.Count, 2);
+                ClassicAssert.IsTrue(alignments != null);
+                ClassicAssert.AreEqual(alignments.Count, 1);
+                ClassicAssert.AreEqual(alignments[0].AlignedSequences.Count, 2);
             }
             finally
             {
@@ -76,15 +77,15 @@ namespace Bio.Tests.IO.SAM
         {
             ISequenceAlignmentParser parser = new SAMParser();
 
-            Assert.AreEqual(parser.Name, Properties.Resource.SAM_NAME);
-            Assert.AreEqual(parser.Description, Properties.Resource.SAMPARSER_DESCRIPTION);
-            Assert.AreEqual(parser.SupportedFileTypes, Properties.Resource.SAM_FILEEXTENSION);
+            ClassicAssert.AreEqual(parser.Name, Properties.Resource.SAM_NAME);
+            ClassicAssert.AreEqual(parser.Description, Properties.Resource.SAMPARSER_DESCRIPTION);
+            ClassicAssert.AreEqual(parser.SupportedFileTypes, Properties.Resource.SAM_FILEEXTENSION);
 
             ISequenceAlignmentFormatter formatter = new SAMFormatter();
 
-            Assert.AreEqual(formatter.Name, Properties.Resource.SAM_NAME);
-            Assert.AreEqual(formatter.Description, Properties.Resource.SAMFORMATTER_DESCRIPTION);
-            Assert.AreEqual(formatter.SupportedFileTypes, Properties.Resource.SAM_FILEEXTENSION);
+            ClassicAssert.AreEqual(formatter.Name, Properties.Resource.SAM_NAME);
+            ClassicAssert.AreEqual(formatter.Description, Properties.Resource.SAMFORMATTER_DESCRIPTION);
+            ClassicAssert.AreEqual(formatter.SupportedFileTypes, Properties.Resource.SAM_FILEEXTENSION);
         }
     }
 }

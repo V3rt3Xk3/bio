@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {
@@ -58,7 +59,7 @@ namespace Bio.Pamsam.Tests
                 {
                     distanceScore = KimuraDistanceScoreCalculator.CalculateDistanceScore(sequences[i], sequences[j]);
                     Console.WriteLine("Kimura Distance of sequence {0}, and {1} is: {2}", i, j, distanceScore);
-                    //Assert.AreEqual(kimuraDistanceScoreCalculator.DistanceScore, kimuraDistanceMatrixGenerator.DistanceMatrix[i, j]);
+                    //ClassicAssert.AreEqual(kimuraDistanceScoreCalculator.DistanceScore, kimuraDistanceMatrixGenerator.DistanceMatrix[i, j]);
                 }
             }
 

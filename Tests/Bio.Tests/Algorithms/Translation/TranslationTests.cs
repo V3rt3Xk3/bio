@@ -1,6 +1,7 @@
 ﻿using System;
 using Bio.Algorithms.Translation;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio;
 
 namespace Bio.Tests.Algorithms.Translation
@@ -20,13 +21,13 @@ namespace Bio.Tests.Algorithms.Translation
         {
             ISequence seq = new Sequence(Alphabets.DNA, "ATGGCG");
             ISequence transcript = Transcription.Transcribe(seq);
-            Assert.IsTrue(CompareSequenceToString("AUGGCG", transcript));
+            ClassicAssert.IsTrue(CompareSequenceToString("AUGGCG", transcript));
             
-            Assert.AreEqual(Alphabets.RNA, transcript.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.RNA, transcript.Alphabet);
 
             ISequence reverseTranscript = Transcription.ReverseTranscribe(transcript);
-            Assert.IsTrue(CompareSequenceToString("ATGGCG", reverseTranscript));
-            Assert.AreEqual(Alphabets.DNA, reverseTranscript.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("ATGGCG", reverseTranscript));
+            ClassicAssert.AreEqual(Alphabets.DNA, reverseTranscript.Alphabet);
         }
 
         /// <summary>
@@ -38,13 +39,13 @@ namespace Bio.Tests.Algorithms.Translation
         {
             ISequence seq = new Sequence(Alphabets.DNA, "atggcg");
             ISequence transcript = Transcription.Transcribe(seq);
-            Assert.IsTrue(CompareSequenceToString("auggcg", transcript));
+            ClassicAssert.IsTrue(CompareSequenceToString("auggcg", transcript));
 
-            Assert.AreEqual(Alphabets.RNA, transcript.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.RNA, transcript.Alphabet);
 
             ISequence reverseTranscript = Transcription.ReverseTranscribe(transcript);
-            Assert.IsTrue(CompareSequenceToString("atggcg", reverseTranscript));
-            Assert.AreEqual(Alphabets.DNA, reverseTranscript.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("atggcg", reverseTranscript));
+            ClassicAssert.AreEqual(Alphabets.DNA, reverseTranscript.Alphabet);
         }
 
         /// <summary>
@@ -56,13 +57,13 @@ namespace Bio.Tests.Algorithms.Translation
         {
             ISequence seq = new Sequence(Alphabets.AmbiguousDNA, "MSRWY");
             ISequence transcript = Transcription.Transcribe(seq);
-            Assert.IsTrue(CompareSequenceToString("MSRWY", transcript));
+            ClassicAssert.IsTrue(CompareSequenceToString("MSRWY", transcript));
 
-            Assert.AreEqual(Alphabets.AmbiguousRNA, transcript.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.AmbiguousRNA, transcript.Alphabet);
 
             ISequence reverseTranscript = Transcription.ReverseTranscribe(transcript);
-            Assert.IsTrue(CompareSequenceToString("MSRWY", reverseTranscript));
-            Assert.AreEqual(Alphabets.AmbiguousDNA, reverseTranscript.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("MSRWY", reverseTranscript));
+            ClassicAssert.AreEqual(Alphabets.AmbiguousDNA, reverseTranscript.Alphabet);
         }
 
         /// <summary>
@@ -122,23 +123,23 @@ namespace Bio.Tests.Algorithms.Translation
         {
             Sequence rnaSeq = new Sequence(Alphabets.RNA, "AUGCGCCCG");
             ISequence phase1 = ProteinTranslation.Translate(rnaSeq);
-            Assert.IsTrue(CompareSequenceToString("MRP", phase1));
-            Assert.AreEqual(Alphabets.Protein, phase1.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("MRP", phase1));
+            ClassicAssert.AreEqual(Alphabets.Protein, phase1.Alphabet);
 
             rnaSeq = new Sequence(Alphabets.RNA, "AUGCGCCCG");
             phase1 = ProteinTranslation.Translate(rnaSeq, 0);
-            Assert.IsTrue(CompareSequenceToString("MRP", phase1));
-            Assert.AreEqual(Alphabets.Protein, phase1.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("MRP", phase1));
+            ClassicAssert.AreEqual(Alphabets.Protein, phase1.Alphabet);
 
             rnaSeq = new Sequence(Alphabets.RNA, "AUGCGCCCG");
             phase1 = ProteinTranslation.Translate(rnaSeq, 1);
-            Assert.IsTrue(CompareSequenceToString("CA", phase1));
-            Assert.AreEqual(Alphabets.Protein, phase1.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("CA", phase1));
+            ClassicAssert.AreEqual(Alphabets.Protein, phase1.Alphabet);
 
             rnaSeq = new Sequence(Alphabets.AmbiguousRNA, "NCUCCAUCUUNUUGGAACAAA");
             phase1 = ProteinTranslation.Translate(rnaSeq, 0);
-            Assert.IsTrue(CompareSequenceToString("XPSXWNK", phase1));
-            Assert.AreEqual(Alphabets.AmbiguousProtein, phase1.Alphabet);
+            ClassicAssert.IsTrue(CompareSequenceToString("XPSXWNK", phase1));
+            ClassicAssert.AreEqual(Alphabets.AmbiguousProtein, phase1.Alphabet);
         }
 
         /// <summary>

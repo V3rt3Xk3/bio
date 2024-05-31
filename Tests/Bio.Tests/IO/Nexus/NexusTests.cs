@@ -7,6 +7,7 @@ using Bio.Algorithms.Alignment;
 using Bio.IO;
 using Bio.IO.Nexus;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Nexus
 {
@@ -24,7 +25,7 @@ namespace Bio.Tests.IO.Nexus
         public void NexusParse()
         {
             string filepath = @"TestUtils\Nexus\primate-mtDNA-interleaved.nex".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 
@@ -242,7 +243,7 @@ namespace Bio.Tests.IO.Nexus
         public void NexusParseOne()
         {
             string filepath = @"TestUtils\Nexus\primate-mtDNA-interleaved.nex".TestDir();
-            Assert.IsTrue(File.Exists(filepath));
+            ClassicAssert.IsTrue(File.Exists(filepath));
 
             IList<Dictionary<string, string>> expectedOutput = new List<Dictionary<string, string>>();
 

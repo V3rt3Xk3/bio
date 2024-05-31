@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -28,14 +29,14 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "A");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(1, stats.GetCount('A'));
-            Assert.AreEqual(1, stats.GetCount(65));
-            Assert.AreEqual(0, stats.GetCount('C'));
-            Assert.AreEqual(0, stats.GetCount('G'));
-            Assert.AreEqual(0, stats.GetCount('T'));
+            ClassicAssert.AreEqual(1, stats.GetCount('A'));
+            ClassicAssert.AreEqual(1, stats.GetCount(65));
+            ClassicAssert.AreEqual(0, stats.GetCount('C'));
+            ClassicAssert.AreEqual(0, stats.GetCount('G'));
+            ClassicAssert.AreEqual(0, stats.GetCount('T'));
 
-            Assert.AreEqual(1.0, stats.GetFraction('A'));
-            Assert.AreEqual(1.0, stats.GetFraction(65));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction('A'));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction(65));
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "A");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(Alphabets.DNA, stats.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.DNA, stats.Alphabet);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "ACGT--ACGT--ACGT--");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(18, stats.TotalCount);
+            ClassicAssert.AreEqual(18, stats.TotalCount);
         }
 
         /// <summary>
@@ -71,16 +72,16 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "a");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(1, stats.GetCount('A'));
-            Assert.AreEqual(1, stats.GetCount(65));
-            Assert.AreEqual(1, stats.GetCount('a'));
-            Assert.AreEqual(0, stats.GetCount('C'));
-            Assert.AreEqual(0, stats.GetCount('G'));
-            Assert.AreEqual(0, stats.GetCount('T'));
+            ClassicAssert.AreEqual(1, stats.GetCount('A'));
+            ClassicAssert.AreEqual(1, stats.GetCount(65));
+            ClassicAssert.AreEqual(1, stats.GetCount('a'));
+            ClassicAssert.AreEqual(0, stats.GetCount('C'));
+            ClassicAssert.AreEqual(0, stats.GetCount('G'));
+            ClassicAssert.AreEqual(0, stats.GetCount('T'));
 
-            Assert.AreEqual(1.0, stats.GetFraction('A'));
-            Assert.AreEqual(1.0, stats.GetFraction(65));
-            Assert.AreEqual(1.0, stats.GetFraction('a'));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction('A'));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction(65));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction('a'));
         }
 
         /// <summary>
@@ -92,13 +93,13 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "aAaAaAaA");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(8, stats.GetCount('A'));
-            Assert.AreEqual(8, stats.GetCount(65));
-            Assert.AreEqual(8, stats.GetCount('a'));
+            ClassicAssert.AreEqual(8, stats.GetCount('A'));
+            ClassicAssert.AreEqual(8, stats.GetCount(65));
+            ClassicAssert.AreEqual(8, stats.GetCount('a'));
 
-            Assert.AreEqual(1.0, stats.GetFraction('A'));
-            Assert.AreEqual(1.0, stats.GetFraction(65));
-            Assert.AreEqual(1.0, stats.GetFraction('a'));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction('A'));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction(65));
+            ClassicAssert.AreEqual(1.0, stats.GetFraction('a'));
         }
 
         /// <summary>
@@ -110,22 +111,22 @@ namespace Bio.Tests
             ISequence sequence = new Sequence(Alphabets.DNA, "a-c-g-t-A-C-G-T-");
             SequenceStatistics stats = new SequenceStatistics(sequence);
 
-            Assert.AreEqual(2, stats.GetCount('A'));
-            Assert.AreEqual(2, stats.GetCount('a'));
-            Assert.AreEqual(2, stats.GetCount('C'));
-            Assert.AreEqual(2, stats.GetCount('c'));
-            Assert.AreEqual(2, stats.GetCount('G'));
-            Assert.AreEqual(2, stats.GetCount('g'));
-            Assert.AreEqual(2, stats.GetCount('T'));
-            Assert.AreEqual(2, stats.GetCount('t'));
-            Assert.AreEqual(8, stats.GetCount('-'));
+            ClassicAssert.AreEqual(2, stats.GetCount('A'));
+            ClassicAssert.AreEqual(2, stats.GetCount('a'));
+            ClassicAssert.AreEqual(2, stats.GetCount('C'));
+            ClassicAssert.AreEqual(2, stats.GetCount('c'));
+            ClassicAssert.AreEqual(2, stats.GetCount('G'));
+            ClassicAssert.AreEqual(2, stats.GetCount('g'));
+            ClassicAssert.AreEqual(2, stats.GetCount('T'));
+            ClassicAssert.AreEqual(2, stats.GetCount('t'));
+            ClassicAssert.AreEqual(8, stats.GetCount('-'));
 
-            Assert.AreEqual(2.0 / 16.0, stats.GetFraction('A'));
-            Assert.AreEqual(2.0 / 16.0, stats.GetFraction('C'));
-            Assert.AreEqual(2.0 / 16.0, stats.GetFraction('G'));
-            Assert.AreEqual(2.0 / 16.0, stats.GetFraction('T'));
-            Assert.AreEqual(.5, stats.GetFraction('-'));
-            Assert.AreEqual(.5, stats.GetFraction(45));
+            ClassicAssert.AreEqual(2.0 / 16.0, stats.GetFraction('A'));
+            ClassicAssert.AreEqual(2.0 / 16.0, stats.GetFraction('C'));
+            ClassicAssert.AreEqual(2.0 / 16.0, stats.GetFraction('G'));
+            ClassicAssert.AreEqual(2.0 / 16.0, stats.GetFraction('T'));
+            ClassicAssert.AreEqual(.5, stats.GetFraction('-'));
+            ClassicAssert.AreEqual(.5, stats.GetFraction(45));
         }
 
         /// <summary>
@@ -140,11 +141,11 @@ namespace Bio.Tests
             int loopCounts = 0;
             foreach (var value in stats.SymbolCounts)
             {
-                Assert.AreEqual(value.Item2, stats.GetCount(value.Item1));
+                ClassicAssert.AreEqual(value.Item2, stats.GetCount(value.Item1));
                 loopCounts++;
             }
 
-            Assert.AreEqual(5,loopCounts);
+            ClassicAssert.AreEqual(5,loopCounts);
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Bio.Tests
             string expectedValue = "- - 6\r\nA - 3\r\nC - 3\r\nG - 3\r\nT - 3\r\n".Replace("\r\n", Environment.NewLine);
             string actualValue = stats.ToString();
 
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
     }
 }

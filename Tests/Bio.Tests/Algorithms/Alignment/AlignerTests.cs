@@ -4,6 +4,7 @@ using Bio.Algorithms.Alignment;
 using Bio.SimilarityMatrices;
 using Bio.Tests.Framework;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -45,7 +46,7 @@ namespace Bio.Tests.Algorithms.Alignment
                 };
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Bio.Tests.Algorithms.Alignment
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
 
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
 
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -176,7 +177,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
 
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
         #endregion Smith-Waterman Aligner
 
@@ -213,7 +214,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
             expectedOutput.Add(align);
             
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
             expectedOutput.Add(align);
 
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -282,7 +283,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
             expectedOutput.Add(align);
             
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         #endregion Needleman-Wunsch Aligner
@@ -327,7 +328,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -348,7 +349,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 7;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -388,7 +389,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(0, result);
+            ClassicAssert.AreNotEqual(0, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -401,7 +402,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 0;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -444,7 +445,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
             PairwiseAlignedSequence alignedSeq = new PairwiseAlignedSequence();
@@ -464,7 +465,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 0;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -512,7 +513,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -536,7 +537,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 1;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -575,7 +576,7 @@ namespace Bio.Tests.Algorithms.Alignment
                 .ToList();
 
             // Check if output is not null
-            Assert.IsNotNull(result);
+            ClassicAssert.IsNotNull(result);
 
             var expectedOutput = new List<IPairwiseSequenceAlignment>();
 
@@ -669,7 +670,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
             expectedOutput.Add(align);
 
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
 
         }
 

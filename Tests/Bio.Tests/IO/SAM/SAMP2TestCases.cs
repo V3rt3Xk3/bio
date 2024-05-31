@@ -14,6 +14,7 @@ using Bio.IO.SAM;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.IO;
 using System;
 using Bio.Tests;

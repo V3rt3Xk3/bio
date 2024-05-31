@@ -14,6 +14,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.MUMmer
 {
@@ -84,7 +85,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             string dnaSequence = "ATGCA";
             Sequence sequence = new Sequence(Alphabets.DNA, dnaSequence);
             MultiWaySuffixTree dnaSuffixTree = new MultiWaySuffixTree(sequence);
-            Assert.AreEqual(8, dnaSuffixTree.EdgesCount);
+            ClassicAssert.AreEqual(8, dnaSuffixTree.EdgesCount);
             ApplicationLog.WriteLine(@"MUMmer BVT : Validation of edge
                         count for a Dna sequence completed successfully");
 
@@ -92,7 +93,7 @@ namespace Bio.Tests.Algorithms.MUMmer
 
             sequence = new Sequence(AmbiguousDnaAlphabet.Instance, ambiguousDnasequence);
             MultiWaySuffixTree ambiguousDnaSuffixTree = new MultiWaySuffixTree(sequence);
-            Assert.AreEqual(7, ambiguousDnaSuffixTree.EdgesCount);
+            ClassicAssert.AreEqual(7, ambiguousDnaSuffixTree.EdgesCount);
             ApplicationLog.WriteLine(@"MUMmer BVT : Validation of edge
                         count for a Ambiguous Dna sequence completed successfully");
         }
@@ -109,11 +110,11 @@ namespace Bio.Tests.Algorithms.MUMmer
         public void ValidateEdgesForALeaf()
         {
             MultiWaySuffixEdge rootEdge = new MultiWaySuffixEdge();
-            Assert.AreEqual(rootEdge.IsLeaf, true);
+            ClassicAssert.AreEqual(rootEdge.IsLeaf, true);
             ApplicationLog.WriteLine("MUMmer BVT : Successfully Validated Is leaf property.");
-            Assert.AreEqual(rootEdge.Children, null);
+            ClassicAssert.AreEqual(rootEdge.Children, null);
             ApplicationLog.WriteLine("MUMmer BVT : Successfully Validated Children property for a Leaf. ");
-            Assert.AreEqual(rootEdge.StartIndex, 0);
+            ClassicAssert.AreEqual(rootEdge.StartIndex, 0);
             ApplicationLog.WriteLine("MUMmer BVT : Successfully Validated start index of a Leaf.");
         }
 
@@ -248,7 +249,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             actualResult = mum.GetMatches(querySeq);
 
             // Validate MUMs output.
-            Assert.IsTrue(this.ValidateMums(Constants.OneLineSequenceNodeName, actualResult));
+            ClassicAssert.IsTrue(this.ValidateMums(Constants.OneLineSequenceNodeName, actualResult));
 
             ApplicationLog.WriteLine("MUMmer BVT : Successfully validated the Mumms.");
         }
@@ -331,7 +332,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
@@ -344,7 +345,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
@@ -386,7 +387,7 @@ namespace Bio.Tests.Algorithms.MUMmer
 
             // Validates the Unique Matches.
             ApplicationLog.WriteLine("MUMmer BVT : Validating the Unique Matches");
-            Assert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
+            ClassicAssert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "MUMmer BVT : Successfully validated the all the unique matches for the sequence '{0}' and '{1}'.",
@@ -413,26 +414,26 @@ namespace Bio.Tests.Algorithms.MUMmer
                 // Gets the reference sequence from the configuration file
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format(null, "MUMmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
                 FastAParser parser = new FastAParser();
                 IEnumerable<ISequence> referenceSeqs = parser.Parse(filePath);
                 referenceSeq = referenceSeqs.FirstOrDefault();
-                Assert.IsNotNull(referenceSeq);
+                ClassicAssert.IsNotNull(referenceSeq);
                 referenceSequence = referenceSeq.ConvertToString();
                 parser.Close();
 
                 // Gets the reference sequence from the configuration file
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format(null, "MUMmer BVT : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
                 FastAParser queryParserObj = new FastAParser();
                 querySeqs = queryParserObj.Parse(queryFilePath).ToList();
                 querySeq = querySeqs.FirstOrDefault();
-                Assert.IsNotNull(querySeq);
+                ClassicAssert.IsNotNull(querySeq);
                 querySequence = querySeq.ConvertToString();
                 queryParserObj.Close();
             }
@@ -468,7 +469,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             }
 
             string expectedScore = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.ScoreNodeName);
-            Assert.AreEqual(expectedScore, align[0].PairwiseAlignedSequences[0].Score.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedScore, align[0].PairwiseAlignedSequences[0].Score.ToString((IFormatProvider)null));
             ApplicationLog.WriteLine(string.Format(null, "MUMmer BVT : Successfully validated the score for the sequence '{0}' and '{1}'.", referenceSequence, querySequence));
 
             string[] expectedSequences = this.utilityObj.xmlUtil.GetTextValues(nodeName, Constants.ExpectedSequencesNode);
@@ -485,7 +486,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             };
             seqAlign.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(seqAlign);
-            Assert.IsTrue(CompareAlignment(align, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(align, expectedOutput));
             ApplicationLog.WriteLine("MUMmer BVT : Successfully validated the aligned sequences.");
         }
 
@@ -564,7 +565,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.FilePathNode);
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
@@ -578,7 +579,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.SearchSequenceFilePathNode);
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
@@ -618,7 +619,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             actualResult = mum.GetMatchesUniqueInReference(querySeqs.ElementAt(0));
 
             // Validate MUMs output.
-            Assert.IsTrue(this.ValidateMums(nodeName, actualResult));
+            ClassicAssert.IsTrue(this.ValidateMums(nodeName, actualResult));
 
             ApplicationLog.WriteLine("MUMmer BVT : Successfully validated the Mumms.");
         }
@@ -671,7 +672,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
@@ -684,7 +685,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
@@ -726,7 +727,7 @@ namespace Bio.Tests.Algorithms.MUMmer
 
             // Validates the Unique Matches.
             ApplicationLog.WriteLine("MUMmer BVT : Validating the Unique Matches");
-            Assert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
+            ClassicAssert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "MUMmer BVT : Successfully validated the all the unique matches for the sequence '{0}' and '{1}'.",
@@ -763,7 +764,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             matches = suffixTree.SearchMatches(querySequenceForMatches);
             // Validates the Unique Matches.
             ApplicationLog.WriteLine("MUMmer BVT : Validating the Unique Matches");
-            Assert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
+            ClassicAssert.IsTrue(this.ValidateUniqueMatches(matches, nodeName, LISParameters.FindUniqueMatches));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "MUMmer BVT : Successfully validated the all the unique matches for the sequence '{0}' and '{1}'.",
@@ -789,7 +790,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.FilePathNode);
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the File Path '{0}'.", filePath));
 
@@ -802,7 +803,7 @@ namespace Bio.Tests.Algorithms.MUMmer
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName,
                     Constants.SearchSequenceFilePathNode);
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "MUMmer BVT : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
@@ -854,7 +855,7 @@ namespace Bio.Tests.Algorithms.MUMmer
             IList<Match> lisSorted = null, actualLis = null;
             lisSorted = lisObj.SortMum(listMatch);
             actualLis = lisObj.GetLongestSequence(lisSorted);
-            Assert.IsTrue(this.ValidateUniqueMatches(actualLis, nodeName, LISParameters.PerformLIS));
+            ClassicAssert.IsTrue(this.ValidateUniqueMatches(actualLis, nodeName, LISParameters.PerformLIS));
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "MUMmer BVT : Successfully validated the all the unique matches for the sequence '{0}' and '{1}'.",

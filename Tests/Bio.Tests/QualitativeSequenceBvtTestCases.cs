@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -81,9 +82,9 @@ namespace Bio.Tests
             ISequence revCompSeq = createdQualitativeSequence.GetReverseComplementedSequence();
             ISequence compSeq = createdQualitativeSequence.GetComplementedSequence();
 
-            Assert.AreEqual(expectedRevSeq, new string(revSeq.Select(a => (char)a).ToArray()));
-            Assert.AreEqual(expectedRevCompSeq, new string(revCompSeq.Select(a => (char)a).ToArray()));
-            Assert.AreEqual(compSequence, new string(compSeq.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedRevSeq, new string(revSeq.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedRevCompSeq, new string(revCompSeq.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(compSequence, new string(compSeq.Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine("Qualitative BVT: Successfully validated Reverse, Complement and ReverseComplement sequence");
         }
@@ -193,8 +194,8 @@ namespace Bio.Tests
             string qualSequence = new string(createdQualitativeSequence.Select(a => (char)a).ToArray());
 
             // Validate Qualitative Sequence after addition of Seq Item.
-            Assert.IsTrue(!string.IsNullOrEmpty(qualSequence));
-            Assert.AreEqual(inputSequence, qualSequence);
+            ClassicAssert.IsTrue(!string.IsNullOrEmpty(qualSequence));
+            ClassicAssert.AreEqual(inputSequence, qualSequence);
 
             // Logs to the VSTest GUI
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence BVT: Qualitative Sequence {0} is as expected.", qualSequence));
@@ -242,11 +243,11 @@ namespace Bio.Tests
 
             string qualSequence = new string(Encoding.UTF8.GetChars(sangerToSolexa));
 
-            Assert.AreEqual(expectedSolexaQualScore, qualSequence);
-            Assert.AreEqual(solexaQualScore, expectedSolexaQualScore);
+            ClassicAssert.AreEqual(expectedSolexaQualScore, qualSequence);
+            ClassicAssert.AreEqual(solexaQualScore, expectedSolexaQualScore);
 
             string solexaQualString=new string(solexaQualSequence.Select(a => (char)a).ToArray());
-            Assert.AreEqual(solexaQualString,expectedSolexaSequence);
+            ClassicAssert.AreEqual(solexaQualString,expectedSolexaSequence);
 
             ApplicationLog.WriteLine(string.Format(null,
                 "Qualitative Sequence BVT:Qualitative Solexa score type {0} is as expected.",
@@ -262,11 +263,11 @@ namespace Bio.Tests
             string illuminaQualSeq = new string(illuminaQualSequence.Select(a => (char)a).ToArray());
 
             //// Validate converted illumina score.
-            Assert.AreEqual(illuminaQualScore, expectedIlluminaQualScore);
-            Assert.AreEqual(illuminaQualSeq, expectedIlluminaSequence);
+            ClassicAssert.AreEqual(illuminaQualScore, expectedIlluminaQualScore);
+            ClassicAssert.AreEqual(illuminaQualSeq, expectedIlluminaSequence);
 
             string sangerToIlluminaString = new string(Encoding.UTF8.GetChars(sangerToIllumina));            
-            Assert.AreEqual(expectedIlluminaQualScore, sangerToIlluminaString);
+            ClassicAssert.AreEqual(expectedIlluminaQualScore, sangerToIlluminaString);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence BVT:Qualitative Illumina score type {0} is as expected.",
@@ -318,8 +319,8 @@ namespace Bio.Tests
             var scores = sangerQualSequence.GetEncodedQualityScores();
             sangerQualScore = Encoding.UTF8.GetString(scores, 0, scores.Length);
 
-            Assert.AreEqual(expectedSangerQualScore, sangerQualScore);
-            Assert.AreEqual(new string(sangerQualSequence.Select(a => (char)a).ToArray()), expectedSangerSequence);
+            ClassicAssert.AreEqual(expectedSangerQualScore, sangerQualScore);
+            ClassicAssert.AreEqual(new string(sangerQualSequence.Select(a => (char)a).ToArray()), expectedSangerSequence);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence BVT:Qualitative Sanger score type {0} is as expected.",
@@ -330,13 +331,13 @@ namespace Bio.Tests
                solexaQualSequence.ConvertTo(FastQFormatType.Illumina_v1_3);
             scores = illuminaQualSequence.GetEncodedQualityScores();
             illuminaQualScore = Encoding.UTF8.GetString(scores, 0, scores.Length);
-            Assert.AreEqual(expectedIlluminaQualScore, illuminaQualScore);
+            ClassicAssert.AreEqual(expectedIlluminaQualScore, illuminaQualScore);
             
             string illuminaQualseq=new string(illuminaQualSequence.Select(a => (char)a).ToArray());
 
             // Validate converted illumina score.
-            Assert.AreEqual(illuminaQualScore, expectedIlluminaQualScore);
-            Assert.AreEqual(illuminaQualseq, expectedIlluminaSequence);
+            ClassicAssert.AreEqual(illuminaQualScore, expectedIlluminaQualScore);
+            ClassicAssert.AreEqual(illuminaQualseq, expectedIlluminaSequence);
             
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence BVT:Qualitative Illumina score type {0} is as expected.",
@@ -368,7 +369,7 @@ namespace Bio.Tests
             string qualSequenceSanger = new string(Encoding.UTF8.GetChars(sangerQualScore));
 
             // Validate converted sanger score.
-            Assert.AreEqual(expectedSangerQualScore, qualSequenceSanger);
+            ClassicAssert.AreEqual(expectedSangerQualScore, qualSequenceSanger);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence BVT:Qualitative Sanger score type {0} is as expected.",
@@ -378,7 +379,7 @@ namespace Bio.Tests
             string qualSequenceSolexa = new string(Encoding.UTF8.GetChars(solexaQualScore));
 
             // Validate converted illumina score.
-            Assert.AreEqual(expectedSolexaQualScore, qualSequenceSolexa);
+            ClassicAssert.AreEqual(expectedSolexaQualScore, qualSequenceSolexa);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence BVT:Qualitative Solexa format type {0} is as expected.",
                 illuminaQualScore));
@@ -426,7 +427,7 @@ namespace Bio.Tests
                     // Validate score
                     foreach (byte qualScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualScore, inputScoreArray[count]);
+                        ClassicAssert.AreEqual(qualScore, inputScoreArray[count]);
                         count++;
                     }
                     break;
@@ -439,7 +440,7 @@ namespace Bio.Tests
                     // Validate score
                     foreach (byte qualScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualScore, inputScoreArray[index]);
+                        ClassicAssert.AreEqual(qualScore, inputScoreArray[index]);
                         index++;
                     }
                     break;
@@ -450,17 +451,17 @@ namespace Bio.Tests
             string qualitativeSequence = new string(createdQualitativeSequence.Select(a => (char)a).ToArray());
 
             // Validate createdSequence qualitative sequence.
-            Assert.IsNotNull(createdQualitativeSequence);
-            Assert.AreEqual(alphabet, createdQualitativeSequence.Alphabet);
+            ClassicAssert.IsNotNull(createdQualitativeSequence);
+            ClassicAssert.AreEqual(alphabet, createdQualitativeSequence.Alphabet);
 
-            Assert.AreEqual(expectedSequence, qualitativeSequence);
-            Assert.AreEqual(expectedSequenceCount, createdQualitativeSequence.Count.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedSequence, qualitativeSequence);
+            ClassicAssert.AreEqual(expectedSequenceCount, createdQualitativeSequence.Count.ToString((IFormatProvider)null));
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence BVT:Qualitative Sequence {0} is as expected.", qualitativeSequence));
 
-            Assert.AreEqual(expectedScore, createdQualitativeSequence.GetEncodedQualityScores().Count().ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedScore, createdQualitativeSequence.GetEncodedQualityScores().Count().ToString((IFormatProvider)null));
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence BVT:Qualitative Sequence Score {0} is as expected.", createdQualitativeSequence.Count().ToString((IFormatProvider)null)));
 
-            Assert.AreEqual(expectedFormatType, createdQualitativeSequence.FormatType);
+            ClassicAssert.AreEqual(expectedFormatType, createdQualitativeSequence.FormatType);
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence BVT:Qualitative format type {0} is as expected.", createdQualitativeSequence.FormatType));
         }
 

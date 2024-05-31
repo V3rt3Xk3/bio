@@ -5,6 +5,7 @@ using System.Linq;
 using Bio.Extensions;
 using Bio.IO.SFF;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.SFF
 {
@@ -28,8 +29,8 @@ namespace Bio.Tests.IO.SFF
             using (parser.Open(filePath))
             {
                 var sequence = parser.Parse().FirstOrDefault();
-                Assert.IsNotNull(sequence);
-                Assert.AreEqual(265, sequence.Count);
+                ClassicAssert.IsNotNull(sequence);
+                ClassicAssert.AreEqual(265, sequence.Count);
             }
         }
 
@@ -49,14 +50,14 @@ namespace Bio.Tests.IO.SFF
             using (parser.Open(filePath))
             {
                 var sequence = parser.Parse().FirstOrDefault();
-                Assert.IsNotNull(sequence);
-                Assert.IsInstanceOf<QualitativeSequence>(sequence);
-                Assert.AreEqual(265, sequence.Count);
+                ClassicAssert.IsNotNull(sequence);
+                ClassicAssert.IsInstanceOf<QualitativeSequence>(sequence);
+                ClassicAssert.AreEqual(265, sequence.Count);
 
                 var actualSequence = sequence.ConvertToString();
-                Assert.AreEqual(ExpectedSequence, actualSequence);
-                Assert.AreEqual(sequence.Alphabet, Alphabets.DNA);
-                Assert.AreEqual("E3MFGYR02JWQ7T", sequence.ID);
+                ClassicAssert.AreEqual(ExpectedSequence, actualSequence);
+                ClassicAssert.AreEqual(sequence.Alphabet, Alphabets.DNA);
+                ClassicAssert.AreEqual("E3MFGYR02JWQ7T", sequence.ID);
             }
         }
 
@@ -87,9 +88,9 @@ namespace Bio.Tests.IO.SFF
                 int index = 0;
                 foreach (var sequence in parser.Parse())
                 {
-                    Assert.IsTrue(expectedData.Length > index);
-                    Assert.AreEqual(expectedData[index].Item1, sequence.ID);
-                    Assert.AreEqual(expectedData[index].Item2, sequence.Count);
+                    ClassicAssert.IsTrue(expectedData.Length > index);
+                    ClassicAssert.AreEqual(expectedData[index].Item1, sequence.ID);
+                    ClassicAssert.AreEqual(expectedData[index].Item2, sequence.Count);
                     index++;
                 }
             }

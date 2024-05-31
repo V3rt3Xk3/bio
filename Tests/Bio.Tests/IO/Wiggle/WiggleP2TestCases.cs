@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Wiggle
 {
@@ -107,7 +108,7 @@ namespace Bio.Tests.IO.Wiggle
             // Gets the filepath.
             String filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.
                               SimpleWiggleWithFixedStepNodeName, Constants.FilePathNode).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
             WiggleAnnotation annotation =null;
 
             try
@@ -148,7 +149,7 @@ namespace Bio.Tests.IO.Wiggle
             // Gets the filepath.
             String filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.
                               InValidFileNamesNode, nodeName).TestDir();
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             WiggleParser parser=new WiggleParser();
 

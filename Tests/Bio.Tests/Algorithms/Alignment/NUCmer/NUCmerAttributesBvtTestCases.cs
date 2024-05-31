@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bio.Algorithms.Alignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment.NUCmer
 {
@@ -20,7 +21,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             NUCmerAttributes nucAttrib = new NUCmerAttributes();
             Dictionary<string, AlignmentInfo> attributes = nucAttrib.Attributes;
 
-            Assert.AreEqual(9, attributes.Count);
+            ClassicAssert.AreEqual(9, attributes.Count);
 
             // Validating all the NUCmer attributes
             AlignmentInfo similarityMatrixObj = attributes["SIMILARITYMATRIX"];
@@ -35,17 +36,17 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             AlignmentInfo sepFactorObj = attributes["SEPARATIONFACTOR"];
             AlignmentInfo breakLengthObj = attributes["BREAKLENGTH"];
 
-            Assert.AreEqual("Similarity Matrix", similarityMatrixObj.Name);
-            Assert.AreEqual("Gap Cost", gapOpenCostObj.Name);
-            Assert.AreEqual("Gap Extension Cost", gapExtensionCostObj.Name);
+            ClassicAssert.AreEqual("Similarity Matrix", similarityMatrixObj.Name);
+            ClassicAssert.AreEqual("Gap Cost", gapOpenCostObj.Name);
+            ClassicAssert.AreEqual("Gap Extension Cost", gapExtensionCostObj.Name);
 
-            Assert.AreEqual("Length of MUM", lenOfMumObj.Name);
-            Assert.AreEqual("Fixed Separation", fixedSepObj.Name);
-            Assert.AreEqual("Maximum Separation", maxSepObj.Name);
+            ClassicAssert.AreEqual("Length of MUM", lenOfMumObj.Name);
+            ClassicAssert.AreEqual("Fixed Separation", fixedSepObj.Name);
+            ClassicAssert.AreEqual("Maximum Separation", maxSepObj.Name);
 
-            Assert.AreEqual("Minimum Score", minScoreObj.Name);
-            Assert.AreEqual("Separation Factor", sepFactorObj.Name);
-            Assert.AreEqual("Break Length", breakLengthObj.Name);
+            ClassicAssert.AreEqual("Minimum Score", minScoreObj.Name);
+            ClassicAssert.AreEqual("Separation Factor", sepFactorObj.Name);
+            ClassicAssert.AreEqual("Break Length", breakLengthObj.Name);
         }
     }
 }

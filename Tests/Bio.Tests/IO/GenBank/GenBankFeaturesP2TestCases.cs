@@ -15,6 +15,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Runtime.Serialization;
 using Bio;
 
@@ -386,7 +387,7 @@ using Bio;
             }
             catch (ArgumentNullException)
             {
-                Assert.IsNull(loc);
+                ClassicAssert.IsNull(loc);
                 ApplicationLog.WriteLine(
                     "GenBankFeatures P2 : Validated the expected exception");
             }
@@ -398,7 +399,7 @@ using Bio;
             }
             catch (ArgumentException)
             {
-                Assert.IsNull(loc);
+                ClassicAssert.IsNull(loc);
                 ApplicationLog.WriteLine(
                     "GenBankFeatures P2 : Validated the expected exception");
             }

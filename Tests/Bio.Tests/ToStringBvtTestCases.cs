@@ -12,6 +12,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -44,13 +45,13 @@ namespace Bio.Tests
             string expectedLargeString = string.Format(CultureInfo.CurrentCulture,
                                                        seqLargeExpected,
                                                        (seqLarge.Count - Helper.AlphabetsToShowInToString));
-            Assert.AreEqual(ExpectedSmallString, ActualSmallString);
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(ExpectedSmallString, ActualSmallString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
 
             //check with blank sequence
             var seqBlank = new Sequence(Alphabets.DNA, "");
             string blankString = seqBlank.ToString();
-            Assert.AreEqual(string.Empty, blankString);
+            ClassicAssert.AreEqual(string.Empty, blankString);
 
             // Gets the expected sequence from the Xml
             string filePath = this.utilityObj.xmlUtil.GetTextValue(Constants.SimpleFastaNodeName,
@@ -63,12 +64,12 @@ namespace Bio.Tests
             if (seqString.Length > Helper.AlphabetsToShowInToString)
             {
                 //check if the whole sequence string contains the string retrieved from ToString
-                Assert.IsTrue(seqString.Contains(seqsList[0].ToString().Substring(0, Helper.AlphabetsToShowInToString)));
-                Assert.IsTrue(seqsList[0].ToString().Contains("... +["));
+                ClassicAssert.IsTrue(seqString.Contains(seqsList[0].ToString().Substring(0, Helper.AlphabetsToShowInToString)));
+                ClassicAssert.IsTrue(seqsList[0].ToString().Contains("... +["));
             }
             else
             {
-                Assert.AreEqual(seqString, seqsList[0].ToString());
+                ClassicAssert.AreEqual(seqString, seqsList[0].ToString());
             }
         }
 
@@ -96,8 +97,8 @@ namespace Bio.Tests
                                                        seqLargeExpected,
                                                        (seqLarge.Count - Helper.AlphabetsToShowInToString));
 
-            Assert.AreEqual(ExpectedSmallString, ActualSmallString);
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(ExpectedSmallString, ActualSmallString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
 
             //read sequences from file
             // Get input and expected values from xml
@@ -115,13 +116,13 @@ namespace Bio.Tests
             if (actualDerivedSeqStr.Length > Helper.AlphabetsToShowInToString)
             {
                 //check if the whole sequence string contains the string retrieved from ToString
-                Assert.IsTrue(
+                ClassicAssert.IsTrue(
                     expectedSequence.Contains(derSequence.ToString().Substring(0, Helper.AlphabetsToShowInToString)));
-                Assert.IsTrue(derSequence.ToString().Contains("... +["));
+                ClassicAssert.IsTrue(derSequence.ToString().Contains("... +["));
             }
             else
             {
-                Assert.AreEqual(expectedSequence, derSequence.ToString());
+                ClassicAssert.AreEqual(expectedSequence, derSequence.ToString());
             }
         }
 
@@ -146,7 +147,7 @@ namespace Bio.Tests
                                               FastQFormatType.Illumina_v1_3, seqData, qualityScores);
             string actualString = seq.ToString().Replace("\r","").Replace("\n","");
             string expectedString = "ATCGAAAB"; // This is dangerously platform specific
-            Assert.AreEqual(expectedString, actualString);
+            ClassicAssert.AreEqual(expectedString, actualString);
         }
 
         /// <summary>
@@ -170,12 +171,12 @@ namespace Bio.Tests
             string rnaAmbiguousStringActual = rnaAmbiguous.ToString();
             string proteinAmbiguousStringActual = proteinAmbiguous.ToString();
 
-            Assert.AreEqual("ACGT-", dnaStringActual);
-            Assert.AreEqual("ACGU-", rnaStringActual);
-            Assert.AreEqual("ACDEFGHIKLMNOPQRSTUVWY-*", proteinStringActual);
-            Assert.AreEqual("ACGT-MRSWYKVHDBN", dnaAmbiguousStringActual);
-            Assert.AreEqual("ACGU-NMRSWYKVHDB", rnaAmbiguousStringActual);
-            Assert.AreEqual("ACDEFGHIKLMNOPQRSTUVWY-*XZBJ", proteinAmbiguousStringActual);
+            ClassicAssert.AreEqual("ACGT-", dnaStringActual);
+            ClassicAssert.AreEqual("ACGU-", rnaStringActual);
+            ClassicAssert.AreEqual("ACDEFGHIKLMNOPQRSTUVWY-*", proteinStringActual);
+            ClassicAssert.AreEqual("ACGT-MRSWYKVHDBN", dnaAmbiguousStringActual);
+            ClassicAssert.AreEqual("ACGU-NMRSWYKVHDB", rnaAmbiguousStringActual);
+            ClassicAssert.AreEqual("ACDEFGHIKLMNOPQRSTUVWY-*XZBJ", proteinAmbiguousStringActual);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Bio.Tests
         {
             var range = new SequenceRange("chr20", 0, 3);
             string actualString = range.ToString();
-            Assert.AreEqual("ID=chr20 Start=0 End=3", actualString);
+            ClassicAssert.AreEqual("ID=chr20 Start=0 End=3", actualString);
         }
 
         /// <summary>
@@ -207,7 +208,7 @@ namespace Bio.Tests
             string actualString = rangegrouping.ToString();
             string expectedStr = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                  Constants.SequenceRangeGroupingExpectedNode);
-            Assert.AreEqual(expectedStr.Replace("\\r\\n", ""), actualString.Replace(System.Environment.NewLine, ""));
+            ClassicAssert.AreEqual(expectedStr.Replace("\\r\\n", ""), actualString.Replace(System.Environment.NewLine, ""));
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace Bio.Tests
             var seqStats = new SequenceStatistics(seq);
             string actualString = seqStats.ToString();
             string expectedString = "A - 2\r\nC - 2\r\nG - 2\r\nT - 2\r\n".Replace("\r\n", System.Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
 
             // Gets the expected sequence from the Xml
             List<ISequence> seqsList;
@@ -244,7 +245,7 @@ namespace Bio.Tests
             {
                 seqStats = new SequenceStatistics(Sequence);
                 string seqStatStr = seqStats.ToString();
-                Assert.IsTrue(seqStatStr.Contains(" - "));
+                ClassicAssert.IsTrue(seqStatStr.Contains(" - "));
             }
         }
 
@@ -277,7 +278,7 @@ namespace Bio.Tests
             string actualString = alignedSeqs.ToString();
             string expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                     Constants.AlignedSeqExpectedNode);
-            Assert.AreEqual(actualString, expectedString.Replace("\\r\\n", System.Environment.NewLine));
+            ClassicAssert.AreEqual(actualString, expectedString.Replace("\\r\\n", System.Environment.NewLine));
         }
 
         /// <summary>
@@ -303,7 +304,7 @@ namespace Bio.Tests
             string actualString = clust.ToString();
             string expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                     Constants.ClusterExpectedNode);
-            Assert.AreEqual(actualString, expectedString.Replace("\\r\\n", System.Environment.NewLine));
+            ClassicAssert.AreEqual(actualString, expectedString.Replace("\\r\\n", System.Environment.NewLine));
         }
 
         /// <summary>
@@ -319,7 +320,7 @@ namespace Bio.Tests
             
             string actualString = delta.ToString();
             string expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName, Constants.DeltaAlignmentExpectedNode);
-            Assert.AreEqual(expectedString, actualString);
+            ClassicAssert.AreEqual(expectedString, actualString);
 
             // Gets the expected sequence from the Xml
             List<ISequence> seqsList;
@@ -336,7 +337,7 @@ namespace Bio.Tests
             delta = new DeltaAlignment(seqsList[0], qrySeq) {FirstSequenceEnd = 21, SecondSequenceStart = 20, QueryDirection = Cluster.ReverseDirection};
             actualString = delta.ToString();
             expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName, Constants.DeltaAlignmentExpected2Node);
-            Assert.AreEqual(expectedString, actualString);
+            ClassicAssert.AreEqual(expectedString, actualString);
         }
 
         /// <summary>
@@ -356,7 +357,7 @@ namespace Bio.Tests
 
             string actualString = alignedSeq.ToString();
             string expectedString = "AWGHE\r\nAWGHE\r\nAW-HE\r\n".Replace("\r\n", System.Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -378,7 +379,7 @@ namespace Bio.Tests
 
             string actualString = align.ToString();
             string expectedString = "AWGHE\r\nAWGHE\r\nAW-HE\r\n\r\n".Replace("\r\n", System.Environment.NewLine);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -403,8 +404,8 @@ namespace Bio.Tests
             string ExpectedMatchString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                          Constants.ExpectedMatchStringNode);
 
-            Assert.AreEqual(ExpectedMatchExtnString, actualMatchExtnString);
-            Assert.AreEqual(actualMatchstring, ExpectedMatchString);
+            ClassicAssert.AreEqual(ExpectedMatchExtnString, actualMatchExtnString);
+            ClassicAssert.AreEqual(actualMatchstring, ExpectedMatchString);
         }
 
         /// <summary>
@@ -442,7 +443,7 @@ namespace Bio.Tests
                                                                                      Constants
                                                                                          .SequenceAlignmentExpectedNode);
 
-            Assert.AreEqual(ExpectedSequenceAlignmentString.Replace("\\r\\n", ""),
+            ClassicAssert.AreEqual(ExpectedSequenceAlignmentString.Replace("\\r\\n", ""),
                 actualSequenceAlignmentString.Replace(System.Environment.NewLine, ""));
         }
 
@@ -484,7 +485,7 @@ namespace Bio.Tests
             string actualString = contig0.ToString();
             string expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                     Constants.OverlapDenovoExpectedNode);
-            Assert.AreEqual(expectedString.Replace("\\r\\n", ""), actualString.Replace("\r\n", ""));
+            ClassicAssert.AreEqual(expectedString.Replace("\\r\\n", ""), actualString.Replace("\r\n", ""));
 
             // Get the parameters from Xml
             int matchScore1 =
@@ -539,7 +540,7 @@ namespace Bio.Tests
             string actualString1 = contig1.ToString();
             const string expectedString1 = "TATAAAGCGCCAAAATTTAGGCACCCGCGGTATT";
 
-            Assert.AreEqual(expectedString1, actualString1);
+            ClassicAssert.AreEqual(expectedString1, actualString1);
         }
 
         /// <summary>
@@ -553,7 +554,7 @@ namespace Bio.Tests
             string actualString = p.ToString();
             string expectedString = this.utilityObj.xmlUtil.GetTextValue(Constants.ToStringNodeName,
                                                                     Constants.MatePairExpectedNode);
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
 
         /// <summary>
@@ -593,8 +594,8 @@ namespace Bio.Tests
             var inputs = new List<ISequence> {seq1, seq2};
             var seqAssembly = (IOverlapDeNovoAssembly) assembler.Assemble(inputs);
 
-            Assert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
-            Assert.AreEqual(1, seqAssembly.Contigs.Count);
+            ClassicAssert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
+            ClassicAssert.AreEqual(1, seqAssembly.Contigs.Count);
 
             assembler.OverlapAlgorithm = new SmithWatermanAligner
                                              {
@@ -606,7 +607,7 @@ namespace Bio.Tests
 
             string actualString = seqAssembly.ToString();
             const string expectedString = "ACAAAAGCAACAAAAATGAAGGCAATACTAGTAGTTCTGCTATATACATTTGCAACCGCAAATG... +[1678]";
-            Assert.AreEqual(expectedString, actualString.Replace(System.Environment.NewLine, ""));
+            ClassicAssert.AreEqual(expectedString, actualString.Replace(System.Environment.NewLine, ""));
 
             // Get the parameters from Xml
             int matchScore1 =
@@ -661,15 +662,15 @@ namespace Bio.Tests
             // Assembles all the sequences.
             seqAssembly = (OverlapDeNovoAssembly) assembler1.Assemble(inputs1);
 
-            Assert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
-            Assert.AreEqual(1, seqAssembly.Contigs.Count);
+            ClassicAssert.AreEqual(0, seqAssembly.UnmergedSequences.Count);
+            ClassicAssert.AreEqual(1, seqAssembly.Contigs.Count);
 
             assembler1.OverlapAlgorithm = new SmithWatermanAligner();
             seqAssembly = (OverlapDeNovoAssembly) assembler1.Assemble(inputs1);
 
             string expectedString1 = "TYMKWRRGCGCCAAAATTTAGGC" + System.Environment.NewLine;
             actualString = seqAssembly.ToString();
-            Assert.AreEqual(expectedString1, actualString);
+            ClassicAssert.AreEqual(expectedString1, actualString);
         }
 
 #if FALSE
@@ -690,7 +691,7 @@ namespace Bio.Tests
 
             string actualString = denovoAssembly.ToString();
             string expectedString = "ATGAAGGCAATACTAGTAGT\r\nACAAAAGCAAC\r\n";
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
 
             // read sequences from xml
             string sequence1 = this.utilityObj.xmlUtil.GetTextValue(Constants.AssemblyAlgorithmNodeName,
@@ -711,7 +712,7 @@ namespace Bio.Tests
 
             string actualString1 = denovoAssembly1.ToString();
             string expectedString1 = "GCCAAAATTTAGGC\r\nTTATGGCGCCCACGGA\r\n";
-            Assert.AreEqual(expectedString1, actualString1);
+            ClassicAssert.AreEqual(expectedString1, actualString1);
         }
 #endif
 
@@ -731,7 +732,7 @@ namespace Bio.Tests
             string expectedLargeString = string.Format(CultureInfo.CurrentCulture,
                                                        seqLargeExpected,
                                                        (seqLarge.Count - Helper.AlphabetsToShowInToString));
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
 
             List<ISequence> seqsList;
             // Gets the expected sequence from the Xml
@@ -745,7 +746,7 @@ namespace Bio.Tests
             seqsList = seq.ToList();
 
             var seqString = new string(seqsList[0].Select(a => (char) a).ToArray());
-            Assert.AreEqual(seqString.Substring(2, 5), ((Sequence) seqsList[0]).ConvertToString(2, 5));
+            ClassicAssert.AreEqual(seqString.Substring(2, 5), ((Sequence) seqsList[0]).ConvertToString(2, 5));
         }
 
         /// <summary>
@@ -767,7 +768,7 @@ namespace Bio.Tests
                                                        seqLargeExpected,
                                                        (seqLarge.Count - Helper.AlphabetsToShowInToString));
 
-            Assert.AreEqual(expectedLargeString, ActualLargeString);
+            ClassicAssert.AreEqual(expectedLargeString, ActualLargeString);
 
             // Get input and expected values from xml
             string expectedSequence = this.utilityObj.xmlUtil.GetTextValue(
@@ -780,7 +781,7 @@ namespace Bio.Tests
             ISequence seq = new Sequence(alphabet, expectedSequence);
             var derSequence = new DerivedSequence(seq, false, false);
 
-            Assert.AreEqual(expectedSequence.Substring(2, 5), derSequence.ConvertToString(2, 5));
+            ClassicAssert.AreEqual(expectedSequence.Substring(2, 5), derSequence.ConvertToString(2, 5));
         }
 
         #endregion BVT Test Cases

@@ -6,6 +6,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -51,7 +52,7 @@ namespace Bio.Tests.Algorithms.Alignment
             var result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             var expectedOutput = new List<IPairwiseSequenceAlignment>();
 
@@ -145,7 +146,7 @@ namespace Bio.Tests.Algorithms.Alignment
             });
             expectedOutput.Add(align);
             
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
 
             ApplicationLog.WriteLine("PairwiseAlignedSequence P1: Successfully validated Sequence with Custom Break Length.");
         }
@@ -180,7 +181,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             
@@ -207,7 +208,7 @@ namespace Bio.Tests.Algorithms.Alignment
             align.PairwiseAlignedSequences.Add(alignedSeq);
 
             expectedOutput.Add(align);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
             ApplicationLog.WriteLine("PairwiseAlignedSequence P1: Successfully validated Sequence with Multiple Reference.");
         }
 
@@ -242,7 +243,7 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<IPairwiseSequenceAlignment> result = nucmer.Align(referenceSeqs, searchSeqs).Select(a => a as IPairwiseSequenceAlignment).ToList();
 
             // Check if output is not null
-            Assert.AreNotEqual(null, result);
+            ClassicAssert.AreNotEqual(null, result);
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
             IPairwiseSequenceAlignment align = new PairwiseSequenceAlignment();
@@ -271,7 +272,7 @@ namespace Bio.Tests.Algorithms.Alignment
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
 
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(result, expectedOutput));
             ApplicationLog.WriteLine("PairwiseAlignedSequence P1: Successfully validated Sequence with Multiple Reference.");
         }
 

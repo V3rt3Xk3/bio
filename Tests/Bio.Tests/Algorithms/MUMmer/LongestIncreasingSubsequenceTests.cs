@@ -2,6 +2,7 @@
 using Bio.Algorithms.MUMmer.LIS;
 using Bio.Algorithms.SuffixTree;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.MUMmer.LIS
 {
@@ -53,7 +54,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 3;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList1, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList1, expectedOutput));
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 10;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList1, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList1, expectedOutput));
         }
 
         /// <summary>
@@ -143,7 +144,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 0;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList1, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList1, expectedOutput));
         }
 
         /// <summary>
@@ -181,7 +182,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 5;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList1, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList1, expectedOutput));
         }
 
         /// <summary>
@@ -225,7 +226,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 6;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList1, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList1, expectedOutput));
         }
 
         /// <summary>
@@ -267,7 +268,7 @@ namespace Bio.Tests.MUMmer.LIS
             mum.QuerySequenceOffset = 0;
             expectedOutput.Add(mum);
 
-            Assert.IsTrue(CompareMumList(lisList, expectedOutput));
+            ClassicAssert.IsTrue(CompareMumList(lisList, expectedOutput));
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Linq;
 using Bio;
 using Bio.Algorithms.Assembly.Padena;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -39,8 +40,8 @@ namespace Bio.Padena.Tests
             long redundancyRemovedGraphEdge = this.Graph.GetNodes().Select(n => n.ExtensionsCount).Sum();
 
             // Compare the two graphs
-            Assert.AreEqual(5, graphCount - redundancyRemovedGraphCount);
-            Assert.AreEqual(12, graphEdges - redundancyRemovedGraphEdge);
+            ClassicAssert.AreEqual(5, graphCount - redundancyRemovedGraphCount);
+            ClassicAssert.AreEqual(12, graphEdges - redundancyRemovedGraphEdge);
         }
     }
 }

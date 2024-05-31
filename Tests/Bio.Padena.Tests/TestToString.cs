@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Algorithms.Assembly.Padena;
 
 namespace Bio.Padena.Tests
@@ -27,7 +28,7 @@ namespace Bio.Padena.Tests
 
             string actualString = denovoAssembly.ToString().Replace(Environment.NewLine, "");
             string expectedString = "ATGAAGGCAATACTAGTAGTACAAAAGCAAC";
-            Assert.AreEqual(actualString, expectedString);
+            ClassicAssert.AreEqual(actualString, expectedString);
         }
     }
 }

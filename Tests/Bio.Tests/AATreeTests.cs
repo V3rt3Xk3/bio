@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework
 {
@@ -27,11 +28,11 @@ namespace Bio.Tests.Framework
                 list.Add(i);
             }
 
-            Assert.AreEqual(size, aatree.Count);
+            ClassicAssert.AreEqual(size, aatree.Count);
             IComparer<int> comparer = Comparer<int>.Default;
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.IsTrue(aatree.Contains(50));
+            ClassicAssert.IsTrue(aatree.Contains(50));
         }
 
         /// <summary>
@@ -51,11 +52,11 @@ namespace Bio.Tests.Framework
 
             list.Sort();
 
-            Assert.AreEqual(size, aatree.Count);
+            ClassicAssert.AreEqual(size, aatree.Count);
             IComparer<int> comparer = Comparer<int>.Default;
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.IsTrue(aatree.Contains(50));
+            ClassicAssert.IsTrue(aatree.Contains(50));
         }
 
         /// <summary>
@@ -80,12 +81,12 @@ namespace Bio.Tests.Framework
 
             list.Sort();
 
-            Assert.AreEqual(size, aatree.Count);
+            ClassicAssert.AreEqual(size, aatree.Count);
 
             IComparer<int> comparer = Comparer<int>.Default;
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.IsTrue(aatree.Contains(list[50]));
+            ClassicAssert.IsTrue(aatree.Contains(list[50]));
 
         }
 
@@ -110,47 +111,47 @@ namespace Bio.Tests.Framework
 
             list.Sort();
 
-            Assert.AreEqual(size, aatree.Count);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.AreEqual(size, aatree.Count);
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
 
 
             int index = 10;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 20;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 30;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 40;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 50;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = list.Count - 1;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 0;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.AreEqual(list.Count, aatree.Count);
+            ClassicAssert.AreEqual(list.Count, aatree.Count);
         }
         /// <summary>
         /// Test Remove method.
@@ -173,45 +174,45 @@ namespace Bio.Tests.Framework
 
             list.Sort();
 
-            Assert.AreEqual(size, aatree.Count);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.AreEqual(size, aatree.Count);
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             int index = 10;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 20;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 30;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 40;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 50;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = list.Count - 1;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 0;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.AreEqual(list.Count, aatree.Count);
+            ClassicAssert.AreEqual(list.Count, aatree.Count);
         }
         /// <summary>
         /// Test Remove method.
@@ -235,44 +236,44 @@ namespace Bio.Tests.Framework
 
             list.Sort();
 
-            Assert.AreEqual(size, aatree.Count);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.AreEqual(size, aatree.Count);
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             int index = 10;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
             index = 20;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 30;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 40;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 50;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = list.Count - 1;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
             index = 0;
-            Assert.IsTrue(aatree.Remove(list[index]));
+            ClassicAssert.IsTrue(aatree.Remove(list[index]));
             list.RemoveAt(index);
-            Assert.IsTrue(ValidateInOrder(aatree, list, comparer));
+            ClassicAssert.IsTrue(ValidateInOrder(aatree, list, comparer));
 
-            Assert.AreEqual(list.Count, aatree.Count);
+            ClassicAssert.AreEqual(list.Count, aatree.Count);
         }
 
 

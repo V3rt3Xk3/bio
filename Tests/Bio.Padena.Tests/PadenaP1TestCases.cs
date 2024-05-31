@@ -22,6 +22,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Globalization;
 using Bio.Tests.Framework;
 using Bio.Tests;
@@ -1436,7 +1437,7 @@ namespace Bio.Padena.Tests
 
             if (isSmallSize)
             {
-                Assert.AreEqual(expectedKmersCount, lstKmers.Count().ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(expectedKmersCount, lstKmers.Count().ToString((IFormatProvider)null));
             }
             else
             {
@@ -1458,12 +1459,12 @@ namespace Bio.Padena.Tests
             string kmerOutputFile = utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.KmersOutputFileNode).TestDir();
 
-            Assert.AreEqual(inputReads.Count, lstKmers.Count);
+            ClassicAssert.AreEqual(inputReads.Count, lstKmers.Count);
 
             // Get the array of kmer sequence using kmer positions
             for (int kmerIndex = 0; kmerIndex < lstKmers.Count; kmerIndex++)
             {
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     new string(inputReads[kmerIndex].Select(a => (char)a).ToArray()),
                     new string(lstKmers[kmerIndex].BaseSequence.Select(a => (char)a).ToArray()));
             }
@@ -1489,7 +1490,7 @@ namespace Bio.Padena.Tests
                         ISequence sequence =
                             lstKmers[kmerIndex].KmerToSequence(kmer);
                         string aab = new string(sequence.Select(a => (char)a).ToArray());
-                        Assert.AreEqual(fileContent[kmerIndex][count], aab);
+                        ClassicAssert.AreEqual(fileContent[kmerIndex][count], aab);
                         count++;
                     }
 
@@ -1522,7 +1523,7 @@ namespace Bio.Padena.Tests
             ApplicationLog.WriteLine("Padena P1 : Step1,2 Completed Successfully");
 
             if (isLargeSizeReads)
-                Assert.AreEqual(Int32.Parse(expectedGraphsNodeCount, null), graph.GetNodes().Count());
+                ClassicAssert.AreEqual(Int32.Parse(expectedGraphsNodeCount, null), graph.GetNodes().Count());
             else
                 ValidateGraph(graph, nodeName);
             
@@ -1556,10 +1557,10 @@ namespace Bio.Padena.Tests
                 //Due to parallelization the left edges and right edges count
                 //can be swapped while processing. if actual left edges count 
                 //is either equal to expected left edges count or right edges count and vice versa.
-                Assert.IsTrue(
+                ClassicAssert.IsTrue(
                   dbnodes.LeftExtensionNodesCount.ToString((IFormatProvider)null) == leftEdgesCount[iseq] ||
                   dbnodes.LeftExtensionNodesCount.ToString((IFormatProvider)null) == rightEdgesCount[iseq]);
-                Assert.IsTrue(
+                ClassicAssert.IsTrue(
                   dbnodes.RightExtensionNodesCount.ToString((IFormatProvider)null) == leftEdgesCount[iseq] ||
                   dbnodes.RightExtensionNodesCount.ToString((IFormatProvider)null) == rightEdgesCount[iseq]);
             }
@@ -1647,7 +1648,7 @@ namespace Bio.Padena.Tests
             ApplicationLog.WriteLine("Padena P1 : Step4 Completed Successfully");
             if (isMicroorganism)
             {
-                Assert.AreEqual(expectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(expectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
             }
             else
             {
@@ -1701,7 +1702,7 @@ namespace Bio.Padena.Tests
             ApplicationLog.WriteLine("Padena P1 : Step3 Completed Successfully");
             if (smallSizeChromosome)
             {
-                Assert.AreEqual(expectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(expectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
             }
             else
             {
@@ -1771,8 +1772,8 @@ namespace Bio.Padena.Tests
                 int.Parse(kmerLength, (IFormatProvider)null), kmer.Kmers);
 
             // Validate KmerOfSequence properties.
-            Assert.AreEqual(expectedSeq, new string(kmerSequence.BaseSequence.Select(a => (char)a).ToArray()));
-            Assert.AreEqual(expectedKmers, kmerSequence.Kmers.Count.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedSeq, new string(kmerSequence.BaseSequence.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedKmers, kmerSequence.Kmers.Count.ToString((IFormatProvider)null));
             ApplicationLog.WriteLine(@"Padena P1 : KmersOfSequence ctor with build kmers method validation completed successfully");
         }
 
@@ -1820,7 +1821,7 @@ namespace Bio.Padena.Tests
                     foreach (ISequence sequence in sequences)
                     {
                         string aab = new string(sequence.Select(a => (char)a).ToArray());
-                        Assert.AreEqual(fileContent[index][count], aab);
+                        ClassicAssert.AreEqual(fileContent[index][count], aab);
                         count++;
                     }
                     index++;
@@ -1858,7 +1859,7 @@ namespace Bio.Padena.Tests
             ApplicationLog.WriteLine("Padena P1 : Step1,2 Completed Successfully");
 
             // Validate DeBruijnGraph Properties.
-            Assert.AreEqual(ExpectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(ExpectedNodesCount, graph.GetNodes().Count().ToString((IFormatProvider)null));
 
             ApplicationLog.WriteLine(@"Padena P1 : ParallelDeNovothis CreateGraph() validation for Padena step2 completed successfully");
         }
@@ -1896,7 +1897,7 @@ namespace Bio.Padena.Tests
 
             DeBruijnNode leftnode = new DeBruijnNode(kmerData, 1);
             node.SetExtensionNode(false, true, leftnode);
-            Assert.AreEqual(lstKmers[1].Kmers.First().Count, node.LeftExtensionNodesCount);
+            ClassicAssert.AreEqual(lstKmers[1].Kmers.First().Count, node.LeftExtensionNodesCount);
             
             ApplicationLog.WriteLine(@"Padena P1 :DeBruijnNode AddLeftExtension() validation for Padena step2 completed successfully");
         }
@@ -1938,7 +1939,7 @@ namespace Bio.Padena.Tests
 
             node.SetExtensionNode(true, true, rightNode);
 
-            Assert.AreEqual(lstKmers[1].Kmers.First().Count,
+            ClassicAssert.AreEqual(lstKmers[1].Kmers.First().Count,
                 node.RightExtensionNodesCount);
             
             ApplicationLog.WriteLine(@"Padena P1 :DeBruijnNode AddRightExtension() validation for Padena step2 completed successfully");
@@ -1985,18 +1986,18 @@ namespace Bio.Padena.Tests
             node.SetExtensionNode(true, true, rightnode);
 
             // Validates count before removing right and left extension nodes.
-            Assert.AreEqual(lstKmers[1].Kmers.First().Count,
+            ClassicAssert.AreEqual(lstKmers[1].Kmers.First().Count,
                 node.RightExtensionNodesCount);
-            Assert.AreEqual(1, node.RightExtensionNodesCount);
-            Assert.AreEqual(1, node.LeftExtensionNodesCount);
+            ClassicAssert.AreEqual(1, node.RightExtensionNodesCount);
+            ClassicAssert.AreEqual(1, node.LeftExtensionNodesCount);
 
             // Remove right and left extension nodes.
             node.RemoveExtensionThreadSafe(rightnode);
             node.RemoveExtensionThreadSafe(leftnode);
 
             // Validate node after removing right and left extensions.
-            Assert.AreEqual(0, node.RightExtensionNodesCount);
-            Assert.AreEqual(0, node.LeftExtensionNodesCount);
+            ClassicAssert.AreEqual(0, node.RightExtensionNodesCount);
+            ClassicAssert.AreEqual(0, node.LeftExtensionNodesCount);
 
             ApplicationLog.WriteLine(@"Padena P1 :DeBruijnNode AddRightExtension() validation for Padena step2 completed successfully");
         }
@@ -2049,12 +2050,12 @@ namespace Bio.Padena.Tests
             node.SetExtensionNode(true, true, rightnode);
 
             // Validate DeBruijnNode class properties.
-            Assert.AreEqual(nodeExtensionsCount, node.ExtensionsCount.ToString((IFormatProvider)null));
-            Assert.AreEqual(kmersCount, node.KmerCount.ToString((IFormatProvider)null));
-            Assert.AreEqual(leftNodeExtensionCount, node.LeftExtensionNodesCount.ToString((IFormatProvider)null));
-            Assert.AreEqual(rightNodeExtensionCount, node.RightExtensionNodesCount.ToString((IFormatProvider)null));
-            Assert.AreEqual(leftNodeExtensionCount, node.LeftExtensionNodesCount.ToString((IFormatProvider)null));
-            Assert.AreEqual(rightNodeExtensionCount, node.RightExtensionNodesCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(nodeExtensionsCount, node.ExtensionsCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(kmersCount, node.KmerCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(leftNodeExtensionCount, node.LeftExtensionNodesCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(rightNodeExtensionCount, node.RightExtensionNodesCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(leftNodeExtensionCount, node.LeftExtensionNodesCount.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(rightNodeExtensionCount, node.RightExtensionNodesCount.ToString((IFormatProvider)null));
 
             ApplicationLog.WriteLine("Padena P1 : DeBruijnNode ctor() validation for Padena step2 completed successfully");
         }
@@ -2089,7 +2090,7 @@ namespace Bio.Padena.Tests
                 new DanglingLinksPurger(int.Parse(kmerLength, (IFormatProvider)null) + 1);
             DeBruijnPathList danglingnodes = danglingLinksPurger.DetectErroneousNodes(graph);
             danglingLinksPurger.RemoveErroneousNodes(graph, danglingnodes);
-            Assert.IsFalse(graph.GetNodes().Contains(danglingnodes.Paths[0].PathNodes[0]));
+            ClassicAssert.IsFalse(graph.GetNodes().Contains(danglingnodes.Paths[0].PathNodes[0]));
 
             ApplicationLog.WriteLine(@"Padena P1 :DeBruijnGraph.RemoveErrorNodes() validation for Padena step3 completed successfully");
         }
@@ -2130,7 +2131,7 @@ namespace Bio.Padena.Tests
             redundantPathPurger.RemoveErroneousNodes(graph, redundantnodelist);
 
             if (isMicroOrganism)
-                Assert.AreEqual(expectedNodesCount, graph.GetNodes().Count());
+                ClassicAssert.AreEqual(expectedNodesCount, graph.GetNodes().Count());
             else
                 ValidateGraph(graph, nodeName);
             
@@ -2181,14 +2182,14 @@ namespace Bio.Padena.Tests
             // Validate contigs count only for Chromosome files. 
             if (isChromosomeRC)
             {
-                Assert.AreEqual(expectedContigsCount, contigs.Count.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(expectedContigsCount, contigs.Count.ToString((IFormatProvider)null));
             }
             // validate all contigs of a sequence.
             else
             {
                 for (int index = 0; index < contigs.Count(); index++)
                 {
-                    Assert.IsTrue(expectedContigs.Contains(new string(contigs[index].Select(a => (char)a).ToArray())) ||
+                    ClassicAssert.IsTrue(expectedContigs.Contains(new string(contigs[index].Select(a => (char)a).ToArray())) ||
                         expectedContigs.Contains(new string(contigs[index].GetReverseComplementedSequence().Select(a => (char)a).ToArray())));
                 }
             }
@@ -2235,7 +2236,7 @@ namespace Bio.Padena.Tests
 
             if (isChromosomeRC)
             {
-                Assert.AreEqual(expectedContigsCount,
+                ClassicAssert.AreEqual(expectedContigsCount,
                     contigs.Count.ToString((IFormatProvider)null));
             }
             else
@@ -2243,7 +2244,7 @@ namespace Bio.Padena.Tests
                 // Validate the contigs
                 for (int index = 0; index < contigs.Count; index++)
                 {
-                    Assert.IsTrue(expectedContigs.Contains(new string(contigs[index].Select(a => (char)a).ToArray())));
+                    ClassicAssert.IsTrue(expectedContigs.Contains(new string(contigs[index].Select(a => (char)a).ToArray())));
                 }
             }
 
@@ -2283,16 +2284,16 @@ namespace Bio.Padena.Tests
             pairedreads = pair.Map(sequenceReads);
 
             // Validate Map paired reads.
-            Assert.AreEqual(expectedPairedReadsCount,
+            ClassicAssert.AreEqual(expectedPairedReadsCount,
                 pairedreads.Count.ToString((IFormatProvider)null));
 
             for (int index = 0; index < pairedreads.Count; index++)
             {
-                Assert.IsTrue(forwardReadsNode.Contains(new string(pairedreads[index].GetForwardRead(sequenceReads).Select(a => (char)a).ToArray())));
-                Assert.IsTrue(backwardReadsNode.Contains(new string(pairedreads[index].GetReverseRead(sequenceReads).Select(a => (char)a).ToArray())));
-                Assert.IsTrue(deviationNode.Contains(pairedreads[index].StandardDeviationOfLibrary.ToString((IFormatProvider)null)));
-                Assert.IsTrue(expectedMean.Contains(pairedreads[index].MeanLengthOfLibrary.ToString((IFormatProvider)null)));
-                Assert.IsTrue(expectedLibrary.Contains(pairedreads[index].Library.ToString((IFormatProvider)null)));
+                ClassicAssert.IsTrue(forwardReadsNode.Contains(new string(pairedreads[index].GetForwardRead(sequenceReads).Select(a => (char)a).ToArray())));
+                ClassicAssert.IsTrue(backwardReadsNode.Contains(new string(pairedreads[index].GetReverseRead(sequenceReads).Select(a => (char)a).ToArray())));
+                ClassicAssert.IsTrue(deviationNode.Contains(pairedreads[index].StandardDeviationOfLibrary.ToString((IFormatProvider)null)));
+                ClassicAssert.IsTrue(expectedMean.Contains(pairedreads[index].MeanLengthOfLibrary.ToString((IFormatProvider)null)));
+                ClassicAssert.IsTrue(expectedLibrary.Contains(pairedreads[index].Library.ToString((IFormatProvider)null)));
             }
 
             ApplicationLog.WriteLine(@"Padena P1 : Map paired reads has been verified successfully");
@@ -2327,7 +2328,7 @@ namespace Bio.Padena.Tests
             pairedreads = pair.Map(new List<ISequence>(sequences));
 
             // Validate Map paired reads.
-            Assert.AreEqual(expectedPairedReadsCount,
+            ClassicAssert.AreEqual(expectedPairedReadsCount,
                 pairedreads.Count.ToString((IFormatProvider)null));
 
             // Get library infomration and validate
@@ -2335,9 +2336,9 @@ namespace Bio.Padena.Tests
                 CloneLibrary.Instance.GetLibraryInformation
                 (pairedreads[0].Library);
 
-            Assert.AreEqual(expectedStdDeviation, libraryInfo.StandardDeviationOfInsert.ToString((IFormatProvider)null));
-            Assert.AreEqual(expectedLibraray, libraryInfo.LibraryName.ToString((IFormatProvider)null));
-            Assert.AreEqual(mean, libraryInfo.MeanLengthOfInsert.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedStdDeviation, libraryInfo.StandardDeviationOfInsert.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedLibraray, libraryInfo.LibraryName.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(mean, libraryInfo.MeanLengthOfInsert.ToString((IFormatProvider)null));
 
             ApplicationLog.WriteLine(@"Padena P1 : Map paired reads has been verified successfully");
         }
@@ -2392,16 +2393,16 @@ namespace Bio.Padena.Tests
             pairedreads = pair.Map(sequenceReads);
 
             // Validate Map paired reads.
-            Assert.AreEqual(expectedPairedReadsCount, pairedreads.Count.ToString((IFormatProvider)null));
+            ClassicAssert.AreEqual(expectedPairedReadsCount, pairedreads.Count.ToString((IFormatProvider)null));
 
             for (int index = 0; index < pairedreads.Count; index++)
             {
-                Assert.IsTrue(forwardReadsNode.Contains(new string(pairedreads[index].GetForwardRead(sequenceReads).Select(a => (char)a).ToArray())));
-                Assert.IsTrue(backwardReadsNode.Contains(new string(pairedreads[index].GetReverseRead(sequenceReads).Select(a => (char)a).ToArray())));
-                Assert.AreEqual(expectedStdDeviation,
+                ClassicAssert.IsTrue(forwardReadsNode.Contains(new string(pairedreads[index].GetForwardRead(sequenceReads).Select(a => (char)a).ToArray())));
+                ClassicAssert.IsTrue(backwardReadsNode.Contains(new string(pairedreads[index].GetReverseRead(sequenceReads).Select(a => (char)a).ToArray())));
+                ClassicAssert.AreEqual(expectedStdDeviation,
                     pairedreads[index].StandardDeviationOfLibrary.ToString((IFormatProvider)null));
-                Assert.AreEqual(expectedLibraray, pairedreads[index].Library.ToString((IFormatProvider)null));
-                Assert.AreEqual(mean, pairedreads[index].MeanLengthOfLibrary.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(expectedLibraray, pairedreads[index].Library.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(mean, pairedreads[index].MeanLengthOfLibrary.ToString((IFormatProvider)null));
             }
 
             ApplicationLog.WriteLine(@"Padena P1 : Map paired reads has been verified successfully");
@@ -2453,7 +2454,7 @@ namespace Bio.Padena.Tests
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap maps = mapper.Map(sortedContigs, sequenceReads, this.KmerLength);
 
-            Assert.AreEqual(maps.Count, sequenceReads.Count());
+            ClassicAssert.AreEqual(maps.Count, sequenceReads.Count());
 
             Dictionary<ISequence, IList<ReadMap>> readMaps = maps[sequenceReads.ToList()[0].ID];
 
@@ -2463,14 +2464,14 @@ namespace Bio.Padena.Tests
 
                 if (isFullOverlap)
                 {
-                    Assert.AreEqual(expectedReadmapLength[i], readMap[0].Length.ToString((IFormatProvider)null), "readMap failed for pos " + i);
-                    Assert.AreEqual(expectedContigStartPos[i], readMap[0].StartPositionOfContig.ToString((IFormatProvider)null), "contigStart failed for pos " + i);
-                    Assert.AreEqual(expectedReadStartPos[i], readMap[0].StartPositionOfRead.ToString((IFormatProvider)null), "readStart failed for pos " + i);
-                    Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+                    ClassicAssert.AreEqual(expectedReadmapLength[i], readMap[0].Length.ToString((IFormatProvider)null), "readMap failed for pos " + i);
+                    ClassicAssert.AreEqual(expectedContigStartPos[i], readMap[0].StartPositionOfContig.ToString((IFormatProvider)null), "contigStart failed for pos " + i);
+                    ClassicAssert.AreEqual(expectedReadStartPos[i], readMap[0].StartPositionOfRead.ToString((IFormatProvider)null), "readStart failed for pos " + i);
+                    ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
                 }
                 else
                 {
-                    Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.PartialOverlap);
+                    ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.PartialOverlap);
                     break;
                 }
             }
@@ -2547,7 +2548,7 @@ namespace Bio.Padena.Tests
             ContigMatePairs contigpairedReads = filter.FilterPairedReads(pairedReads, 0);
 
 
-            Assert.AreEqual(expectedContigPairedReadsCount,
+            ClassicAssert.AreEqual(expectedContigPairedReadsCount,
                 contigpairedReads.Values.Count.ToString((IFormatProvider)null));
 
             Dictionary<ISequence, IList<ValidMatePair>> map = null;
@@ -2569,14 +2570,14 @@ namespace Bio.Padena.Tests
 
             for (int index = 0; index < valid.Count; index++)
             {
-                Assert.IsTrue((expectedForwardReadStartPos[index] ==
+                ClassicAssert.IsTrue((expectedForwardReadStartPos[index] ==
                         valid[index].ForwardReadStartPosition[0].ToString((IFormatProvider)null)
                         || (expectedForwardReadStartPos[index] ==
                         valid[index].ForwardReadStartPosition[1].ToString((IFormatProvider)null))));
 
                 if (valid[index].ReverseReadReverseComplementStartPosition.Count > 1)
                 {
-                    Assert.IsTrue((expectedReverseReadStartPos[index] ==
+                    ClassicAssert.IsTrue((expectedReverseReadStartPos[index] ==
                         valid[index].ReverseReadReverseComplementStartPosition[0].ToString((IFormatProvider)null)
                         || (expectedReverseReadStartPos[index] ==
                         valid[index].ReverseReadReverseComplementStartPosition[1].ToString((IFormatProvider)null))));
@@ -2584,7 +2585,7 @@ namespace Bio.Padena.Tests
 
                 if (valid[index].ReverseReadStartPosition.Count > 1)
                 {
-                    Assert.IsTrue((expectedReverseComplementStartPos[index] ==
+                    ClassicAssert.IsTrue((expectedReverseComplementStartPos[index] ==
                         valid[index].ReverseReadStartPosition[0].ToString((IFormatProvider)null)
                         || (expectedReverseComplementStartPos[index] ==
                         valid[index].ReverseReadStartPosition[1].ToString((IFormatProvider)null))));
@@ -2663,7 +2664,7 @@ namespace Bio.Padena.Tests
             // Calculate the distance between contigs.
             DistanceCalculator calc = new DistanceCalculator(contigpairedReads);
             calc.CalculateDistance();
-            Assert.AreEqual(expectedContigPairedReadsCount,
+            ClassicAssert.AreEqual(expectedContigPairedReadsCount,
                 contigpairedReads.Values.Count.ToString((IFormatProvider)null));
 
             Dictionary<ISequence, IList<ValidMatePair>> map;
@@ -2689,13 +2690,13 @@ namespace Bio.Padena.Tests
             }
 
             // Validate distance and standard deviation between contigs.
-            Assert.AreEqual(float.Parse(distanceBetweenFirstContigs, (IFormatProvider)null),
+            ClassicAssert.AreEqual(float.Parse(distanceBetweenFirstContigs, (IFormatProvider)null),
                 valid.First().DistanceBetweenContigs[0]);
-            Assert.AreEqual(float.Parse(distanceBetweenSecondContigs, (IFormatProvider)null),
+            ClassicAssert.AreEqual(float.Parse(distanceBetweenSecondContigs, (IFormatProvider)null),
                 valid.First().DistanceBetweenContigs[1]);
-            Assert.AreEqual(float.Parse(firstStandardDeviation, (IFormatProvider)null),
+            ClassicAssert.AreEqual(float.Parse(firstStandardDeviation, (IFormatProvider)null),
                 valid.First().StandardDeviation[0]);
-            Assert.AreEqual(float.Parse(secondStandardDeviation, (IFormatProvider)null),
+            ClassicAssert.AreEqual(float.Parse(secondStandardDeviation, (IFormatProvider)null),
                 valid.First().StandardDeviation[1]);
             
             ApplicationLog.WriteLine("PADENA P1 : DistanceCalculator() validation for Padena step6:step5 completed successfully");
@@ -2777,7 +2778,7 @@ namespace Bio.Padena.Tests
             //Validate assembled sequence paths.
             foreach (string sequence in seqList.Select(t => t.ConvertToString()))
             {
-                Assert.IsTrue(assembledPath.Contains(sequence), "Failed to locate " + sequence);
+                ClassicAssert.IsTrue(assembledPath.Contains(sequence), "Failed to locate " + sequence);
             }
 
             ApplicationLog.WriteLine("PADENA P1 : AssemblePath() validation for Padena step6:step7 completed successfully");
@@ -2883,7 +2884,7 @@ namespace Bio.Padena.Tests
                 string sequence = seq.ConvertToString();
                 string reversedSequence = seq.GetReverseComplementedSequence().ConvertToString();
 
-                Assert.IsTrue(expectedScaffoldNodes.Contains(sequence)
+                ClassicAssert.IsTrue(expectedScaffoldNodes.Contains(sequence)
                             || expectedScaffoldNodes.Contains(reversedSequence),
                             "Failed to find " + sequence + ", or " + reversedSequence);
             }
@@ -3001,11 +3002,11 @@ namespace Bio.Padena.Tests
                 IList<ISequence> assembledSequenceList = assembly.AssembledSequences.ToList();
 
                 // Validate assembled sequences.
-                Assert.AreEqual(assembledSeqCount, assembledSequenceList.Count.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(assembledSeqCount, assembledSequenceList.Count.ToString((IFormatProvider)null));
 
                 for (int i = 0; i < assembledSequenceList.Count; i++)
                 {
-                    Assert.IsTrue(assembledSequences.Contains(
+                    ClassicAssert.IsTrue(assembledSequences.Contains(
                     new string(assembledSequenceList[i].Select(a => (char)a).ToArray()))
                     || updatedAssembledSeqs.Contains(
                     new string(assembledSequenceList[i].GetReverseComplementedSequence().Select(a => (char)a).ToArray())));

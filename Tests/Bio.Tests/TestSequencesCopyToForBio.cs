@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -26,7 +27,7 @@ namespace Bio.Tests
             b.Append((char)array[0]);
             b.Append((char)array[1]);
             string actualValue = b.ToString();
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Bio.Tests
             b.Append((char)array[0]);
             b.Append((char)array[1]);
             string actualValue = b.ToString();
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Bio.Tests
             b.Append((char)array[0]);
             b.Append((char)array[1]);
             string actualValue = b.ToString();
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Bio.Tests
             ISequence newSeq = new Sequence(seq);
             string expectedSequence = "ATCG";
             string actualSequence = new string(newSeq.Select(x => (char)x).ToArray());
-            Assert.AreEqual(expectedSequence, actualSequence);
+            ClassicAssert.AreEqual(expectedSequence, actualSequence);
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Bio.Tests
 
             string expectedValue = "AACC";
             string actualValue = new string(newSeq.Select(x => (char)x).ToArray());
-            Assert.AreEqual(expectedValue, actualValue);
+            ClassicAssert.AreEqual(expectedValue, actualValue);
         }
     }
 }

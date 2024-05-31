@@ -4,6 +4,7 @@ using Bio.Algorithms.Assembly.Padena;
 using Bio.Algorithms.Assembly.Padena.Scaffold;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests.Scaffold
 {
@@ -35,13 +36,13 @@ namespace Bio.Padena.Tests.Scaffold
             const int kmerLength = 6;
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap map = mapper.Map(contigs, reads, kmerLength);
-            Assert.AreEqual(map.Count, reads.Count);
+            ClassicAssert.AreEqual(map.Count, reads.Count);
             Dictionary<ISequence, IList<ReadMap>> alignment = map[reads[0].ID];
             IList<ReadMap> readMap = alignment[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 9);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 1);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 9);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 1);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
         }
 
         /// <summary>
@@ -61,13 +62,13 @@ namespace Bio.Padena.Tests.Scaffold
             const int kmerLength = 6;
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap map = mapper.Map(contigs, reads, kmerLength);
-            Assert.AreEqual(map.Count, reads.Count);
+            ClassicAssert.AreEqual(map.Count, reads.Count);
             Dictionary<ISequence, IList<ReadMap>> alignment = map[reads[0].ID];
             IList<ReadMap> readMap = alignment[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 9);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 1);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 9);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 1);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
         }
 
         /// <summary>
@@ -100,42 +101,42 @@ namespace Bio.Padena.Tests.Scaffold
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap maps = mapper.Map(contigs, readSeqs, kmerLength);
 
-            Assert.AreEqual(maps.Count, readSeqs.Count);
+            ClassicAssert.AreEqual(maps.Count, readSeqs.Count);
             Dictionary<ISequence, IList<ReadMap>> map = maps[readSeqs[0].ID];
 
             IList<ReadMap> readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 0);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 0);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[1].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 4);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 4);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[2].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 7);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 6);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 7);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 6);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[3].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 9);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 3);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 9);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 3);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[4].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 2);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 2);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
         }
 
         /// <summary>
@@ -176,63 +177,63 @@ namespace Bio.Padena.Tests.Scaffold
                 new Sequence(Alphabets.DNA, "ATGCCTCCTATCTTAGCG".Select(a => (byte)a).ToArray()) };
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap maps = mapper.Map(contigs, readSeqs, kmerLength);
-            Assert.AreEqual(maps.Count, readSeqs.Count);
+            ClassicAssert.AreEqual(maps.Count, readSeqs.Count);
 
             Dictionary<ISequence, IList<ReadMap>> map = maps[readSeqs[0].ID];
 
             IList<ReadMap> readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 7);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 0);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 7);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 0);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[1].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 3);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 3);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[2].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 7);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 5);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 7);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 5);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[3].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 1);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 1);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[4].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 8);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 9);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 8);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 9);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[5].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 7);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 7);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[6].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 7);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 11);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 7);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 11);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[7].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 9);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 2);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 9);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 2);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
         }
 
         /// <summary>
@@ -269,50 +270,50 @@ namespace Bio.Padena.Tests.Scaffold
 
             ReadContigMapper mapper = new ReadContigMapper();
             ReadContigMap maps = mapper.Map(contigs, readSeqs, kmerLength);
-            Assert.AreEqual(maps.Count, readSeqs.Count);
+            ClassicAssert.AreEqual(maps.Count, readSeqs.Count);
 
             Dictionary<ISequence, IList<ReadMap>> map = maps[readSeqs[0].ID];
 
             IList<ReadMap> readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 0);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 0);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[1].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 1);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 1);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[2].ID];
             readMap = map[contigs[0]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 2);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 2);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[3].ID];
             readMap = map[contigs[1]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 0);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 0);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[4].ID];
             readMap = map[contigs[1]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 1);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 1);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
 
             map = maps[readSeqs[5].ID];
             readMap = map[contigs[1]];
-            Assert.AreEqual(readMap[0].Length, 10);
-            Assert.AreEqual(readMap[0].StartPositionOfContig, 2);
-            Assert.AreEqual(readMap[0].StartPositionOfRead, 0);
-            Assert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
+            ClassicAssert.AreEqual(readMap[0].Length, 10);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfContig, 2);
+            ClassicAssert.AreEqual(readMap[0].StartPositionOfRead, 0);
+            ClassicAssert.AreEqual(readMap[0].ReadOverlap, ContigReadOverlapType.FullOverlap);
         }
     }
 }

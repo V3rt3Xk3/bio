@@ -9,6 +9,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Assembly
 {
@@ -49,12 +50,12 @@ namespace Bio.Tests.Algorithms.Assembly
                 Constants.AssemblyAlgorithmNodeName,
                 Constants.ContigsCountNode), null);
 
-            Assert.AreEqual(unMergedCount, assembly.UnmergedSequences.Count);
-            Assert.AreEqual(contigsCount, assembly.Contigs.Count);
+            ClassicAssert.AreEqual(unMergedCount, assembly.UnmergedSequences.Count);
+            ClassicAssert.AreEqual(contigsCount, assembly.Contigs.Count);
             Contig contigRead = assembly.Contigs[0];
 
-            Assert.AreEqual(contigConsensus, new String(contigRead.Consensus.Select(a => (char) a).ToArray()));
-            Assert.AreEqual(contigSequencesCount, contigRead.Sequences.Count);
+            ClassicAssert.AreEqual(contigConsensus, new String(contigRead.Consensus.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(contigSequencesCount, contigRead.Sequences.Count);
 
             // Logs the concensus
             ApplicationLog.WriteLine(string.Format(null,
@@ -96,8 +97,8 @@ namespace Bio.Tests.Algorithms.Assembly
             ApplicationLog.WriteLine(string.Format(null,
                                                    "SequenceAssembly BVT : Consensus read is '{0}'.",
                                                    contigsRead.Consensus));
-            Assert.AreEqual(contigConsensus, new String(contigsRead.Consensus.Select(a => (char) a).ToArray()));
-            Assert.AreEqual(contigSequencesCount, contigsRead.Sequences.Count);
+            ClassicAssert.AreEqual(contigConsensus, new String(contigsRead.Consensus.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(contigSequencesCount, contigsRead.Sequences.Count);
 
             ApplicationLog.WriteLine("SequenceAssembly BVT : Successfully read the Contig.");
         }
@@ -133,7 +134,7 @@ namespace Bio.Tests.Algorithms.Assembly
             simpleSeqAssembler.ConsensusResolver = new SimpleConsensusResolver(consensusThreshold);
             simpleSeqAssembler.MakeConsensus(alphabet, contigReadForConsensus);
 
-            Assert.AreEqual(contigConsensus,
+            ClassicAssert.AreEqual(contigConsensus,
                             new String(contigReadForConsensus.Consensus.Select(a => (char) a).ToArray()));
 
             // Log the required info.

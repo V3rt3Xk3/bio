@@ -13,6 +13,7 @@ using Bio.Tests.Framework;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -381,8 +382,8 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format(null, "SequenceAlignment BVT : First sequence read is '{0}'.", origSequence1));
             ApplicationLog.WriteLine(string.Format(null, "SequenceAlignment BVT : Second sequence read is '{0}'.", origSequence2));
 
-            Assert.AreEqual(newAlignedSequences[0].FirstSequence.ConvertToString(), origSequence1);
-            Assert.AreEqual(newAlignedSequences[0].SecondSequence.ConvertToString(), origSequence2);
+            ClassicAssert.AreEqual(newAlignedSequences[0].FirstSequence.ConvertToString(), origSequence1);
+            ClassicAssert.AreEqual(newAlignedSequences[0].SecondSequence.ConvertToString(), origSequence2);
         }
 
         #endregion Sequence Alignment BVT Test cases
@@ -647,7 +648,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format(null, "NeedlemanWunschAligner BVT : Aligned First Sequence is '{0}'.", expectedSequence1));
             ApplicationLog.WriteLine(string.Format(null, "NeedlemanWunschAligner BVT : Aligned Second Sequence is '{0}'.", expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -818,7 +819,7 @@ namespace Bio.Tests.Algorithms.Alignment
             ApplicationLog.WriteLine(string.Format(null, "SmithWatermanAligner BVT : Aligned Second Sequence is '{0}'.",
                                                    expectedSequence2));
 
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -857,8 +858,8 @@ namespace Bio.Tests.Algorithms.Alignment
             IAlignedSequence sequence = alignment[0].AlignedSequences[0];
 
             // Validate the alignedsequence properties
-            Assert.AreEqual(alignment[0].AlignedSequences[0].Sequences, sequence.Sequences);
-            Assert.AreEqual(alignment[0].AlignedSequences[0].Metadata, sequence.Metadata);
+            ClassicAssert.AreEqual(alignment[0].AlignedSequences[0].Sequences, sequence.Sequences);
+            ClassicAssert.AreEqual(alignment[0].AlignedSequences[0].Metadata, sequence.Metadata);
 
             ApplicationLog.WriteLine(@"Alignment BVT : Validation of aligned sequence completed successfully");
         }
@@ -884,9 +885,9 @@ namespace Bio.Tests.Algorithms.Alignment
             IList<ISequenceAlignment> alignments = aligner.Align(inputSequences);
             ISequenceAlignment alignment = alignments[0];
 
-            Assert.AreEqual(alignments[0].AlignedSequences.Count, alignment.AlignedSequences.Count);
-            Assert.AreEqual(alignments[0].Metadata, alignment.Metadata);
-            Assert.AreEqual(inputSequences[0].ToString(), alignment.Sequences[0].ToString());
+            ClassicAssert.AreEqual(alignments[0].AlignedSequences.Count, alignment.AlignedSequences.Count);
+            ClassicAssert.AreEqual(alignments[0].Metadata, alignment.Metadata);
+            ClassicAssert.AreEqual(inputSequences[0].ToString(), alignment.Sequences[0].ToString());
 
             ApplicationLog.WriteLine(@"Alignment BVT : Validation of sequence alignment completed successfully");
         }
@@ -926,13 +927,13 @@ namespace Bio.Tests.Algorithms.Alignment
             // Validate the alignedsequence properties
             for (int index = 0; index < alignment[0].AlignedSequences[0].Sequences.Count; index++)
             {
-                Assert.AreEqual(alignment[0].AlignedSequences[0].Sequences[index].ToString(),
+                ClassicAssert.AreEqual(alignment[0].AlignedSequences[0].Sequences[index].ToString(),
                                 alignedSequence.Sequences[index].ToString());
             }
 
             foreach (string key in alignment[0].AlignedSequences[0].Metadata.Keys)
             {
-                Assert.AreEqual(alignment[0].AlignedSequences[0].Metadata[key],
+                ClassicAssert.AreEqual(alignment[0].AlignedSequences[0].Metadata[key],
                                 alignedSequence.Metadata[key]);
             }
 
@@ -972,13 +973,13 @@ namespace Bio.Tests.Algorithms.Alignment
             // Validate the properties
             for (int ialigned = 0; ialigned < alignments[0].AlignedSequences.Count; ialigned++)
             {
-                Assert.AreEqual(alignments[0].AlignedSequences[ialigned].Sequences[0].ToString(),
+                ClassicAssert.AreEqual(alignments[0].AlignedSequences[ialigned].Sequences[0].ToString(),
                                 alignment.AlignedSequences[ialigned].Sequences[0].ToString());
             }
 
             foreach (string key in alignments[0].Metadata.Keys)
             {
-                Assert.AreEqual(alignments[0].Metadata[key], alignment.Metadata[key]);
+                ClassicAssert.AreEqual(alignments[0].Metadata[key], alignment.Metadata[key]);
             }
 
             ApplicationLog.WriteLine(@"Alignment BVT : Validation of sequence alignment  ctor completed successfully");

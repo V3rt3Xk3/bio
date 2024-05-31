@@ -7,6 +7,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -73,9 +74,9 @@ namespace Bio.Tests
 
                 // Validate an expected exception.
                 updatedActualError = actualError.Replace("\r", "").Replace("\n", "");
-                Assert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
                     updatedActualError.ToLower(CultureInfo.CurrentCulture));
-                Assert.IsNull(qualSeq);
+                ClassicAssert.IsNull(qualSeq);
             }
 
             // Log to VSTest GUI.
@@ -96,7 +97,7 @@ namespace Bio.Tests
             QualitativeSequence qualSeq = new QualitativeSequence(
                 Alphabets.DNA, FastQFormatType.Sanger, "", "");
 
-            Assert.IsNotNull(qualSeq);
+            ClassicAssert.IsNotNull(qualSeq);
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -217,9 +218,9 @@ namespace Bio.Tests
                 actualError = ex.Message;
                 // Validate an expected exception.
                 updatedActualError = actualError.Replace("\r", "").Replace("\n", "");
-                Assert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
                     updatedActualError.ToLower(CultureInfo.CurrentCulture));
-                Assert.IsNull(qualSeq);
+                ClassicAssert.IsNull(qualSeq);
             }
 
             // Log to VSTest GUI.
@@ -248,7 +249,7 @@ namespace Bio.Tests
 
             // Validate an Reverse of Qual Sequence.
             ISequence reverseQual = createdQualSeq.GetReversedSequence();
-            Assert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -275,7 +276,7 @@ namespace Bio.Tests
 
             // Validate an Reverse of Qual Sequence.
             ISequence reverseQual = createdQualSeq.GetReversedSequence();
-            Assert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -302,7 +303,7 @@ namespace Bio.Tests
 
             // Validate an Reverse of Protein Qual Sequence.
             ISequence reverseQual = createdQualSeq.GetReversedSequence();
-            Assert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(reversedSeq, new string(reverseQual.Select(a => (char)a).ToArray()));
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -329,7 +330,7 @@ namespace Bio.Tests
 
             // Validate Reverse of Qual Sequence.
             ISequence complementQual = createdQualSeq.GetComplementedSequence();
-            Assert.AreEqual(complementSeq, new string(complementQual.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(complementSeq, new string(complementQual.Select(a => (char)a).ToArray()));
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -356,7 +357,7 @@ namespace Bio.Tests
 
             // Validate complement of Qual Sequence.
             ISequence complementQual = createdQualSeq.GetComplementedSequence();
-            Assert.AreEqual(complementSeq, new string(complementQual.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(complementSeq, new string(complementQual.Select(a => (char)a).ToArray()));
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -393,11 +394,11 @@ namespace Bio.Tests
             {
                 actualError = ex.Message;
                 // Validate an expected exception.
-                Assert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
                     actualError.ToLower(CultureInfo.CurrentCulture));
             }
 
-            Assert.IsNull(seq);
+            ClassicAssert.IsNull(seq);
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence P2: Reverse of Qualitative Sequence {0}",
@@ -700,7 +701,7 @@ namespace Bio.Tests
                         actualError = ex.Message;
                         // Validate an expected exception.
                         updatedActualError = actualError.Replace("\r", "").Replace("\n", "");
-                        Assert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
+                        ClassicAssert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
                             updatedActualError.ToLower(CultureInfo.CurrentCulture));
                     }
                     break;
@@ -717,7 +718,7 @@ namespace Bio.Tests
                         actualError = ex.Message;
                         // Validate an expected exception.
                         updatedActualError = actualError.Replace("\r", "").Replace("\n", "");
-                        Assert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
+                        ClassicAssert.AreEqual(expectedErrorMessage.ToLower(CultureInfo.CurrentCulture),
                             updatedActualError.ToLower(CultureInfo.CurrentCulture));
                     }
                     break;
@@ -726,7 +727,7 @@ namespace Bio.Tests
             }
 
             // Log to VSTest GUI.
-            Assert.IsNull(qualSeq);
+            ClassicAssert.IsNull(qualSeq);
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence P2: Qualitative Sequence Invalid score exception was validated successfully {0}",
                 updatedActualError));
@@ -792,7 +793,7 @@ namespace Bio.Tests
                     // Validate score
                     foreach (byte qualScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualScore, Convert.ToInt32(byteArray[index], (IFormatProvider)null));
+                        ClassicAssert.AreEqual(qualScore, Convert.ToInt32(byteArray[index], (IFormatProvider)null));
                         index++;
                     }
                     break;
@@ -801,11 +802,11 @@ namespace Bio.Tests
             }
 
             // Validate createdSequence qualitative sequence.
-            Assert.IsNotNull(createdQualitativeSequence);
-            Assert.AreEqual(createdQualitativeSequence.Alphabet, alphabet);
-            Assert.AreEqual(new string(createdQualitativeSequence.Select(a => (char)a).ToArray()), expectedSequence);
-            Assert.AreEqual(createdQualitativeSequence.Count.ToString((IFormatProvider)null), expectedSequenceCount);
-            Assert.AreEqual(createdQualitativeSequence.FormatType, expectedFormatType);
+            ClassicAssert.IsNotNull(createdQualitativeSequence);
+            ClassicAssert.AreEqual(createdQualitativeSequence.Alphabet, alphabet);
+            ClassicAssert.AreEqual(new string(createdQualitativeSequence.Select(a => (char)a).ToArray()), expectedSequence);
+            ClassicAssert.AreEqual(createdQualitativeSequence.Count.ToString((IFormatProvider)null), expectedSequenceCount);
+            ClassicAssert.AreEqual(createdQualitativeSequence.FormatType, expectedFormatType);
 
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "Qualitative Sequence P2:Qualitative Sequence {0} is as expected.",

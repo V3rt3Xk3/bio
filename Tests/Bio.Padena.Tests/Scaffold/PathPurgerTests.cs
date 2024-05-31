@@ -5,6 +5,7 @@ using Bio.Algorithms.Assembly.Padena.Scaffold.ContigOverlapGraph;
 using Bio.Algorithms.Kmer;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests.Scaffold
 {
@@ -101,8 +102,8 @@ namespace Bio.Padena.Tests.Scaffold
             paths.Add(path);
             PathPurger assembler = new PathPurger();
             assembler.PurgePath(paths);
-            Assert.AreEqual(paths.Count, 1);
-            Assert.IsTrue(Compare(paths.First(), contigs));
+            ClassicAssert.AreEqual(paths.Count, 1);
+            ClassicAssert.IsTrue(Compare(paths.First(), contigs));
         }
 
         /// <summary>
@@ -185,8 +186,8 @@ namespace Bio.Padena.Tests.Scaffold
             paths.Add(path);
             PathPurger assembler = new PathPurger();
             assembler.PurgePath(paths);
-            Assert.AreEqual(paths.Count, 1);
-            Assert.IsTrue(Compare(paths.First(), contigs));
+            ClassicAssert.AreEqual(paths.Count, 1);
+            ClassicAssert.IsTrue(Compare(paths.First(), contigs));
         }
 
         /// <summary>
@@ -269,8 +270,8 @@ namespace Bio.Padena.Tests.Scaffold
 
             PathPurger assembler = new PathPurger();
             assembler.PurgePath(paths);
-            Assert.AreEqual(paths.Count, 1);
-            Assert.IsTrue(Compare(paths.First(), contigs));
+            ClassicAssert.AreEqual(paths.Count, 1);
+            ClassicAssert.IsTrue(Compare(paths.First(), contigs));
         }
 
         /// <summary>

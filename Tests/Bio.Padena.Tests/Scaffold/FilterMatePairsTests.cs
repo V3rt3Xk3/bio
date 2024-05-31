@@ -5,6 +5,7 @@ using Bio.Algorithms.Assembly.Padena;
 using Bio.Algorithms.Assembly.Padena.Scaffold;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests.Scaffold
 {
@@ -57,20 +58,20 @@ namespace Bio.Padena.Tests.Scaffold
 
             OrientationBasedMatePairFilter filter = new OrientationBasedMatePairFilter();
             ContigMatePairs contigpairedReads = filter.FilterPairedReads(pairs);
-            Assert.AreEqual(contigpairedReads.Values.Count, 1);
+            ClassicAssert.AreEqual(contigpairedReads.Values.Count, 1);
 
-            Assert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
+            ClassicAssert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
             Dictionary<ISequence, IList<ValidMatePair>> map = contigpairedReads[contigs[0]];
-            Assert.IsTrue(map.ContainsKey(contigs[1]));
+            ClassicAssert.IsTrue(map.ContainsKey(contigs[1]));
 
             List<ValidMatePair> valid = Sort(map[contigs[1]], sequences);
-            Assert.AreEqual(valid[0].ForwardReadStartPosition[0], 1);
-            Assert.AreEqual(valid[0].ReverseReadReverseComplementStartPosition[0], 10);
-            Assert.AreEqual(valid[0].ReverseReadStartPosition[0], 10);
+            ClassicAssert.AreEqual(valid[0].ForwardReadStartPosition[0], 1);
+            ClassicAssert.AreEqual(valid[0].ReverseReadReverseComplementStartPosition[0], 10);
+            ClassicAssert.AreEqual(valid[0].ReverseReadStartPosition[0], 10);
 
-            Assert.AreEqual(valid[1].ForwardReadStartPosition[0], 0);
-            Assert.AreEqual(valid[1].ReverseReadReverseComplementStartPosition[0], 11);
-            Assert.AreEqual(valid[1].ReverseReadStartPosition[0], 9);
+            ClassicAssert.AreEqual(valid[1].ForwardReadStartPosition[0], 0);
+            ClassicAssert.AreEqual(valid[1].ReverseReadReverseComplementStartPosition[0], 11);
+            ClassicAssert.AreEqual(valid[1].ReverseReadStartPosition[0], 9);
         }
 
         /// <summary>
@@ -112,20 +113,20 @@ namespace Bio.Padena.Tests.Scaffold
 
             OrientationBasedMatePairFilter filter = new OrientationBasedMatePairFilter();
             ContigMatePairs contigpairedReads = filter.FilterPairedReads(pairs);
-            Assert.AreEqual(contigpairedReads.Values.Count, 1);
+            ClassicAssert.AreEqual(contigpairedReads.Values.Count, 1);
 
-            Assert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
+            ClassicAssert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
             Dictionary<ISequence, IList<ValidMatePair>> map = contigpairedReads[contigs[0]];
-            Assert.IsTrue(map.ContainsKey(contigs[1]));
+            ClassicAssert.IsTrue(map.ContainsKey(contigs[1]));
 
             List<ValidMatePair> valid = Sort(map[contigs[1]], sequences);
-            Assert.AreEqual(valid[0].ForwardReadStartPosition[0], 1);
-            Assert.AreEqual(valid[0].ReverseReadReverseComplementStartPosition[0], 10);
-            Assert.AreEqual(valid[0].ReverseReadStartPosition[0], 10);
+            ClassicAssert.AreEqual(valid[0].ForwardReadStartPosition[0], 1);
+            ClassicAssert.AreEqual(valid[0].ReverseReadReverseComplementStartPosition[0], 10);
+            ClassicAssert.AreEqual(valid[0].ReverseReadStartPosition[0], 10);
 
-            Assert.AreEqual(valid[1].ForwardReadStartPosition[0], 0);
-            Assert.AreEqual(valid[1].ReverseReadReverseComplementStartPosition[0], 9);
-            Assert.AreEqual(valid[1].ReverseReadStartPosition[0], 11);
+            ClassicAssert.AreEqual(valid[1].ForwardReadStartPosition[0], 0);
+            ClassicAssert.AreEqual(valid[1].ReverseReadReverseComplementStartPosition[0], 9);
+            ClassicAssert.AreEqual(valid[1].ReverseReadStartPosition[0], 11);
         }
 
         ///<summary>

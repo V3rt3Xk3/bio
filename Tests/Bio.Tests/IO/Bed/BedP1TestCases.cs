@@ -13,6 +13,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
 namespace Bio.TestAutomation.IO.Bed
@@ -314,7 +315,7 @@ namespace Bio.Silverlight.TestAutomation.IO.Bed
             string filePath = utilityObj.xmlUtil.GetTextValue(
                 nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsFalse(string.IsNullOrEmpty(filePath));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(filePath));
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Bed Parser P1: Reading the File from location '{0}'", filePath));
 
@@ -377,9 +378,9 @@ namespace Bio.Silverlight.TestAutomation.IO.Bed
             // Reads all the ranges with comma seperated for validation
             foreach (ISequenceRange range in rangeList)
             {
-                Assert.AreEqual(expectedStarts[i], range.Start.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedEnds[i], range.End.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedIDs[i], range.ID.ToString(null));
+                ClassicAssert.AreEqual(expectedStarts[i], range.Start.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedEnds[i], range.End.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedIDs[i], range.ID.ToString(null));
                 i++;
             }
             ApplicationLog.WriteLine(
@@ -496,9 +497,9 @@ namespace Bio.Silverlight.TestAutomation.IO.Bed
             // Validation of all the properties.
             for (int i = 0; i < rangeList.Count; i++)
             {
-                Assert.AreEqual(rangeList[0].ID, newRangeList[0].ID);
-                Assert.AreEqual(rangeList[0].Start, newRangeList[0].Start);
-                Assert.AreEqual(rangeList[0].End, newRangeList[0].End);
+                ClassicAssert.AreEqual(rangeList[0].ID, newRangeList[0].ID);
+                ClassicAssert.AreEqual(rangeList[0].Start, newRangeList[0].Start);
+                ClassicAssert.AreEqual(rangeList[0].End, newRangeList[0].End);
             }
 
             ApplicationLog.WriteLine(

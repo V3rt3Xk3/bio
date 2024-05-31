@@ -7,6 +7,7 @@ using Bio.Algorithms.Assembly.Padena.Scaffold.ContigOverlapGraph;
 using Bio.Extensions;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests.Scaffold
 {
@@ -88,13 +89,13 @@ namespace Bio.Padena.Tests.Scaffold
             TracePath path = new TracePath();
             IList<ScaffoldPath> paths = path.FindPaths(graph, overlap, kmerLengthConst, 3);
 
-            Assert.AreEqual(paths.Count, 3);
-            Assert.AreEqual(paths.First().Count, 3);
+            ClassicAssert.AreEqual(paths.Count, 3);
+            ClassicAssert.AreEqual(paths.First().Count, 3);
             ScaffoldPath scaffold = paths.First();
 
-            Assert.AreEqual("ATGCCTCCTATCTTAGC", graph.GetNodeSequence(scaffold[0].Key).ConvertToString());
-            Assert.AreEqual("TTAGCGCG", graph.GetNodeSequence(scaffold[1].Key).ConvertToString());
-            Assert.AreEqual("GCGCGC", graph.GetNodeSequence(scaffold[2].Key).ConvertToString());
+            ClassicAssert.AreEqual("ATGCCTCCTATCTTAGC", graph.GetNodeSequence(scaffold[0].Key).ConvertToString());
+            ClassicAssert.AreEqual("TTAGCGCG", graph.GetNodeSequence(scaffold[1].Key).ConvertToString());
+            ClassicAssert.AreEqual("GCGCGC", graph.GetNodeSequence(scaffold[2].Key).ConvertToString());
         }
     }
 }

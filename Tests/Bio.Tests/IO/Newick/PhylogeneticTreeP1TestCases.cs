@@ -16,6 +16,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.Newick
 {
@@ -104,9 +105,9 @@ namespace Bio.TestAutomation.IO.Newick
                 string name = parser.Name;
                 string fileTypes = parser.SupportedFileTypes;
                 string description = parser.Description;
-                Assert.AreEqual(Constants.ParserName, name);
-                Assert.AreEqual(Constants.ParserFileTypes, fileTypes);
-                Assert.AreEqual(Constants.ParserDescription, description.Replace("\r\n", "\n"));
+                ClassicAssert.AreEqual(Constants.ParserName, name);
+                ClassicAssert.AreEqual(Constants.ParserFileTypes, fileTypes);
+                ClassicAssert.AreEqual(Constants.ParserDescription, description.Replace("\r\n", "\n"));
             }
 
             ApplicationLog.WriteLine(
@@ -159,9 +160,9 @@ namespace Bio.TestAutomation.IO.Newick
             string name = formatter.Name;
             string fileTypes = formatter.SupportedFileTypes;
             string description = formatter.Description;
-            Assert.AreEqual(Constants.ParserName, name);
-            Assert.AreEqual(Constants.ParserFileTypes, fileTypes);
-            Assert.AreEqual(Constants.FormatDescription, description.Replace("\r\n", "\n"));
+            ClassicAssert.AreEqual(Constants.ParserName, name);
+            ClassicAssert.AreEqual(Constants.ParserFileTypes, fileTypes);
+            ClassicAssert.AreEqual(Constants.FormatDescription, description.Replace("\r\n", "\n"));
             ApplicationLog.WriteLine(
                 "Phylogenetic Tree Formatter P1: Validated all properties in Formatter class.");
         }
@@ -306,7 +307,7 @@ namespace Bio.TestAutomation.IO.Newick
             string filePath = _utilityObj.xmlUtil.GetTextValue(nodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.IsTrue(File.Exists(filePath));
 
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -343,7 +344,7 @@ namespace Bio.TestAutomation.IO.Newick
                     Constants.RootBranchCountNode);
 
                 // Validate the root branch count
-                Assert.AreEqual(rootBranchCount,
+                ClassicAssert.AreEqual(rootBranchCount,
                     rootNode.Children.Count.ToString((IFormatProvider)null));
 
                 ApplicationLog.WriteLine(string.Format("Phylogenetic Tree Parser P1: Number of Root Branches found are '{0}'.",
@@ -363,12 +364,12 @@ namespace Bio.TestAutomation.IO.Newick
 
                 for (int i = 0; i < expectedLeavesName.Length; i++)
                 {
-                    Assert.AreEqual(expectedLeavesName[i], leavesName[i]);
+                    ClassicAssert.AreEqual(expectedLeavesName[i], leavesName[i]);
                 }
 
                 for (int i = 0; i < expectedLeavesDistance.Length; i++)
                 {
-                    Assert.AreEqual(expectedLeavesDistance[i],
+                    ClassicAssert.AreEqual(expectedLeavesDistance[i],
                         leavesDistance[i].ToString((IFormatProvider)null));
                 }
             }
@@ -403,7 +404,7 @@ namespace Bio.TestAutomation.IO.Newick
                     case FormatterParameters.ParseTextReader:
                         filePath = _utilityObj.xmlUtil.GetTextValue(nodeName,
                             Constants.FilePathNode).TestDir();
-                        Assert.IsTrue(File.Exists(filePath));
+                        ClassicAssert.IsTrue(File.Exists(filePath));
 
                         // Logs information to the log file
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -417,7 +418,7 @@ namespace Bio.TestAutomation.IO.Newick
                     case FormatterParameters.ParseStringBuilder:
                         filePath = _utilityObj.xmlUtil.GetTextValue(nodeName,
                             Constants.FilePathNode).TestDir();
-                        Assert.IsTrue(File.Exists(filePath));
+                        ClassicAssert.IsTrue(File.Exists(filePath));
 
                         // Logs information to the log file
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -434,7 +435,7 @@ namespace Bio.TestAutomation.IO.Newick
                     default:
                         filePath = _utilityObj.xmlUtil.GetTextValue(nodeName,
                             Constants.FilePathNode).TestDir();
-                        Assert.IsTrue(File.Exists(filePath));
+                        ClassicAssert.IsTrue(File.Exists(filePath));
 
                         // Logs information to the log file
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -464,7 +465,7 @@ namespace Bio.TestAutomation.IO.Newick
                         string expectedFormatString = _utilityObj.xmlUtil.GetTextValue(nodeName,
                             Constants.FormatStringNode);
 
-                        Assert.AreEqual(expectedFormatString, formatString);
+                        ClassicAssert.AreEqual(expectedFormatString, formatString);
 
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                             "Phylogenetic Tree Formatter P1: Format string '{0}' is as expected.",
@@ -483,7 +484,7 @@ namespace Bio.TestAutomation.IO.Newick
                     {
                         Tree newrootTreeObj = null;
 
-                        Assert.IsTrue(File.Exists(outputFilepath));
+                        ClassicAssert.IsTrue(File.Exists(outputFilepath));
 
                         // Logs information to the log file
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -498,7 +499,7 @@ namespace Bio.TestAutomation.IO.Newick
                             Constants.RootBranchCountNode);
 
                         // Validate the root branch count
-                        Assert.AreEqual(rootBranchCount,
+                        ClassicAssert.AreEqual(rootBranchCount,
                             rootNode.Children.Count.ToString((IFormatProvider)null));
 
                         ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -520,12 +521,12 @@ namespace Bio.TestAutomation.IO.Newick
 
                         for (int i = 0; i < expectedLeavesName.Length; i++)
                         {
-                            Assert.AreEqual(expectedLeavesName[i], leavesName[i]);
+                            ClassicAssert.AreEqual(expectedLeavesName[i], leavesName[i]);
                         }
 
                         for (int i = 0; i < expectedLeavesDistance.Length; i++)
                         {
-                            Assert.AreEqual(expectedLeavesDistance[i], leavesDistance[i].ToString((IFormatProvider)null));
+                            ClassicAssert.AreEqual(expectedLeavesDistance[i], leavesDistance[i].ToString((IFormatProvider)null));
                         }
 
                         ApplicationLog.WriteLine(

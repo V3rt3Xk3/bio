@@ -5,6 +5,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO
 {
@@ -54,7 +55,7 @@ namespace Bio.Tests.IO
             try
             {
                 var parserTypes = parser.GetType();
-                Assert.IsNotNull(parserTypes);
+                ClassicAssert.IsNotNull(parserTypes);
             }
             catch (NullReferenceException exception)
             {
@@ -70,7 +71,7 @@ namespace Bio.Tests.IO
             try
             {
                 var formatterTypes = formatter.GetType();
-                Assert.IsNotNull(formatterTypes);
+                ClassicAssert.IsNotNull(formatterTypes);
             }
             catch (NullReferenceException exception)
             {

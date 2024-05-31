@@ -10,6 +10,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Xsv
 {
@@ -61,9 +62,9 @@ namespace Bio.Tests.IO.Xsv
         public void XsvSparseBvtParserProperties()
         {
             XsvContigParser xsvParser = new XsvContigParser(Alphabets.DNA, ',', '#');
-            Assert.AreEqual(Constants.XsvSparseDescription, xsvParser.Description);
-            Assert.AreEqual(Constants.XsvSparseFileTypes, xsvParser.SupportedFileTypes);
-            Assert.AreEqual(Constants.XsvSparseName, xsvParser.Name);
+            ClassicAssert.AreEqual(Constants.XsvSparseDescription, xsvParser.Description);
+            ClassicAssert.AreEqual(Constants.XsvSparseFileTypes, xsvParser.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.XsvSparseName, xsvParser.Name);
 
             ApplicationLog.WriteLine
                 ("Successfully validated all the properties of XsvSparse Parser class.");
@@ -83,7 +84,7 @@ namespace Bio.Tests.IO.Xsv
                 Constants.SimpleXsvSparseNodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "XsvSparse Formatter BVT: File Exists in the Path '{0}'.",
@@ -95,10 +96,10 @@ namespace Bio.Tests.IO.Xsv
             Contig contig = parserObj.ParseContig(filePathObj);
 
             // Validate parsed temp file with original Xsv file.
-            Assert.AreEqual(26048682, contig.Length);
-            Assert.AreEqual(26048682, contig.Consensus.Count);
-            Assert.AreEqual("Chr22+Chr22+Chr22+Chr22", contig.Consensus.ID);
-            Assert.AreEqual(56, contig.Sequences.Count);
+            ClassicAssert.AreEqual(26048682, contig.Length);
+            ClassicAssert.AreEqual(26048682, contig.Consensus.Count);
+            ClassicAssert.AreEqual("Chr22+Chr22+Chr22+Chr22", contig.Consensus.ID);
+            ClassicAssert.AreEqual(56, contig.Sequences.Count);
 
             // Log to GUI.
             ApplicationLog.WriteLine("Successfully validated the ParseConting() method with Xsv file");
@@ -149,11 +150,11 @@ namespace Bio.Tests.IO.Xsv
         {
             XsvSparseFormatter formatterObj = new XsvSparseFormatter(Constants.CharSeperator,
                 Constants.SequenceIDPrefix);
-            Assert.AreEqual(Constants.XsvSparseFormatterDescription, formatterObj.Description);
-            Assert.AreEqual(Constants.XsvSparseFileTypes, formatterObj.SupportedFileTypes);
-            Assert.AreEqual(Constants.XsvSparseFormatterNode, formatterObj.Name);
-            Assert.AreEqual(Constants.XsvSeperator, formatterObj.Separator);
-            Assert.AreEqual(Constants.XsvSeqIdPrefix, formatterObj.SequenceIDPrefix);
+            ClassicAssert.AreEqual(Constants.XsvSparseFormatterDescription, formatterObj.Description);
+            ClassicAssert.AreEqual(Constants.XsvSparseFileTypes, formatterObj.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.XsvSparseFormatterNode, formatterObj.Name);
+            ClassicAssert.AreEqual(Constants.XsvSeperator, formatterObj.Separator);
+            ClassicAssert.AreEqual(Constants.XsvSeqIdPrefix, formatterObj.SequenceIDPrefix);
 
             ApplicationLog.WriteLine
                 ("Successfully validated all the properties of XsvSparse Formatter class.");
@@ -173,7 +174,7 @@ namespace Bio.Tests.IO.Xsv
                 Constants.SimpleXsvSparseNodeName,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
 
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
@@ -196,12 +197,12 @@ namespace Bio.Tests.IO.Xsv
             string expectedseqId = expectedContig.Sequences.Aggregate(string.Empty, (current, seq) => current + (seq.Sequence.ID + ","));
 
             // Validate parsed temp file with original Xsv file.
-            Assert.AreEqual(contig.Length, expectedContig.Length);
-            Assert.AreEqual(contig.Consensus.Count, expectedContig.Consensus.Count);            
-            Assert.AreEqual(contig.Consensus.ID, expectedContig.Consensus.ID);
-            Assert.AreEqual(contig.Sequences.Count, expectedContig.Sequences.Count);
-            Assert.AreEqual(seqId.Length, expectedseqId.Length);
-            Assert.AreEqual(seqId, expectedseqId);
+            ClassicAssert.AreEqual(contig.Length, expectedContig.Length);
+            ClassicAssert.AreEqual(contig.Consensus.Count, expectedContig.Consensus.Count);            
+            ClassicAssert.AreEqual(contig.Consensus.ID, expectedContig.Consensus.ID);
+            ClassicAssert.AreEqual(contig.Sequences.Count, expectedContig.Sequences.Count);
+            ClassicAssert.AreEqual(seqId.Length, expectedseqId.Length);
+            ClassicAssert.AreEqual(seqId, expectedseqId);
             File.Delete(Constants.XsvTempFileName);
             ApplicationLog.WriteLine("Successfully validated the Write Xsv file");
         }
@@ -222,7 +223,7 @@ namespace Bio.Tests.IO.Xsv
             string filePathObj = this.utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "XsvSparse Parser BVT: File Exists in the Path '{0}'.",
@@ -243,8 +244,8 @@ namespace Bio.Tests.IO.Xsv
                 string expCount = this.utilityObj.xmlUtil.GetTextValue(nodename,
                     Constants.SequenceCountNode);
 
-                Assert.IsNotNull(seqList);
-                Assert.AreEqual(expCount, seqList.Count());
+                ClassicAssert.IsNotNull(seqList);
+                ClassicAssert.AreEqual(expCount, seqList.Count());
                 ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                     "XsvSparse Parser BVT: Number of Sequences found are '{0}'.",
                     expCount));
@@ -254,20 +255,20 @@ namespace Bio.Tests.IO.Xsv
                 List<ISequence> sparseSeqList = seqList.ToList();
                 for (int i = 0; i < expectedSeqIdArray.Length; i++)
                 {
-                    Assert.AreEqual(expectedSeqIdArray[i], sparseSeqList[i].ID);
+                    ClassicAssert.AreEqual(expectedSeqIdArray[i], sparseSeqList[i].ID);
                 }
             }
             else
             {
                 string[] idArray = expectedSeqIds.Split(',');
-                Assert.AreEqual(sparseSeq.ID, idArray[0]);
+                ClassicAssert.AreEqual(sparseSeq.ID, idArray[0]);
             }
 
             ApplicationLog.WriteLine(
                 "XsvSparse Parser BVT: The XsvSparse sequence is validated successfully with Parse() method.");
 
-            Assert.IsNotNull(sparseSeq.Alphabet);
-            Assert.AreEqual(sparseSeq.Alphabet.Name.ToLower(CultureInfo.InvariantCulture),
+            ClassicAssert.IsNotNull(sparseSeq.Alphabet);
+            ClassicAssert.AreEqual(sparseSeq.Alphabet.Name.ToLower(CultureInfo.InvariantCulture),
                 this.utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.AlphabetNameNode).ToLower(CultureInfo.InvariantCulture));
 
@@ -290,7 +291,7 @@ namespace Bio.Tests.IO.Xsv
             string filePathObj = this.utilityObj.xmlUtil.GetTextValue(nodename,
                 Constants.FilePathNode).TestDir();
 
-            Assert.IsTrue(File.Exists(filePathObj));
+            ClassicAssert.IsTrue(File.Exists(filePathObj));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "XsvSparse Formatter BVT: File Exists in the Path '{0}'.",
@@ -330,7 +331,7 @@ namespace Bio.Tests.IO.Xsv
             {
                 IndexedItem<byte> seqItem = sparseSeqItems[i];
                 IndexedItem<byte> expectedSeqItem = expectedSparseSeqItems[i];
-                Assert.AreEqual(seqItem.Index, expectedSeqItem.Index);
+                ClassicAssert.AreEqual(seqItem.Index, expectedSeqItem.Index);
             }
 
             ApplicationLog.WriteLine("Successfully validated the format Xsv file");

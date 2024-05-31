@@ -7,6 +7,7 @@ using Bio.IO.Gff;
 using Bio.IO.SFF;
 using Bio.IO.Text;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO
 {
@@ -28,8 +29,8 @@ namespace Bio.Tests.IO
             foreach (var ext in extensions)
             {
                 ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath + ext);
-                Assert.IsNotNull(foundParser);
-                Assert.IsInstanceOf<FastAParser>(foundParser);
+                ClassicAssert.IsNotNull(foundParser);
+                ClassicAssert.IsInstanceOf<FastAParser>(foundParser);
             }
         }
 
@@ -45,8 +46,8 @@ namespace Bio.Tests.IO
             foreach (var ext in extensions)
             {
                 ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath + ext);
-                Assert.IsNotNull(foundParser);
-                Assert.AreEqual(SequenceParsers.FastQ.Name, foundParser.Name);
+                ClassicAssert.IsNotNull(foundParser);
+                ClassicAssert.AreEqual(SequenceParsers.FastQ.Name, foundParser.Name);
             }
         }
 
@@ -62,8 +63,8 @@ namespace Bio.Tests.IO
             foreach (var ext in extensions)
             {
                 ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath + ext);
-                Assert.IsNotNull(foundParser);
-                Assert.IsInstanceOf<GenBankParser>(foundParser);
+                ClassicAssert.IsNotNull(foundParser);
+                ClassicAssert.IsInstanceOf<GenBankParser>(foundParser);
             }
         }
 
@@ -76,8 +77,8 @@ namespace Bio.Tests.IO
             string filepath = @"TestUtils\Simple_Gff_Dna.gff";
 
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.IsNotNull(foundParser);
-            Assert.IsInstanceOf<GffParser>(foundParser);
+            ClassicAssert.IsNotNull(foundParser);
+            ClassicAssert.IsInstanceOf<GffParser>(foundParser);
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Bio.Tests.IO
             string filepath = @"Test.ukn";
 
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.IsNull(foundParser);
+            ClassicAssert.IsNull(foundParser);
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Bio.Tests.IO
         {
             string filepath = @"TestUtils\NoFileHere.fa";
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.AreEqual(SequenceParsers.Fasta, foundParser);
+            ClassicAssert.AreEqual(SequenceParsers.Fasta, foundParser);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Bio.Tests.IO
         {
             string filepath = @"NoDirectoryHere\NoFileHere.fa";
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.AreEqual(SequenceParsers.Fasta, foundParser);
+            ClassicAssert.AreEqual(SequenceParsers.Fasta, foundParser);
         }
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace Bio.Tests.IO
             string filepath = @"TestUtils\BLOSUM50.txt";
 
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.IsNull(foundParser);
+            ClassicAssert.IsNull(foundParser);
             // Should not auto-locate FieldTextParser.
         }
 
@@ -136,8 +137,8 @@ namespace Bio.Tests.IO
             string filepath = @"TestUtils\dummy.sff";
 
             ISequenceParser foundParser = SequenceParsers.FindParserByFileName(filepath);
-            Assert.IsNotNull(foundParser);
-            Assert.IsInstanceOf<SFFParser>(foundParser);
+            ClassicAssert.IsNotNull(foundParser);
+            ClassicAssert.IsInstanceOf<SFFParser>(foundParser);
         }
     }
 }

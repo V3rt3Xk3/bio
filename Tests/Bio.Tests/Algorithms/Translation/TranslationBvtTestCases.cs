@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Translation
 {
@@ -44,7 +45,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for each triplet.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Amino Acid {0} is expected.", aminoAcid));
             ApplicationLog.WriteLine(
@@ -71,8 +72,8 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(protein.Alphabet, Alphabets.Protein);
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedAminoAcid);
+            ClassicAssert.AreEqual(protein.Alphabet, Alphabets.Protein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedAminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Amino Acid {0} is expected.", protein));
@@ -100,8 +101,8 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation, 0);
 
             // Validate Protein Translation.
-            Assert.AreEqual(protein.Alphabet, Alphabets.Protein);
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedAminoAcid);
+            ClassicAssert.AreEqual(protein.Alphabet, Alphabets.Protein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedAminoAcid);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Amino Acid {0} is expected.", protein));
@@ -132,7 +133,7 @@ namespace Bio.Tests.Algorithms.Translation
             complement = seq.GetComplementedSequence();
 
             // Validate Complement.
-            Assert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
+            ClassicAssert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Complement {0} is expected.", seq));
             ApplicationLog.WriteLine(
@@ -161,7 +162,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence revComplement = seq.GetReverseComplementedSequence();
 
             // Validate Reverse Complement.
-            Assert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
+            ClassicAssert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Reverse Complement {0} is expected.", seq));
 
@@ -191,7 +192,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence transcribe = Transcription.Transcribe(seq);
 
             // Validate Transcription.
-            Assert.AreEqual(expectedTranscribe, new string(transcribe.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedTranscribe, new string(transcribe.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Transcription {0} is expected.", seq));
             ApplicationLog.WriteLine(
@@ -220,7 +221,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence revTranscribe = Transcription.ReverseTranscribe(seq);
 
             // Validate Reverse Transcription.
-            Assert.AreEqual(expectedRevTranscribe, new string(revTranscribe.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedRevTranscribe, new string(revTranscribe.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation BVT: Reverse Transcription {0} is expected.", seq));
             ApplicationLog.WriteLine(

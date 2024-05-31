@@ -20,6 +20,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio;
 using Bio.Tests;
 
@@ -134,15 +135,15 @@ namespace Bio.TestAutomation.IO.Phylip
         public void ValidatePhylipParserProperties()
         {
             PhylipParser parser = new PhylipParser();
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 utilityObj.xmlUtil.GetTextValue(Constants.PhylipPropertyNode,
                 Constants.PhylipDescriptionNode),
                 parser.Description);
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 utilityObj.xmlUtil.GetTextValue(Constants.PhylipPropertyNode,
                 Constants.PhylipNameNode),
                 parser.Name);
-            Assert.AreEqual(null, parser.Alphabet);
+            ClassicAssert.AreEqual(null, parser.Alphabet);
         }
 
         #endregion Phylip Parser BVT Test cases
@@ -160,7 +161,7 @@ namespace Bio.TestAutomation.IO.Phylip
             // Gets the Filename
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsFalse(string.IsNullOrEmpty(filePath));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(filePath));
             ApplicationLog.WriteLine($"Phylip Parser BVT: Reading the File from location '{filePath}'");
 
             // Get the range list after parsing.
@@ -218,7 +219,7 @@ namespace Bio.TestAutomation.IO.Phylip
 
             expectedAlignmentList.Add(expectedAlignmentObj);
 
-            Assert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
+            ClassicAssert.IsTrue(CompareOutput(sequenceAlignmentList.ToList(), expectedAlignmentList));
             ApplicationLog.WriteLine("Phylip Parser BVT: Successfully validated all the Alignment Sequences");
         }
 

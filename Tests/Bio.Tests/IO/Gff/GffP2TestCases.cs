@@ -15,6 +15,7 @@ using Bio.Util.Logging;
 using System.Collections.Generic;
 using Bio.Tests;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
     namespace Bio.TestAutomation.IO.GFF

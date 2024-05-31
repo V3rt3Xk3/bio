@@ -7,6 +7,7 @@ using Bio.IO.FastA;
 using Bio.SimilarityMatrices;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.Pamsam.Tests

@@ -5,6 +5,7 @@ using System.Linq;
 using Bio;
 using Bio.IO.Snp;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Snp
 {
@@ -50,10 +51,10 @@ namespace Bio.Tests.IO.Snp
         public void SnpParserPropertiesTest()
         {
             SimpleSnpParser snpParser = new SimpleSnpParser(Alphabets.DNA);
-            Assert.AreEqual("Basic SNP Parser that uses XSV format", snpParser.Description);
-            Assert.AreEqual("Basic SNP", snpParser.Name);
-            Assert.IsTrue(snpParser.ParseAlleleOne);
-            Assert.AreEqual(".tsv", snpParser.SupportedFileTypes);
+            ClassicAssert.AreEqual("Basic SNP Parser that uses XSV format", snpParser.Description);
+            ClassicAssert.AreEqual("Basic SNP", snpParser.Name);
+            ClassicAssert.IsTrue(snpParser.ParseAlleleOne);
+            ClassicAssert.AreEqual(".tsv", snpParser.SupportedFileTypes);
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace Bio.Tests.IO.Snp
             snpItem2.AlleleOne = 'A';
             snpItem2.AlleleTwo = 'G';
 
-            Assert.IsTrue(snpItem2.Equals(snpItem1));
+            ClassicAssert.IsTrue(snpItem2.Equals(snpItem1));
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Bio.Tests.IO.Snp
             snpItem2.AlleleOne = 'A';
             snpItem2.AlleleTwo = 'G';
 
-            Assert.IsTrue(snpItem2.Equals((object)snpItem1));
+            ClassicAssert.IsTrue(snpItem2.Equals((object)snpItem1));
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Bio.Tests.IO.Snp
         /// based on which the validation of  test case is done.</param>
         void SnpParserGeneralTestCases(string switchParam)
         {
-            Assert.IsTrue(File.Exists(snpFileName));
+            ClassicAssert.IsTrue(File.Exists(snpFileName));
 
             IList<ISequence> seqList = null;
             SparseSequence sparseSeq = null;
@@ -130,21 +131,21 @@ namespace Bio.Tests.IO.Snp
 
             if (null == sparseSeq)
             {
-                Assert.IsNotNull(seqList);
-                Assert.AreEqual(1, seqList.Count);
+                ClassicAssert.IsNotNull(seqList);
+                ClassicAssert.AreEqual(1, seqList.Count);
             }
 
             for (int i = 0; i < expectedPositions.Length; i++)
             {
                 byte item = sparseSeq[int.Parse(expectedPositions[i], null)];
                 char s = (char)item;
-                Assert.AreEqual(expectedCharacters[i], s.ToString());
+                ClassicAssert.AreEqual(expectedCharacters[i], s.ToString());
             }
 
-            Assert.IsNotNull(sparseSeq.Alphabet);
-            Assert.AreEqual(sparseSeq.Alphabet.Name.ToLower(), AmbiguousDnaAlphabet.Instance.Name.ToLower());
+            ClassicAssert.IsNotNull(sparseSeq.Alphabet);
+            ClassicAssert.AreEqual(sparseSeq.Alphabet.Name.ToLower(), AmbiguousDnaAlphabet.Instance.Name.ToLower());
             string expSequenceID = "Chr1";
-            Assert.AreEqual(expSequenceID, sparseSeq.ID);
+            ClassicAssert.AreEqual(expSequenceID, sparseSeq.ID);
         }
     }
 }

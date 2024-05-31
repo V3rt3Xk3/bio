@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -604,7 +605,7 @@ namespace Bio.Tests
                     // Validate score
                     foreach (byte qualScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualScore, Convert.ToInt32(inputScoreforIUPAC, (IFormatProvider)null));
+                        ClassicAssert.AreEqual(qualScore, Convert.ToInt32(inputScoreforIUPAC, (IFormatProvider)null));
                     }
                     break;
                 case QualitativeSequenceParameters.ByteArray:
@@ -614,7 +615,7 @@ namespace Bio.Tests
                     // Validate score
                     foreach (byte qualScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualScore, Convert.ToInt32(byteArray[index], (IFormatProvider)null));
+                        ClassicAssert.AreEqual(qualScore, Convert.ToInt32(byteArray[index], (IFormatProvider)null));
                         index++;
                     }
                     break;
@@ -623,13 +624,13 @@ namespace Bio.Tests
             }
 
             // Validate createdSequence qualitative sequence.
-            Assert.IsNotNull(createdQualitativeSequence);
-            Assert.AreEqual(createdQualitativeSequence.Alphabet, alphabet);
-            Assert.AreEqual(createdQualitativeSequence.ConvertToString(), expectedSequence);
-            Assert.AreEqual(createdQualitativeSequence.Count.ToString((IFormatProvider)null), expectedSequenceCount);
+            ClassicAssert.IsNotNull(createdQualitativeSequence);
+            ClassicAssert.AreEqual(createdQualitativeSequence.Alphabet, alphabet);
+            ClassicAssert.AreEqual(createdQualitativeSequence.ConvertToString(), expectedSequence);
+            ClassicAssert.AreEqual(createdQualitativeSequence.Count.ToString((IFormatProvider)null), expectedSequenceCount);
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence P1:Qualitative Sequence {0} is as expected.", createdQualitativeSequence));
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence P1:Qualitative Sequence Score {0} is as expected.", createdQualitativeSequence.GetEncodedQualityScores()));
-            Assert.AreEqual(createdQualitativeSequence.FormatType, expectedFormatType);
+            ClassicAssert.AreEqual(createdQualitativeSequence.FormatType, expectedFormatType);
             ApplicationLog.WriteLine(string.Format(null, "Qualitative Sequence P1:Qualitative format type {0} is as expected.", createdQualitativeSequence.FormatType));
         }
 
@@ -669,25 +670,25 @@ namespace Bio.Tests
                     index = createdQualitativeSequence.IndexOfNonGap();
 
                     // Validate Qualitative sequence item indices.
-                    Assert.AreEqual(index, Convert.ToInt32(expectedFirstItemIdex, (IFormatProvider)null));
+                    ClassicAssert.AreEqual(index, Convert.ToInt32(expectedFirstItemIdex, (IFormatProvider)null));
                     break;
                 case QualitativeSequenceParameters.IndexOfNonGapWithParam:
                     index = createdQualitativeSequence.IndexOfNonGap(5);
 
                     // Validate Qualitative sequence item indices.
-                    Assert.AreEqual(index, Convert.ToInt32(expectedGapIndex, (IFormatProvider)null));
+                    ClassicAssert.AreEqual(index, Convert.ToInt32(expectedGapIndex, (IFormatProvider)null));
                     break;
                 case QualitativeSequenceParameters.LastIndexOf:
                     lastItemIndex = createdQualitativeSequence.LastIndexOfNonGap();
 
                     // Validate Qualitative sequence item indices.
-                    Assert.AreEqual(lastItemIndex, Convert.ToInt32(expectedLastItemIdex, (IFormatProvider)null));
+                    ClassicAssert.AreEqual(lastItemIndex, Convert.ToInt32(expectedLastItemIdex, (IFormatProvider)null));
                     break;
                 case QualitativeSequenceParameters.LastIndexOfWithPam:
                     lastItemIndex = createdQualitativeSequence.LastIndexOfNonGap(5);
 
                     // Validate Qualitative sequence item indices.
-                    Assert.AreEqual(lastItemIndex, Convert.ToInt32(expectedGapIndex, (IFormatProvider)null));
+                    ClassicAssert.AreEqual(lastItemIndex, Convert.ToInt32(expectedGapIndex, (IFormatProvider)null));
                     break;
                 default:
                     break;
@@ -733,7 +734,7 @@ namespace Bio.Tests
                     i = 0;
                     foreach (byte qualitativeScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualitativeScore,
+                        ClassicAssert.AreEqual(qualitativeScore,
                             (byte)(qualityScoresString[i]));
                         i++;
                     }
@@ -752,7 +753,7 @@ namespace Bio.Tests
                     // Validate default score.
                     foreach (byte qualitativeScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualitativeScore,
+                        ClassicAssert.AreEqual(qualitativeScore,
                             (byte)(qualityScoresString[i]));
                         i++;
                     }
@@ -770,7 +771,7 @@ namespace Bio.Tests
                     // Validate default maximum score.
                     foreach (byte qualitativeScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualitativeScore,
+                        ClassicAssert.AreEqual(qualitativeScore,
                             expectedMaxScores[i]);
                         i++;
                     }
@@ -789,7 +790,7 @@ namespace Bio.Tests
                     // Validate default minimum score.
                     foreach (byte qualitativeScore in createdQualitativeSequence.GetEncodedQualityScores())
                     {
-                        Assert.AreEqual(qualitativeScore,
+                        ClassicAssert.AreEqual(qualitativeScore,
                             expectedMinScores[i]);
                         i++;
                     }

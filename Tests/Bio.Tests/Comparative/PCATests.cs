@@ -4,6 +4,7 @@ using System.Linq;
 using Bio;
 using Bio.Algorithms.Assembly.Comparative;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -56,7 +57,7 @@ namespace Bio.Tests
             var output = asm.Assemble(new List<ISequence> { r }, new List<ISequence> { q, q2, q3, q4 });
             string res = new string(output.ElementAt(0).Select(a => (char)a).ToArray());
 
-            Assert.AreEqual("CTACGTGCATCGGGG", res);
+            ClassicAssert.AreEqual("CTACGTGCATCGGGG", res);
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace Bio.Tests
             var output = asm.Assemble(new List<ISequence> { r }, new List<ISequence> { q, q2, q3 });
             string res = new string(output.ElementAt(0).Select(a => (char)a).ToArray());
 
-            Assert.AreEqual("CTACGTGCATCGGGG", res);
+            ClassicAssert.AreEqual("CTACGTGCATCGGGG", res);
         }
 
         /// <summary>
@@ -94,10 +95,10 @@ namespace Bio.Tests
             var output = asm.Assemble(new List<ISequence> { refSeq }, new List<ISequence> { q, r });
 
             string res = new string(output.ElementAt(0).Select(a => (char)a).ToArray());
-            Assert.AreEqual("AAAAGGGG", res);
+            ClassicAssert.AreEqual("AAAAGGGG", res);
 
             res = new string(output.ElementAt(1).Select(a => (char)a).ToArray());
-            Assert.AreEqual("ACGTTGCA", res);
+            ClassicAssert.AreEqual("ACGTTGCA", res);
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Bio.Tests
             var output = asm.Assemble(new List<ISequence> { refSeq }, new List<ISequence> { q, r });
             string res = new string(output.ElementAt(0).Select(a => (char)a).ToArray());
 
-            Assert.AreEqual("AACCTTGGCCTAGTATGCCCACGATCG", res);
+            ClassicAssert.AreEqual("AACCTTGGCCTAGTATGCCCACGATCG", res);
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Bio.Tests
             var output = asm.Assemble(new List<ISequence> { r }, new List<ISequence> { q });
             string res = new string(output.ElementAt(0).Select(a => (char)a).ToArray());
 
-            Assert.AreEqual("AACCTTGGCCTACCCACGATCG", res);
+            ClassicAssert.AreEqual("AACCTTGGCCTACCCACGATCG", res);
         }
 
         /// <summary>
@@ -158,7 +159,7 @@ namespace Bio.Tests
             foreach (var s in res)
             {
                 string actual = new string(s.Select(a => (char)a).ToArray());
-                Assert.AreEqual(expectedResult[i], actual);
+                ClassicAssert.AreEqual(expectedResult[i], actual);
                 i++;
             }
         }
@@ -221,12 +222,12 @@ namespace Bio.Tests
         {
             IEnumerable<ISequence> result = asm.Assemble(reference, query);
 
-            Assert.IsTrue(result.Count() == expected.Count);
+            ClassicAssert.IsTrue(result.Count() == expected.Count);
 
             foreach (var act in result)
             {
                 string actualStr = new string(act.Select(a => (char)a).ToArray());
-                Assert.IsTrue(expected.Contains(actualStr));
+                ClassicAssert.IsTrue(expected.Contains(actualStr));
             }
         }
     }

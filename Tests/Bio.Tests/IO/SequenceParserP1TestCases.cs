@@ -9,6 +9,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -144,11 +145,11 @@ namespace Bio.Tests
             GffParser actualGffParserName = SequenceParsers.Gff;
 
             // Validate Sequence parsers
-            Assert.AreEqual(fastaParserName, actualFastAParser.Name);
-            Assert.AreEqual(genBankParserName, actualgenBankParserName.Name);
-            Assert.AreEqual(gffParserName, actualGffParserName.Name);
-            Assert.AreEqual(fastQParserName, actualFastQParserName.Name);
-            Assert.IsNotNull(allParser);
+            ClassicAssert.AreEqual(fastaParserName, actualFastAParser.Name);
+            ClassicAssert.AreEqual(genBankParserName, actualgenBankParserName.Name);
+            ClassicAssert.AreEqual(gffParserName, actualGffParserName.Name);
+            ClassicAssert.AreEqual(fastQParserName, actualFastQParserName.Name);
+            ClassicAssert.IsNotNull(allParser);
             ApplicationLog.WriteLine("Type of the parser is validated successfully");
         }
 
@@ -178,11 +179,11 @@ namespace Bio.Tests
             GffFormatter actualGffFormatterName = SequenceFormatters.Gff;
 
             // Validate Sequence Formatter
-            Assert.AreEqual(fastaFormatterName, actualFastAFormatter.Name);
-            Assert.AreEqual(genBankFormatterName, actualgenBankFormatterName.Name);
-            Assert.AreEqual(gffFormatterName, actualGffFormatterName.Name);
-            Assert.AreEqual(fastQFormatterName, actualFastQFormatterName.Name);
-            Assert.IsNotNull(allFormatters);
+            ClassicAssert.AreEqual(fastaFormatterName, actualFastAFormatter.Name);
+            ClassicAssert.AreEqual(genBankFormatterName, actualgenBankFormatterName.Name);
+            ClassicAssert.AreEqual(gffFormatterName, actualGffFormatterName.Name);
+            ClassicAssert.AreEqual(fastQFormatterName, actualFastQFormatterName.Name);
+            ClassicAssert.IsNotNull(allFormatters);
             ApplicationLog.WriteLine("Type of the parser is validated successfully");
         }
 
@@ -218,9 +219,9 @@ namespace Bio.Tests
                     ISequenceParser parser = SequenceParsers.FindParserByFileName(filePaths[i]);
                     string description = parser.Description.Replace("\r", "").Replace("\n", "");
                     // Validate parser name, description and the file type supported by parser.
-                    Assert.AreEqual(parserName, parser.Name);
-                    Assert.AreEqual(parserDescription, description);
-                    Assert.AreEqual(fileTypes, parser.SupportedFileTypes);
+                    ClassicAssert.AreEqual(parserName, parser.Name);
+                    ClassicAssert.AreEqual(parserDescription, description);
+                    ClassicAssert.AreEqual(fileTypes, parser.SupportedFileTypes);
                 }
                 else
                 {
@@ -228,9 +229,9 @@ namespace Bio.Tests
                     string description =
                         formatter.Description.Replace("\r", "").Replace("\n", "");
                     // Validate parser name, description and the file type supported by parser.
-                    Assert.AreEqual(parserName, formatter.Name);
-                    Assert.AreEqual(parserDescription, description);
-                    Assert.AreEqual(fileTypes, formatter.SupportedFileTypes);
+                    ClassicAssert.AreEqual(parserName, formatter.Name);
+                    ClassicAssert.AreEqual(parserDescription, description);
+                    ClassicAssert.AreEqual(fileTypes, formatter.SupportedFileTypes);
                 }
             }
 

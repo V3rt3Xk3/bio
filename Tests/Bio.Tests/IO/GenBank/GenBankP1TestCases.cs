@@ -15,6 +15,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio;
 using Bio.Tests;
 
@@ -800,14 +801,14 @@ using Bio.Tests;
         {
             ISequenceParser parserObj = new GenBankParser();
             {
-                Assert.IsTrue(File.Exists(FilePath));
+                ClassicAssert.IsTrue(File.Exists(FilePath));
                 // Logs information to the log file
                 ApplicationLog.WriteLine(string.Format("GenBank Parser : File Exists in the Path '{0}'.",
                     FilePath));
                 IEnumerable<ISequence> seqList = parserObj.Parse(FilePath);
                 ISequence seq = seqList.ElementAt(0);
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                Assert.AreEqual(SeqId, seq.ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq.ID);
 
                 ApplicationLog.WriteLine(
                     "GenBank Parser : Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
@@ -817,25 +818,25 @@ using Bio.Tests;
                 GenBankMetadata metadata = (GenBankMetadata)seq.Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
+                    ClassicAssert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
                 }
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                         metadata.Locus.StrandTopology.ToString().ToUpper(
                         CultureInfo.CurrentCulture));
                 }
                 if (metadata.Locus.DivisionCode != SequenceDivisionCode.None)
                 {
-                    Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                    ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
                 }
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
 
                 if (0 != string.Compare(AlphabetName, "rna",
                     CultureInfo.CurrentCulture,CompareOptions.IgnoreCase))
                 {
-                    Assert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Parser : Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
                 }
@@ -853,7 +854,7 @@ using Bio.Tests;
                     new string(seq.Select(a => (char)a).ToArray()).Replace("\r", "").Replace("\n", "").Replace(" ", "").ToUpper(
                     CultureInfo.CurrentCulture);
 
-                Assert.AreEqual(updatedExpSequence, updatedActualSequence);
+                ClassicAssert.AreEqual(updatedExpSequence, updatedActualSequence);
                 ApplicationLog.WriteLine(
                     "GenBank Parser : Successfully validated the Sequence");
             }
@@ -867,9 +868,9 @@ using Bio.Tests;
         private static void ValidateParserSpecialTestCases(IEnumerable<ISequence> seqList)
         {
             ISequence seq = seqList.ElementAt(0);
-            Assert.AreEqual(Utility.GetAlphabet(AlphabetName),
+            ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName),
                 seq.Alphabet);
-            Assert.AreEqual(SeqId, seq.ID);
+            ClassicAssert.AreEqual(SeqId, seq.ID);
             ApplicationLog.WriteLine(
                 "GenBank Parser : Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -879,24 +880,24 @@ using Bio.Tests;
                 (GenBankMetadata)seq.Metadata["GenBank"];
             if (metadata.Locus.Strand != SequenceStrandType.None)
             {
-                Assert.AreEqual(StrandType,
+                ClassicAssert.AreEqual(StrandType,
                     metadata.Locus.Strand.ToString());
             }
             if (metadata.Locus.Strand != SequenceStrandType.None)
             {
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                     metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
             }
 
-            Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-            Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+            ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+            ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                 metadata.Locus.Date);
 
             if (0 != string.Compare(AlphabetName, "rna",
                   CultureInfo.CurrentCulture, CompareOptions.IgnoreCase))
             {
-                Assert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber.ToString((IFormatProvider)null));
                 ApplicationLog.WriteLine(
                     "GenBank Parser : Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
             }
@@ -914,7 +915,7 @@ using Bio.Tests;
                 new string(seq.Select(a => (char)a).ToArray()).Replace("\r", "").Replace("\n", "").Replace(" ", "").ToUpper(
                 CultureInfo.CurrentCulture);
 
-            Assert.AreEqual(updatedExpSequence, updatedActualSequence);
+            ClassicAssert.AreEqual(updatedExpSequence, updatedActualSequence);
             ApplicationLog.WriteLine(
                 "GenBank Parser : Successfully validated the Sequence");
         }
@@ -943,8 +944,8 @@ using Bio.Tests;
                 IEnumerable<ISequence> seqList = parserObj.Parse(tempFileName);
                 ISequence seq = seqList.ElementAt(0);
 
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                Assert.AreEqual(SeqId, seq.ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq.ID);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter P1: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -954,27 +955,27 @@ using Bio.Tests;
                     (GenBankMetadata)seq.Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType,
+                    ClassicAssert.AreEqual(StrandType,
                         metadata.Locus.Strand.ToString());
                 }
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                         metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
                 }
                 if (metadata.Locus.DivisionCode != SequenceDivisionCode.None)
                 {
-                    Assert.AreEqual(Div,
+                    ClassicAssert.AreEqual(Div,
                         metadata.Locus.DivisionCode.ToString());
                 }
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                     metadata.Locus.Date);
 
                 if (0 != string.Compare(AlphabetName, "rna",
                      CultureInfo.CurrentCulture, CompareOptions.IgnoreCase))
                 {
-                    Assert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Parser : Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
                 }
@@ -992,7 +993,7 @@ using Bio.Tests;
                     CultureInfo.CurrentCulture);
 
                 // test the sequence string
-                Assert.AreEqual(truncatedExpectedSequence, truncatedActualSequence);
+                ClassicAssert.AreEqual(truncatedExpectedSequence, truncatedActualSequence);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter P1: Successfully validated the Sequence");
                 File.Delete(tempFileName);
@@ -1022,8 +1023,8 @@ using Bio.Tests;
                 GenBankParser parserObj = new GenBankParser();
                 IEnumerable<ISequence> seqList = parserObj.Parse(tempFileName);
                 ISequence seq = seqList.ElementAt(0);
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                Assert.AreEqual(SeqId, seq.ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq.ID);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter P1: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -1033,22 +1034,22 @@ using Bio.Tests;
                     (GenBankMetadata)seq.Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
+                    ClassicAssert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
                 }
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                         metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
                 }
 
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
 
                 if (0 != string.Compare(AlphabetName, "rna", CultureInfo.CurrentCulture, 
                     CompareOptions.IgnoreCase))
                 {
-                    Assert.AreEqual(Version, metadata.Version.Version);
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version);
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Parser : Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
                 }
@@ -1067,7 +1068,7 @@ using Bio.Tests;
                     CultureInfo.CurrentCulture);
 
                 // test the sequence string
-                Assert.AreEqual(truncatedExpectedSequence, truncatedActualSequence);
+                ClassicAssert.AreEqual(truncatedExpectedSequence, truncatedActualSequence);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter P1: Successfully validated the Sequence");
                 if (File.Exists(tempFileName))
@@ -1139,7 +1140,7 @@ using Bio.Tests;
         /// </summary>
         private static void ValidateParseWriterGeneralTestCases()
         {
-            Assert.IsTrue(File.Exists(FilePath));
+            ClassicAssert.IsTrue(File.Exists(FilePath));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format("GenBank Parser : File Exists in the Path '{0}'.", FilePath));
             string tempFileName = Path.GetTempFileName();
@@ -1185,7 +1186,7 @@ using Bio.Tests;
             PrimaryId = utilityObj.xmlUtil.GetTextValue(
                 nodeName, Constants.PrimaryIdNode);
 
-            Assert.IsTrue(File.Exists(FilePath));
+            ClassicAssert.IsTrue(File.Exists(FilePath));
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "FastA Parser : File Exists in the Path '{0}'.", FilePath));
@@ -1196,8 +1197,8 @@ using Bio.Tests;
 
             int seqCount = int.Parse(utilityObj.xmlUtil.GetTextValue(
                 nodeName, Constants.NumberOfSequencesNode), null);
-            Assert.IsNotNull(seqs);
-            Assert.AreEqual(seqCount, seqs.Count());
+            ClassicAssert.IsNotNull(seqs);
+            ClassicAssert.AreEqual(seqCount, seqs.Count());
             ApplicationLog.WriteLine(string.Format((IFormatProvider)null,
                 "FastA Parser: Number of Sequences found are '{0}'.",
                 seqs.Count().ToString((IFormatProvider)null)));
@@ -1239,9 +1240,9 @@ using Bio.Tests;
              string expectedSequence)
         {
 
-            Assert.AreEqual(Utility.GetAlphabet(AlphabetName),
+            ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName),
                 seq.Alphabet);
-            Assert.AreEqual(SeqId, seq.ID);
+            ClassicAssert.AreEqual(SeqId, seq.ID);
             ApplicationLog.WriteLine(
                 "GenBank Parser : Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -1251,22 +1252,22 @@ using Bio.Tests;
                 (GenBankMetadata)seq.Metadata["GenBank"];
             if (metadata.Locus.Strand != SequenceStrandType.None)
             {
-                Assert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
+                ClassicAssert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
             }
             if (metadata.Locus.Strand != SequenceStrandType.None)
             {
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                     metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
             }
-            Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-            Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+            ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+            ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                 metadata.Locus.Date);
 
             if (0 != string.Compare(AlphabetName, "rna",
                   CultureInfo.CurrentCulture, CompareOptions.IgnoreCase))
             {
-                Assert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString((IFormatProvider)null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine(
                     "GenBank Parser : Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
             }
@@ -1282,7 +1283,7 @@ using Bio.Tests;
             string updatedActualSequence =
                 new string(seq.Select(a => (char)a).ToArray()).Replace("\r", "").Replace("\n", "").Replace(" ", "").ToUpper(CultureInfo.CurrentCulture);
 
-            Assert.AreEqual(updatedExpSequence, updatedActualSequence);
+            ClassicAssert.AreEqual(updatedExpSequence, updatedActualSequence);
             ApplicationLog.WriteLine(
                 "GenBank Parser : Successfully validated the Sequence");
         }

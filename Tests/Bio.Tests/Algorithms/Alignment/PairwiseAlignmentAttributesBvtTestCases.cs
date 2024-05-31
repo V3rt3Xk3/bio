@@ -5,6 +5,7 @@ using Bio.SimilarityMatrices;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -30,7 +31,7 @@ namespace Bio.Tests.Algorithms.Alignment
             AlignmentInfo gapOpenCostObj = attributes["GAPOPENCOST"];
             AlignmentInfo gapExtensionCostObj = attributes["GAPEXTENSIONCOST"];
 
-            Assert.AreEqual("Similarity Matrix", similarityMatrixObj.Name);
+            ClassicAssert.AreEqual("Similarity Matrix", similarityMatrixObj.Name);
 
             var validator = new StringListValidator(
                 "Diagonal (Match x Mismatch)",
@@ -45,11 +46,11 @@ namespace Bio.Tests.Algorithms.Alignment
                 SimilarityMatrix.StandardSimilarityMatrix.Pam250.ToString(),
                 SimilarityMatrix.StandardSimilarityMatrix.Pam30.ToString());
 
-            Assert.IsTrue(validator.IsValid(SimilarityMatrix.StandardSimilarityMatrix.AmbiguousDna.ToString()));
+            ClassicAssert.IsTrue(validator.IsValid(SimilarityMatrix.StandardSimilarityMatrix.AmbiguousDna.ToString()));
             validator.AddValidValues(SimilarityMatrix.StandardSimilarityMatrix.Pam70.ToString());
-            Assert.AreEqual("Diagonal (Match x Mismatch)", validator.ValidValues[0]);
-            Assert.AreEqual("Gap Cost", gapOpenCostObj.Name);
-            Assert.AreEqual("Gap Extension Cost", gapExtensionCostObj.Name);
+            ClassicAssert.AreEqual("Diagonal (Match x Mismatch)", validator.ValidValues[0]);
+            ClassicAssert.AreEqual("Gap Cost", gapOpenCostObj.Name);
+            ClassicAssert.AreEqual("Gap Extension Cost", gapExtensionCostObj.Name);
 
             ApplicationLog.WriteLine(
                 "PairwiseAlignmentAttributes BVT: Successfully validated all the attributes.");

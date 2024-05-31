@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bio.Matrix;
 using Bio.Util;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Matrix
 {

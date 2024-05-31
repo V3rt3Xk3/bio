@@ -5,6 +5,7 @@ using Bio.Algorithms.Assembly.Padena;
 using Bio.Algorithms.Assembly.Padena.Scaffold;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests.Scaffold
 {
@@ -54,18 +55,18 @@ namespace Bio.Padena.Tests.Scaffold
             ContigMatePairs contigpairedReads = filter.FilterPairedReads(pairs);
             DistanceCalculator calc = new DistanceCalculator(contigpairedReads);
             contigpairedReads = calc.CalculateDistance();
-            Assert.AreEqual(contigpairedReads.Values.Count, 1);
-            Assert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
+            ClassicAssert.AreEqual(contigpairedReads.Values.Count, 1);
+            ClassicAssert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
 
             Dictionary<ISequence, IList<ValidMatePair>> map = contigpairedReads[contigs[0]];
-            Assert.IsTrue(map.ContainsKey(contigs[1]));
+            ClassicAssert.IsTrue(map.ContainsKey(contigs[1]));
             IList<ValidMatePair> valid = map[contigs[1]];
 
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)478.000031);
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)477.0);
-            Assert.AreEqual(valid.First().StandardDeviation[0], (float)14.1421356);
-            Assert.AreEqual(valid.First().StandardDeviation[1], (float)14.1421356);
-            Assert.AreEqual(valid.First().Weight, 2);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)478.000031);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)477.0);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[0], (float)14.1421356);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[1], (float)14.1421356);
+            ClassicAssert.AreEqual(valid.First().Weight, 2);
         }
 
         /// <summary>
@@ -114,18 +115,18 @@ namespace Bio.Padena.Tests.Scaffold
             DistanceCalculator calc = new DistanceCalculator(contigpairedReads);
             contigpairedReads = calc.CalculateDistance();
 
-            Assert.AreEqual(contigpairedReads.Values.Count, 1);
-            Assert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
+            ClassicAssert.AreEqual(contigpairedReads.Values.Count, 1);
+            ClassicAssert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
             Dictionary<ISequence, IList<ValidMatePair>> map = contigpairedReads[contigs[0]];
-            Assert.IsTrue(map.ContainsKey(contigs[1]));
+            ClassicAssert.IsTrue(map.ContainsKey(contigs[1]));
 
             IList<ValidMatePair> valid = map[contigs[1]];
 
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)478.000031);
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)477.0);
-            Assert.AreEqual(valid.First().StandardDeviation[0], (float)14.1421356);
-            Assert.AreEqual(valid.First().StandardDeviation[1], (float)14.1421356);
-            Assert.AreEqual(valid.First().Weight, 2);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)478.000031);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)477.0);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[0], (float)14.1421356);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[1], (float)14.1421356);
+            ClassicAssert.AreEqual(valid.First().Weight, 2);
         }
 
         /// <summary>
@@ -174,18 +175,18 @@ namespace Bio.Padena.Tests.Scaffold
             ContigMatePairs contigpairedReads = filter.FilterPairedReads(pairedReads);
             DistanceCalculator calc = new DistanceCalculator(contigpairedReads);
             contigpairedReads = calc.CalculateDistance();
-            Assert.AreEqual(contigpairedReads.Values.Count, 1);
-            Assert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
+            ClassicAssert.AreEqual(contigpairedReads.Values.Count, 1);
+            ClassicAssert.IsTrue(contigpairedReads.ContainsKey(contigs[0]));
 
             Dictionary<ISequence, IList<ValidMatePair>> map = contigpairedReads[contigs[0]];
-            Assert.IsTrue(map.ContainsKey(contigs[1]));
+            ClassicAssert.IsTrue(map.ContainsKey(contigs[1]));
             IList<ValidMatePair> valid = map[contigs[1]];
 
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)1228.0);
-            Assert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)1227.0);
-            Assert.AreEqual(valid.First().StandardDeviation[0], (float)60);
-            Assert.AreEqual(valid.First().StandardDeviation[1], (float)60);
-            Assert.AreEqual(valid.First().Weight, 2);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[0], (float)1228.0);
+            ClassicAssert.AreEqual(valid.First().DistanceBetweenContigs[1], (float)1227.0);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[0], (float)60);
+            ClassicAssert.AreEqual(valid.First().StandardDeviation[1], (float)60);
+            ClassicAssert.AreEqual(valid.First().Weight, 2);
         }
     }
 }

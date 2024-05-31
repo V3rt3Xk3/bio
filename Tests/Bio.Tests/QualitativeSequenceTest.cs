@@ -1,5 +1,6 @@
 ﻿using Bio;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Collections.Generic;
 
 namespace Bio.Tests
@@ -40,23 +41,23 @@ namespace Bio.Tests
             {
                 actual += (char)bt;
             }
-            Assert.AreEqual(expectedSequence, actual);
+            ClassicAssert.AreEqual(expectedSequence, actual);
 
-            Assert.AreEqual(qualitativeSequence.Alphabet, Alphabets.DNA);
-            Assert.AreEqual(qualitativeSequence.Count, 6);
+            ClassicAssert.AreEqual(qualitativeSequence.Alphabet, Alphabets.DNA);
+            ClassicAssert.AreEqual(qualitativeSequence.Count, 6);
             // 
             // Test for indexer
-            Assert.AreEqual(qualitativeSequence[0], (byte)'C');
-            Assert.AreEqual(qualitativeSequence[1], (byte)'A');
-            Assert.AreEqual(qualitativeSequence[2], (byte)'A');
-            Assert.AreEqual(qualitativeSequence[3], (byte)'G');
-            Assert.AreEqual(qualitativeSequence[4], (byte)'C');
-            Assert.AreEqual(qualitativeSequence[5], (byte)'T');
+            ClassicAssert.AreEqual(qualitativeSequence[0], (byte)'C');
+            ClassicAssert.AreEqual(qualitativeSequence[1], (byte)'A');
+            ClassicAssert.AreEqual(qualitativeSequence[2], (byte)'A');
+            ClassicAssert.AreEqual(qualitativeSequence[3], (byte)'G');
+            ClassicAssert.AreEqual(qualitativeSequence[4], (byte)'C');
+            ClassicAssert.AreEqual(qualitativeSequence[5], (byte)'T');
 
             int index = 0;
             foreach (byte qualityScore in qualitativeSequence.GetEncodedQualityScores())
             {
-                Assert.AreEqual(qualityScores[index++], qualityScore);
+                ClassicAssert.AreEqual(qualityScores[index++], qualityScore);
             }
         }
 
@@ -82,23 +83,23 @@ namespace Bio.Tests
             {
                 actual += (char)bt;
             }
-            Assert.AreEqual(expectedSequence, actual);
+            ClassicAssert.AreEqual(expectedSequence, actual);
 
-            Assert.AreEqual(qualitativeSequence.Alphabet, Alphabets.DNA);
-            Assert.AreEqual(qualitativeSequence.Count, 6);
+            ClassicAssert.AreEqual(qualitativeSequence.Alphabet, Alphabets.DNA);
+            ClassicAssert.AreEqual(qualitativeSequence.Count, 6);
             // 
             // Test for indexer
-            Assert.AreEqual(qualitativeSequence[0], (byte)'C');
-            Assert.AreEqual(qualitativeSequence[1], (byte)'A');
-            Assert.AreEqual(qualitativeSequence[2], (byte)'A');
-            Assert.AreEqual(qualitativeSequence[3], (byte)'G');
-            Assert.AreEqual(qualitativeSequence[4], (byte)'C');
-            Assert.AreEqual(qualitativeSequence[5], (byte)'T');
+            ClassicAssert.AreEqual(qualitativeSequence[0], (byte)'C');
+            ClassicAssert.AreEqual(qualitativeSequence[1], (byte)'A');
+            ClassicAssert.AreEqual(qualitativeSequence[2], (byte)'A');
+            ClassicAssert.AreEqual(qualitativeSequence[3], (byte)'G');
+            ClassicAssert.AreEqual(qualitativeSequence[4], (byte)'C');
+            ClassicAssert.AreEqual(qualitativeSequence[5], (byte)'T');
 
             int index = 0;
             foreach (byte qualityScore in qualitativeSequence.GetEncodedQualityScores())
             {
-                Assert.AreEqual(qualityScores[index++], qualityScore);
+                ClassicAssert.AreEqual(qualityScores[index++], qualityScore);
             }
         }
 
@@ -110,13 +111,13 @@ namespace Bio.Tests
         {
             byte b;
             b = QualitativeSequence.GetMinEncodedQualScore(FastQFormatType.Solexa_Illumina_v1_0);
-            Assert.AreEqual((byte)59, b);
+            ClassicAssert.AreEqual((byte)59, b);
 
             b = QualitativeSequence.GetMinEncodedQualScore(FastQFormatType.Sanger);
-            Assert.AreEqual((byte)33, b);
+            ClassicAssert.AreEqual((byte)33, b);
 
             b = QualitativeSequence.GetMinEncodedQualScore(FastQFormatType.Illumina_v1_3);
-            Assert.AreEqual((byte)64, b);
+            ClassicAssert.AreEqual((byte)64, b);
         }
 
         /// <summary>
@@ -127,13 +128,13 @@ namespace Bio.Tests
         {
             byte b;
             b = QualitativeSequence.GetMaxEncodedQualScore(FastQFormatType.Solexa_Illumina_v1_0);
-            Assert.AreEqual((byte)126, b);
+            ClassicAssert.AreEqual((byte)126, b);
 
             b = QualitativeSequence.GetMaxEncodedQualScore(FastQFormatType.Sanger);
-            Assert.AreEqual((byte)126, b);
+            ClassicAssert.AreEqual((byte)126, b);
 
             b = QualitativeSequence.GetMaxEncodedQualScore(FastQFormatType.Illumina_v1_3);
-            Assert.AreEqual((byte)126, b);
+            ClassicAssert.AreEqual((byte)126, b);
         }
 
         /// <summary>
@@ -144,13 +145,13 @@ namespace Bio.Tests
         {
             byte b;
             b = QualitativeSequence.GetDefaultQualScore(FastQFormatType.Sanger);
-            Assert.AreEqual((byte)93, b);
+            ClassicAssert.AreEqual((byte)93, b);
 
             b = QualitativeSequence.GetDefaultQualScore(FastQFormatType.Solexa_Illumina_v1_0);
-            Assert.AreEqual((byte)124, b);
+            ClassicAssert.AreEqual((byte)124, b);
 
             b = QualitativeSequence.GetDefaultQualScore(FastQFormatType.Illumina_v1_3);
-            Assert.AreEqual((byte)124, b);
+            ClassicAssert.AreEqual((byte)124, b);
         }
 
         /// <summary>
@@ -164,10 +165,10 @@ namespace Bio.Tests
             solexaScores[0] = (byte)60;
             solexaScores[1] = (byte)60;
             illuminaScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Solexa_Illumina_v1_0, FastQFormatType.Illumina_v1_3, solexaScores);
-            Assert.IsNotNull((object)illuminaScores);
-            Assert.AreEqual(2, illuminaScores.Length);
-            Assert.AreEqual((byte)65, illuminaScores[0]);
-            Assert.AreEqual((byte)65, illuminaScores[1]);
+            ClassicAssert.IsNotNull((object)illuminaScores);
+            ClassicAssert.AreEqual(2, illuminaScores.Length);
+            ClassicAssert.AreEqual((byte)65, illuminaScores[0]);
+            ClassicAssert.AreEqual((byte)65, illuminaScores[1]);
         }
 
         /// <summary>
@@ -180,9 +181,9 @@ namespace Bio.Tests
             byte[] solexaScores = new byte[1];
             solexaScores[0] = (byte)59;
             sangerScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Solexa_Illumina_v1_0, FastQFormatType.Sanger, solexaScores);
-            Assert.IsNotNull((object)sangerScores);
-            Assert.AreEqual(1, sangerScores.Length);
-            Assert.AreEqual((byte)33, sangerScores[0]);
+            ClassicAssert.IsNotNull((object)sangerScores);
+            ClassicAssert.AreEqual(1, sangerScores.Length);
+            ClassicAssert.AreEqual((byte)33, sangerScores[0]);
         }
 
         /// <summary>
@@ -196,10 +197,10 @@ namespace Bio.Tests
             sangerScores[0] = (byte)34;
             sangerScores[1] = (byte)34;
             solexaScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Sanger, FastQFormatType.Solexa_Illumina_v1_0, sangerScores);
-            Assert.IsNotNull((object)solexaScores);
-            Assert.AreEqual(2, solexaScores.Length);
-            Assert.AreEqual((byte)59, solexaScores[0]);
-            Assert.AreEqual((byte)59, solexaScores[1]);
+            ClassicAssert.IsNotNull((object)solexaScores);
+            ClassicAssert.AreEqual(2, solexaScores.Length);
+            ClassicAssert.AreEqual((byte)59, solexaScores[0]);
+            ClassicAssert.AreEqual((byte)59, solexaScores[1]);
         }
 
         /// <summary>
@@ -213,10 +214,10 @@ namespace Bio.Tests
             sangerScores[0] = (byte)33;
             sangerScores[1] = (byte)33;
             illuminaScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Sanger, FastQFormatType.Illumina_v1_3, sangerScores);
-            Assert.IsNotNull((object)illuminaScores);
-            Assert.AreEqual(2, illuminaScores.Length);
-            Assert.AreEqual((byte)64, illuminaScores[0]);
-            Assert.AreEqual((byte)64, illuminaScores[1]);
+            ClassicAssert.IsNotNull((object)illuminaScores);
+            ClassicAssert.AreEqual(2, illuminaScores.Length);
+            ClassicAssert.AreEqual((byte)64, illuminaScores[0]);
+            ClassicAssert.AreEqual((byte)64, illuminaScores[1]);
         }
 
         /// <summary>
@@ -230,10 +231,10 @@ namespace Bio.Tests
             illuminaScores[0] = (byte)65;
             illuminaScores[1] = (byte)65;
             solexaScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Illumina_v1_3, FastQFormatType.Solexa_Illumina_v1_0, illuminaScores);
-            Assert.IsNotNull((object)solexaScores);
-            Assert.AreEqual(2, solexaScores.Length);
-            Assert.AreEqual((byte)59, solexaScores[0]);
-            Assert.AreEqual((byte)59, solexaScores[1]);
+            ClassicAssert.IsNotNull((object)solexaScores);
+            ClassicAssert.AreEqual(2, solexaScores.Length);
+            ClassicAssert.AreEqual((byte)59, solexaScores[0]);
+            ClassicAssert.AreEqual((byte)59, solexaScores[1]);
         }
 
         /// <summary>
@@ -247,10 +248,10 @@ namespace Bio.Tests
             illuminaScores[0] = (byte)64;
             illuminaScores[1] = (byte)64;
             sangerScores = QualitativeSequence.ConvertEncodedQualityScore(FastQFormatType.Illumina_v1_3, FastQFormatType.Sanger, illuminaScores);
-            Assert.IsNotNull((object)sangerScores);
-            Assert.AreEqual(2, sangerScores.Length);
-            Assert.AreEqual((byte)33, sangerScores[0]);
-            Assert.AreEqual((byte)33, sangerScores[1]);
+            ClassicAssert.IsNotNull((object)sangerScores);
+            ClassicAssert.AreEqual(2, sangerScores.Length);
+            ClassicAssert.AreEqual((byte)33, sangerScores[0]);
+            ClassicAssert.AreEqual((byte)33, sangerScores[1]);
         }
 
         /// <summary>
@@ -267,7 +268,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < qualSeq.Count; i++)
             {
-                Assert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
+                ClassicAssert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
             }
 
             // Validate using illumina v1.3 .
@@ -277,7 +278,7 @@ namespace Bio.Tests
             qualSeq = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Illumina_v1_3, symbols, encodedIllumina_v1_3_QualityScores);
             for (int i = 0; i < qualSeq.Count; i++)
             {
-                Assert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
+                ClassicAssert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
             }
 
             // Validate using illumina v1.5
@@ -287,7 +288,7 @@ namespace Bio.Tests
             qualSeq = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Illumina_v1_5, symbols, encodedIllumina_v1_5_QualityScores);
             for (int i = 0; i < qualSeq.Count; i++)
             {
-                Assert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
+                ClassicAssert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
             }
 
             // Validate using illumina v1.8
@@ -297,7 +298,7 @@ namespace Bio.Tests
             qualSeq = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Illumina_v1_8, symbols, encodedIllumina_v1_8_QualityScores);
             for (int i = 0; i < qualSeq.Count; i++)
             {
-                Assert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
+                ClassicAssert.AreEqual(pharedQualityScores[i], qualSeq.GetPhredQualityScore(i));
             }
 
 
@@ -308,7 +309,7 @@ namespace Bio.Tests
             qualSeq = new QualitativeSequence(Alphabets.DNA, FastQFormatType.Solexa_Illumina_v1_0, symbols, encodedIllumina_v1_0_QualityScores);
             for (int i = 0; i < qualSeq.Count; i++)
             {
-                Assert.AreEqual(solexaQualityScores[i], qualSeq.GetSolexaQualityScore(i));
+                ClassicAssert.AreEqual(solexaQualityScores[i], qualSeq.GetSolexaQualityScore(i));
             }
 
         }

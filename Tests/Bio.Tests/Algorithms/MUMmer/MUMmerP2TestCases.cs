@@ -10,6 +10,7 @@ using Bio.Tests;
 using Bio.Tests.Framework;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.Algorithms.MUMmer
 {
@@ -50,7 +51,7 @@ namespace Bio.TestAutomation.Algorithms.MUMmer
             // Gets the reference sequence from the configuration file
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsNotNull(filePath);
+            ClassicAssert.IsNotNull(filePath);
             ApplicationLog.WriteLine(string.Format(null, "MUMmer P2 : Successfully validated the File Path '{0}'.", filePath));
 
             var fastaParserObj = new FastAParser();
@@ -61,7 +62,7 @@ namespace Bio.TestAutomation.Algorithms.MUMmer
             // Gets the reference sequence from the configuration file
             string queryFilePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode).TestDir();
 
-            Assert.IsNotNull(queryFilePath);
+            ClassicAssert.IsNotNull(queryFilePath);
             ApplicationLog.WriteLine(string.Format(null, "MUMmer P2 : Successfully validated the Search File Path '{0}'.", queryFilePath));
 
             var fastaParserObj1 = new FastAParser();
@@ -80,7 +81,7 @@ namespace Bio.TestAutomation.Algorithms.MUMmer
             IList<IPairwiseSequenceAlignment> align = mum.Align(referenceSeq, querySeqs);
 
             // Validate FinalMUMs and MUMs Properties.
-            Assert.IsNotNull(mum.MUMs);
+            ClassicAssert.IsNotNull(mum.MUMs);
 
             string expectedScore = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.ScoreNodeName);
 
@@ -98,7 +99,7 @@ namespace Bio.TestAutomation.Algorithms.MUMmer
             };
             seqAlign.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(seqAlign);
-            Assert.IsTrue(AlignmentHelpers.CompareAlignment(align, expectedOutput));
+            ClassicAssert.IsTrue(AlignmentHelpers.CompareAlignment(align, expectedOutput));
 
             ApplicationLog.WriteLine("MUMmer P2 : Successfully validated the aligned sequences.");
         }

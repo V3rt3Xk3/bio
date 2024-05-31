@@ -1,5 +1,6 @@
 ﻿using Bio;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -32,18 +33,18 @@ namespace Bio.Tests
             {
                 actual += (char)bt;
             }
-            Assert.AreEqual(expectedSequence, actual);
+            ClassicAssert.AreEqual(expectedSequence, actual);
 
-            Assert.AreEqual(sequence.Alphabet, Alphabets.DNA);
-            Assert.AreEqual(sequence.Count, 6);
+            ClassicAssert.AreEqual(sequence.Alphabet, Alphabets.DNA);
+            ClassicAssert.AreEqual(sequence.Count, 6);
             // 
             // Test for indexer
-            Assert.AreEqual(sequence[0], (byte)'C');
-            Assert.AreEqual(sequence[1], (byte)'A');
-            Assert.AreEqual(sequence[2], (byte)'A');
-            Assert.AreEqual(sequence[3], (byte)'G');
-            Assert.AreEqual(sequence[4], (byte)'C');
-            Assert.AreEqual(sequence[5], (byte)'T');
+            ClassicAssert.AreEqual(sequence[0], (byte)'C');
+            ClassicAssert.AreEqual(sequence[1], (byte)'A');
+            ClassicAssert.AreEqual(sequence[2], (byte)'A');
+            ClassicAssert.AreEqual(sequence[3], (byte)'G');
+            ClassicAssert.AreEqual(sequence[4], (byte)'C');
+            ClassicAssert.AreEqual(sequence[5], (byte)'T');
 
         }
 
@@ -70,18 +71,18 @@ namespace Bio.Tests
             {
                 actual += (char)bt;
             }
-            Assert.AreEqual(expectedSequence, actual);
+            ClassicAssert.AreEqual(expectedSequence, actual);
 
-            Assert.AreEqual(sequence.Alphabet,Alphabets.DNA);
-            Assert.AreEqual(sequence.Count, 6);
+            ClassicAssert.AreEqual(sequence.Alphabet,Alphabets.DNA);
+            ClassicAssert.AreEqual(sequence.Count, 6);
             // 
             // Test for indexer
-            Assert.AreEqual(sequence[0], (byte)'C');
-            Assert.AreEqual(sequence[1], (byte)'A');
-            Assert.AreEqual(sequence[2], (byte)'A');
-            Assert.AreEqual(sequence[3], (byte)'G');
-            Assert.AreEqual(sequence[4], (byte)'C');
-            Assert.AreEqual(sequence[5], (byte)'T');
+            ClassicAssert.AreEqual(sequence[0], (byte)'C');
+            ClassicAssert.AreEqual(sequence[1], (byte)'A');
+            ClassicAssert.AreEqual(sequence[2], (byte)'A');
+            ClassicAssert.AreEqual(sequence[3], (byte)'G');
+            ClassicAssert.AreEqual(sequence[4], (byte)'C');
+            ClassicAssert.AreEqual(sequence[5], (byte)'T');
 
         }
    }

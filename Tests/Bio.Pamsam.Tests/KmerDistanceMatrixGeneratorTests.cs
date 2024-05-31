@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {
@@ -44,10 +45,10 @@ namespace Bio.Pamsam.Tests
             expectedCountDictionaryA.Add("GTA", 1);
             expectedCountDictionaryA.Add("TAA", 1);
 
-            Assert.AreEqual(countDictionaryA["ACG"], expectedCountDictionaryA["ACG"]);
-            Assert.AreEqual(countDictionaryA["CGT"], expectedCountDictionaryA["CGT"]);
-            Assert.AreEqual(countDictionaryA["GTA"], expectedCountDictionaryA["GTA"]);
-            Assert.AreEqual(countDictionaryA["TAA"], expectedCountDictionaryA["TAA"]);
+            ClassicAssert.AreEqual(countDictionaryA["ACG"], expectedCountDictionaryA["ACG"]);
+            ClassicAssert.AreEqual(countDictionaryA["CGT"], expectedCountDictionaryA["CGT"]);
+            ClassicAssert.AreEqual(countDictionaryA["GTA"], expectedCountDictionaryA["GTA"]);
+            ClassicAssert.AreEqual(countDictionaryA["TAA"], expectedCountDictionaryA["TAA"]);
 
             Dictionary<String, float> expectedCountDictionaryB = new Dictionary<String, float>();
             expectedCountDictionaryB.Add("GGG", 1);
@@ -59,14 +60,14 @@ namespace Bio.Pamsam.Tests
             expectedCountDictionaryB.Add("CAA", 1);
             expectedCountDictionaryB.Add("CAG", 1);
 
-            Assert.AreEqual(countDictionaryB["GGG"], expectedCountDictionaryB["GGG"]);
-            Assert.AreEqual(countDictionaryB["GGA"], expectedCountDictionaryB["GGA"]);
-            Assert.AreEqual(countDictionaryB["GAA"], expectedCountDictionaryB["GAA"]);
-            Assert.AreEqual(countDictionaryB["AAT"], expectedCountDictionaryB["AAT"]);
-            Assert.AreEqual(countDictionaryB["ATC"], expectedCountDictionaryB["ATC"]);
-            Assert.AreEqual(countDictionaryB["TCA"], expectedCountDictionaryB["TCA"]);
-            Assert.AreEqual(countDictionaryB["CAA"], expectedCountDictionaryB["CAA"]);
-            Assert.AreEqual(countDictionaryB["CAG"], expectedCountDictionaryB["CAG"]);
+            ClassicAssert.AreEqual(countDictionaryB["GGG"], expectedCountDictionaryB["GGG"]);
+            ClassicAssert.AreEqual(countDictionaryB["GGA"], expectedCountDictionaryB["GGA"]);
+            ClassicAssert.AreEqual(countDictionaryB["GAA"], expectedCountDictionaryB["GAA"]);
+            ClassicAssert.AreEqual(countDictionaryB["AAT"], expectedCountDictionaryB["AAT"]);
+            ClassicAssert.AreEqual(countDictionaryB["ATC"], expectedCountDictionaryB["ATC"]);
+            ClassicAssert.AreEqual(countDictionaryB["TCA"], expectedCountDictionaryB["TCA"]);
+            ClassicAssert.AreEqual(countDictionaryB["CAA"], expectedCountDictionaryB["CAA"]);
+            ClassicAssert.AreEqual(countDictionaryB["CAG"], expectedCountDictionaryB["CAG"]);
 
             foreach (var pair in countDictionaryA)
             {
@@ -229,7 +230,7 @@ namespace Bio.Pamsam.Tests
                     float score = kmerDistanceScoreCalculator.CalculateDistanceScore(countDictionaryA, countDictionaryB);
                     Console.WriteLine("{0}-{1}: {2}", i, j, score);
                     Console.WriteLine("{0}-{1}: {2}", i, j, kmerDistanceMatrixGenerator.DistanceMatrix[i, j]);
-                    // Assert.AreEqual(score, kmerDistanceMatrixGenerator.DistanceMatrix[i, j]);
+                    // ClassicAssert.AreEqual(score, kmerDistanceMatrixGenerator.DistanceMatrix[i, j]);
                 }
             }
         }

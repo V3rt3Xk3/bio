@@ -6,6 +6,7 @@ using Bio.Core.Extensions;
 using Bio.IO.AppliedBiosystems.Model;
 using Bio.Util;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework.IO.AppliedBiosystems
 {
@@ -30,10 +31,10 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
 
         private static void AssertAreEqual(IList<short> expected, IList<short> actual)
         {
-            Assert.AreEqual(expected.Count, actual.Count);
+            ClassicAssert.AreEqual(expected.Count, actual.Count);
             for (int i = 0; i < expected.Count; i++)
             {
-                Assert.AreEqual(expected[i], actual[i]);
+                ClassicAssert.AreEqual(expected[i], actual[i]);
             }
         }
 
@@ -67,8 +68,8 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             data.Trim(segmentStartIndex, segmentLength);
 
             var newPeakLocations = new List<short> {1, 4, 11, 15, 21};
-            Assert.AreEqual(segmentLength, data.ConfidenceData.Length);
-            Assert.AreEqual(segmentLength, data.PeakLocations.Length);
+            ClassicAssert.AreEqual(segmentLength, data.ConfidenceData.Length);
+            ClassicAssert.AreEqual(segmentLength, data.PeakLocations.Length);
 
             AssertAreEqual(confidence.GetRange(segmentStartIndex, segmentLength), data.ConfidenceData.ToList());
             AssertAreEqual(newPeakLocations, data.PeakLocations.ToList());
@@ -76,11 +77,11 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
             data.AllColorData()
                 .ToList().ForEach(colorData =>
                                       {
-                                          Assert.AreEqual(segmentLength, colorData.DataByResidue.Count);
+                                          ClassicAssert.AreEqual(segmentLength, colorData.DataByResidue.Count);
                                           int offset = 0;
                                           for (int i = 0; i < colorData.DataByResidue.Count; i++)
                                           {
-                                              Assert.AreEqual(newPeakLocations[i],
+                                              ClassicAssert.AreEqual(newPeakLocations[i],
                                                               colorData.DataByResidue[i].PeakIndex + offset);
                                               offset += colorData.DataByResidue[i].Data.Length;
                                           }

@@ -12,6 +12,7 @@ using Bio.IO.Bed;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.TestAutomation.IO.Bed
@@ -148,9 +149,9 @@ namespace Bio.TestAutomation.IO.Bed
         public void BedParserValidateAllProperties()
         {
             var parserObj = new BedParser();
-            Assert.AreEqual(Constants.BedDescription, parserObj.Description);
-            Assert.AreEqual(Constants.BedFileTypes, parserObj.SupportedFileTypes);
-            Assert.AreEqual(Constants.BedName, parserObj.Name);
+            ClassicAssert.AreEqual(Constants.BedDescription, parserObj.Description);
+            ClassicAssert.AreEqual(Constants.BedFileTypes, parserObj.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.BedName, parserObj.Name);
         }
 
         #endregion Bed Parser BVT Test cases
@@ -294,9 +295,9 @@ namespace Bio.TestAutomation.IO.Bed
         public void BedFormatterValidateAllProperties()
         {
             var formatterObj = new BedFormatter();
-            Assert.AreEqual(Constants.BedDescription, formatterObj.Description);
-            Assert.AreEqual(Constants.BedFileTypes, formatterObj.SupportedFileTypes);
-            Assert.AreEqual(Constants.BedName, formatterObj.Name);
+            ClassicAssert.AreEqual(Constants.BedDescription, formatterObj.Description);
+            ClassicAssert.AreEqual(Constants.BedFileTypes, formatterObj.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.BedName, formatterObj.Name);
         }
 
         /// <summary>
@@ -347,7 +348,7 @@ namespace Bio.TestAutomation.IO.Bed
             // Gets the Filename
             string filePath = utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-            Assert.IsFalse(string.IsNullOrEmpty(filePath));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(filePath));
             ApplicationLog.WriteLine($"Bed Parser BVT: Reading the File from location '{filePath}'");
 
             // Get the rangelist after parsing.
@@ -412,9 +413,9 @@ namespace Bio.TestAutomation.IO.Bed
             // Reads all the ranges with comma seperated for validation
             foreach (ISequenceRange range in rangeList)
             {
-                Assert.AreEqual(expectedStarts[i], range.Start.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedEnds[i], range.End.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedIDs[i], range.ID.ToString(null));
+                ClassicAssert.AreEqual(expectedStarts[i], range.Start.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedEnds[i], range.End.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedIDs[i], range.ID.ToString(null));
                 i++;
             }
 
@@ -527,64 +528,64 @@ namespace Bio.TestAutomation.IO.Bed
             // Validation of all the properties.
             for (int i = 0; i < rangeList.Count; i++)
             {
-                Assert.AreEqual(rangeList[i].ID, newRangeList[i].ID);
-                Assert.AreEqual(rangeList[i].Start, newRangeList[i].Start);
-                Assert.AreEqual(rangeList[i].End, newRangeList[i].End);
+                ClassicAssert.AreEqual(rangeList[i].ID, newRangeList[i].ID);
+                ClassicAssert.AreEqual(rangeList[i].Start, newRangeList[i].Start);
+                ClassicAssert.AreEqual(rangeList[i].End, newRangeList[i].End);
 
                 // Validation of all metadata information.
                 if (rangeList[i].Metadata.Count > 0)
                 {
                     if (rangeList[i].Metadata.ContainsKey("Name"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["Name"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["Name"],
                                         newRangeList[i].Metadata["Name"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("Score"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["Score"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["Score"],
                                         newRangeList[i].Metadata["Score"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("Strand"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["Strand"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["Strand"],
                                         newRangeList[i].Metadata["Strand"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("ThickStart"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["ThickStart"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["ThickStart"],
                                         newRangeList[i].Metadata["ThickStart"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("ThickEnd"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["ThickEnd"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["ThickEnd"],
                                         newRangeList[i].Metadata["ThickEnd"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("ItemRGB"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["ItemRGB"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["ItemRGB"],
                                         newRangeList[i].Metadata["ItemRGB"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("BlockCount"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["BlockCount"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["BlockCount"],
                                         newRangeList[i].Metadata["BlockCount"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("BlockSizes"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["BlockSizes"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["BlockSizes"],
                                         newRangeList[i].Metadata["BlockSizes"]);
                     }
 
                     if (rangeList[i].Metadata.ContainsKey("BlockStarts"))
                     {
-                        Assert.AreEqual(rangeList[i].Metadata["BlockStarts"],
+                        ClassicAssert.AreEqual(rangeList[i].Metadata["BlockStarts"],
                                         newRangeList[i].Metadata["BlockStarts"]);
                     }
 

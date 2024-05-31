@@ -15,6 +15,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment.NUCmer
 {
@@ -872,8 +873,8 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             IList<ISequenceAlignment> alignmentObj = num.Align(sequenceList);
 
             var alignedSeqs = (AlignedSequence) alignmentObj[0].AlignedSequences[0];
-            Assert.AreEqual("CAAAAGGGATTGC---", new string(alignedSeqs.Sequences[0].Select(a => (char) a).ToArray()));
-            Assert.AreEqual("CAAAAGGGATTGC---", new string(alignedSeqs.Sequences[1].Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual("CAAAAGGGATTGC---", new string(alignedSeqs.Sequences[0].Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual("CAAAAGGGATTGC---", new string(alignedSeqs.Sequences[1].Select(a => (char) a).ToArray()));
 
             ApplicationLog.WriteLine("Successfully validated Align method with IsAlign and Gaps");
         }
@@ -1023,7 +1024,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the reference sequence from the FastA file
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer P1 : Successfully validated the File Path '{0}'.", filePath));
 
                 var parser = new FastAParser();
@@ -1042,7 +1043,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the query sequence from the FastA file
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer P1 : Successfully validated the File Path '{0}'.", queryFilePath));
 
                 var queryParserObj = new FastAParser();
@@ -1090,14 +1091,14 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 case AdditionalParameters.FindUniqueMatches:
                     // Validates the Unique Matches.
                     ApplicationLog.WriteLine("NUCmer P1 : Validating the Unique Matches");
-                    Assert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, isFilePath));
+                    ClassicAssert.IsTrue(this.ValidateUniqueMatches(mums, nodeName, isFilePath));
                     ApplicationLog.WriteLine("NUCmer P1 : Successfully validated the all the unique matches for the sequences.");
                     break;
                 case AdditionalParameters.PerformClusterBuilder:
                     // Validates the Unique Matches.
                     ApplicationLog.WriteLine(
                         "NUCmer P1 : Validating the Unique Matches using Cluster Builder");
-                    Assert.IsTrue(this.ValidateClusterBuilderMatches(mums, nodeName, propParam));
+                    ClassicAssert.IsTrue(this.ValidateClusterBuilderMatches(mums, nodeName, propParam));
                     ApplicationLog.WriteLine("NUCmer P1 : Successfully validated the all the cluster builder matches for the sequences.");
                     break;
                 default:
@@ -1146,7 +1147,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the reference sequence from the FastA file
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode).TestDir();
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer P1 : Successfully validated the File Path '{0}'.", filePath));
 
                 var fastaparserobj = new FastAParser();
@@ -1160,7 +1161,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the query sequence from the FastA file
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode).TestDir();
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer P1 : Successfully validated the File Path '{0}'.", queryFilePath));
 
                 var queryParserobj = new FastAParser();
@@ -1299,10 +1300,10 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 foreach (PairwiseAlignedSequence alignedSeq in seqAlignment)
                 {
                     var actualStr = alignedSeq.FirstSequence.ConvertToString();
-                    Assert.IsTrue(expSeqArray.Contains(actualStr));
+                    ClassicAssert.IsTrue(expSeqArray.Contains(actualStr));
 
                     actualStr = alignedSeq.SecondSequence.ConvertToString();
-                    Assert.IsTrue(expSeqArray.Contains(actualStr));
+                    ClassicAssert.IsTrue(expSeqArray.Contains(actualStr));
                 }
             }
 
@@ -1328,7 +1329,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the reference sequence from the FastA file
                 string filePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.FilePathNode);
 
-                Assert.IsNotNull(filePath);
+                ClassicAssert.IsNotNull(filePath);
                 ApplicationLog.WriteLine(string.Format(null, "NUCmer P1 : Successfully validated the File Path '{0}'.", filePath));
 
                 var fastaparserobj = new FastAParser();
@@ -1342,7 +1343,7 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
                 // Gets the query sequence from the FastA file
                 string queryFilePath = this.utilityObj.xmlUtil.GetTextValue(nodeName, Constants.SearchSequenceFilePathNode);
 
-                Assert.IsNotNull(queryFilePath);
+                ClassicAssert.IsNotNull(queryFilePath);
                 ApplicationLog.WriteLine(string.Format(null,"NUCmer P1 : Successfully validated the File Path '{0}'.", queryFilePath));
 
                 var fastaParserobj = new FastAParser();
@@ -1401,9 +1402,9 @@ namespace Bio.Tests.Algorithms.Alignment.NUCmer
             // Gets all the aligned sequences in comma separated format
             foreach (PairwiseAlignedSequence alignedSeq in alignSimple.Cast<IPairwiseSequenceAlignment>().SelectMany(seqAlignment => seqAlignment))
             {
-                Assert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
+                ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.FirstSequence.ConvertToString());
                 ++j;
-                Assert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
+                ClassicAssert.AreEqual(expSeqArray[j], alignedSeq.SecondSequence.ConvertToString());
                 j++;
             }
 

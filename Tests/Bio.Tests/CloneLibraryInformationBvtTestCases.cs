@@ -2,6 +2,7 @@
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -30,7 +31,7 @@ namespace Bio.Tests
                                  Constants.CloneLibraryInformationNode, Constants.LibraryNameNode);
 
             cloneLibrary.LibraryName = libraryName;
-            Assert.AreEqual(libraryName, cloneLibrary.LibraryName);
+            ClassicAssert.AreEqual(libraryName, cloneLibrary.LibraryName);
 
             ApplicationLog.WriteLine(string.Concat("CloneLibraryInformation BVT: Validation of Public property: Library Name",
                                     cloneLibrary.LibraryName, " completed successfully."));
@@ -52,7 +53,7 @@ namespace Bio.Tests
                                  Constants.CloneLibraryInformationNode, Constants.LibraryNameNode);
             cloneLibrary1.LibraryName = libraryName;
             cloneLibrary2 = cloneLibrary1;
-            Assert.IsTrue(cloneLibrary1.Equals(cloneLibrary2));
+            ClassicAssert.IsTrue(cloneLibrary1.Equals(cloneLibrary2));
 
             ApplicationLog.WriteLine(string.Concat("CloneLibraryInformation BVT: Validation of Overridden method: Equals",
                                     cloneLibrary1.LibraryName, " completed successfully."));
@@ -75,7 +76,7 @@ namespace Bio.Tests
                                  Constants.CloneLibraryInformationNode, Constants.LibraryNameNode);
             cloneLibrary1.LibraryName = libraryName;
             cloneLibrary2.LibraryName = libraryName + "newValue";
-            Assert.IsFalse(cloneLibrary1.Equals(cloneLibrary2));
+            ClassicAssert.IsFalse(cloneLibrary1.Equals(cloneLibrary2));
 
             ApplicationLog.WriteLine(string.Concat("CloneLibraryInformation BVT: Validation of Overridden method: Not Equals",
                                     cloneLibrary2.LibraryName, " completed successfully."));

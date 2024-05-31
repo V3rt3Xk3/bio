@@ -17,6 +17,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
 namespace Bio.TestAutomation.IO.FastQ
@@ -327,9 +328,9 @@ namespace Bio.Silverlight.TestAutomation.IO.FastQ
                 IList<IQualitativeSequence> qualSequenceList = fastQParserObj.Parse().ToList();
 
                 // Validate qualitative Sequence upon parsing FastQ file.                                                
-                Assert.AreEqual(expectedSeqCount, qualSequenceList.Count);
-                Assert.AreEqual(expectedQualitativeSequence, qualSequenceList[0].ConvertToString());
-                Assert.AreEqual(expectedSequenceId, qualSequenceList[0].ID);
+                ClassicAssert.AreEqual(expectedSeqCount, qualSequenceList.Count);
+                ClassicAssert.AreEqual(expectedQualitativeSequence, qualSequenceList[0].ConvertToString());
+                ClassicAssert.AreEqual(expectedSequenceId, qualSequenceList[0].ID);
 
                 ApplicationLog.WriteLine(string.Format("FastQ Parser BVT: The FASTQ sequence '{0}' validation after Parse() is found to be as expected.",
                                                        qualSequenceList[0].ConvertToString()));
@@ -364,8 +365,8 @@ namespace Bio.Silverlight.TestAutomation.IO.FastQ
             string actualId = qualSequenceList[0].ID;
 
             // Validate qualitative Sequence upon parsing FastQ file.                                                                
-            Assert.AreEqual(expectedQualitativeSequence, actualQualitativeSequence);
-            Assert.AreEqual(actualId, expectedSequenceId);
+            ClassicAssert.AreEqual(expectedQualitativeSequence, actualQualitativeSequence);
+            ClassicAssert.AreEqual(actualId, expectedSequenceId);
 
             ApplicationLog.WriteLine(string.Format("FastQ Parser BVT: The FASTQ sequence '{0}' validation after Parse(Stream) is found to be as expected.",
                                                    actualQualitativeSequence));
@@ -411,8 +412,8 @@ namespace Bio.Silverlight.TestAutomation.IO.FastQ
                 }
 
                 // Validate qualitative parsing temporary file.                
-                Assert.AreEqual(expectedQualitativeSequence, parsedValue);
-                Assert.AreEqual(expectedSequenceId, parsedId);
+                ClassicAssert.AreEqual(expectedQualitativeSequence, parsedValue);
+                ClassicAssert.AreEqual(expectedSequenceId, parsedId);
                 ApplicationLog.WriteLine(string.Format("FastQ Formatter BVT: The FASTQ sequence '{0}' validation after Write() and Parse() is found to be as expected.",
                                                        parsedValue));
                 ApplicationLog.WriteLine(string.Format("FastQ Formatter BVT: The FASTQ sequence '{0}' validation after Write() and Parse() is found to be as expected.",
@@ -455,8 +456,8 @@ namespace Bio.Silverlight.TestAutomation.IO.FastQ
                 }
 
                 // Validate qualitative parsing temporary file.                
-                Assert.AreEqual(expectedQualitativeSequence, parsedValue);
-                Assert.AreEqual(expectedSequenceId, parsedId);
+                ClassicAssert.AreEqual(expectedQualitativeSequence, parsedValue);
+                ClassicAssert.AreEqual(expectedSequenceId, parsedId);
                 ApplicationLog.WriteLine(string.Format("FastQ Formatter BVT: The FASTQ sequence '{0}' validation after Write() and Parse() is found to be as expected.", parsedValue));
                 ApplicationLog.WriteLine(string.Format("FastQ Formatter BVT: The FASTQ sequence '{0}' validation after Write() and Parse() is found to be as expected.", parsedId));
 

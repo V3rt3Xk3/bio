@@ -5,6 +5,7 @@ using System.Linq;
 using Bio;
 using Bio.IO.Bed;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.IO.Bed
 {
@@ -37,75 +38,75 @@ namespace Bio.Tests.IO.Bed
             result = seqGrouping.MergeOverlaps();
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength0.BED").TestDir();
             result = seqGrouping.MergeOverlaps(0, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength0.BED").TestDir();
             result = seqGrouping.MergeOverlaps(0, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength0.BED").TestDir();
             result = seqGrouping.MergeOverlaps(0);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength0.BED").TestDir();
             result = seqGrouping.MergeOverlaps(0, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength0.BED").TestDir();
             result = seqGrouping.MergeOverlaps(0, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength1.BED").TestDir();
             result = seqGrouping.MergeOverlaps(1);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength-1.BED").TestDir();
             result = seqGrouping.MergeOverlaps(-1);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Single_MinLength-3.BED").TestDir();
             result = seqGrouping.MergeOverlaps(-3);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, seqGrouping, null, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             string firstFile = Path.Combine(direc, "Merge_twofiles_1.BED").TestDir();
             string secondFile = Path.Combine(direc, "Merge_twofiles_2.BED").TestDir();
@@ -116,84 +117,84 @@ namespace Bio.Tests.IO.Bed
             result = refSeqRange.MergeOverlaps(querySeqRange);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             result = refSeqRange.MergeOverlaps(querySeqRange, 0, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             result = refSeqRange.MergeOverlaps(querySeqRange, 0, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             result = refSeqRange.MergeOverlaps(querySeqRange, 0);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             result = refSeqRange.MergeOverlaps(querySeqRange, 0, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             result = refSeqRange.MergeOverlaps(querySeqRange, 0, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Two_MinLength1.BED").TestDir();
             result = refSeqRange.MergeOverlaps(querySeqRange, 1, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Two_MinLength-1.BED").TestDir();
             result = refSeqRange.MergeOverlaps(querySeqRange, -1, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Two_MinLength-3.BED").TestDir();
             result = refSeqRange.MergeOverlaps(querySeqRange, -3, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Two_MinLength2.BED").TestDir();
             result = refSeqRange.MergeOverlaps(querySeqRange, 2, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Merge_Two_MinLength6.BED").TestDir();
             result = refSeqRange.MergeOverlaps(querySeqRange, 6, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             File.Delete(resultfilepath);
         }
 
@@ -223,66 +224,66 @@ namespace Bio.Tests.IO.Bed
             result = refSeqRange.Intersect(querySeqRange, 1, IntersectOutputType.OverlappingPiecesOfIntervals);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap1.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 1, IntersectOutputType.OverlappingIntervals);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap0_OverLappingBases.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 0, IntersectOutputType.OverlappingPiecesOfIntervals);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap0.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 0, IntersectOutputType.OverlappingIntervals);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap1_OverLappingBases.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 1, IntersectOutputType.OverlappingPiecesOfIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap1.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 1, IntersectOutputType.OverlappingIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap0_OverLappingBases.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 0, IntersectOutputType.OverlappingPiecesOfIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
 
             expectedresultpath = Path.Combine(direc, "Result_Intersect_MinOverlap0.BED").TestDir();
             result = refSeqRange.Intersect(querySeqRange, 0, IntersectOutputType.OverlappingIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             File.Delete(resultfilepath);
         }
 
@@ -310,69 +311,69 @@ namespace Bio.Tests.IO.Bed
             result = refSeqRange.Subtract(querySeqRange, 1, SubtractOutputType.IntervalsWithNoOverlap);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             const string MinOverlap0 = "Result_subtract_minoverlap0.bed";
             expectedresultpath = System.IO.Path.Combine (direc, MinOverlap0).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 0, SubtractOutputType.IntervalsWithNoOverlap);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = System.IO.Path.Combine (direc, MinOverlap1).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 1, SubtractOutputType.IntervalsWithNoOverlap, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = System.IO.Path.Combine (direc, MinOverlap0).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 0, SubtractOutputType.IntervalsWithNoOverlap, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
 
             expectedresultpath = System.IO.Path.Combine (direc, MinOverlap1).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 1, SubtractOutputType.IntervalsWithNoOverlap, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             expectedresultpath = System.IO.Path.Combine (direc, MinOverlap0).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 0, SubtractOutputType.IntervalsWithNoOverlap, false);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, false);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             const string MinNoOverlap0 = "Result_Subtract_minoverlap0_NOnOverlappingPieces.BED";
             expectedresultpath = System.IO.Path.Combine (direc, MinNoOverlap0).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 0, SubtractOutputType.NonOverlappingPiecesOfIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
 
             const string MinNoOverlap1 = "Result_Subtract_minoverlap1_NOnOverlappingPieces.BED";
             expectedresultpath = System.IO.Path.Combine (direc, MinNoOverlap1).TestDir();
             result = refSeqRange.Subtract(querySeqRange, 1, SubtractOutputType.NonOverlappingPiecesOfIntervals, true);
             formatter.Format(result, resultfilepath);
             resultvalue = CompareBEDOutput(resultfilepath, expectedresultpath);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
             resultvalue = ValidateParentSeqRange(result, refSeqRange, querySeqRange, true);
-            Assert.IsTrue(resultvalue);
+            ClassicAssert.IsTrue(resultvalue);
         }
 
         /// <summary>

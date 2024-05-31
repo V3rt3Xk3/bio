@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -21,7 +22,7 @@ namespace Bio.Tests
             ISequence orignalSequence = new Sequence(Alphabets.DNA, sequence);
             DerivedSequence deriveSequence = new DerivedSequence(orignalSequence, false, false);
             string actualSequence = new string(deriveSequence.GetReversedSequence().Select(a => (char)a).ToArray());
-            Assert.AreEqual(expectedSequence, actualSequence);
+            ClassicAssert.AreEqual(expectedSequence, actualSequence);
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Bio.Tests
             ISequence orignalSequence = new Sequence(Alphabets.DNA, sequence);
             DerivedSequence deriveSequence = new DerivedSequence(orignalSequence, false, false);
             string actualSequence = new string(deriveSequence.GetComplementedSequence().Select(a => (char)a).ToArray());
-            Assert.AreEqual(expectedSequence, actualSequence);
+            ClassicAssert.AreEqual(expectedSequence, actualSequence);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace Bio.Tests
             ISequence orignalSequence = new Sequence(Alphabets.DNA, sequence);
             DerivedSequence deriveSequence = new DerivedSequence(orignalSequence, false, false);
             string actualSequence = new string(deriveSequence.GetReverseComplementedSequence().Select(a => (char)a).ToArray());
-            Assert.AreEqual(expectedSequence, actualSequence);
+            ClassicAssert.AreEqual(expectedSequence, actualSequence);
         }
     }
 }

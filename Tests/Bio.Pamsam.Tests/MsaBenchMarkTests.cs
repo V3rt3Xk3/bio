@@ -7,6 +7,7 @@ using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.IO.FastA;
 using Bio.SimilarityMatrices;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Tests;
 
 namespace Bio.Pamsam.Tests
@@ -126,7 +127,7 @@ namespace Bio.Pamsam.Tests
 
             var sequences = MsaUtils.UnAlign(orgSequences);
             int numberOfSequences = orgSequences.Count;
-            Assert.AreEqual(numberOfSequences, sequences.Count);
+            ClassicAssert.AreEqual(numberOfSequences, sequences.Count);
 
             string outputFilePath = Path.GetTempFileName();
             try

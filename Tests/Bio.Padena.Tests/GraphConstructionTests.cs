@@ -3,6 +3,7 @@ using System.Linq;
 using Bio.Algorithms.Assembly.Graph;
 using Bio.Algorithms.Assembly.Padena;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -28,20 +29,20 @@ namespace Bio.Padena.Tests
             this.CreateGraph();
             DeBruijnGraph graph = this.Graph;
 
-            Assert.AreEqual(9, graph.NodeCount);
+            ClassicAssert.AreEqual(9, graph.NodeCount);
             HashSet<string> nodeStrings = new HashSet<string>(graph.GetNodes().Select(n => 
                 new string(graph.GetNodeSequence(n).Select(a => (char)a).ToArray())));
-            Assert.IsTrue(nodeStrings.Contains("ATG") || nodeStrings.Contains("CAT"));
-            Assert.IsTrue(nodeStrings.Contains("TGC") || nodeStrings.Contains("GCA"));
-            Assert.IsTrue(nodeStrings.Contains("GCC") || nodeStrings.Contains("GGC"));
-            Assert.IsTrue(nodeStrings.Contains("TCC") || nodeStrings.Contains("GGA"));
-            Assert.IsTrue(nodeStrings.Contains("CCT") || nodeStrings.Contains("AGG"));
-            Assert.IsTrue(nodeStrings.Contains("CTA") || nodeStrings.Contains("TAG"));
-            Assert.IsTrue(nodeStrings.Contains("TAT") || nodeStrings.Contains("ATA"));
-            Assert.IsTrue(nodeStrings.Contains("ATC") || nodeStrings.Contains("GAT"));
-            Assert.IsTrue(nodeStrings.Contains("CTC") || nodeStrings.Contains("GAG"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("ATG") || nodeStrings.Contains("CAT"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("TGC") || nodeStrings.Contains("GCA"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("GCC") || nodeStrings.Contains("GGC"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("TCC") || nodeStrings.Contains("GGA"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("CCT") || nodeStrings.Contains("AGG"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("CTA") || nodeStrings.Contains("TAG"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("TAT") || nodeStrings.Contains("ATA"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("ATC") || nodeStrings.Contains("GAT"));
+            ClassicAssert.IsTrue(nodeStrings.Contains("CTC") || nodeStrings.Contains("GAG"));
             long totalEdges = graph.GetNodes().Select(n => n.ExtensionsCount).Sum();
-            Assert.AreEqual(31, totalEdges);
+            ClassicAssert.AreEqual(31, totalEdges);
         }
 
         /// <summary>
@@ -59,18 +60,18 @@ namespace Bio.Padena.Tests
             this.CreateGraph();
             DeBruijnGraph graph = this.Graph;
 
-            Assert.AreEqual(20, graph.NodeCount);
+            ClassicAssert.AreEqual(20, graph.NodeCount);
             HashSet<string> nodeStrings = GetGraphNodesForSmallReads();
             string nodeStr, nodeStrRC;
             foreach (DeBruijnNode node in graph.GetNodes())
             {
                 nodeStr = new string(graph.GetNodeSequence(node).Select(a => (char)a).ToArray());
                 nodeStrRC = new string(graph.GetNodeSequence(node).GetReverseComplementedSequence().Select(a => (char)a).ToArray());
-                Assert.IsTrue(nodeStrings.Contains(nodeStr) || nodeStrings.Contains(nodeStrRC));
+                ClassicAssert.IsTrue(nodeStrings.Contains(nodeStr) || nodeStrings.Contains(nodeStrRC));
             }
 
             long totalEdges = graph.GetNodes().Select(n => n.ExtensionsCount).Sum();
-            Assert.AreEqual(51, totalEdges);
+            ClassicAssert.AreEqual(51, totalEdges);
         }
 
         #region Expected Output

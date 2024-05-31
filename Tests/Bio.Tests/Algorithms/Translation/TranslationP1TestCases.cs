@@ -7,6 +7,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Translation
 {
@@ -44,7 +45,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Amino Acid {0} is expected.", aminoAcid));
             ApplicationLog.WriteLine(
@@ -74,7 +75,7 @@ namespace Bio.Tests.Algorithms.Translation
             string aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Amino Acid {0} is expected.", aminoAcid));
             ApplicationLog.WriteLine(
@@ -104,7 +105,7 @@ namespace Bio.Tests.Algorithms.Translation
             string aminoAcid = Codons.Lookup(seq, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequencet.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Amino Acid {0} is expected.", aminoAcid));
             ApplicationLog.WriteLine(
@@ -137,7 +138,7 @@ namespace Bio.Tests.Algorithms.Translation
             string aminoAcid = Codons.Lookup(transcribe, Convert.ToInt32(expectedOffset, null)).ToString();
 
             // Validate amino acids for a given sequence.
-            Assert.AreEqual(expectedAminoAcid, aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid, aminoAcid);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Amino Acid {0} is expected.", aminoAcid));
             ApplicationLog.WriteLine(
@@ -193,7 +194,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence complement = seq.GetComplementedSequence();
 
             // Validate Single DNA Symbol Complement.
-            Assert.AreEqual(expectedComplement, complement.ConvertToString());
+            ClassicAssert.AreEqual(expectedComplement, complement.ConvertToString());
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Complement {0} is expected.", complement));
@@ -224,7 +225,7 @@ namespace Bio.Tests.Algorithms.Translation
             complement = seq.GetComplementedSequence();
 
             // Validate Complement for a given sequence.
-            Assert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
+            ClassicAssert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Complement {0} is expected.", complement));
             ApplicationLog.WriteLine(
@@ -254,7 +255,7 @@ namespace Bio.Tests.Algorithms.Translation
             revComplement = seq.GetReverseComplementedSequence();
 
             // Validate Single DNA Symbol Reverse Complement.
-            Assert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
+            ClassicAssert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Complement {0} is expected.", revComplement));
@@ -285,7 +286,7 @@ namespace Bio.Tests.Algorithms.Translation
             revComplement = seq.GetReverseComplementedSequence();
 
             // Validate Reverse Complement. for a given sequence.
-            Assert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedComplement);
+            ClassicAssert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Rev Complement {0} is expected.", revComplement));
             ApplicationLog.WriteLine(
@@ -315,7 +316,7 @@ namespace Bio.Tests.Algorithms.Translation
             complement = seq.GetComplementedSequence();
 
             // Validate Complement for a given sequence.
-            Assert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
+            ClassicAssert.AreEqual(new string(complement.Select(a => (char) a).ToArray()), expectedComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Complement {0} is expected.", complement));
             ApplicationLog.WriteLine(
@@ -345,7 +346,7 @@ namespace Bio.Tests.Algorithms.Translation
             revComplement = seq.GetReverseComplementedSequence();
 
             // Validate Reverse Complement for a given sequence.
-            Assert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
+            ClassicAssert.AreEqual(new string(revComplement.Select(a => (char) a).ToArray()), expectedRevComplement);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Reverse Complement {0} is expected.", revComplement));
             ApplicationLog.WriteLine(
@@ -379,7 +380,7 @@ namespace Bio.Tests.Algorithms.Translation
             transcribe = Transcription.Transcribe(seq);
 
             // Validate Single DNA Symbol transcribe.
-            Assert.AreEqual(new string(transcribe.Select(a => (char) a).ToArray()), expectedTranscribe);
+            ClassicAssert.AreEqual(new string(transcribe.Select(a => (char) a).ToArray()), expectedTranscribe);
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Transcribe {0} is expected.", transcribe));
@@ -410,7 +411,7 @@ namespace Bio.Tests.Algorithms.Translation
             transcribe = Transcription.Transcribe(seq);
 
             // Validate transcribe.for a given sequence.
-            Assert.AreEqual(new string(transcribe.Select(a => (char) a).ToArray()), expectedTranscribe);
+            ClassicAssert.AreEqual(new string(transcribe.Select(a => (char) a).ToArray()), expectedTranscribe);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Transcribe {0} is expected.", transcribe));
             ApplicationLog.WriteLine(
@@ -442,7 +443,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence revTranscribe = Transcription.ReverseTranscribe(transcribe);
 
             // Validate Single DNA Symbol Reverse transcribe.
-            Assert.AreEqual(new string(revTranscribe.Select(a => (char) a).ToArray()), expectedTranscribe);
+            ClassicAssert.AreEqual(new string(revTranscribe.Select(a => (char) a).ToArray()), expectedTranscribe);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Reverse Transcribe {0} is expected.", revTranscribe));
             ApplicationLog.WriteLine(
@@ -473,7 +474,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence revTranscribe = Transcription.ReverseTranscribe(transcribe);
 
             // Validate reverse transcribe.for a given sequence.
-            Assert.AreEqual(new string(revTranscribe.Select(a => (char) a).ToArray()), expectedTranscribe);
+            ClassicAssert.AreEqual(new string(revTranscribe.Select(a => (char) a).ToArray()), expectedTranscribe);
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Reverse Transcribe {0} is expected.", revTranscribe));
             ApplicationLog.WriteLine(
@@ -557,7 +558,7 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -581,7 +582,7 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), string.Empty);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), string.Empty);
 
             ApplicationLog.WriteLine(
                 "Translation P1: Amino Acid validation for a given sequence was completed successfully.");
@@ -608,7 +609,7 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -637,7 +638,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -664,7 +665,7 @@ namespace Bio.Tests.Algorithms.Translation
             protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -693,7 +694,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -726,7 +727,7 @@ namespace Bio.Tests.Algorithms.Translation
             ISequence protein = ProteinTranslation.Translate(proteinTranslation);
 
             // Validate Protein Translation.
-            Assert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -755,7 +756,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -782,7 +783,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), string.Empty);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), string.Empty);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -811,7 +812,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -847,7 +848,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                              Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedProtein, new string(protein.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -876,7 +877,7 @@ namespace Bio.Tests.Algorithms.Translation
                                                    Convert.ToInt32(expectedOffset, null));
 
             // Validate Protein Translation.
-            Assert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
+            ClassicAssert.AreEqual(new string(protein.Select(a => (char) a).ToArray()), expectedProtein);
             ApplicationLog.WriteLine(
                 "Translation P1: Protein translation validation is completed successfully.");
         }
@@ -908,7 +909,7 @@ namespace Bio.Tests.Algorithms.Translation
             aminoAcid = Codons.Lookup(codonsTranslation, int.Parse(expectedOffset, null)).ToString();
 
             // Validate Codon Translation.
-            Assert.AreEqual(expectedAminoAcid.ToString(null), aminoAcid);
+            ClassicAssert.AreEqual(expectedAminoAcid.ToString(null), aminoAcid);
             ApplicationLog.WriteLine(
                 "Translation P1: Codon translation with offset validation is completed successfully.");
         }
@@ -934,7 +935,7 @@ namespace Bio.Tests.Algorithms.Translation
             transcribe = Transcription.Transcribe(seq);
 
             // Validate Dna to Rna transcribe.
-            Assert.AreEqual(expectedTranscribe, new string(transcribe.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedTranscribe, new string(transcribe.Select(a => (char) a).ToArray()));
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Transcribe {0} is expected.", transcribe));
             ApplicationLog.WriteLine(
@@ -962,7 +963,7 @@ namespace Bio.Tests.Algorithms.Translation
             revTranscribe = Transcription.ReverseTranscribe(seq);
 
             // Validate Rna to Dna Reverse Transcribe.
-            Assert.AreEqual(expectedReverseTranscribe, new string(revTranscribe.Select(a => (char) a).ToArray()));
+            ClassicAssert.AreEqual(expectedReverseTranscribe, new string(revTranscribe.Select(a => (char) a).ToArray()));
 
             ApplicationLog.WriteLine(string.Format(null,
                                                    "Translation P1: Reverse Transcribe {0} is expected.", revTranscribe));

@@ -19,6 +19,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.TestAutomation.IO.SAM
 {
@@ -109,9 +110,9 @@ namespace Bio.TestAutomation.IO.SAM
         {
             SAMParser parser = new SAMParser();
             {
-                Assert.AreEqual(Constants.SAMParserDescription, parser.Description.Replace("\r\n", "\n"));
-                Assert.AreEqual(Constants.SAMFileType, parser.SupportedFileTypes);
-                Assert.AreEqual(Constants.SAMName, parser.Name);
+                ClassicAssert.AreEqual(Constants.SAMParserDescription, parser.Description.Replace("\r\n", "\n"));
+                ClassicAssert.AreEqual(Constants.SAMFileType, parser.SupportedFileTypes);
+                ClassicAssert.AreEqual(Constants.SAMName, parser.Name);
             }
             ApplicationLog.WriteLine("Successfully validated all the properties of SAM Parser class.");
         }
@@ -153,14 +154,14 @@ namespace Bio.TestAutomation.IO.SAM
 
             for (int index = 0; index < aligntHeader.RecordFields.Count; index++)
             {
-                Assert.AreEqual(expectedHeaderTypes[index].Replace("/", ""),
+                ClassicAssert.AreEqual(expectedHeaderTypes[index].Replace("/", ""),
                      aligntHeader.RecordFields[index].Typecode.ToString(CultureInfo.InvariantCulture).Replace("/", ""));
                 for (int tags = 0; tags < aligntHeader.RecordFields[index].Tags.Count; tags++)
                 {
-                    Assert.AreEqual(
+                    ClassicAssert.AreEqual(
                         expectedHeaderTagKeys[tagKeysCount].Replace("/", ""),
                         aligntHeader.RecordFields[index].Tags[tags].Tag.ToString(CultureInfo.InvariantCulture).Replace("/", ""));
-                    Assert.AreEqual(
+                    ClassicAssert.AreEqual(
                         expectedHeaderTagValues[tagValuesCount].Replace("/", ""),
                         aligntHeader.RecordFields[index].Tags[tags].Value.ToString(CultureInfo.InvariantCulture).Replace("/", "").Replace("\r", "").Replace("\n", ""));
                     tagKeysCount++;
@@ -194,8 +195,8 @@ namespace Bio.TestAutomation.IO.SAM
                     alignments = parser.Parse(reader);
                 }
 
-                Assert.AreEqual(expectedSequence, alignments.QuerySequences[0].Sequences[0].ConvertToString());
-                Assert.AreEqual(0, alignments.QuerySequences[1].Sequences.Count);
+                ClassicAssert.AreEqual(expectedSequence, alignments.QuerySequences[0].Sequences[0].ConvertToString());
+                ClassicAssert.AreEqual(0, alignments.QuerySequences[1].Sequences.Count);
             }
         }
 
@@ -326,9 +327,9 @@ namespace Bio.TestAutomation.IO.SAM
         public void ValidateSAMFormatterProperties()
         {
             SAMFormatter parser = new SAMFormatter();
-            Assert.AreEqual(Constants.SAMFormatterDescription, parser.Description.Replace("\r\n", "\n"));
-            Assert.AreEqual(Constants.SAMFileType, parser.SupportedFileTypes);
-            Assert.AreEqual(Constants.SAMName, parser.Name);
+            ClassicAssert.AreEqual(Constants.SAMFormatterDescription, parser.Description.Replace("\r\n", "\n"));
+            ClassicAssert.AreEqual(Constants.SAMFileType, parser.SupportedFileTypes);
+            ClassicAssert.AreEqual(Constants.SAMName, parser.Name);
 
             ApplicationLog.WriteLine("Successfully validated all the properties of SAM Parser class.");
         }
@@ -366,7 +367,7 @@ namespace Bio.TestAutomation.IO.SAM
             SAMFormatter formatter = new SAMFormatter();
             string writer = formatter.FormatString(alignment[0]);
 
-            Assert.AreEqual(writer, Constants.FormatterString.Replace("\r\n", Environment.NewLine));
+            ClassicAssert.AreEqual(writer, Constants.FormatterString.Replace("\r\n", Environment.NewLine));
         }
 
         #endregion
@@ -418,7 +419,7 @@ namespace Bio.TestAutomation.IO.SAM
                     for (int iseq = 0; iseq <
                         alignments[index].AlignedSequences[ialigned].Sequences.Count; iseq++)
                     {
-                        Assert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
+                        ClassicAssert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
                             new string(alignments[index].AlignedSequences[ialigned].Sequences[iseq].Select(a => (char)a).ToArray()));
                         count++;
                     }
@@ -467,7 +468,7 @@ namespace Bio.TestAutomation.IO.SAM
                 {
                     foreach (ISequence sequence in alignedSequence.Sequences)
                     {
-                        Assert.AreEqual(expectedSequencesList[count].ConvertToString(),
+                        ClassicAssert.AreEqual(expectedSequencesList[count].ConvertToString(),
                                             sequence.ConvertToString());
                         count++;
                     }
@@ -523,7 +524,7 @@ namespace Bio.TestAutomation.IO.SAM
                             for (int iseq = 0; iseq <
                                 alignments[index].AlignedSequences[ialigned].Sequences.Count; iseq++)
                             {
-                                Assert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
+                                ClassicAssert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
                                     new string(alignments[index].AlignedSequences[ialigned].Sequences[iseq].Select(a => (char)a).ToArray()));
                                 count++;
                             }
@@ -568,10 +569,10 @@ namespace Bio.TestAutomation.IO.SAM
                             for (int iseq = 0; iseq <
                                 alignments[index].AlignedSequences[ialigned].Sequences.Count; iseq++)
                             {
-                                Assert.IsInstanceOf<QualitativeSequence>(alignments[index].AlignedSequences[ialigned].Sequences[iseq]);
+                                ClassicAssert.IsInstanceOf<QualitativeSequence>(alignments[index].AlignedSequences[ialigned].Sequences[iseq]);
                                 QualitativeSequence qualSequence =
                                  (QualitativeSequence)alignments[index].AlignedSequences[ialigned].Sequences[iseq];
-                                Assert.AreEqual(
+                                ClassicAssert.AreEqual(
                                     new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
                                     new string(qualSequence.Select(a => (char)a).ToArray()));
                                 count++;
@@ -622,13 +623,13 @@ namespace Bio.TestAutomation.IO.SAM
                             for (int iseq = 0; iseq <
                                 alignments[index].AlignedSequences[ialigned].Sequences.Count; iseq++)
                             {
-                                Assert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
+                                ClassicAssert.AreEqual(new string(expectedSequencesList[count].Select(a => (char)a).ToArray()),
                                     new string(alignments[index].AlignedSequences[ialigned].Sequences[iseq].Select(a => (char)a).ToArray()));
                                 foreach (string key in alignments[index].AlignedSequences[ialigned].Metadata.Keys)
                                 {
                                     SAMAlignedSequenceHeader header = (SAMAlignedSequenceHeader)
                                         alignments[index].AlignedSequences[ialigned].Metadata[key];
-                                    Assert.AreEqual(expectedCIGARString, header.CIGAR);
+                                    ClassicAssert.AreEqual(expectedCIGARString, header.CIGAR);
                                 }
                                 count++;
                             }
@@ -690,7 +691,7 @@ namespace Bio.TestAutomation.IO.SAM
                             count < alignments.QuerySequences[index].Sequences.Count;
                             count++)
                         {
-                            Assert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
+                            ClassicAssert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
                                 new string(alignments.QuerySequences[index].Sequences[count].Select(a => (char)a).ToArray()));
                         }
                     }
@@ -747,7 +748,7 @@ namespace Bio.TestAutomation.IO.SAM
                             count < alignments.QuerySequences[index].Sequences.Count;
                             count++)
                         {
-                            Assert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
+                            ClassicAssert.AreEqual(new string(expectedSequencesList[index].Select(a => (char)a).ToArray()),
                                 new string(alignments.QuerySequences[index].Sequences[count].Select(a => (char)a).ToArray()));
                         }
                     }

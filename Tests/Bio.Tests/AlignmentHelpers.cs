@@ -5,6 +5,7 @@ using Bio.Extensions;
 using Bio.Util.Logging;
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework
 {
@@ -25,7 +26,7 @@ namespace Bio.Tests.Framework
             //    Console.Write(value + ",");
 
             HashSet<string> actual = new HashSet<string>();
-            Assert.AreEqual(expected.Count, result.Count(), "Different sequence counts.");
+            ClassicAssert.AreEqual(expected.Count, result.Count(), "Different sequence counts.");
 
             foreach (ISequence sequence in result)
             {
@@ -38,7 +39,7 @@ namespace Bio.Tests.Framework
 
             foreach (var s in expected)
             {
-                Assert.IsTrue(actual.Contains(s), "Could not locate " + s);
+                ClassicAssert.IsTrue(actual.Contains(s), "Could not locate " + s);
             }
         }
 
@@ -53,11 +54,11 @@ namespace Bio.Tests.Framework
             foreach (var value in result)
                 Console.Write(value + ",");
 
-            Assert.AreEqual(expected.Count, result.Count(), "Different sequence counts.");
+            ClassicAssert.AreEqual(expected.Count, result.Count(), "Different sequence counts.");
 
             foreach (var s in result)
             {
-                Assert.IsTrue(expected.Contains(s), "Could not locate " + s);
+                ClassicAssert.IsTrue(expected.Contains(s), "Could not locate " + s);
             }
         }
 
@@ -81,11 +82,11 @@ namespace Bio.Tests.Framework
         /// <returns>Compare result of alignments</returns>
         public static bool CompareAlignment(IList<IPairwiseSequenceAlignment> result, IList<IPairwiseSequenceAlignment> expectedAlignment, bool ignoreCase = false)
         {
-            Assert.AreEqual(expectedAlignment.Count, result.Count, "Different number of alignments generated.");
+            ClassicAssert.AreEqual(expectedAlignment.Count, result.Count, "Different number of alignments generated.");
 
             for (int count = 0; count < result.Count; count++)
             {
-                Assert.AreEqual(expectedAlignment[count].PairwiseAlignedSequences.Count, result[count].PairwiseAlignedSequences.Count, 
+                ClassicAssert.AreEqual(expectedAlignment[count].PairwiseAlignedSequences.Count, result[count].PairwiseAlignedSequences.Count, 
                                 "Different count of sequences on alignment " + (count+1) + "generated");
 
                 for (int count1 = 0; count1 < result[count].PairwiseAlignedSequences.Count; count1++)
@@ -94,32 +95,32 @@ namespace Bio.Tests.Framework
                     var s1 = result[count].PairwiseAlignedSequences[count1].FirstSequence;
                     var s2 = expectedAlignment[count].PairwiseAlignedSequences[count1].FirstSequence;
                     if (s2 != null)
-                        Assert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "First sequence did not match.");
+                        ClassicAssert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "First sequence did not match.");
 
                     s1 = result[count].PairwiseAlignedSequences[count1].SecondSequence;
                     s2 = expectedAlignment[count].PairwiseAlignedSequences[count1].SecondSequence;
                     if (s2 != null)
-                        Assert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "Second sequence did not match.");
+                        ClassicAssert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "Second sequence did not match.");
 
                     s1 = result[count].PairwiseAlignedSequences[count1].Consensus;
                     s2 = expectedAlignment[count].PairwiseAlignedSequences[count1].Consensus;
                     if (s2 != null)
-                        Assert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "Consensus did not match.");
+                        ClassicAssert.AreEqual(s2.ConvertToString().ChangeCase(ignoreCase), s1.ConvertToString().ChangeCase(ignoreCase), "Consensus did not match.");
 
                     long offset1 = result[count].PairwiseAlignedSequences[count1].FirstOffset;
                     long offset2 = expectedAlignment[count].PairwiseAlignedSequences[count1].FirstOffset;
                     if (offset2 != Int32.MinValue)
-                        Assert.AreEqual(offset2, offset1, "FirstOffset does not match.");
+                        ClassicAssert.AreEqual(offset2, offset1, "FirstOffset does not match.");
 
                     offset1 = result[count].PairwiseAlignedSequences[count1].SecondOffset;
                     offset2 = expectedAlignment[count].PairwiseAlignedSequences[count1].SecondOffset;
                     if (offset2 != Int32.MinValue)
-                        Assert.AreEqual(offset2, offset1, "SecondOffset does not match.");
+                        ClassicAssert.AreEqual(offset2, offset1, "SecondOffset does not match.");
 
                     long score1 = result[count].PairwiseAlignedSequences[count1].Score;
                     long score2 = expectedAlignment[count].PairwiseAlignedSequences[count1].Score;
                     if (score2 != Int32.MinValue)
-                        Assert.AreEqual(score2, score1, "Score does not match.");
+                        ClassicAssert.AreEqual(score2, score1, "Score does not match.");
                 }
             }
 

@@ -12,6 +12,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Assembly
 {
@@ -329,11 +330,11 @@ namespace Bio.Tests.Algorithms.Assembly
         {
             var diffObj = new DifferenceNode(1, 1, 4, 4);
 
-            Assert.AreEqual(1, diffObj.Sequence1Start);
-            Assert.AreEqual(1, diffObj.Sequence2Start);
-            Assert.AreEqual(4, diffObj.Sequence1End);
-            Assert.AreEqual(4, diffObj.Sequence2End);
-            Assert.AreEqual("1 : 1 : 4 : 4", diffObj.ToString());
+            ClassicAssert.AreEqual(1, diffObj.Sequence1Start);
+            ClassicAssert.AreEqual(1, diffObj.Sequence2Start);
+            ClassicAssert.AreEqual(4, diffObj.Sequence1End);
+            ClassicAssert.AreEqual(4, diffObj.Sequence2End);
+            ClassicAssert.AreEqual("1 : 1 : 4 : 4", diffObj.ToString());
         }
 
         /// <summary>
@@ -359,11 +360,11 @@ namespace Bio.Tests.Algorithms.Assembly
             List<DifferenceNode.CompareFeature> features = DifferenceNode.OutputDiffList(diffNode, seq1, seq2);
 
             //Validating the behavior. 
-            Assert.AreEqual(features.Count, 4);
-            Assert.AreEqual(features[0].Feature, Constants.InsertionOfOneBaseIn2);
-            Assert.AreEqual(features[1].FeatureType, replace);
-            Assert.AreEqual(features[2].Feature, Constants.InsertionOfOneBaseIn1);
-            Assert.AreEqual(features[3].FeatureType, replace);
+            ClassicAssert.AreEqual(features.Count, 4);
+            ClassicAssert.AreEqual(features[0].Feature, Constants.InsertionOfOneBaseIn2);
+            ClassicAssert.AreEqual(features[1].FeatureType, replace);
+            ClassicAssert.AreEqual(features[2].Feature, Constants.InsertionOfOneBaseIn1);
+            ClassicAssert.AreEqual(features[3].FeatureType, replace);
         }
 
         #endregion Consensus BVT Test cases
@@ -485,7 +486,7 @@ namespace Bio.Tests.Algorithms.Assembly
 
                     // Log the required info.
                     ApplicationLog.WriteLine(string.Format(null, "SimpleConsensusMethod BVT : Consensus read is '{0}'.", contigReadForConsensus.Consensus));
-                    Assert.AreEqual(contigConsensus, new String(contigReadForConsensus.Consensus.Select(a => (char) a).ToArray()));
+                    ClassicAssert.AreEqual(contigConsensus, new String(contigReadForConsensus.Consensus.Select(a => (char) a).ToArray()));
                     break;
                 default:
                     // Get the parameters from Xml for Assemble() method test cases.
@@ -495,9 +496,9 @@ namespace Bio.Tests.Algorithms.Assembly
                     int contigsCount = int.Parse(this.utilityObj.xmlUtil.GetTextValue(nodeName,
                                                                                  Constants.ContigsCountNode), null);
 
-                    Assert.AreEqual(unMergedCount, assembly.UnmergedSequences.Count);
-                    Assert.AreEqual(contigsCount, assembly.Contigs.Count);
-                    Assert.AreEqual(documentation, assembly.Documentation);
+                    ClassicAssert.AreEqual(unMergedCount, assembly.UnmergedSequences.Count);
+                    ClassicAssert.AreEqual(contigsCount, assembly.Contigs.Count);
+                    ClassicAssert.AreEqual(documentation, assembly.Documentation);
                     Contig contigRead = assembly.Contigs[0];
 
                     // Logs the consensus
@@ -506,8 +507,8 @@ namespace Bio.Tests.Algorithms.Assembly
                     ApplicationLog.WriteLine(string.Format(null, "SequenceAssembly BVT : Contig Sequences Count is '{0}'.", contigRead.Sequences.Count));
                     ApplicationLog.WriteLine(string.Format(null, "SequenceAssembly BVT : Consensus read is '{0}'.", contigRead.Consensus));
 
-                    Assert.AreEqual(contigConsensus, new String(contigRead.Consensus.Select(a => (char) a).ToArray()));
-                    Assert.AreEqual(contigSequencesCount, contigRead.Sequences.Count);
+                    ClassicAssert.AreEqual(contigConsensus, new String(contigRead.Consensus.Select(a => (char) a).ToArray()));
+                    ClassicAssert.AreEqual(contigSequencesCount, contigRead.Sequences.Count);
                     break;
             }
         }
@@ -536,17 +537,17 @@ namespace Bio.Tests.Algorithms.Assembly
                 KmersOfSequence kmerList = kmerBuilder.Build(seq, 2);
 
                 // Validate builder kmer.
-                Assert.AreEqual(expectedKmerCount, kmerList.Kmers.Count.ToString((IFormatProvider) null));
-                Assert.AreEqual(expectedKmerSeq, new String(kmerList.BaseSequence.Select(a => (char) a).ToArray()));
-                Assert.AreEqual(expectedKmerPos, kmerList.Length.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedKmerCount, kmerList.Kmers.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedKmerSeq, new String(kmerList.BaseSequence.Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(expectedKmerPos, kmerList.Length.ToString((IFormatProvider) null));
             }
             else
             {
                 kmerSeq = new KmersOfSequence(seq, 2);
 
                 // Validate Kmer Seq.
-                Assert.AreEqual(expectedKmerSeq, new String(kmerSeq.BaseSequence.Select(a => (char) a).ToArray()));
-                Assert.AreEqual(expectedKmerPos, kmerSeq.Length.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedKmerSeq, new String(kmerSeq.BaseSequence.Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(expectedKmerPos, kmerSeq.Length.ToString((IFormatProvider) null));
             }
         }
 
@@ -607,11 +608,11 @@ namespace Bio.Tests.Algorithms.Assembly
 
             // Validate difference.
 
-            Assert.AreEqual(expectedFeatureCount, features.Count.ToString((IFormatProvider) null));
-            Assert.AreEqual(expectedFeature, features[0].Feature);
-            Assert.AreEqual(expectedFeatureType, features[0].FeatureType);
-            Assert.AreEqual(expectedStartIndex, features[0].Start.ToString((IFormatProvider) null));
-            Assert.AreEqual(expectedEndIndex, features[0].End.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedFeatureCount, features.Count.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedFeature, features[0].Feature);
+            ClassicAssert.AreEqual(expectedFeatureType, features[0].FeatureType);
+            ClassicAssert.AreEqual(expectedStartIndex, features[0].Start.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedEndIndex, features[0].End.ToString((IFormatProvider) null));
             ApplicationLog.WriteLine(string.Format(null, "Kmer P1 : Validated DifferenceNodes successfully."));
         }
 

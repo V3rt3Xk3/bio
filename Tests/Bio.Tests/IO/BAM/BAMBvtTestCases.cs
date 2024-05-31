@@ -13,6 +13,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework.IO.BAM
 {
@@ -123,15 +124,15 @@ namespace Bio.Tests.Framework.IO.BAM
             bamParser = new BAMParser();
             seqAlignment = bamParser.ParseOne<SequenceAlignmentMap>(bamFilePath);
             var seq = seqAlignment.QuerySequences.First();
-            Assert.AreEqual("fakeref", seq.RName);
-            Assert.AreEqual("1M", seq.CIGAR);
-            Assert.AreEqual(10, seq.Pos);
-            Assert.IsNull(seq.QuerySequence);
+            ClassicAssert.AreEqual("fakeref", seq.RName);
+            ClassicAssert.AreEqual("1M", seq.CIGAR);
+            ClassicAssert.AreEqual(10, seq.Pos);
+            ClassicAssert.IsNull(seq.QuerySequence);
             var optField = seq.OptionalFields.First();
-            Assert.AreEqual("CT", optField.Tag);
-            Assert.AreEqual("Z", optField.VType);
-            Assert.AreEqual(".;ESDN;", optField.Value);
-            Assert.IsTrue(seq.IsDummyRead);
+            ClassicAssert.AreEqual("CT", optField.Tag);
+            ClassicAssert.AreEqual("Z", optField.VType);
+            ClassicAssert.AreEqual(".;ESDN;", optField.Value);
+            ClassicAssert.IsTrue(seq.IsDummyRead);
         }
 
 
@@ -377,7 +378,7 @@ namespace Bio.Tests.Framework.IO.BAM
                     {
                         //pass true for validate parameter
                         int length = PairedRead.GetInsertLength(read.Read1, read.Read2, true);
-                        Assert.AreEqual(length.ToString((IFormatProvider) null), insertLength[i]);
+                        ClassicAssert.AreEqual(length.ToString((IFormatProvider) null), insertLength[i]);
                         i++;
                     }
                     ApplicationLog.WriteLine(string.Format(null,
@@ -467,7 +468,7 @@ namespace Bio.Tests.Framework.IO.BAM
             {
                 string bamFilePath = this.utilityObj.xmlUtil.GetTextValue(Constants.MediumSizeBAMFileNode,
                                                                      Constants.FilePathNode).TestDir();
-                Assert.IsNotNull(bamFilePath);
+                ClassicAssert.IsNotNull(bamFilePath);
 
                 SequenceAlignmentMap seqAlignment = parser.ParseOne<SequenceAlignmentMap>(bamFilePath);
                 this.ValidateSort(seqAlignment, BAMSortByFields.ChromosomeCoordinates);
@@ -485,7 +486,7 @@ namespace Bio.Tests.Framework.IO.BAM
             {
                 string bamFilePath = this.utilityObj.xmlUtil.GetTextValue(Constants.MediumSizeBAMFileNode,
                                                                      Constants.FilePathNode).TestDir();
-                Assert.IsNotNull(bamFilePath);
+                ClassicAssert.IsNotNull(bamFilePath);
 
                 SequenceAlignmentMap seqAlignment = parser.ParseOne<SequenceAlignmentMap>(bamFilePath);
                 this.ValidateSort(seqAlignment, BAMSortByFields.ChromosomeNameAndCoordinates);
@@ -524,8 +525,8 @@ namespace Bio.Tests.Framework.IO.BAM
                 samFormatterObj.Format(bamSeqAlignment, Constants.SAMTempFileName);
                 SequenceAlignmentMap samSeqAlignment = samParserObj.ParseOne<SequenceAlignmentMap>(Constants.SAMTempFileName);
 
-                Assert.IsTrue(CompareSequencedAlignmentHeader(samSeqAlignment, expextedSamAlignmentObj));
-                Assert.IsTrue(CompareAlignedSequences(samSeqAlignment, expextedSamAlignmentObj));
+                ClassicAssert.IsTrue(CompareSequencedAlignmentHeader(samSeqAlignment, expextedSamAlignmentObj));
+                ClassicAssert.IsTrue(CompareAlignedSequences(samSeqAlignment, expextedSamAlignmentObj));
             }
             finally
             {
@@ -567,10 +568,10 @@ namespace Bio.Tests.Framework.IO.BAM
                 SequenceAlignmentMap bamSeqAlignment = bamParserObj.ParseOne<SequenceAlignmentMap>(Constants.BAMTempFileName);
 
                 // Validate converted BAM file with expected BAM file.
-                Assert.IsTrue(CompareSequencedAlignmentHeader(bamSeqAlignment, expextedBamAlignmentObj));
+                ClassicAssert.IsTrue(CompareSequencedAlignmentHeader(bamSeqAlignment, expextedBamAlignmentObj));
 
                 // Validate BAM file aligned sequences.
-                Assert.IsTrue(CompareAlignedSequences(bamSeqAlignment, expextedBamAlignmentObj));
+                ClassicAssert.IsTrue(CompareAlignedSequences(bamSeqAlignment, expextedBamAlignmentObj));
             }
             finally
             {
@@ -634,8 +635,8 @@ namespace Bio.Tests.Framework.IO.BAM
         {
             var sorter = new BAMSort(seqAlignment, sortType);
             IList<BAMSortedIndex> sortedIndex = sorter.Sort();
-            Assert.IsNotNull(sortedIndex);
-            Assert.IsTrue(this.IsSortedIndex(sortedIndex, sortType));
+            ClassicAssert.IsNotNull(sortedIndex);
+            ClassicAssert.IsTrue(this.IsSortedIndex(sortedIndex, sortType));
         }
 
         /// <summary>
@@ -659,15 +660,15 @@ namespace Bio.Tests.Framework.IO.BAM
             {
                 case BAMSortByFields.ReadNames:
                     temp = File.ReadAllText(matchFile1);
-                    Assert.AreEqual(temp, this.getSortedOutput(sortedIndex));
+                    ClassicAssert.AreEqual(temp, this.getSortedOutput(sortedIndex));
                     break;
                 case BAMSortByFields.ChromosomeCoordinates:
                     temp = File.ReadAllText(matchFile2);
-                    Assert.AreEqual(temp, this.getSortedOutput(sortedIndex));
+                    ClassicAssert.AreEqual(temp, this.getSortedOutput(sortedIndex));
                     break;
                 case BAMSortByFields.ChromosomeNameAndCoordinates:
                     temp = File.ReadAllText(matchFile3);
-                    Assert.AreEqual(temp, this.getSortedOutput(sortedIndex));
+                    ClassicAssert.AreEqual(temp, this.getSortedOutput(sortedIndex));
                     break;
                 default:
                     break;
@@ -693,8 +694,8 @@ namespace Bio.Tests.Framework.IO.BAM
                 {
                     temp.Append("|" + sortedIndexList.Current.ToString((IFormatProvider) null));
                 }
-                Assert.IsNotNull(temp);
-                Assert.AreNotEqual(0, temp.Length);
+                ClassicAssert.IsNotNull(temp);
+                ClassicAssert.AreNotEqual(0, temp.Length);
                 sortedIndexList.Dispose();
                 return temp.ToString();
             }
@@ -782,7 +783,7 @@ namespace Bio.Tests.Framework.IO.BAM
                 }
 
                 IList<SAMAlignedSequence> alignedSeqs = seqAlignment.QuerySequences;
-                Assert.AreEqual(alignedSeqCount, alignedSeqs.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(alignedSeqCount, alignedSeqs.Count.ToString((IFormatProvider) null));
                 // Get expected sequences
                 var parserObj = new FastAParser();
                 {
@@ -791,8 +792,8 @@ namespace Bio.Tests.Framework.IO.BAM
                     // Validate aligned sequences from BAM file.
                     for (int index = 0; index < alignedSeqs.Count; index++)
                     {
-                        Assert.IsFalse(alignedSeqs[index].IsDummyRead);
-                        Assert.AreEqual(
+                        ClassicAssert.IsFalse(alignedSeqs[index].IsDummyRead);
+                        ClassicAssert.AreEqual(
                             new string(expectedSequencesList[index].Select(a => (char) a).ToArray()),
                             new string(alignedSeqs[index].QuerySequence.Select(a => (char) a).ToArray()));
                         // Log to VSTest GUI.
@@ -832,13 +833,13 @@ namespace Bio.Tests.Framework.IO.BAM
 
             for (int index = 0; index < recordFields.Count; index++)
             {
-                Assert.AreEqual(expectedHeaders[index].Replace("/", ""),
+                ClassicAssert.AreEqual(expectedHeaders[index].Replace("/", ""),
                                 recordFields[index].Typecode.ToString(null).Replace("/", ""));
                 for (int tags = 0; tags < recordFields[index].Tags.Count; tags++)
                 {
-                    Assert.AreEqual(expectedHeaderKeys[tagKeysCount].Replace("/", ""),
+                    ClassicAssert.AreEqual(expectedHeaderKeys[tagKeysCount].Replace("/", ""),
                                     recordFields[index].Tags[tags].Tag.ToString(null).Replace("/", ""));
-                    Assert.AreEqual(expectedHeaderTagsValues[tagValuesCount].Replace("/", ""),
+                    ClassicAssert.AreEqual(expectedHeaderTagsValues[tagValuesCount].Replace("/", ""),
                                     recordFields[index].Tags[tags].Value.ToString(null)
                                                                   .Replace("/", "")
                                                                   .Replace("\r", "")
@@ -898,7 +899,7 @@ namespace Bio.Tests.Framework.IO.BAM
                 // Validate Parsed BAM file Header record fileds.
                 this.ValidateBAMHeaderRecords(nodeName, expectedSeqAlignmentMap);
                 IList<SAMAlignedSequence> alignedSeqs = expectedSeqAlignmentMap.QuerySequences;
-                Assert.AreEqual(alignedSeqCount, alignedSeqs.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(alignedSeqCount, alignedSeqs.Count.ToString((IFormatProvider) null));
 
                 // Get expected sequences
                 var parserObj = new FastAParser();
@@ -908,7 +909,7 @@ namespace Bio.Tests.Framework.IO.BAM
                     // Validate aligned sequences from BAM file.
                     for (int index = 0; index < alignedSeqs.Count; index++)
                     {
-                        Assert.AreEqual(
+                        ClassicAssert.AreEqual(
                             new string(expectedSequencesList[index].Select(a => (char) a).ToArray()),
                             new string(alignedSeqs[index].QuerySequence.Select(a => (char) a).ToArray()));
                         // Log to VSTest GUI.
@@ -1047,17 +1048,17 @@ namespace Bio.Tests.Framework.IO.BAM
                         break;
                 }
 
-                Assert.AreEqual(pairedReadsCount, pairedReads.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(pairedReadsCount, pairedReads.Count.ToString((IFormatProvider) null));
 
                 int i = 0;
                 foreach (PairedRead read in pairedReads)
                 {
-                    Assert.AreEqual(insertLength[i], read.InsertLength.ToString((IFormatProvider) null));
-                    Assert.AreEqual(pairedReadType[i], read.PairedType.ToString());
+                    ClassicAssert.AreEqual(insertLength[i], read.InsertLength.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(pairedReadType[i], read.PairedType.ToString());
 
                     foreach (SAMAlignedSequence seq in read.Reads)
                     {
-                        Assert.AreEqual(new string(expectedSequences.ElementAt(i).Select(a => (char) a).ToArray()),
+                        ClassicAssert.AreEqual(new string(expectedSequences.ElementAt(i).Select(a => (char) a).ToArray()),
                                         new string(seq.QuerySequence.Select(a => (char) a).ToArray()));
 
                         // Log to VSTest GUI.
@@ -1111,7 +1112,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         foreach (PairedRead read in pairedReads)
                         {
                             PairedReadType type = PairedRead.GetPairedReadType(read, library);
-                            Assert.AreEqual(type.ToString(), pairedReadType[i]);
+                            ClassicAssert.AreEqual(type.ToString(), pairedReadType[i]);
                             i++;
                         }
                         break;
@@ -1122,7 +1123,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         foreach (PairedRead read in pairedReads)
                         {
                             PairedReadType type = PairedRead.GetPairedReadType(read, libraryInfo);
-                            Assert.AreEqual(type.ToString(), pairedReadType[i]);
+                            ClassicAssert.AreEqual(type.ToString(), pairedReadType[i]);
                             i++;
                         }
                         break;
@@ -1133,7 +1134,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         {
                             PairedReadType type = PairedRead.GetPairedReadType(read, float.Parse(mean, null),
                                                                                float.Parse(deviation, null));
-                            Assert.AreEqual(type.ToString(), pairedReadType[i]);
+                            ClassicAssert.AreEqual(type.ToString(), pairedReadType[i]);
                             i++;
                         }
                         break;
@@ -1144,7 +1145,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         {
                             PairedReadType type = PairedRead.GetPairedReadType(read.Read1,
                                                                                read.Read2, library);
-                            Assert.AreEqual(type.ToString(), pairedReadType[i]);
+                            ClassicAssert.AreEqual(type.ToString(), pairedReadType[i]);
                             i++;
                         }
                         break;
@@ -1156,7 +1157,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         {
                             PairedReadType type = PairedRead.GetPairedReadType(read.Read1,
                                                                                read.Read2, libraryInfo);
-                            Assert.AreEqual(type.ToString(), pairedReadType[i]);
+                            ClassicAssert.AreEqual(type.ToString(), pairedReadType[i]);
                             i++;
                         }
                         break;
@@ -1167,7 +1168,7 @@ namespace Bio.Tests.Framework.IO.BAM
                         foreach (PairedRead read in pairedReads)
                         {
                             int length = PairedRead.GetInsertLength(read.Read1, read.Read2);
-                            Assert.AreEqual(length.ToString((IFormatProvider) null), insertLength[i]);
+                            ClassicAssert.AreEqual(length.ToString((IFormatProvider) null), insertLength[i]);
                             i++;
                         }
                         break;

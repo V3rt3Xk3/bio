@@ -5,6 +5,7 @@ using Bio.Algorithms.Alignment;
 using Bio.SimilarityMatrices;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Algorithms.Alignment
 {
@@ -66,7 +67,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 3;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Bio.Tests.Algorithms.Alignment
             alignedSeq.SecondOffset = 3;
             align.PairwiseAlignedSequences.Add(alignedSeq);
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace Bio.Tests.Algorithms.Alignment
             }
 
             IList<IPairwiseSequenceAlignment> expectedOutput = new List<IPairwiseSequenceAlignment>();
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace Bio.Tests.Algorithms.Alignment
             align.PairwiseAlignedSequences.Add(alignedSeq);
 
             expectedOutput.Add(align);
-            Assert.IsTrue(CompareAlignment(result, expectedOutput));
+            ClassicAssert.IsTrue(CompareAlignment(result, expectedOutput));
         }
         #endregion PairwiseOverlap Aligner
 

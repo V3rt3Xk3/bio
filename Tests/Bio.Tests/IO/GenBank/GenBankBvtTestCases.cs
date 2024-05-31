@@ -18,6 +18,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
 namespace Bio.TestAutomation.IO.GenBank
@@ -75,8 +76,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             {
                 IEnumerable<ISequence> seqList = parserObj.Parse(FilePath);
                 ISequence seq = seqList.ElementAt(0);
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                Assert.AreEqual(SeqId, seq.ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq.ID);
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -85,21 +86,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata = (GenBankMetadata) seq.Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType,
+                    ClassicAssert.AreEqual(StrandType,
                                     metadata.Locus.Strand.ToString());
                 }
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                 metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                 metadata.Locus.Date);
 
-                Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine("GenBank Parser BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                 // test the sequence string            
-                Assert.AreEqual(ExpectedSequence, seq.ConvertToString());
+                ClassicAssert.AreEqual(ExpectedSequence, seq.ConvertToString());
 
                 ApplicationLog.WriteLine("GenBank Parser BVT: Successfully validated the Sequence");
             }
@@ -130,8 +131,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     seq = seqList.ToList();
                 }
 
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq[0].Alphabet);
-                Assert.AreEqual(SeqId, seq[0].ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq[0].Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq[0].ID);
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -140,22 +141,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata = (GenBankMetadata) seq[0].Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType,
+                    ClassicAssert.AreEqual(StrandType,
                                     metadata.Locus.Strand.ToString());
                 }
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                 metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                 metadata.Locus.Date);
 
-                Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                 // test the sequence string            
-                Assert.AreEqual(ExpectedSequence, new string(seq[0].Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(ExpectedSequence, new string(seq[0].Select(a => (char) a).ToArray()));
 
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the Sequence");
@@ -213,9 +214,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 parserObj.Alphabet = Alphabets.Protein;
                 IEnumerable<ISequence> seq = parserObj.Parse(FilePath);
 
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName),
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName),
                                 seq.ElementAt(0).Alphabet);
-                Assert.AreEqual(SeqId, seq.ElementAt(0).ID);
+                ClassicAssert.AreEqual(SeqId, seq.ElementAt(0).ID);
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -224,22 +225,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata = (GenBankMetadata) seq.ElementAt(0).Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType,
+                    ClassicAssert.AreEqual(StrandType,
                                     metadata.Locus.Strand.ToString());
                 }
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                 metadata.Locus.StrandTopology.ToString().ToUpper(
                                     CultureInfo.CurrentCulture));
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                 metadata.Locus.Date);
-                Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                 // test the sequence string            
-                Assert.AreEqual(ExpectedSequence, new string(seq.ElementAt(0).Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(ExpectedSequence, new string(seq.ElementAt(0).Select(a => (char) a).ToArray()));
                 ApplicationLog.WriteLine(
                     "GenBank Parser BVT: Successfully validated the Sequence");
             }
@@ -289,8 +290,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                     IEnumerable<ISequence> seqList = parserObj.Parse(tempFileName);
                     ISequence seq = seqList.ElementAt(0);
-                    Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                    Assert.AreEqual(SeqId, seq.ID);
+                    ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                    ClassicAssert.AreEqual(SeqId, seq.ID);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -299,19 +300,19 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     var metadata = (GenBankMetadata) seq.Metadata["GenBank"];
                     if (metadata.Locus.Strand != SequenceStrandType.None)
                     {
-                        Assert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
+                        ClassicAssert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
                     }
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                     metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                    Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                    Assert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
-                    Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                    ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                     // test the sequence string            
-                    Assert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
+                    ClassicAssert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
                     ApplicationLog.WriteLine("GenBank Formatter BVT: Successfully validated the Sequence");
                     File.Delete(tempFileName);
                 }
@@ -351,8 +352,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     ISequenceParser parserObjFromFile = new GenBankParser();
                     IEnumerable<ISequence> seqList = parserObjFromFile.Parse(tempFileName);
                     ISequence seq = seqList.ElementAt(0);
-                    Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                    Assert.AreEqual(SeqId, seq.ID);
+                    ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                    ClassicAssert.AreEqual(SeqId, seq.ID);
                     ApplicationLog.WriteLine("GenBank Formatter BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
                     // test the metadata that is tricky to parse, and will not be tested implicitly by
@@ -361,21 +362,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         (GenBankMetadata) orgSeq.Metadata["GenBank"];
                     if (metadata.Locus.Strand != SequenceStrandType.None)
                     {
-                        Assert.AreEqual(StrandType,
+                        ClassicAssert.AreEqual(StrandType,
                                         metadata.Locus.Strand.ToString());
                     }
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                     metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                    Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                    Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                    ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                    ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                     metadata.Locus.Date);
-                    Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                     // test the sequence string            
-                    Assert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
+                    ClassicAssert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
                     ApplicationLog.WriteLine("GenBank Formatter BVT: Successfully validated the Sequence");
                     File.Delete(tempFileName);
                 }
@@ -411,8 +412,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 parserObj = new GenBankParser();
                 seqList = parserObj.Parse(tempFileName);
                 seq = seqList.ElementAt(0);
-                Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                Assert.AreEqual(SeqId, seq.ID);
+                ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                ClassicAssert.AreEqual(SeqId, seq.ID);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -421,21 +422,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata = (GenBankMetadata) seq.Metadata["GenBank"];
                 if (metadata.Locus.Strand != SequenceStrandType.None)
                 {
-                    Assert.AreEqual(StrandType,
+                    ClassicAssert.AreEqual(StrandType,
                                     metadata.Locus.Strand.ToString());
                 }
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                 metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                 metadata.Locus.Date);
-                Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                 // test the sequence string            
-                Assert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
                 ApplicationLog.WriteLine(
                     "GenBank Formatter BVT: Successfully validated the Sequence");
                 File.Delete(tempFileName);
@@ -470,8 +471,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     ISequenceParser parserObjFromFile = new GenBankParser();
                     seqList = parserObjFromFile.Parse(tempFileName);
                     seq = seqList.ElementAt(0);
-                    Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                    Assert.AreEqual(SeqId, seq.ID);
+                    ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                    ClassicAssert.AreEqual(SeqId, seq.ID);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -481,21 +482,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         (GenBankMetadata) seq.Metadata["GenBank"];
                     if (metadata.Locus.Strand != SequenceStrandType.None)
                     {
-                        Assert.AreEqual(StrandType,
+                        ClassicAssert.AreEqual(StrandType,
                                         metadata.Locus.Strand.ToString());
                     }
-                    Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                    ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                     metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                    Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                    Assert.AreEqual(DateTime.Parse(SequenceDate, null),
+                    ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                    ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null),
                                     metadata.Locus.Date);
-                    Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                    Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                    ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                    ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                     // test the sequence string
-                    Assert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
+                    ClassicAssert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
 
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the Sequence");
@@ -547,8 +548,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 {
                     IEnumerable<ISequence> seqList = parserObj.Parse(tempFileName);
                     seq = seqList.ElementAt(0);
-                    Assert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
-                    Assert.AreEqual(SeqId, seq.ID);
+                    ClassicAssert.AreEqual(Utility.GetAlphabet(AlphabetName), seq.Alphabet);
+                    ClassicAssert.AreEqual(SeqId, seq.ID);
                     ApplicationLog.WriteLine(
                         "GenBank Formatter BVT: Successfully validated the Alphabet, Molecular type, Sequence ID and Display ID");
 
@@ -557,20 +558,20 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     metadata = (GenBankMetadata) seq.Metadata["GenBank"];
                     if (metadata.Locus.Strand != SequenceStrandType.None)
                     {
-                        Assert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
+                        ClassicAssert.AreEqual(StrandType, metadata.Locus.Strand.ToString());
                     }
                 }
-                Assert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
+                ClassicAssert.AreEqual(StrandTopology.ToUpper(CultureInfo.CurrentCulture),
                                 metadata.Locus.StrandTopology.ToString().ToUpper(CultureInfo.CurrentCulture));
-                Assert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
-                Assert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
-                Assert.AreEqual(Version, metadata.Version.Version.ToString(null));
-                Assert.AreEqual(PrimaryId, metadata.Version.GiNumber);
+                ClassicAssert.AreEqual(Div, metadata.Locus.DivisionCode.ToString());
+                ClassicAssert.AreEqual(DateTime.Parse(SequenceDate, null), metadata.Locus.Date);
+                ClassicAssert.AreEqual(Version, metadata.Version.Version.ToString(null));
+                ClassicAssert.AreEqual(PrimaryId, metadata.Version.GiNumber);
                 ApplicationLog.WriteLine(
                     "GenBank Formatter BVT: Successfully validated the StrandType, StrandTopology, Division, Date, Version, PrimaryID Properties");
 
                 // test the sequence string            
-                Assert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
+                ClassicAssert.AreEqual(ExpectedSequence, new string(seq.Select(a => (char) a).ToArray()));
                 ApplicationLog.WriteLine("GenBank Formatter BVT: Successfully validated the Sequence");
                 File.Delete(tempFileName);
             }

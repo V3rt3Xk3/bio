@@ -15,6 +15,7 @@ using Bio.TestAutomation.Util;
 using Bio.Tests;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 #if (SILVERLIGHT == false)
 namespace Bio.TestAutomation.IO.GenBank
@@ -369,11 +370,11 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             metadata.Features.All.Add(feature);
 
             // Validate added GenBank features.
-            Assert.AreEqual(metadata.Features.All[0].Key.ToString(null), addFirstKey);
-            Assert.AreEqual(locBuilder.GetLocationString(metadata.Features.All[0].Location),
+            ClassicAssert.AreEqual(metadata.Features.All[0].Key.ToString(null), addFirstKey);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(metadata.Features.All[0].Location),
                             addFirstLocation);
-            Assert.AreEqual(metadata.Features.All[1].Key.ToString(null), addSecondKey);
-            Assert.AreEqual(locBuilder.GetLocationString(metadata.Features.All[1].Location),
+            ClassicAssert.AreEqual(metadata.Features.All[1].Key.ToString(null), addSecondKey);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(metadata.Features.All[1].Location),
                             addSecondLocation);
         }
 
@@ -429,14 +430,14 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             metadata.Features.All.Add(feature);
 
             // Validate added GenBank features.
-            Assert.AreEqual(metadata.Features.All[0].Key.ToString(null),
+            ClassicAssert.AreEqual(metadata.Features.All[0].Key.ToString(null),
                             addFirstKey);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.All[0].Location),
                             addFirstLocation);
-            Assert.AreEqual(metadata.Features.All[1].Key.ToString(null),
+            ClassicAssert.AreEqual(metadata.Features.All[1].Key.ToString(null),
                             addSecondKey);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.All[1].Location),
                             addSecondLocation);
         }
@@ -473,12 +474,12 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             // Get CDS qaulifier.value.
             List<CodingSequence> cdsQualifiers = metadata.Features.CodingSequences;
             List<string> dbReferenceValue = cdsQualifiers[0].DatabaseCrossReference;
-            Assert.AreEqual(cdsQualifiers[0].Label, expectedCDSLabel);
-            Assert.AreEqual(cdsQualifiers[0].Exception.ToString(null), expectedCDSException);
-            Assert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
-            Assert.AreEqual(dbReferenceValue[0], expectedCDSDBReference);
-            Assert.AreEqual(cdsQualifiers[0].GeneSymbol, expectedGeneSymbol);
+            ClassicAssert.AreEqual(cdsQualifiers[0].Label, expectedCDSLabel);
+            ClassicAssert.AreEqual(cdsQualifiers[0].Exception.ToString(null), expectedCDSException);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(cdsQualifiers[0].Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(cdsQualifiers[0].Citation.ToString()));
+            ClassicAssert.AreEqual(dbReferenceValue[0], expectedCDSDBReference);
+            ClassicAssert.AreEqual(cdsQualifiers[0].GeneSymbol, expectedGeneSymbol);
         }
 
         /// <summary>
@@ -507,7 +508,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     sequenceList.ElementAt(0).Metadata[Constants.GenBank] as GenBankMetadata;
 
                 // Validate GenBank features before removing feature item.
-                Assert.AreEqual(metadata.Features.All.Count,
+                ClassicAssert.AreEqual(metadata.Features.All.Count,
                                 Convert.ToInt32(allFeaturesCount, null));
                 IList<FeatureItem> featureList = metadata.Features.All;
 
@@ -515,7 +516,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 featureList.Clear();
 
                 // Validate feature list after clearing featureList.
-                Assert.AreEqual(featureList.Count, 0);
+                ClassicAssert.AreEqual(featureList.Count, 0);
 
                 ApplicationLog.WriteLine("GenBank Features P1: Successfully validated the GenBank Features");
             }
@@ -547,14 +548,14 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     sequenceList.ElementAt(0).Metadata[Constants.GenBank] as GenBankMetadata;
 
                 // Validate GenBank features before removing feature item.
-                Assert.AreEqual(metadata.Features.All.Count, Convert.ToInt32(allFeaturesCount, null));
+                ClassicAssert.AreEqual(metadata.Features.All.Count, Convert.ToInt32(allFeaturesCount, null));
                 IList<FeatureItem> featureList = metadata.Features.All;
 
                 // Remove feature items from feature list.
                 featureList.Clear();
 
                 // Validate feature list after clearing featureList.
-                Assert.AreEqual(featureList.Count, 0);
+                ClassicAssert.AreEqual(featureList.Count, 0);
 
                 ApplicationLog.WriteLine(
                     "GenBank Features P1: Successfully validated the GenBank Features");
@@ -716,9 +717,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 metadata.Features.All.Add(feature);
 
                 // Validate added GenBank features.
-                Assert.AreEqual(metadata.Features.All[0].Key.ToString(null),
+                ClassicAssert.AreEqual(metadata.Features.All[0].Key.ToString(null),
                                 addFirstKey);
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     locBuilder.GetLocationString(metadata.Features.All[0].Location),
                     addFirstLocation);
             }
@@ -772,9 +773,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 metadata.Features.All.Add(feature);
 
                 // Validate added GenBank features.
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     metadata.Features.All[0].Key.ToString(null), addFirstKey);
-                Assert.AreEqual(
+                ClassicAssert.AreEqual(
                     locBuilder.GetLocationString(metadata.Features.All[0].Location),
                     addFirstLocation);
             }
@@ -1221,25 +1222,25 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
             // Create a clone and validate all qualifiers.
             MaturePeptide clonemPeptide = mPeptideList[0].Clone();
-            Assert.AreEqual(mPeptideList.Count.ToString((IFormatProvider) null), mPeptideCount);
-            Assert.AreEqual(clonemPeptide.GeneSymbol.ToString(null), geneSymbol);
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(clonemPeptide.Allele.ToString(null)));
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Citation.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Experiment.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Function.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.GeneSynonym.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(clonemPeptide.GenomicMapPosition));
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Inference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(clonemPeptide.Label));
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(mPeptideList.Count.ToString((IFormatProvider) null), mPeptideCount);
+            ClassicAssert.AreEqual(clonemPeptide.GeneSymbol.ToString(null), geneSymbol);
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(clonemPeptide.Allele.ToString(null)));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Citation.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Experiment.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Function.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.GeneSynonym.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(clonemPeptide.GenomicMapPosition));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Inference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(clonemPeptide.Label));
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.MaturePeptides[0].Location), mPeptideLocation);
-            Assert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Note.ToString()));
-            Assert.IsFalse(mPeptideList[0].Pseudo);
-            Assert.IsFalse(string.IsNullOrEmpty(mPeptideList[0].OldLocusTag.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(mPeptideList[0].EnzymeCommissionNumber.ToString(null)));
-            Assert.IsTrue(string.IsNullOrEmpty(mPeptideList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(mPeptideList[0].LocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(clonemPeptide.Note.ToString()));
+            ClassicAssert.IsFalse(mPeptideList[0].Pseudo);
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(mPeptideList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(mPeptideList[0].EnzymeCommissionNumber.ToString(null)));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(mPeptideList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(mPeptideList[0].LocusTag.ToString()));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine("GenBank Features P1: Successfully validated the GenBank Features");
@@ -1274,24 +1275,24 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
             // Create a clone of attenuator feature.
             Attenuator attenuatorClone = attenuatorList[0].Clone();
-            Assert.AreEqual(attenuatorList.Count.ToString((IFormatProvider) null), featureCount);
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].GeneSymbol));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorClone.DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorClone.Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorClone.Experiment.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].GenomicMapPosition));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].GeneSynonym.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Inference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].Label));
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(attenuatorList.Count.ToString((IFormatProvider) null), featureCount);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].GeneSymbol));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorClone.DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorClone.Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorClone.Experiment.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].GenomicMapPosition));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].GeneSynonym.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Inference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].Label));
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.Attenuators[0].Location), attenuatorLocation);
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Note.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].Operon));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].OldLocusTag.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Phenotype.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].LocusTag.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Note.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorList[0].Operon));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].Phenotype.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].LocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(attenuatorList[0].OldLocusTag.ToString()));
 
             // Create a new Attenuator and validate the same.
             var attenuator = new Attenuator(attenuatorLocation);
@@ -1302,9 +1303,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             attenuator.Allele = attenuatorLocation;
             attenuator.GeneSymbol = string.Empty;
             attenuatorWithILoc.GenomicMapPosition = string.Empty;
-            Assert.IsTrue(string.IsNullOrEmpty(attenuator.GeneSymbol));
-            Assert.AreEqual(attenuator.Allele, attenuatorLocation);
-            Assert.IsTrue(string.IsNullOrEmpty(attenuatorWithILoc.GenomicMapPosition));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuator.GeneSymbol));
+            ClassicAssert.AreEqual(attenuator.Allele, attenuatorLocation);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(attenuatorWithILoc.GenomicMapPosition));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -1343,23 +1344,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of Minus35Signal feature feature.
                 Minus35Signal cloneMinus35Signal = minus35Signal[0].Clone();
-                Assert.AreEqual(minus35Signal.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMinus35Signal.GeneSymbol));
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMinus35Signal.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(minus35Signal.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMinus35Signal.GeneSymbol));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMinus35Signal.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.Minus35Signals[0].Location), minus35Location);
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Note.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Operon));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].OldLocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].StandardName));
-                Assert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].Note.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].Operon));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].OldLocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus35Signal[0].StandardName));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus35Signal[0].LocusTag.ToString()));
 
                 // Create a new Minus35Signal and validate the same.
                 var minus35 = new Minus10Signal(minus35Location);
@@ -1369,8 +1370,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 minus35.GeneSymbol = geneSymbol;
                 minus35WithILoc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(minus35.GeneSymbol, geneSymbol);
-                Assert.AreEqual(minus35WithILoc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(minus35.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(minus35WithILoc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1409,23 +1410,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of Minus10Signalfeature feature.
                 Minus10Signal cloneMinus10Signal = minus10Signal[0].Clone();
-                Assert.AreEqual(minus10Signal.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.GeneSymbol));
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(minus10Signal.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.GeneSymbol));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.Minus10Signals[0].Location), minus10Location);
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Note.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Operon));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].OldLocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].StandardName));
-                Assert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].Note.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].Operon));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].OldLocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(minus10Signal[0].StandardName));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(minus10Signal[0].LocusTag.ToString()));
 
                 // Create a new Minus10Signal and validate the same.
                 var minus10 = new Minus10Signal(minus10Location);
@@ -1435,8 +1436,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 minus10.GeneSymbol = geneSymbol;
                 minus10WithILoc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(minus10.GeneSymbol, geneSymbol);
-                Assert.AreEqual(minus10WithILoc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(minus10.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(minus10WithILoc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1476,21 +1477,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of PolyASignal feature feature.
                 PolyASignal cloneMinus10Signal = polyASignalList[0].Clone();
-                Assert.AreEqual(polyASignalList.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.AreEqual(cloneMinus10Signal.GeneSymbol, geneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(polyASignalList.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.AreEqual(cloneMinus10Signal.GeneSymbol, geneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMinus10Signal.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(polyASignalList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.PolyASignals[0].Location), polyALocation);
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(polyASignalList[0].LocusTag.ToString()));
 
                 // Create a new PolyA signal and validate the same.
                 var polyASignal = new PolyASignal(polyALocation);
@@ -1500,8 +1501,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 polyASignal.GeneSymbol = geneSymbol;
                 polyASignalWithILoc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(polyASignal.GeneSymbol, geneSymbol);
-                Assert.AreEqual(polyASignalWithILoc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(polyASignal.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(polyASignalWithILoc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1540,22 +1541,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of Terminator feature feature.
                 Terminator cloneTerminator = terminatorList[0].Clone();
-                Assert.AreEqual(terminatorList.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.AreEqual(cloneTerminator.GeneSymbol, geneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(cloneTerminator.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(terminatorList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(terminatorList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(terminatorList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(terminatorList.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.AreEqual(cloneTerminator.GeneSymbol, geneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneTerminator.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(terminatorList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(terminatorList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(terminatorList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.Terminators[0].Location), terminatorLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(terminatorList[0].LocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(terminatorList[0].StandardName));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(terminatorList[0].LocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(terminatorList[0].StandardName));
 
                 // Create a new Terminator signal and validate the same.
                 var terminator = new Terminator(terminatorLocation);
@@ -1565,8 +1566,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 terminator.GeneSymbol = geneSymbol;
                 terminatorWithILoc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(terminator.GeneSymbol, geneSymbol);
-                Assert.AreEqual(terminatorWithILoc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(terminator.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(terminatorWithILoc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1610,23 +1611,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of MiscSignal feature feature.
                 MiscSignal cloneMiscSignal = miscSignalList[0].Clone();
-                Assert.AreEqual(miscSignalList.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.AreEqual(cloneMiscSignal.GeneSymbol, geneSymbol);
-                Assert.AreEqual(cloneMiscSignal.DatabaseCrossReference[0], dbReferenceNode);
-                Assert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Allele.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(miscSignalList.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.AreEqual(cloneMiscSignal.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(cloneMiscSignal.DatabaseCrossReference[0], dbReferenceNode);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Allele.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.MiscSignals[0].Location), miscSignalLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].LocusTag.ToString()));
-                Assert.AreEqual(miscSignalList[0].Function[0], function);
-                Assert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Operon.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscSignalList[0].LocusTag.ToString()));
+                ClassicAssert.AreEqual(miscSignalList[0].Function[0], function);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscSignalList[0].Operon.ToString(null)));
 
                 // Create a new MiscSignal signal and validate the same.
                 var miscSignal = new MiscSignal(miscSignalLocation);
@@ -1636,8 +1637,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 miscSignal.GeneSymbol = geneSymbol;
                 miscSignalWithIloc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(miscSignal.GeneSymbol, geneSymbol);
-                Assert.AreEqual(miscSignalWithIloc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(miscSignal.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(miscSignalWithIloc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1676,22 +1677,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone of DLoop feature feature.
                 DisplacementLoop cloneDLoop = dLoopList[0].Clone();
-                Assert.AreEqual(dLoopList.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.AreEqual(cloneDLoop.GeneSymbol, geneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(cloneDLoop.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(dLoopList[0].Allele.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(dLoopList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(dLoopList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(dLoopList.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.AreEqual(cloneDLoop.GeneSymbol, geneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneDLoop.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(dLoopList[0].Allele.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(dLoopList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(dLoopList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.DisplacementLoops[0].Location), dLoopLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].LocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(dLoopList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(dLoopList[0].OldLocusTag.ToString()));
 
                 // Create a new DLoop signal and validate the same.
                 var dLoop = new DisplacementLoop(dLoopLocation);
@@ -1701,8 +1702,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 dLoop.GeneSymbol = geneSymbol;
                 dLoopWithIloc.GeneSymbol = geneSymbol;
-                Assert.AreEqual(dLoop.GeneSymbol, geneSymbol);
-                Assert.AreEqual(dLoopWithIloc.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(dLoop.GeneSymbol, geneSymbol);
+                ClassicAssert.AreEqual(dLoopWithIloc.GeneSymbol, geneSymbol);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1739,25 +1740,25 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a clone copy and validate.
                 InterveningDna iDNAClone = iDNAList[0].Clone();
-                Assert.AreEqual(iDNAList.Count.ToString((IFormatProvider) null), featureCount);
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAClone.GeneSymbol.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAClone.DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAClone.Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Experiment.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].GeneSynonym.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(iDNAList.Count.ToString((IFormatProvider) null), featureCount);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAClone.GeneSymbol.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAClone.DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAClone.Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Experiment.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.InterveningDNAs[0].Location), iDNALocation);
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].LocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Function.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAList[0].Number));
-                Assert.IsTrue(string.IsNullOrEmpty(iDNAList[0].StandardName));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(iDNAList[0].Function.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAList[0].Number));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(iDNAList[0].StandardName));
 
                 // Create a new Intervening DNA signal and validate the same.
                 var iDNA = new InterveningDna(iDNALocation);
@@ -1767,8 +1768,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Set qualifiers and validate them.
                 iDNA.GeneSymbol = iDNALocation;
                 iDNAWithIloc.GeneSymbol = iDNALocation;
-                Assert.AreEqual(iDNA.GeneSymbol, iDNALocation);
-                Assert.AreEqual(iDNAWithIloc.GeneSymbol, iDNALocation);
+                ClassicAssert.AreEqual(iDNA.GeneSymbol, iDNALocation);
+                ClassicAssert.AreEqual(iDNAWithIloc.GeneSymbol, iDNALocation);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -1806,24 +1807,24 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             List<MiscRecombination> miscRecombinationList =
                 metadata.Features.MiscRecombinations;
 
-            Assert.AreEqual(miscRecombinationList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(miscRecombinationList.Count.ToString((IFormatProvider) null),
                             miscCombinationCount);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.MiscRecombinations[0].Location),
                             miscCombinationLocation);
-            Assert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].GeneSymbol));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Citation.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Experiment.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].GeneSynonym.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].GenomicMapPosition));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Inference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].Label));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].OldLocusTag.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].LocusTag.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].GeneSymbol));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Citation.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Experiment.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].GeneSynonym.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].GenomicMapPosition));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].Inference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].Label));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRecombinationList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].LocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRecombinationList[0].OldLocusTag.ToString()));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -1862,23 +1863,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
             // Create a clone of MiscRNA feature and validate
             MiscRna cloneMiscRna = miscRnaList[0].Clone();
-            Assert.AreEqual(miscRnaList.Count.ToString((IFormatProvider) null), miscRnaCount);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(miscRnaList.Count.ToString((IFormatProvider) null), miscRnaCount);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.MiscRNAs[0].Location), miscRnaLocation);
-            Assert.IsTrue(string.IsNullOrEmpty(cloneMiscRna.GeneSymbol));
-            Assert.IsFalse(string.IsNullOrEmpty(cloneMiscRna.DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Citation.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Experiment.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].GeneSynonym.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].GenomicMapPosition));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Label));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].OldLocusTag.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].LocusTag.ToString()));
-            Assert.IsFalse(miscRnaList[0].Pseudo);
-            Assert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Function.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Operon));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(cloneMiscRna.GeneSymbol));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMiscRna.DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Citation.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Experiment.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].GeneSynonym.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].GenomicMapPosition));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Label));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].LocusTag.ToString()));
+            ClassicAssert.IsFalse(miscRnaList[0].Pseudo);
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(miscRnaList[0].Function.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscRnaList[0].Operon));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -1913,21 +1914,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             List<RibosomalRna> ribosomalRnaList =
                 metadata.Features.RibosomalRNAs;
 
-            Assert.AreEqual(ribosomalRnaList.Count.ToString((IFormatProvider) null), rRnaCount);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(ribosomalRnaList.Count.ToString((IFormatProvider) null), rRnaCount);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.RibosomalRNAs[0].Location), rRnaLocation);
-            Assert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].GeneSymbol));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].Citation.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].Experiment.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].GeneSynonym.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].GenomicMapPosition));
-            Assert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].Label));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].OldLocusTag.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].LocusTag.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].GeneSymbol));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].Citation.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].Experiment.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].GeneSynonym.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].GenomicMapPosition));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].Label));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(ribosomalRnaList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].LocusTag.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(ribosomalRnaList[0].OldLocusTag.ToString()));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -1962,20 +1963,20 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             List<ReplicationOrigin> repeatOriginList =
                 metadata.Features.ReplicationOrigins;
 
-            Assert.AreEqual(repeatOriginList.Count.ToString((IFormatProvider) null), rOriginCount);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(repeatOriginList.Count.ToString((IFormatProvider) null), rOriginCount);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 metadata.Features.ReplicationOrigins[0].Location), rOriginLocation);
-            Assert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].GeneSymbol));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].DatabaseCrossReference.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].Allele));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].Citation.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].Experiment.ToString()));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].GeneSynonym.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].GenomicMapPosition));
-            Assert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].Label));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].OldLocusTag.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].LocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].GeneSymbol));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].DatabaseCrossReference.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].Allele));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].Citation.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].Experiment.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].GeneSynonym.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].GenomicMapPosition));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].Label));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].OldLocusTag.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatOriginList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatOriginList[0].LocusTag.ToString()));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -2011,20 +2012,20 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata =
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<CaatSignal> caatSignalList = metadata.Features.CAATSignals;
-                Assert.AreEqual(caatSignalList.Count.ToString((IFormatProvider) null), caatSignalCount);
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(caatSignalList.Count.ToString((IFormatProvider) null), caatSignalCount);
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.CAATSignals[0].Location), expectedLocation);
-                Assert.AreEqual(caatSignalList[0].GeneSymbol, expectedGeneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].LocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].OldLocusTag.ToString()));
+                ClassicAssert.AreEqual(caatSignalList[0].GeneSymbol, expectedGeneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(caatSignalList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(caatSignalList[0].OldLocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2061,19 +2062,19 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata =
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<TataSignal> tataSignalList = metadata.Features.TATASignals;
-                Assert.AreEqual(tataSignalList.Count.ToString((IFormatProvider) null), tataSignalCount);
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(tataSignalList.Count.ToString((IFormatProvider) null), tataSignalCount);
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.TATASignals[0].Location), expectedLocation);
-                Assert.AreEqual(tataSignalList[0].GeneSymbol, expectedGeneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].LocusTag.ToString()));
+                ClassicAssert.AreEqual(tataSignalList[0].GeneSymbol, expectedGeneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tataSignalList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tataSignalList[0].LocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2108,17 +2109,17 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<ThreePrimeUtr> threeprimeUTRsList =
                     metadata.Features.ThreePrimeUTRs;
-                Assert.AreEqual(threeprimeUTRsList.Count.ToString((IFormatProvider) null), threePrimeUTRCount);
-                Assert.AreEqual(threeprimeUTRsList[0].GeneSymbol, expectedGeneSymbol);
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].LocusTag.ToString()));
+                ClassicAssert.AreEqual(threeprimeUTRsList.Count.ToString((IFormatProvider) null), threePrimeUTRCount);
+                ClassicAssert.AreEqual(threeprimeUTRsList[0].GeneSymbol, expectedGeneSymbol);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(threeprimeUTRsList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(threeprimeUTRsList[0].LocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2156,19 +2157,19 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<FivePrimeUtr> fivePrimeUTRsList =
                     metadata.Features.FivePrimeUTRs;
-                Assert.AreEqual(fivePrimeUTRsList.Count.ToString((IFormatProvider) null), fivePrimeUTRCount);
-                Assert.AreEqual(fivePrimeUTRsList[0].GeneSymbol, expectedGeneSymbol);
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(fivePrimeUTRsList.Count.ToString((IFormatProvider) null), fivePrimeUTRCount);
+                ClassicAssert.AreEqual(fivePrimeUTRsList[0].GeneSymbol, expectedGeneSymbol);
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.FivePrimeUTRs[0].Location), expectedLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(fivePrimeUTRsList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(fivePrimeUTRsList[0].LocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2207,21 +2208,21 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<SignalPeptide> signalPeptideQualifiersList =
                     metadata.Features.SignalPeptides;
-                Assert.AreEqual(signalPeptideQualifiersList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(signalPeptideQualifiersList.Count.ToString((IFormatProvider) null),
                                 signalPeptideCount);
-                Assert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GeneSymbol));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GeneSymbol));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.SignalPeptides[0].Location),
                                 expectedLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(signalPeptideQualifiersList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(signalPeptideQualifiersList[0].LocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2260,22 +2261,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<RepeatRegion> repeatRegionsList =
                     metadata.Features.RepeatRegions;
-                Assert.AreEqual(repeatRegionsList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(repeatRegionsList.Count.ToString((IFormatProvider) null),
                                 repeatRegionCount);
-                Assert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].GeneSymbol));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].GeneSymbol));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.RepeatRegions[0].Location),
                                 expectedLocation);
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].DatabaseCrossReference.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Note.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].GenomicMapPosition));
-                Assert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Note.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].GenomicMapPosition));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(repeatRegionsList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(repeatRegionsList[0].LocusTag.ToString()));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2314,7 +2315,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var sequenceString = new string(subSeq.Select(a => (char) a).ToArray());
 
                 // Validate repeat region subsequence.
-                Assert.AreEqual(sequenceString, expectedSubSequence);
+                ClassicAssert.AreEqual(sequenceString, expectedSubSequence);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2356,9 +2357,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 rangeLocResult =
                     locResolver.IsInRange(metadata.Features.Genes[0].Location, 300);
 
-                Assert.IsTrue(startLocResult);
-                Assert.IsTrue(endLocResult);
-                Assert.IsTrue(rangeLocResult);
+                ClassicAssert.IsTrue(startLocResult);
+                ClassicAssert.IsTrue(endLocResult);
+                ClassicAssert.IsTrue(rangeLocResult);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2388,9 +2389,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                                 Convert.ToInt32(startLoc, null), Convert.ToInt32(endLoc, null));
 
             // Validate created location Range.
-            Assert.AreEqual(acessionNumber, locRangeObj.Accession.ToString(null));
-            Assert.AreEqual(startLoc, locRangeObj.StartPosition.ToString((IFormatProvider) null));
-            Assert.AreEqual(endLoc, locRangeObj.EndPosition.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(acessionNumber, locRangeObj.Accession.ToString(null));
+            ClassicAssert.AreEqual(startLoc, locRangeObj.StartPosition.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(endLoc, locRangeObj.EndPosition.ToString((IFormatProvider) null));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -2417,8 +2418,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                                 Convert.ToInt32(endLoc, null));
 
             // Validate created location Range.
-            Assert.AreEqual(startLoc, locRangeObj.StartPosition.ToString((IFormatProvider) null));
-            Assert.AreEqual(endLoc, locRangeObj.EndPosition.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(startLoc, locRangeObj.StartPosition.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(endLoc, locRangeObj.EndPosition.ToString((IFormatProvider) null));
 
             // Log VSTest GUI.
             ApplicationLog.WriteLine(
@@ -2643,13 +2644,13 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 Constants.StandardQualifierNamesNode, Constants.QualifierCount);
 
             // Validate GenBank feature standard qualifier names.
-            Assert.AreEqual(StandardQualifierNames.Allele,
+            ClassicAssert.AreEqual(StandardQualifierNames.Allele,
                             expectedAlleleQualifier);
-            Assert.AreEqual(StandardQualifierNames.GeneSymbol,
+            ClassicAssert.AreEqual(StandardQualifierNames.GeneSymbol,
                             expectedGeneSymbolQualifier);
-            Assert.AreEqual(StandardQualifierNames.DatabaseCrossReference,
+            ClassicAssert.AreEqual(StandardQualifierNames.DatabaseCrossReference,
                             expectedDbReferenceQualifier);
-            Assert.AreEqual(StandardQualifierNames.All.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(StandardQualifierNames.All.Count.ToString((IFormatProvider) null),
                             allQualifiersCount);
         }
 
@@ -2806,13 +2807,13 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             object loc3 = locBuilder.GetLocation(locationThirdInput);
 
             // Compare first and second location instances.
-            Assert.AreEqual(0, loc1.CompareTo(loc2));
+            ClassicAssert.AreEqual(0, loc1.CompareTo(loc2));
 
             // Compare first and third location which are not identical.
-            Assert.AreEqual(-1, loc1.CompareTo(loc3));
+            ClassicAssert.AreEqual(-1, loc1.CompareTo(loc3));
 
             // Compare first and null location.
-            Assert.AreEqual(1, loc1.CompareTo(null));
+            ClassicAssert.AreEqual(1, loc1.CompareTo(null));
 
             ApplicationLog.WriteLine(
                 "GenBank Features P1: Successfully validated the GenBank Features");
@@ -2848,7 +2849,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 ILocation newLoc = cdsList[0].Location;
                 List<ILocation> leafsList = newLoc.GetLeafLocations();
 
-                Assert.AreEqual(expectedLeafLocation, leafsList.Count.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(expectedLeafLocation, leafsList.Count.ToString((IFormatProvider) null));
                 ApplicationLog.WriteLine(
                     "GenBank Features P1: Successfully validated the GenBank Features");
             }
@@ -2890,17 +2891,17 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             // Validate whether mentioned end data is present in the location
             // or not.
             result = locResolver.IsInEnd(loc, Int32.Parse(position, null));
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             // Validate whether mentioned start data is present in the location
             // or not.
             result = locResolver.IsInStart(loc, Int32.Parse(position, null));
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             // Validate whether mentioned data is present in the location
             // or not.
             result = locResolver.IsInRange(loc, Int32.Parse(position, null));
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format(null,
@@ -2936,27 +2937,27 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata =
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<Gene> genesList = metadata.Features.Genes;
-                Assert.AreEqual(genesList.Count.ToString((IFormatProvider) null), GenesCount);
-                Assert.AreEqual(genesList[0].GeneSymbol.ToString(null),
+                ClassicAssert.AreEqual(genesList.Count.ToString((IFormatProvider) null), GenesCount);
+                ClassicAssert.AreEqual(genesList[0].GeneSymbol.ToString(null),
                                 geneSymbol);
-                Assert.AreEqual(genesList[0].DatabaseCrossReference.Count,
+                ClassicAssert.AreEqual(genesList[0].DatabaseCrossReference.Count,
                                 Convert.ToInt32(GenesDBCount, null));
-                Assert.IsTrue(string.IsNullOrEmpty(genesList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(genesList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(genesList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Note.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(genesList[0].Operon.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Phenotype.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(genesList[0].Product.ToString()));
-                Assert.IsFalse(genesList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(genesList[0].StandardName));
-                Assert.IsFalse(genesList[0].TransSplicing);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(genesList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(genesList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(genesList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Note.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(genesList[0].Operon.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Phenotype.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(genesList[0].Product.ToString()));
+                ClassicAssert.IsFalse(genesList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(genesList[0].StandardName));
+                ClassicAssert.IsFalse(genesList[0].TransSplicing);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -2992,28 +2993,28 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<TransferRna> tRANsList =
                     metadata.Features.TransferRNAs;
-                Assert.AreEqual(tRANsList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(tRANsList.Count.ToString((IFormatProvider) null),
                                 tRNAsCount);
-                Assert.AreEqual(tRANsList[0].GeneSymbol.ToString(null),
+                ClassicAssert.AreEqual(tRANsList[0].GeneSymbol.ToString(null),
                                 tRNAGeneSymbol);
-                Assert.AreEqual(tRANsList[0].DatabaseCrossReference.Count,
+                ClassicAssert.AreEqual(tRANsList[0].DatabaseCrossReference.Count,
                                 Convert.ToInt32(tRNADBCount, null));
-                Assert.IsTrue(string.IsNullOrEmpty(tRANsList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(tRANsList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(tRANsList[0].Label));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tRANsList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tRANsList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tRANsList[0].Label));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.TransferRNAs[0].Location),
                                 tRNAComplement);
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Note.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(tRANsList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(tRANsList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(tRANsList[0].StandardName));
-                Assert.IsFalse(tRANsList[0].TransSplicing);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].Note.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(tRANsList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(tRANsList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(tRANsList[0].StandardName));
+                ClassicAssert.IsFalse(tRANsList[0].TransSplicing);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3058,35 +3059,35 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Create a copy of mRNA list
                 MessengerRna mRNAClone = mRANsList[0].Clone();
-                Assert.AreEqual(mRANsList[0].GeneSymbol.ToString(null),
+                ClassicAssert.AreEqual(mRANsList[0].GeneSymbol.ToString(null),
                                 mRNAGeneSymbol);
-                Assert.AreEqual(mRANsList[0].DatabaseCrossReference.Count,
+                ClassicAssert.AreEqual(mRANsList[0].DatabaseCrossReference.Count,
                                 Convert.ToInt32(mRNADBCount, null));
-                Assert.IsTrue(string.IsNullOrEmpty(mRNAClone.Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(mRANsList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].LocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Operon.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Product.ToString()));
-                Assert.AreEqual(mRANsList[0].Location.Operator.ToString(),
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRNAClone.Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRANsList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].LocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Operon.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Product.ToString()));
+                ClassicAssert.AreEqual(mRANsList[0].Location.Operator.ToString(),
                                 mRNAComplement);
-                Assert.IsNull(mRANsList[0].Location.Separator);
-                Assert.AreEqual(mRANsList[0].Location.LocationStart,
+                ClassicAssert.IsNull(mRANsList[0].Location.Separator);
+                ClassicAssert.AreEqual(mRANsList[0].Location.LocationStart,
                                 Convert.ToInt32(mRNAStart, null));
-                Assert.IsNull(mRANsList[0].Location.StartData);
-                Assert.IsNull(mRANsList[0].Location.EndData);
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(mRANsList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(mRANsList[0].StandardName));
-                Assert.IsFalse(mRANsList[0].TransSplicing);
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].LocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Operon.ToString(null)));
-                Assert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Product.ToString()));
+                ClassicAssert.IsNull(mRANsList[0].Location.StartData);
+                ClassicAssert.IsNull(mRANsList[0].Location.EndData);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(mRANsList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRANsList[0].StandardName));
+                ClassicAssert.IsFalse(mRANsList[0].TransSplicing);
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].LocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(mRANsList[0].Operon.ToString(null)));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(mRANsList[0].Product.ToString()));
 
                 // Create a new mRNA feature using constructor.
                 var mRNA = new MessengerRna(
@@ -3099,10 +3100,10 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 mRNA.StandardName = mRNAStdName;
 
                 // Validate properties.
-                Assert.AreEqual(mRNA.GeneSymbol, mRNAGeneSymbol);
-                Assert.AreEqual(mRNA.Allele, mRNAAllele);
-                Assert.AreEqual(mRNA.Operon, mRNAOperon);
-                Assert.AreEqual(mRNA.StandardName, mRNAStdName);
+                ClassicAssert.AreEqual(mRNA.GeneSymbol, mRNAGeneSymbol);
+                ClassicAssert.AreEqual(mRNA.Allele, mRNAAllele);
+                ClassicAssert.AreEqual(mRNA.Operon, mRNAOperon);
+                ClassicAssert.AreEqual(mRNA.StandardName, mRNAStdName);
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3160,20 +3161,20 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 }
 
                 // Validate GenBank Features.
-                Assert.AreEqual(metadata.Features.All.Count,
+                ClassicAssert.AreEqual(metadata.Features.All.Count,
                                 Convert.ToInt32(allFeaturesCount, null));
-                Assert.AreEqual(metadata.Features.CodingSequences.Count,
+                ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count,
                                 Convert.ToInt32(cdsFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Exons.Count,
+                ClassicAssert.AreEqual(metadata.Features.Exons.Count,
                                 Convert.ToInt32(exonFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Introns.Count,
+                ClassicAssert.AreEqual(metadata.Features.Introns.Count,
                                 Convert.ToInt32(intronFeatureCount, null));
-                Assert.AreEqual(metadata.Features.MessengerRNAs.Count,
+                ClassicAssert.AreEqual(metadata.Features.MessengerRNAs.Count,
                                 Convert.ToInt32(mRNAFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Attenuators.Count, 0);
-                Assert.AreEqual(metadata.Features.CAATSignals.Count, 0);
-                Assert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
-                Assert.AreEqual(metadata.Features.Enhancers.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Attenuators.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.CAATSignals.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Enhancers.Count, 0);
 
                 // Validate GenBank feature list.
                 if ((0 == string.Compare(methodName, "DNA",
@@ -3182,12 +3183,12 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                             CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
                 {
                     IList<FeatureItem> featureList = metadata.Features.All;
-                    Assert.AreEqual(featureList[0].Key.ToString(null), sourceKeyName);
-                    Assert.AreEqual(featureList[1].Key.ToString(null), expectedCDSKey);
-                    Assert.AreEqual(featureList[2].Key.ToString(null), expectedCDSKey);
-                    Assert.AreEqual(featureList[10].Key.ToString(null), mRNAKey);
-                    Assert.AreEqual(featureList[12].Key.ToString(null), expectedExonKey);
-                    Assert.AreEqual(featureList[18].Key.ToString(null), expectedIntronKey);
+                    ClassicAssert.AreEqual(featureList[0].Key.ToString(null), sourceKeyName);
+                    ClassicAssert.AreEqual(featureList[1].Key.ToString(null), expectedCDSKey);
+                    ClassicAssert.AreEqual(featureList[2].Key.ToString(null), expectedCDSKey);
+                    ClassicAssert.AreEqual(featureList[10].Key.ToString(null), mRNAKey);
+                    ClassicAssert.AreEqual(featureList[12].Key.ToString(null), expectedExonKey);
+                    ClassicAssert.AreEqual(featureList[18].Key.ToString(null), expectedIntronKey);
                     ApplicationLog.WriteLine(
                         "GenBank Features P1: Successfully validated the GenBank Features");
                 }
@@ -3195,8 +3196,8 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                                               CompareOptions.IgnoreCase)))
                 {
                     IList<FeatureItem> featureList = metadata.Features.All;
-                    Assert.AreEqual(featureList[10].Key.ToString(null), expectedIntronKey);
-                    Assert.AreEqual(featureList[18].Key.ToString(null), expectedExonKey);
+                    ClassicAssert.AreEqual(featureList[10].Key.ToString(null), expectedIntronKey);
+                    ClassicAssert.AreEqual(featureList[18].Key.ToString(null), expectedExonKey);
                     ApplicationLog.WriteLine(
                         "GenBank Features P1: Successfully validated the GenBank Features");
                 }
@@ -3232,39 +3233,39 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     sequenceList.ElementAt(0).Metadata[Constants.GenBank] as GenBankMetadata;
 
                 // Validate GenBank Features before Cloning.
-                Assert.AreEqual(metadata.Features.All.Count,
+                ClassicAssert.AreEqual(metadata.Features.All.Count,
                                 Convert.ToInt32(allFeaturesCount, null));
-                Assert.AreEqual(metadata.Features.CodingSequences.Count,
+                ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count,
                                 Convert.ToInt32(cdsFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Exons.Count,
+                ClassicAssert.AreEqual(metadata.Features.Exons.Count,
                                 Convert.ToInt32(exonFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Introns.Count,
+                ClassicAssert.AreEqual(metadata.Features.Introns.Count,
                                 Convert.ToInt32(intronFeatureCount, null));
-                Assert.AreEqual(metadata.Features.MessengerRNAs.Count,
+                ClassicAssert.AreEqual(metadata.Features.MessengerRNAs.Count,
                                 Convert.ToInt32(mRNAFeatureCount, null));
-                Assert.AreEqual(metadata.Features.Attenuators.Count, 0);
-                Assert.AreEqual(metadata.Features.CAATSignals.Count, 0);
-                Assert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
-                Assert.AreEqual(metadata.Features.Enhancers.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Attenuators.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.CAATSignals.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.DisplacementLoops.Count, 0);
+                ClassicAssert.AreEqual(metadata.Features.Enhancers.Count, 0);
 
                 // Clone GenBank Features.
                 GenBankMetadata CloneGenBankMetadat = metadata.Clone();
 
                 // Validate cloned GenBank Metadata.
-                Assert.AreEqual(CloneGenBankMetadat.Features.All.Count,
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.All.Count,
                                 Convert.ToInt32(allFeaturesCount, null));
-                Assert.AreEqual(CloneGenBankMetadat.Features.CodingSequences.Count,
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.CodingSequences.Count,
                                 Convert.ToInt32(cdsFeatureCount, null));
-                Assert.AreEqual(CloneGenBankMetadat.Features.Exons.Count,
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.Exons.Count,
                                 Convert.ToInt32(exonFeatureCount, null));
-                Assert.AreEqual(CloneGenBankMetadat.Features.Introns.Count,
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.Introns.Count,
                                 Convert.ToInt32(intronFeatureCount, null));
-                Assert.AreEqual(CloneGenBankMetadat.Features.MessengerRNAs.Count,
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.MessengerRNAs.Count,
                                 Convert.ToInt32(mRNAFeatureCount, null));
-                Assert.AreEqual(CloneGenBankMetadat.Features.Attenuators.Count, 0);
-                Assert.AreEqual(CloneGenBankMetadat.Features.CAATSignals.Count, 0);
-                Assert.AreEqual(CloneGenBankMetadat.Features.DisplacementLoops.Count, 0);
-                Assert.AreEqual(CloneGenBankMetadat.Features.Enhancers.Count, 0);
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.Attenuators.Count, 0);
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.CAATSignals.Count, 0);
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.DisplacementLoops.Count, 0);
+                ClassicAssert.AreEqual(CloneGenBankMetadat.Features.Enhancers.Count, 0);
             }
         }
 
@@ -3303,22 +3304,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     || (0 == string.Compare(methodName, "RNA",
                                             CultureInfo.CurrentCulture, CompareOptions.IgnoreCase)))
                 {
-                    Assert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
                                     expectedCDSKey);
-                    Assert.AreEqual(StandardFeatureKeys.Intron.ToString(null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.Intron.ToString(null),
                                     expectedIntronKey);
-                    Assert.AreEqual(StandardFeatureKeys.MessengerRna.ToString(null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.MessengerRna.ToString(null),
                                     mRNAKey);
-                    Assert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
                                     allFeaturesCount);
                 }
                 else
                 {
-                    Assert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
+                    ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count.ToString((IFormatProvider) null),
                                     expectedCondingSeqCount);
-                    Assert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.CodingSequence.ToString(null),
                                     expectedCDSKey);
-                    Assert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
+                    ClassicAssert.AreEqual(StandardFeatureKeys.All.Count.ToString((IFormatProvider) null),
                                     allFeaturesCount);
                 }
             }
@@ -3373,12 +3374,12 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         expectedSecondRangeEndPoint, null)).Count.ToString((IFormatProvider) null);
 
                 // Validate GenBank features count within specified range.
-                Assert.AreEqual(firstFeaturesCount, expectedCountWithinFirstRange);
-                Assert.AreEqual(secodFeaturesCount, expectedCountWithinSecondRange);
-                Assert.AreEqual(features.Count.ToString((IFormatProvider) null), firstFeaturesCount);
-                Assert.AreEqual(features[1].Qualifiers.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(firstFeaturesCount, expectedCountWithinFirstRange);
+                ClassicAssert.AreEqual(secodFeaturesCount, expectedCountWithinSecondRange);
+                ClassicAssert.AreEqual(features.Count.ToString((IFormatProvider) null), firstFeaturesCount);
+                ClassicAssert.AreEqual(features[1].Qualifiers.Count.ToString((IFormatProvider) null),
                                 expectedQualifiers);
-                Assert.AreEqual(features[1].Key.ToString(null), expectedQualifierName);
+                ClassicAssert.AreEqual(features[1].Key.ToString(null), expectedQualifierName);
             }
         }
 
@@ -3424,7 +3425,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                             metadata.GetCitationsReferredInFeature(cds);
 
                         // Validate citation referenced present in CDS features.
-                        Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                        ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                         expectedCitationReferenced);
                         break;
                     case FeatureGroup.mRNA:
@@ -3432,7 +3433,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         citationReferenceList = metadata.GetCitationsReferredInFeature(mRNA);
 
                         // Validate citation referenced present in mRNA features.
-                        Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                        ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                         expectedmRNACitationReferenced);
                         break;
                     case FeatureGroup.Exon:
@@ -3441,7 +3442,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                             metadata.GetCitationsReferredInFeature(exon);
 
                         // Validate citation referenced present in Exons features.
-                        Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                        ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                         expectedExonACitationReferenced);
                         break;
                     case FeatureGroup.Intron:
@@ -3450,7 +3451,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                             metadata.GetCitationsReferredInFeature(introns);
 
                         // Validate citation referenced present in Introns features.
-                        Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                        ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                         expectedIntronCitationReferenced);
                         break;
                     case FeatureGroup.Promoter:
@@ -3459,7 +3460,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                             metadata.GetCitationsReferredInFeature(promoter);
 
                         // Validate citation referenced present in Promoters features.
-                        Assert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
+                        ClassicAssert.AreEqual(citationReferenceList.Count.ToString((IFormatProvider) null),
                                         expectedpromoterCitationReferenced);
                         break;
                     default:
@@ -3496,22 +3497,22 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 // Create copy of misc feature and validate all qualifiers
                 MiscFeature cloneMiscFeatureList =
                     miscFeatureList[0].Clone();
-                Assert.AreEqual(miscFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(miscFeatureList.Count.ToString((IFormatProvider) null),
                                 miscFeatureCount);
-                Assert.IsTrue(string.IsNullOrEmpty(cloneMiscFeatureList.Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(miscFeatureList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].StandardName));
-                Assert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].Product.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].Number));
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(cloneMiscFeatureList.Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMiscFeatureList.Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(miscFeatureList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].StandardName));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscFeatureList[0].Product.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscFeatureList[0].Number));
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.MiscFeatures[0].Location), location);
 
                 // Log VSTest GUI.
@@ -3545,23 +3546,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 var metadata =
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<Exon> exonFeatureList = metadata.Features.Exons;
-                Assert.AreEqual(exonFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(exonFeatureList.Count.ToString((IFormatProvider) null),
                                 expectedExonFeatureCount);
-                Assert.AreEqual(exonFeatureList[0].GeneSymbol,
+                ClassicAssert.AreEqual(exonFeatureList[0].GeneSymbol,
                                 expectedExonGeneSymbol);
-                Assert.AreEqual(exonFeatureList[0].Number,
+                ClassicAssert.AreEqual(exonFeatureList[0].Number,
                                 expectedExonNumber);
-                Assert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(exonFeatureList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(exonFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(exonFeatureList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(exonFeatureList[0].StandardName));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3595,23 +3596,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<Intron> intronFeatureList =
                     metadata.Features.Introns;
-                Assert.AreEqual(intronFeatureList[0].GeneSymbol,
+                ClassicAssert.AreEqual(intronFeatureList[0].GeneSymbol,
                                 expectedIntronGeneSymbol);
-                Assert.AreEqual(intronFeatureList[0].Location.Operator.ToString(),
+                ClassicAssert.AreEqual(intronFeatureList[0].Location.Operator.ToString(),
                                 expectedIntronComplement);
-                Assert.AreEqual(intronFeatureList[0].Number,
+                ClassicAssert.AreEqual(intronFeatureList[0].Number,
                                 expectedIntronNumber);
-                Assert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(intronFeatureList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(intronFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(intronFeatureList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(intronFeatureList[0].StandardName));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3644,23 +3645,23 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<Promoter> promotersFeatureList =
                     metadata.Features.Promoters;
-                Assert.AreEqual(locBuilder.GetLocationString(
+                ClassicAssert.AreEqual(locBuilder.GetLocationString(
                     metadata.Features.Promoters[0].Location),
                                 expectedPromoterComplement);
-                Assert.AreEqual(promotersFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(promotersFeatureList.Count.ToString((IFormatProvider) null),
                                 expectedPromoterCount);
-                Assert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].GeneSymbol));
-                Assert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Function.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(promotersFeatureList[0].Pseudo);
-                Assert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].GeneSymbol));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Function.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(promotersFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(promotersFeatureList[0].Pseudo);
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(promotersFeatureList[0].StandardName));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3692,20 +3693,20 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(0).Metadata[Constants.GenBank];
                 List<Variation> variationFeatureList =
                     metadata.Features.Variations;
-                Assert.AreEqual(variationFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(variationFeatureList.Count.ToString((IFormatProvider) null),
                                 expectedVariationCount);
-                Assert.AreEqual(variationFeatureList[0].Replace,
+                ClassicAssert.AreEqual(variationFeatureList[0].Replace,
                                 expectedVariationReplace);
-                Assert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].GeneSymbol));
-                Assert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].GeneSymbol));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(variationFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(variationFeatureList[0].StandardName));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3737,26 +3738,26 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(1).Metadata[Constants.GenBank];
                 List<MiscDifference> miscDifferenceFeatureList =
                     metadata.Features.MiscDifferences;
-                Assert.AreEqual(miscDifferenceFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(miscDifferenceFeatureList.Count.ToString((IFormatProvider) null),
                                 expectedMiscDiffCount);
-                Assert.AreEqual(miscDifferenceFeatureList[0].GeneSymbol,
+                ClassicAssert.AreEqual(miscDifferenceFeatureList[0].GeneSymbol,
                                 expectedGeneSymbol);
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].StandardName));
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Replace));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Phenotype.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].LocusTag.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Compare.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].DatabaseCrossReference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].ClonedFrom));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Replace));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Phenotype.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].LocusTag.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].Compare.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(miscDifferenceFeatureList[0].DatabaseCrossReference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(miscDifferenceFeatureList[0].ClonedFrom));
 
 
                 // Create a new MiscDiff feature using constructor.
@@ -3765,7 +3766,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
 
                 // Set and validate qualifiers.
                 miscDiffWithLoc.GeneSymbol = expectedGeneSymbol;
-                Assert.AreEqual(miscDiffWithLoc.GeneSymbol,
+                ClassicAssert.AreEqual(miscDiffWithLoc.GeneSymbol,
                                 expectedGeneSymbol);
 
                 // Log VSTest GUI.
@@ -3797,18 +3798,18 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                     (GenBankMetadata) seqList.ElementAt(1).Metadata[Constants.GenBank];
                 List<ProteinBindingSite> proteinBindingFeatureList =
                     metadata.Features.ProteinBindingSites;
-                Assert.AreEqual(proteinBindingFeatureList.Count.ToString((IFormatProvider) null),
+                ClassicAssert.AreEqual(proteinBindingFeatureList.Count.ToString((IFormatProvider) null),
                                 expectedProteinBindingCount);
-                Assert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].GeneSymbol));
-                Assert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].Allele));
-                Assert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Citation.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Experiment.ToString()));
-                Assert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].GeneSynonym.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].GenomicMapPosition));
-                Assert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Inference.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].Label));
-                Assert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].OldLocusTag.ToString()));
-                Assert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].StandardName));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].GeneSymbol));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].Allele));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Citation.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Experiment.ToString()));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].GeneSynonym.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].GenomicMapPosition));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].Inference.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].Label));
+                ClassicAssert.IsFalse(string.IsNullOrEmpty(proteinBindingFeatureList[0].OldLocusTag.ToString()));
+                ClassicAssert.IsTrue(string.IsNullOrEmpty(proteinBindingFeatureList[0].StandardName));
 
                 // Log VSTest GUI.
                 ApplicationLog.WriteLine(
@@ -3838,10 +3839,10 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             ISequenceParser parserObj = new GenBankParser();
             {
                 ISequence seq = parserObj.ParseOne(filePath);
-                Assert.IsNotNull(seq);
+                ClassicAssert.IsNotNull(seq);
 
                 var metadata = seq.Metadata[Constants.GenBank] as GenBankMetadata;
-                Assert.IsNotNull(metadata);
+                ClassicAssert.IsNotNull(metadata);
 
                 // Validate cloned GenBank feature.
                 switch (featureName)
@@ -3850,52 +3851,52 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                         List<Exon> exonFeatureList = metadata.Features.Exons;
 
                         // Validate Exon feature before clonning.
-                        Assert.AreEqual(exonFeatureList.Count.ToString((IFormatProvider) null), expectedExonFeatureCount);
-                        Assert.AreEqual(exonFeatureList[0].GeneSymbol, expectedExonGeneSymbol);
-                        Assert.AreEqual(exonFeatureList[0].Number, expectedExonNumber);
+                        ClassicAssert.AreEqual(exonFeatureList.Count.ToString((IFormatProvider) null), expectedExonFeatureCount);
+                        ClassicAssert.AreEqual(exonFeatureList[0].GeneSymbol, expectedExonGeneSymbol);
+                        ClassicAssert.AreEqual(exonFeatureList[0].Number, expectedExonNumber);
 
                         // Clone Exon feature.
                         Exon clonedExons = exonFeatureList[0].Clone();
 
                         // Validate Exon feature after clonning.
-                        Assert.AreEqual(clonedExons.GeneSymbol, expectedExonGeneSymbol);
-                        Assert.AreEqual(clonedExons.Number, expectedExonNumber);
+                        ClassicAssert.AreEqual(clonedExons.GeneSymbol, expectedExonGeneSymbol);
+                        ClassicAssert.AreEqual(clonedExons.Number, expectedExonNumber);
                         break;
                     case FeatureGroup.miscDifference:
                         // Validate Misc Difference feature before clonning.
                         List<MiscDifference> miscDifferenceFeatureList = metadata.Features.MiscDifferences;
-                        Assert.AreEqual(miscDifferenceFeatureList.Count.ToString((IFormatProvider) null), expectedMiscDiffCount);
-                        Assert.AreEqual(miscDifferenceFeatureList[0].GeneSymbol, expectedGeneSymbol);
+                        ClassicAssert.AreEqual(miscDifferenceFeatureList.Count.ToString((IFormatProvider) null), expectedMiscDiffCount);
+                        ClassicAssert.AreEqual(miscDifferenceFeatureList[0].GeneSymbol, expectedGeneSymbol);
 
                         // Clone Misc Difference feature 
                         MiscDifference clonedMiscDifferences = miscDifferenceFeatureList[0].Clone();
 
                         // Validate Misc Difference feature  after clonning.
-                        Assert.AreEqual(clonedMiscDifferences.GeneSymbol, expectedGeneSymbol);
+                        ClassicAssert.AreEqual(clonedMiscDifferences.GeneSymbol, expectedGeneSymbol);
                         break;
                     case FeatureGroup.Intron:
                         // Validate Intron feature before clonning.
                         List<Intron> intronFeatureList = metadata.Features.Introns;
-                        Assert.AreEqual(intronFeatureList[0].GeneSymbol, expectedIntronGeneSymbol);
-                        Assert.AreEqual(intronFeatureList[0].Number, expectedIntronNumber);
+                        ClassicAssert.AreEqual(intronFeatureList[0].GeneSymbol, expectedIntronGeneSymbol);
+                        ClassicAssert.AreEqual(intronFeatureList[0].Number, expectedIntronNumber);
 
                         // Clone Intron feature.
                         Intron clonedIntrons = intronFeatureList[0].Clone();
 
                         // Validate Intron feature after clonning.
-                        Assert.AreEqual(clonedIntrons.GeneSymbol, expectedIntronGeneSymbol);
-                        Assert.AreEqual(clonedIntrons.Number, expectedIntronNumber);
+                        ClassicAssert.AreEqual(clonedIntrons.GeneSymbol, expectedIntronGeneSymbol);
+                        ClassicAssert.AreEqual(clonedIntrons.Number, expectedIntronNumber);
                         break;
                     case FeatureGroup.variation:
                         // Validate Variation feature before clonning.
                         List<Variation> variationFeatureList = metadata.Features.Variations;
-                        Assert.AreEqual(variationFeatureList[0].Replace, expectedVariationReplace);
+                        ClassicAssert.AreEqual(variationFeatureList[0].Replace, expectedVariationReplace);
 
                         // Clone Variation feature.
                         Variation clonedVariations = variationFeatureList[0].Clone();
 
                         // Validate Intron feature after clonning.
-                        Assert.AreEqual(clonedVariations.Replace, expectedVariationReplace);
+                        ClassicAssert.AreEqual(clonedVariations.Replace, expectedVariationReplace);
                         break;
                     default:
                         break;
@@ -4030,36 +4031,36 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             MiscStructure cloneMiscStr = miscStrFeatureList[0].Clone();
 
             // Validate MiscStructure qualifiers.
-            Assert.AreEqual(miscStrFeatureList.Count.ToString((IFormatProvider) null), featureCount);
-            Assert.IsFalse(string.IsNullOrEmpty(cloneMiscStr.GeneSymbol));
-            Assert.AreEqual(cloneMiscStr.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(miscStrFeatureList.Count.ToString((IFormatProvider) null), featureCount);
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(cloneMiscStr.GeneSymbol));
+            ClassicAssert.AreEqual(cloneMiscStr.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(miscStrFeatureList[0].Allele,
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(miscStrFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(miscStrFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(miscStrFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(miscStrFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(miscStrFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(miscStrFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(miscStrFeatureList[0].Label,
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.MiscStructures[0].Location),
                             expectedLocation);
-            Assert.AreEqual(miscStrFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(miscStrFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(miscStrFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.AreEqual(miscStrFeatureList[0].Function[0],
+            ClassicAssert.AreEqual(miscStrFeatureList[0].Function[0],
                             expectedFunction);
-            Assert.IsTrue(string.IsNullOrEmpty(miscStrFeatureList[0].StandardName));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(miscStrFeatureList[0].StandardName));
 
             // Create a new MiscStructure and validate the same.
             var miscStructure = new MiscStructure(expectedLocation);
@@ -4070,9 +4071,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             miscStructure.Allele = expectedAllele;
             miscStructure.GeneSymbol = geneSymbol;
             miscStructureWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(miscStructure.GeneSymbol, geneSymbol);
-            Assert.AreEqual(miscStructure.Allele, expectedAllele);
-            Assert.AreEqual(miscStructureWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(miscStructure.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(miscStructure.Allele, expectedAllele);
+            ClassicAssert.AreEqual(miscStructureWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4124,34 +4125,34 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             TransitPeptide cloneTransit = tansitPeptideFeatureList[0].Clone();
 
             // Validate transit peptide qualifiers.
-            Assert.AreEqual(tansitPeptideFeatureList.Count.ToString((IFormatProvider) null), featureCount);
-            Assert.AreEqual(cloneTransit.GeneSymbol, geneSymbol);
-            Assert.AreEqual(cloneTransit.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList.Count.ToString((IFormatProvider) null), featureCount);
+            ClassicAssert.AreEqual(cloneTransit.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(cloneTransit.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Allele,
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(tansitPeptideFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(tansitPeptideFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Label,
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.TransitPeptides[0].Location),
                             expectedLocation);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(tansitPeptideFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(tansitPeptideFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.AreEqual(tansitPeptideFeatureList[0].Function[0],
+            ClassicAssert.AreEqual(tansitPeptideFeatureList[0].Function[0],
                             expectedFunction);
 
             // Create a new TransitPeptide and validate the same.
@@ -4163,9 +4164,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             tPeptide.Allele = expectedAllele;
             tPeptide.GeneSymbol = geneSymbol;
             tPeptideWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(tPeptide.GeneSymbol, geneSymbol);
-            Assert.AreEqual(tPeptide.Allele, expectedAllele);
-            Assert.AreEqual(tPeptideWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(tPeptide.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(tPeptide.Allele, expectedAllele);
+            ClassicAssert.AreEqual(tPeptideWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4216,38 +4217,38 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             StemLoop cloneSLoop = sLoopFeatureList[0].Clone();
 
             // Validate transit peptide qualifiers.
-            Assert.AreEqual(sLoopFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(sLoopFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneSLoop.GeneSymbol, geneSymbol);
-            Assert.AreEqual(cloneSLoop.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneSLoop.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(cloneSLoop.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(sLoopFeatureList[0].Allele,
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(sLoopFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(sLoopFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(sLoopFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(sLoopFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(sLoopFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(sLoopFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(sLoopFeatureList[0].Label,
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.StemLoops[0].Location),
                             expectedLocation);
-            Assert.AreEqual(sLoopFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(sLoopFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(sLoopFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.AreEqual(sLoopFeatureList[0].Function[0],
+            ClassicAssert.AreEqual(sLoopFeatureList[0].Function[0],
                             expectedFunction);
-            Assert.IsTrue(string.IsNullOrEmpty(sLoopFeatureList[0].Operon));
-            Assert.IsTrue(string.IsNullOrEmpty(sLoopFeatureList[0].StandardName));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(sLoopFeatureList[0].Operon));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(sLoopFeatureList[0].StandardName));
 
             // Create a new StemLoop and validate the same.
             var stemLoop = new StemLoop(expectedLocation);
@@ -4258,9 +4259,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             stemLoop.Allele = expectedAllele;
             stemLoop.GeneSymbol = geneSymbol;
             stemLoopWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(stemLoop.GeneSymbol, geneSymbol);
-            Assert.AreEqual(stemLoop.Allele, expectedAllele);
-            Assert.AreEqual(stemLoopWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(stemLoop.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(stemLoop.Allele, expectedAllele);
+            ClassicAssert.AreEqual(stemLoopWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4310,36 +4311,36 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             ModifiedBase cloneModifiedBase = modifiedBaseFeatureList[0].Clone();
 
             // Validate Modified Base qualifiers.
-            Assert.AreEqual(modifiedBaseFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(modifiedBaseFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneModifiedBase.GeneSymbol,
+            ClassicAssert.AreEqual(cloneModifiedBase.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(cloneModifiedBase.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneModifiedBase.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Allele,
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(modifiedBaseFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(modifiedBaseFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Label,
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.ModifiedBases[0].Location),
                             expectedLocation);
-            Assert.AreEqual(modifiedBaseFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(modifiedBaseFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(modifiedBaseFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(modifiedBaseFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.IsFalse(string.IsNullOrEmpty(modifiedBaseFeatureList[0].ModifiedNucleotideBase.ToString()));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(modifiedBaseFeatureList[0].ModifiedNucleotideBase.ToString()));
 
             // Create a new ModifiedBase and validate the same.
             var modifiedBase = new ModifiedBase(expectedLocation);
@@ -4350,9 +4351,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             modifiedBase.Allele = expectedAllele;
             modifiedBase.GeneSymbol = geneSymbol;
             modifiedBaseWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(modifiedBase.GeneSymbol, geneSymbol);
-            Assert.AreEqual(modifiedBase.Allele, expectedAllele);
-            Assert.AreEqual(modifiedBaseWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(modifiedBase.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(modifiedBase.Allele, expectedAllele);
+            ClassicAssert.AreEqual(modifiedBaseWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4405,40 +4406,40 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 precursorRNAFeatureList[0].Clone();
 
             // Validate Precursor RNA qualifiers.
-            Assert.AreEqual(precursorRNAFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(precursorRNAFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(clonePrecursorRNA.GeneSymbol,
+            ClassicAssert.AreEqual(clonePrecursorRNA.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(clonePrecursorRNA.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(clonePrecursorRNA.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(precursorRNAFeatureList[0].Allele,
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(precursorRNAFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(precursorRNAFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(precursorRNAFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(precursorRNAFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(precursorRNAFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(precursorRNAFeatureList[0].Label, expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Label, expectedLabel);
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.PrecursorRNAs[0].Location),
                             expectedLocation);
-            Assert.AreEqual(precursorRNAFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(precursorRNAFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(precursorRNAFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.AreEqual(precursorRNAFeatureList[0].Function[0],
+            ClassicAssert.AreEqual(precursorRNAFeatureList[0].Function[0],
                             expectedFunction);
-            Assert.IsTrue(string.IsNullOrEmpty(precursorRNAFeatureList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(precursorRNAFeatureList[0].Product.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(precursorRNAFeatureList[0].Operon));
-            Assert.IsFalse(precursorRNAFeatureList[0].TransSplicing);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(precursorRNAFeatureList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(precursorRNAFeatureList[0].Product.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(precursorRNAFeatureList[0].Operon));
+            ClassicAssert.IsFalse(precursorRNAFeatureList[0].TransSplicing);
 
             // Create a new Precursor RNA and validate the same.
             var precursorRNA = new PrecursorRna(expectedLocation);
@@ -4449,9 +4450,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             precursorRNA.Allele = expectedAllele;
             precursorRNA.GeneSymbol = geneSymbol;
             precursorRNAWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(precursorRNA.GeneSymbol, geneSymbol);
-            Assert.AreEqual(precursorRNA.Allele, expectedAllele);
-            Assert.AreEqual(precursorRNAWithILoc.GenomicMapPosition, expectedMap);
+            ClassicAssert.AreEqual(precursorRNA.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(precursorRNA.Allele, expectedAllele);
+            ClassicAssert.AreEqual(precursorRNAWithILoc.GenomicMapPosition, expectedMap);
         }
 
         /// <summary>
@@ -4499,33 +4500,33 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             PolyASite clonePolySite = polySiteFeatureList[0].Clone();
 
             // Validate Poly site qualifiers.
-            Assert.AreEqual(polySiteFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(polySiteFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(clonePolySite.GeneSymbol, geneSymbol);
-            Assert.AreEqual(clonePolySite.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(clonePolySite.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(clonePolySite.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(polySiteFeatureList[0].Allele,
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(polySiteFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(polySiteFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(polySiteFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(polySiteFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(polySiteFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(polySiteFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(polySiteFeatureList[0].Label,
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.PolyASites[0].Location),
                             expectedLocation);
-            Assert.AreEqual(polySiteFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(polySiteFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(polySiteFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(polySiteFeatureList[0].LocusTag[0],
                             expectedLocusTag);
 
             // Create a new PolySite and validate the same.
@@ -4537,9 +4538,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             polySite.Allele = expectedAllele;
             polySite.GeneSymbol = geneSymbol;
             polySiteWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(polySite.GeneSymbol, geneSymbol);
-            Assert.AreEqual(polySite.Allele, expectedAllele);
-            Assert.AreEqual(polySiteWithILoc.GenomicMapPosition, expectedMap);
+            ClassicAssert.AreEqual(polySite.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(polySite.Allele, expectedAllele);
+            ClassicAssert.AreEqual(polySiteWithILoc.GenomicMapPosition, expectedMap);
         }
 
         /// <summary>
@@ -4587,34 +4588,34 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             MiscBinding cloneMiscBinding = miscBindingFeatureList[0].Clone();
 
             // Validate Misc Binding qualifiers.
-            Assert.AreEqual(miscBindingFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(miscBindingFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneMiscBinding.GeneSymbol,
+            ClassicAssert.AreEqual(cloneMiscBinding.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(cloneMiscBinding.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneMiscBinding.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(miscBindingFeatureList[0].Allele,
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(miscBindingFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(miscBindingFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(miscBindingFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(miscBindingFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(miscBindingFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(miscBindingFeatureList[0].Label,
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.MiscBindings[0].Location),
                             expectedLocation);
-            Assert.AreEqual(miscBindingFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(miscBindingFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(miscBindingFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(miscBindingFeatureList[0].LocusTag[0],
                             expectedLocusTag);
 
             // Create a new MiscBinding and validate the same.
@@ -4626,9 +4627,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             miscBinding.Allele = expectedAllele;
             miscBinding.GeneSymbol = geneSymbol;
             miscBindingWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(miscBinding.GeneSymbol, geneSymbol);
-            Assert.AreEqual(miscBinding.Allele, expectedAllele);
-            Assert.AreEqual(miscBindingWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(miscBinding.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(miscBinding.Allele, expectedAllele);
+            ClassicAssert.AreEqual(miscBindingWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4677,36 +4678,36 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             var locBuilder = new LocationBuilder();
 
             // Validate Enhancer qualifiers.
-            Assert.AreEqual(enhancerFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(enhancerFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneEnhancer.GeneSymbol,
+            ClassicAssert.AreEqual(cloneEnhancer.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(cloneEnhancer.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneEnhancer.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(enhancerFeatureList[0].Allele,
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(enhancerFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(enhancerFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(enhancerFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(enhancerFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(enhancerFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(enhancerFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(enhancerFeatureList[0].Label,
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.Enhancers[0].Location),
                             expectedLocation);
-            Assert.AreEqual(enhancerFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(enhancerFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(enhancerFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(enhancerFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.IsTrue(string.IsNullOrEmpty(enhancerFeatureList[0].StandardName));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(enhancerFeatureList[0].StandardName));
 
             // Create a new Enhancer and validate the same.
             var enhancer = new Enhancer(expectedLocation);
@@ -4717,9 +4718,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             enhancer.Allele = expectedAllele;
             enhancer.GeneSymbol = geneSymbol;
             enhancerWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(enhancer.GeneSymbol, geneSymbol);
-            Assert.AreEqual(enhancer.Allele, expectedAllele);
-            Assert.AreEqual(enhancerWithILoc.GenomicMapPosition, expectedMap);
+            ClassicAssert.AreEqual(enhancer.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(enhancer.Allele, expectedAllele);
+            ClassicAssert.AreEqual(enhancerWithILoc.GenomicMapPosition, expectedMap);
         }
 
         /// <summary>
@@ -4767,34 +4768,34 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             GcSingal cloneGCSignal = gcSignalFeatureList[0].Clone();
 
             // Validate GC_Signal qualifiers.
-            Assert.AreEqual(gcSignalFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(gcSignalFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneGCSignal.GeneSymbol,
+            ClassicAssert.AreEqual(cloneGCSignal.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(cloneGCSignal.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneGCSignal.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(gcSignalFeatureList[0].Allele,
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(gcSignalFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(gcSignalFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(gcSignalFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(gcSignalFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(gcSignalFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(gcSignalFeatureList[0].Label,
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.GCSignals[0].Location),
                             expectedLocation);
-            Assert.AreEqual(gcSignalFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(gcSignalFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(gcSignalFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(gcSignalFeatureList[0].LocusTag[0],
                             expectedLocusTag);
 
             // Create a new GCSignal and validate the same.
@@ -4806,9 +4807,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             gcSignal.Allele = expectedAllele;
             gcSignal.GeneSymbol = geneSymbol;
             gcSignalWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(gcSignal.GeneSymbol, geneSymbol);
-            Assert.AreEqual(gcSignal.Allele, expectedAllele);
-            Assert.AreEqual(gcSignalWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(gcSignal.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(gcSignal.Allele, expectedAllele);
+            ClassicAssert.AreEqual(gcSignalWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4860,37 +4861,37 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             LongTerminalRepeat cloneLTR = LTRFeatureList[0].Clone();
 
             // Validate Long Terminal Repeat qualifiers.
-            Assert.AreEqual(LTRFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(LTRFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneLTR.GeneSymbol, geneSymbol);
-            Assert.AreEqual(cloneLTR.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneLTR.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(cloneLTR.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(LTRFeatureList[0].Allele,
+            ClassicAssert.AreEqual(LTRFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(LTRFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(LTRFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(LTRFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(LTRFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(LTRFeatureList[0].GeneSynonym[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].GeneSynonym[0],
                             expectedGeneSynonym);
-            Assert.AreEqual(LTRFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(LTRFeatureList[0].Label,
+            ClassicAssert.AreEqual(LTRFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.LongTerminalRepeats[0].Location),
                             expectedLocation);
-            Assert.AreEqual(LTRFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(LTRFeatureList[0].OldLocusTag[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].OldLocusTag[0],
                             expectedOldLocusTag);
-            Assert.AreEqual(LTRFeatureList[0].LocusTag[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].LocusTag[0],
                             expectedLocusTag);
-            Assert.AreEqual(LTRFeatureList[0].Function[0],
+            ClassicAssert.AreEqual(LTRFeatureList[0].Function[0],
                             expectedFunction);
-            Assert.IsTrue(string.IsNullOrEmpty(LTRFeatureList[0].StandardName));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(LTRFeatureList[0].StandardName));
 
             // Create a new LTR and validate.
             var ltr =
@@ -4902,9 +4903,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             ltr.Allele = expectedAllele;
             ltr.GeneSymbol = geneSymbol;
             ltrWithILoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(ltr.GeneSymbol, geneSymbol);
-            Assert.AreEqual(ltr.Allele, expectedAllele);
-            Assert.AreEqual(ltrWithILoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(ltr.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(ltr.Allele, expectedAllele);
+            ClassicAssert.AreEqual(ltrWithILoc.GenomicMapPosition,
                             expectedMap);
         }
 
@@ -4946,34 +4947,34 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             OperonRegion cloneOperon = operonFeatureList[0].Clone();
 
             // Validate Operon region qualifiers.
-            Assert.AreEqual(operonFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(operonFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneOperon.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneOperon.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(operonFeatureList[0].Allele,
+            ClassicAssert.AreEqual(operonFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(operonFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(operonFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(operonFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(operonFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(operonFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(operonFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(operonFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(operonFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(operonFeatureList[0].Label,
+            ClassicAssert.AreEqual(operonFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.OperonRegions[0].Location),
                             expectedLocation);
-            Assert.AreEqual(operonFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(operonFeatureList[0].Note[0],
                             expectedNote);
-            Assert.IsFalse(string.IsNullOrEmpty(operonFeatureList[0].Function.ToString()));
-            Assert.AreEqual(operonFeatureList[0].GenomicMapPosition,
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(operonFeatureList[0].Function.ToString()));
+            ClassicAssert.AreEqual(operonFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.IsTrue(string.IsNullOrEmpty(operonFeatureList[0].Operon));
-            Assert.IsFalse(string.IsNullOrEmpty(operonFeatureList[0].Phenotype.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(operonFeatureList[0].StandardName));
-            Assert.IsFalse(operonFeatureList[0].Pseudo);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(operonFeatureList[0].Operon));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(operonFeatureList[0].Phenotype.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(operonFeatureList[0].StandardName));
+            ClassicAssert.IsFalse(operonFeatureList[0].Pseudo);
 
             // Create a new Operon feature using constructor.
             var operonRegion =
@@ -4984,9 +4985,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             // Set and validate qualifiers.
             operonRegion.Allele = expectedAllele;
             operonRegionWithLoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(operonRegionWithLoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(operonRegionWithLoc.GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(operonRegion.Allele, expectedAllele);
+            ClassicAssert.AreEqual(operonRegion.Allele, expectedAllele);
         }
 
         /// <summary>
@@ -5030,33 +5031,33 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             var locBuilder = new LocationBuilder();
 
             // Validate Unsure Seq Region qualifiers.
-            Assert.AreEqual(unsureSeqRegionFeatureList.Count.ToString((IFormatProvider) null)
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList.Count.ToString((IFormatProvider) null)
                             , featureCount);
-            Assert.AreEqual(cloneUnSureSeqRegion.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneUnSureSeqRegion.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(cloneUnSureSeqRegion.GeneSymbol,
+            ClassicAssert.AreEqual(cloneUnSureSeqRegion.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Allele,
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Label,
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.UnsureSequenceRegions[0].Location),
                             expectedLocation);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(unsureSeqRegionFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(unsureSeqRegionFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.IsFalse(string.IsNullOrEmpty(unsureSeqRegionFeatureList[0].Compare.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(unsureSeqRegionFeatureList[0].Replace));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(unsureSeqRegionFeatureList[0].Compare.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(unsureSeqRegionFeatureList[0].Replace));
 
             // Create a new Unsure feature using constructor.
             var unsureRegion =
@@ -5069,10 +5070,10 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             unsureRegion.Allele = expectedAllele;
             unsureRegionWithLoc.GeneSymbol = geneSymbol;
             unsureRegionWithLoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(unsureRegionWithLoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(unsureRegionWithLoc.GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(unsureRegion.Allele, expectedAllele);
-            Assert.AreEqual(unsureRegionWithLoc.GeneSymbol,
+            ClassicAssert.AreEqual(unsureRegion.Allele, expectedAllele);
+            ClassicAssert.AreEqual(unsureRegionWithLoc.GeneSymbol,
                             geneSymbol);
         }
 
@@ -5117,32 +5118,32 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             var locBuilder = new LocationBuilder();
 
             // Validate RibosomeBindigSite qualifiers.
-            Assert.AreEqual(ribosomeSite.Count.ToString((IFormatProvider) null)
+            ClassicAssert.AreEqual(ribosomeSite.Count.ToString((IFormatProvider) null)
                             , featureCount);
-            Assert.AreEqual(cloneRibosomeSite.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneRibosomeSite.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(cloneRibosomeSite.GeneSymbol,
+            ClassicAssert.AreEqual(cloneRibosomeSite.GeneSymbol,
                             geneSymbol);
-            Assert.AreEqual(ribosomeSite[0].Allele,
+            ClassicAssert.AreEqual(ribosomeSite[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(ribosomeSite[0].Citation[0],
+            ClassicAssert.AreEqual(ribosomeSite[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(ribosomeSite[0].Experiment[0],
+            ClassicAssert.AreEqual(ribosomeSite[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(ribosomeSite[0].Inference[0],
+            ClassicAssert.AreEqual(ribosomeSite[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(ribosomeSite[0].Label,
+            ClassicAssert.AreEqual(ribosomeSite[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.RibosomeBindingSites[0].Location),
                             expectedLocation);
-            Assert.AreEqual(ribosomeSite[0].Note[0],
+            ClassicAssert.AreEqual(ribosomeSite[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(ribosomeSite[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(ribosomeSite[0].GenomicMapPosition,
                             expectedMap);
-            Assert.IsNotNull(ribosomeSite[0].OldLocusTag[0]);
-            Assert.IsNotNull(ribosomeSite[0].LocusTag[0]);
-            Assert.IsNotNull(ribosomeSite[0].StandardName);
+            ClassicAssert.IsNotNull(ribosomeSite[0].OldLocusTag[0]);
+            ClassicAssert.IsNotNull(ribosomeSite[0].LocusTag[0]);
+            ClassicAssert.IsNotNull(ribosomeSite[0].StandardName);
 
             // Create a new RibosomeBindingSite feature using constructor.
             var ribosomeBindingSite =
@@ -5155,10 +5156,10 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             ribosomeBindingSite.Allele = expectedAllele;
             ribosomeBindingSiteLoc.GeneSymbol = geneSymbol;
             ribosomeBindingSiteLoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(ribosomeBindingSiteLoc.GenomicMapPosition,
+            ClassicAssert.AreEqual(ribosomeBindingSiteLoc.GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(ribosomeBindingSite.Allele, expectedAllele);
-            Assert.AreEqual(ribosomeBindingSiteLoc.GeneSymbol,
+            ClassicAssert.AreEqual(ribosomeBindingSite.Allele, expectedAllele);
+            ClassicAssert.AreEqual(ribosomeBindingSiteLoc.GeneSymbol,
                             geneSymbol);
         }
 
@@ -5189,13 +5190,13 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
                 nonCodingRNAFeatureList[0].Clone();
 
             // Validate Non Coding RNA Region qualifiers.
-            Assert.AreEqual(nonCodingRNAFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(nonCodingRNAFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(nonCodingRNAFeatureList[0].NonCodingRnaClass,
+            ClassicAssert.AreEqual(nonCodingRNAFeatureList[0].NonCodingRnaClass,
                             expectedNonCodingRnaClass);
-            Assert.AreEqual(cloneNonCodingRNA.Label,
+            ClassicAssert.AreEqual(cloneNonCodingRNA.Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.NonCodingRNAs[0].Location),
                             expectedLocation);
 
@@ -5210,9 +5211,9 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             nRNAWithLocation.NonCodingRnaClass = expectedNonCodingRnaClass;
 
             // Validate created nRNA.
-            Assert.AreEqual(nRNA.NonCodingRnaClass,
+            ClassicAssert.AreEqual(nRNA.NonCodingRnaClass,
                             expectedNonCodingRnaClass);
-            Assert.AreEqual(nRNAWithLocation.NonCodingRnaClass,
+            ClassicAssert.AreEqual(nRNAWithLocation.NonCodingRnaClass,
                             expectedNonCodingRnaClass);
         }
 
@@ -5260,60 +5261,60 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             CodingSequence cloneCDS = codingSequenceFeatureList[0].Clone();
 
             // Validate Unsure Seq Region qualifiers.
-            Assert.AreEqual(codingSequenceFeatureList.Count.ToString((IFormatProvider) null),
+            ClassicAssert.AreEqual(codingSequenceFeatureList.Count.ToString((IFormatProvider) null),
                             featureCount);
-            Assert.AreEqual(cloneCDS.DatabaseCrossReference[0],
+            ClassicAssert.AreEqual(cloneCDS.DatabaseCrossReference[0],
                             expectedDbReference);
-            Assert.AreEqual(cloneCDS.GeneSymbol, geneSymbol);
-            Assert.AreEqual(codingSequenceFeatureList[0].Allele,
+            ClassicAssert.AreEqual(cloneCDS.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Allele,
                             expectedAllele);
-            Assert.AreEqual(codingSequenceFeatureList[0].Citation[0],
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Citation[0],
                             expectedCitation);
-            Assert.AreEqual(codingSequenceFeatureList[0].Experiment[0],
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Experiment[0],
                             expectedExperiment);
-            Assert.AreEqual(codingSequenceFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(codingSequenceFeatureList[0].Inference[0],
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Inference[0],
                             expectedInference);
-            Assert.AreEqual(codingSequenceFeatureList[0].Label,
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Label,
                             expectedLabel);
-            Assert.AreEqual(locBuilder.GetLocationString(
+            ClassicAssert.AreEqual(locBuilder.GetLocationString(
                 genMetadata.Features.CodingSequences[0].Location),
                             expectedLocation);
-            Assert.AreEqual(codingSequenceFeatureList[0].Note[0],
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Note[0],
                             expectedNote);
-            Assert.AreEqual(codingSequenceFeatureList[0].GenomicMapPosition,
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].GenomicMapPosition,
                             expectedMap);
-            Assert.AreEqual(codingSequenceFeatureList[0].CodonStart[0],
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].CodonStart[0],
                             expectedCodonStart);
-            Assert.AreEqual(codingSequenceFeatureList[0].Translation,
+            ClassicAssert.AreEqual(codingSequenceFeatureList[0].Translation,
                             expectedTranslation);
-            Assert.IsFalse(string.IsNullOrEmpty(codingSequenceFeatureList[0].Codon.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].EnzymeCommissionNumber));
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Number));
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Operon));
-            Assert.IsFalse(codingSequenceFeatureList[0].Pseudo);
-            Assert.IsFalse(codingSequenceFeatureList[0].RibosomalSlippage);
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].StandardName));
-            Assert.IsFalse(string.IsNullOrEmpty(codingSequenceFeatureList[0].TranslationalExcept.ToString()));
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].TranslationTable));
-            Assert.IsFalse(codingSequenceFeatureList[0].TransSplicing);
-            Assert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Exception));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(codingSequenceFeatureList[0].Codon.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].EnzymeCommissionNumber));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Number));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Operon));
+            ClassicAssert.IsFalse(codingSequenceFeatureList[0].Pseudo);
+            ClassicAssert.IsFalse(codingSequenceFeatureList[0].RibosomalSlippage);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].StandardName));
+            ClassicAssert.IsFalse(string.IsNullOrEmpty(codingSequenceFeatureList[0].TranslationalExcept.ToString()));
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].TranslationTable));
+            ClassicAssert.IsFalse(codingSequenceFeatureList[0].TransSplicing);
+            ClassicAssert.IsTrue(string.IsNullOrEmpty(codingSequenceFeatureList[0].Exception));
 
             // Create a new CDS feature using constructor.
             var cds = new CodingSequence(expectedLocation);
             var cdsWithLoc = new CodingSequence(
                 genMetadata.Features.CodingSequences[0].Location);
             Sequence seq = cds.GetTranslation();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
 
             // Set and validate qualifiers.
             cds.Allele = expectedAllele;
             cdsWithLoc.GeneSymbol = geneSymbol;
             cdsWithLoc.GenomicMapPosition = expectedMap;
-            Assert.AreEqual(cdsWithLoc.GenomicMapPosition, expectedMap);
-            Assert.AreEqual(cds.Allele, expectedAllele);
-            Assert.AreEqual(cdsWithLoc.GeneSymbol, geneSymbol);
+            ClassicAssert.AreEqual(cdsWithLoc.GenomicMapPosition, expectedMap);
+            ClassicAssert.AreEqual(cds.Allele, expectedAllele);
+            ClassicAssert.AreEqual(cdsWithLoc.GeneSymbol, geneSymbol);
         }
 
 
@@ -5370,7 +5371,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             expectedSeqWithLoc = loc.GetSubSequence(seqObj);
 
             var sequenceString = new string(expectedSeqWithLoc.Select(a => (char) a).ToArray());
-            Assert.AreEqual(expectedSeq, sequenceString);
+            ClassicAssert.AreEqual(expectedSeq, sequenceString);
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format(null,
@@ -5403,7 +5404,7 @@ namespace Bio.Silverlight.TestAutomation.IO.GenBank
             // Validate whether mentioned end data is present in the location
             // or not.
             result = locResolver.IsInEnd(loc, Int32.Parse(position, null));
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             // Log to VSTest GUI.
             ApplicationLog.WriteLine(string.Format(null,

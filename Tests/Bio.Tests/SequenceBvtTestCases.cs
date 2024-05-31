@@ -9,6 +9,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -57,16 +58,16 @@ namespace Bio.Tests
             Sequence createSequence = new Sequence(
                 Utility.GetAlphabet(alphabetName), actualSequence);
 
-            Assert.IsNotNull(createSequence);
+            ClassicAssert.IsNotNull(createSequence);
 
             // Validate the createdSequence            
             string seqNew = new string(createSequence.Select(a => (char)a).ToArray());
-            Assert.AreEqual(seqNew, actualSequence);
+            ClassicAssert.AreEqual(seqNew, actualSequence);
 
             ApplicationLog.WriteLine(string.Concat(
                 "Sequence BVT: Sequence is as expected."));
 
-            Assert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
+            ClassicAssert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
             ApplicationLog.WriteLine(string.Concat(
                 "Sequence BVT: Sequence Alphabet is as expected."));
 
@@ -94,15 +95,15 @@ namespace Bio.Tests
                 "Sequence BVT: Sequence ", actualSequence, " and Alphabet ", alphabetName));
 
             ISequence createSequence = new Sequence(Utility.GetAlphabet(alphabetName),actualSequence);
-            Assert.IsNotNull(createSequence);
+            ClassicAssert.IsNotNull(createSequence);
 
             string seqNew = createSequence.ConvertToString();
 
             // Validate the createdSequence
-            Assert.AreEqual(seqNew, actualSequence);
+            ClassicAssert.AreEqual(seqNew, actualSequence);
             ApplicationLog.WriteLine("Sequence BVT: Sequence is as expected.");
 
-            Assert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
+            ClassicAssert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
             ApplicationLog.WriteLine("Sequence BVT: Sequence Alphabet is as expected.");
 
             ApplicationLog.WriteLine("Sequence BVT: The DNA Sequence with string is created successfully.");
@@ -128,15 +129,15 @@ namespace Bio.Tests
 
             Sequence createSequence =new Sequence(Utility.GetAlphabet(alphabetName),
                     actualSequence);
-            Assert.IsNotNull(createSequence);
+            ClassicAssert.IsNotNull(createSequence);
 
             // Validate the createdSequence
             string seqNew = new string(createSequence.Select(a => (char)a).ToArray());
-            Assert.AreEqual(seqNew, actualSequence);
+            ClassicAssert.AreEqual(seqNew, actualSequence);
             ApplicationLog.WriteLine(string.Concat(
                 "Sequence BVT: Sequence is as expected."));
 
-            Assert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
+            ClassicAssert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
             ApplicationLog.WriteLine(string.Concat(
                 "Sequence BVT: Sequence Alphabet is as expected."));
             ApplicationLog.WriteLine(
@@ -164,13 +165,13 @@ namespace Bio.Tests
 
             Sequence createSequence = new Sequence(
                 Utility.GetAlphabet(alphabetName), actualSequence);
-            Assert.IsNotNull(createSequence);
+            ClassicAssert.IsNotNull(createSequence);
 
             // Validate the createdSequence
             string seqNew = new string(createSequence.Select(a => (char)a).ToArray());
-            Assert.AreEqual(seqNew, actualSequence);
+            ClassicAssert.AreEqual(seqNew, actualSequence);
 
-            Assert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
+            ClassicAssert.AreEqual(Utility.GetAlphabet(alphabetName), createSequence.Alphabet);
 
             ApplicationLog.WriteLine("Sequence BVT: The Protein Sequence is created successfully.");
         }
@@ -190,7 +191,7 @@ namespace Bio.Tests
                 Constants.SimpleFastaNodeName, Constants.FilePathNode);
             string alphabet = this.utilityObj.xmlUtil.GetTextValue(Constants.SimpleFastaNodeName,
                 Constants.AlphabetNameNode);
-            Assert.IsTrue(File.Exists(fastAFilePath));
+            ClassicAssert.IsTrue(File.Exists(fastAFilePath));
 
             // Logs information to the log file
             ApplicationLog.WriteLine(string.Concat(
@@ -203,31 +204,31 @@ namespace Bio.Tests
                 parser.Alphabet = Utility.GetAlphabet(alphabet);
                 sequence = parser.Parse(fastAFilePath);
 
-                Assert.IsNotNull(sequence);
+                ClassicAssert.IsNotNull(sequence);
                 Sequence fastASequence = (Sequence)sequence.ElementAt(0);
-                Assert.IsNotNull(fastASequence);
+                ClassicAssert.IsNotNull(fastASequence);
 
                 char[] seqString = sequence.ElementAt(0).Select(a => (char)a).ToArray();
                 string newSequence = new string(seqString);
 
-                Assert.AreEqual(expectedSequence, newSequence);
+                ClassicAssert.AreEqual(expectedSequence, newSequence);
                 ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: The Sequence is as expected."));
 
                 byte[] tmpEncodedSeq = new byte[fastASequence.Count];
                 (fastASequence as IEnumerable<byte>).ToArray().CopyTo(tmpEncodedSeq, 0);
 
-                Assert.AreEqual(expectedSequence.Length, tmpEncodedSeq.Length);
+                ClassicAssert.AreEqual(expectedSequence.Length, tmpEncodedSeq.Length);
                 ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: Sequence Length is as expected."));
 
-                Assert.AreEqual(this.utilityObj.xmlUtil.GetTextValue(
+                ClassicAssert.AreEqual(this.utilityObj.xmlUtil.GetTextValue(
                     Constants.SimpleProteinAlphabetNode, Constants.SequenceIdNode), fastASequence.ID);
                 ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: SequenceID is as expected."));
 
 
-                Assert.AreEqual(fastASequence.Alphabet.Name,
+                ClassicAssert.AreEqual(fastASequence.Alphabet.Name,
                     this.utilityObj.xmlUtil.GetTextValue(Constants.SimpleFastaNodeName, Constants.AlphabetNameNode));
                 ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: Sequence Alphabet is as expected."));
@@ -293,7 +294,7 @@ namespace Bio.Tests
 
             // Validating Constructor.
             Sequence constructorSequence = new Sequence(alphabet, byteArray[0]);
-            Assert.AreEqual(expectedSequence,
+            ClassicAssert.AreEqual(expectedSequence,
                         new string(constructorSequence.Select(a => (char)a).ToArray()));
             ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: Validation of Sequence Constructor completed successfully."));
@@ -314,7 +315,7 @@ namespace Bio.Tests
                             Constants.DnaDerivedSequenceNode, Constants.ExpectedDerivedSequence));
             Sequence sequence = new Sequence(alphabet, expectedSequence);
             //Validate Count
-            Assert.AreEqual(Encoding.UTF8.GetByteCount(expectedSequence), sequence.Count);
+            ClassicAssert.AreEqual(Encoding.UTF8.GetByteCount(expectedSequence), sequence.Count);
             ApplicationLog.WriteLine(string.Concat(
                 "Sequence BVT: Validation of Count operation completed successfully."));
 
@@ -326,7 +327,7 @@ namespace Bio.Tests
                 sequenceString += ((char)enumFromSequence.Current);
             }
 
-            Assert.AreEqual(sequenceString, expectedSequence);
+            ClassicAssert.AreEqual(sequenceString, expectedSequence);
             ApplicationLog.WriteLine(string.Concat(
               "Sequence BVT: Validation of Enumerator operation completed successfully."));
         }
@@ -354,7 +355,7 @@ namespace Bio.Tests
 
             long index = seqObj.LastIndexOfNonGap();
 
-            Assert.AreEqual(expectedSequence.Length - 1, index);
+            ClassicAssert.AreEqual(expectedSequence.Length - 1, index);
         }
 
         /// <summary>
@@ -383,7 +384,7 @@ namespace Bio.Tests
                 builder.Append((char)array[i]);
             }
             string actualValue = builder.ToString();
-            Assert.AreEqual(expectedSequence, actualValue);
+            ClassicAssert.AreEqual(expectedSequence, actualValue);
 
             //check with a part of the expected seq only
             seqObj.CopyTo(array, 0, 5);
@@ -393,7 +394,7 @@ namespace Bio.Tests
                 builder.Append((char)array[i]);
             }
             actualValue = builder.ToString();
-            Assert.AreEqual(expectedSequence.Substring(0, 5), actualValue);
+            ClassicAssert.AreEqual(expectedSequence.Substring(0, 5), actualValue);
         }
 
         #endregion Sequence Bvt TestCases
@@ -434,7 +435,7 @@ namespace Bio.Tests
                     break;
             }
 
-            Assert.AreEqual(expectedValue, seq.ConvertToString());
+            ClassicAssert.AreEqual(expectedValue, seq.ConvertToString());
             ApplicationLog.WriteLine(string.Concat(
                     "Sequence BVT: Validation of Sequence operation ", option, " completed successfully."));
 

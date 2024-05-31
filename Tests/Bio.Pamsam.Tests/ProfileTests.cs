@@ -2,6 +2,7 @@
 using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {
@@ -37,27 +38,27 @@ namespace Bio.Pamsam.Tests
 
             // Test GenerateProfiles
             IProfiles profileA = Profiles.GenerateProfiles(sequences[0]);
-            Assert.AreEqual(16, profileA.ColumnSize);
-            Assert.AreEqual(sequences[0].Count, profileA.RowSize);
+            ClassicAssert.AreEqual(16, profileA.ColumnSize);
+            ClassicAssert.AreEqual(sequences[0].Count, profileA.RowSize);
 
             // Test ProfileMatrix
-            Assert.AreEqual(1, profileA.ProfilesMatrix[0][2]);
-            Assert.AreEqual(0, profileA.ProfilesMatrix[0][3]);
+            ClassicAssert.AreEqual(1, profileA.ProfilesMatrix[0][2]);
+            ClassicAssert.AreEqual(0, profileA.ProfilesMatrix[0][3]);
 
             // Test ProfileAlignment
             IProfileAlignment profileAlignmentA = ProfileAlignment.GenerateProfileAlignment(sequences[0]);
-            Assert.AreEqual(1, profileAlignmentA.ProfilesMatrix[0][2]);
-            Assert.AreEqual(0, profileAlignmentA.ProfilesMatrix[0][3]);
-            Assert.AreEqual(1, profileAlignmentA.NumberOfSequences);
+            ClassicAssert.AreEqual(1, profileAlignmentA.ProfilesMatrix[0][2]);
+            ClassicAssert.AreEqual(0, profileAlignmentA.ProfilesMatrix[0][3]);
+            ClassicAssert.AreEqual(1, profileAlignmentA.NumberOfSequences);
 
             IProfileAlignment profileAlignmentB = ProfileAlignment.GenerateProfileAlignment(sequences);
-            Assert.AreEqual(1, profileAlignmentB.ProfilesMatrix[0][2]);
-            Assert.AreEqual(0, profileAlignmentB.ProfilesMatrix[0][3]);
-            Assert.AreEqual(2, profileAlignmentB.NumberOfSequences);
+            ClassicAssert.AreEqual(1, profileAlignmentB.ProfilesMatrix[0][2]);
+            ClassicAssert.AreEqual(0, profileAlignmentB.ProfilesMatrix[0][3]);
+            ClassicAssert.AreEqual(2, profileAlignmentB.NumberOfSequences);
 
-            Assert.AreEqual(0.5, profileAlignmentB.ProfilesMatrix[5][0]);
-            Assert.AreEqual(0.5, profileAlignmentB.ProfilesMatrix[5][1]);
-            Assert.AreEqual(0, profileAlignmentB.ProfilesMatrix[5][2]);
+            ClassicAssert.AreEqual(0.5, profileAlignmentB.ProfilesMatrix[5][0]);
+            ClassicAssert.AreEqual(0.5, profileAlignmentB.ProfilesMatrix[5][1]);
+            ClassicAssert.AreEqual(0, profileAlignmentB.ProfilesMatrix[5][2]);
         }
     }
 }

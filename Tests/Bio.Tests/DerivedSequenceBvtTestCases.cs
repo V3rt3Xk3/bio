@@ -6,6 +6,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -39,7 +40,7 @@ namespace Bio.Tests
                 alphabet, expectedSequence);
 
             // Validate derived Sequence.
-            Assert.AreEqual(expectedSequence, new string(derSequence.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expectedSequence, new string(derSequence.Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine(
                 "DerivedSequenceBvtTestCases:Validation of derived sequence completed successfully");
@@ -188,8 +189,8 @@ namespace Bio.Tests
                 alphabet, expectedSequence);
 
             // Validate IndexOf() derived Sequence.
-            Assert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
-            Assert.AreEqual(reverseCompObj, new string(derSequence.GetReverseComplementedSequence().Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
+            ClassicAssert.AreEqual(reverseCompObj, new string(derSequence.GetReverseComplementedSequence().Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine(
                 "DerivedSequenceBvtTestCases:Validation of GetReverseComplementedSequence() method of derived sequence completed successfully");
@@ -218,8 +219,8 @@ namespace Bio.Tests
                 alphabet, expectedSequence);
 
             // Validate IndexOf() derived Sequence.
-            Assert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
-            Assert.AreEqual(reverseObj, new string(derSequence.GetReversedSequence().Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
+            ClassicAssert.AreEqual(reverseObj, new string(derSequence.GetReversedSequence().Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine(
                 "DerivedSequenceBvtTestCases:Validation of GetReversedSequence() method of derived sequence completed successfully");
@@ -248,8 +249,8 @@ namespace Bio.Tests
                 alphabet, expectedSequence);
 
             // Validate IndexOf() derived Sequence.
-            Assert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
-            Assert.AreEqual(complementObj, new string(derSequence.GetComplementedSequence().Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
+            ClassicAssert.AreEqual(complementObj, new string(derSequence.GetComplementedSequence().Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine(
                 "DerivedSequenceBvtTestCases:Validation of GetComplementedSequence() method of derived sequence completed successfully");
@@ -281,8 +282,8 @@ namespace Bio.Tests
             string[] ranges = rangeObj.Split(',');
 
             // Validate IndexOf() derived Sequence.
-            Assert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
-            Assert.AreEqual(expSubSequence, new string(derSequence.GetSubSequence(long.Parse(ranges[0],
+            ClassicAssert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
+            ClassicAssert.AreEqual(expSubSequence, new string(derSequence.GetSubSequence(long.Parse(ranges[0],
                 (IFormatProvider)null), long.Parse(ranges[1], (IFormatProvider)null)).Select(a => (char)a).ToArray()));
 
             ApplicationLog.WriteLine(
@@ -311,9 +312,9 @@ namespace Bio.Tests
                 alphabet, expectedSequence);
 
             // Validate properties of derived Sequence.
-            Assert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
-            Assert.AreEqual(alphabet, derSequence.Alphabet);
-            Assert.IsNotNull(derSequence.Metadata);
+            ClassicAssert.AreEqual(derivedSequence, new string(derSequence.Select(a=>(char)a).ToArray()));
+            ClassicAssert.AreEqual(alphabet, derSequence.Alphabet);
+            ClassicAssert.IsNotNull(derSequence.Metadata);
 
             ApplicationLog.WriteLine(
                 "DerivedSequenceBvtTestCases:Validation of properties of derived sequence completed successfully");
@@ -344,7 +345,7 @@ namespace Bio.Tests
                 builder.Append((char)array[i]);
             }
             string actualValue = builder.ToString();
-            Assert.AreEqual(expectedSequence, actualValue);
+            ClassicAssert.AreEqual(expectedSequence, actualValue);
 
             //check with a part of the expected seq only
             seqObj.CopyTo(array, 0, 5);
@@ -354,7 +355,7 @@ namespace Bio.Tests
                 builder.Append((char)array[i]);
             }
             actualValue = builder.ToString();
-            Assert.AreEqual(expectedSequence.Substring(0, 5), actualValue);
+            ClassicAssert.AreEqual(expectedSequence.Substring(0, 5), actualValue);
         }
 
         #endregion

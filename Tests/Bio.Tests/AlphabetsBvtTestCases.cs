@@ -4,6 +4,7 @@ using System.Text;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -49,7 +50,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < refAlphabets.Count; i++)
             {
-                Assert.AreEqual(refAlphabets[i].Name, allAphabets[i].Name);
+                ClassicAssert.AreEqual(refAlphabets[i].Name, allAphabets[i].Name);
             }
 
             ApplicationLog.WriteLine(string.Concat(
@@ -73,7 +74,7 @@ namespace Bio.Tests
 
             //Validating for Dna.
             IAlphabet dnaAplhabet = Alphabets.AutoDetectAlphabet(dnaArray, 0, 4, null);
-            Assert.AreEqual(dnaAplhabet.Name, alphabetName);
+            ClassicAssert.AreEqual(dnaAplhabet.Name, alphabetName);
             ApplicationLog.WriteLine("Alphabets BVT: Validation of Auto Detect method for Dna completed successfully.");
 
             //Validating for Rna.
@@ -85,7 +86,7 @@ namespace Bio.Tests
             byte[] rnaArray = Encoding.UTF8.GetBytes(rnaSequence);
 
             IAlphabet rnaAplhabet = Alphabets.AutoDetectAlphabet(rnaArray, 0, 4, null);
-            Assert.AreEqual(rnaAplhabet.Name, alphabetName);
+            ClassicAssert.AreEqual(rnaAplhabet.Name, alphabetName);
             ApplicationLog.WriteLine("Alphabets BVT: Validation of Auto Detect method for Rna completed successfully.");
 
             //Validating for Protein.
@@ -96,7 +97,7 @@ namespace Bio.Tests
                 Constants.ProteinDerivedSequenceNode, Constants.ExpectedDerivedSequence);
             byte[] proteinArray = Encoding.UTF8.GetBytes(proteinSequence);
             IAlphabet proteinAplhabet = Alphabets.AutoDetectAlphabet(proteinArray, 0, 4, null);
-            Assert.AreEqual(proteinAplhabet.Name, alphabetName);
+            ClassicAssert.AreEqual(proteinAplhabet.Name, alphabetName);
             ApplicationLog.WriteLine("Alphabets BVT: Validation of Auto Detect method for Protein completed successfully.");
 
         }
@@ -116,8 +117,8 @@ namespace Bio.Tests
         {
             Sequence seq =
                  new Sequence(Alphabets.DNA, "ATAGC");
-                Assert.AreEqual(seq.Count, 5);
-                Assert.AreEqual(new string(seq.Select(a => (char)a).ToArray()), "ATAGC");
+                ClassicAssert.AreEqual(seq.Count, 5);
+                ClassicAssert.AreEqual(new string(seq.Select(a => (char)a).ToArray()), "ATAGC");
 
             ApplicationLog.WriteLine("Alphabets BVT: Validation of Static Constructor completed successfully.");
         }
@@ -130,7 +131,7 @@ namespace Bio.Tests
         public void ValidateDnaAlphabetCompareSymbols()
         {
             DnaAlphabet alp = DnaAlphabet.Instance;
-            Assert.IsTrue(alp.CompareSymbols(65, 65));
+            ClassicAssert.IsTrue(alp.CompareSymbols(65, 65));
 
             ApplicationLog.WriteLine(
                 "Alphabets BVT: Validation of CompareSymbols() method completed successfully.");
@@ -277,11 +278,11 @@ namespace Bio.Tests
                                     Constants.ExpectedFriendlyNamesDnaNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.A), friendlyNames[0]);
-            Assert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.C), friendlyNames[1]);
-            Assert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.G), friendlyNames[2]);
-            Assert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.T), friendlyNames[3]);
-            Assert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.Gap), friendlyNames[4]);
+            ClassicAssert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.A), friendlyNames[0]);
+            ClassicAssert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.C), friendlyNames[1]);
+            ClassicAssert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.G), friendlyNames[2]);
+            ClassicAssert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.T), friendlyNames[3]);
+            ClassicAssert.AreEqual(DnaAlphabet.Instance.GetFriendlyName(DnaAlphabet.Instance.Gap), friendlyNames[4]);
         }
 
         /// <summary>
@@ -296,21 +297,21 @@ namespace Bio.Tests
             char[] ambiguousCharacters = new char[16] { 'A', 'M', 'R', 'S', 'W', 'Y', 'K', 'V', 'H', 'D', 'B', 'N', 'C', 'G', '-', 'T' };
             AmbiguousDnaAlphabet dnaAlphabetInstance = AmbiguousDnaAlphabet.Instance;
 
-            Assert.AreEqual((char)dnaAlphabetInstance.A, ambiguousCharacters[0]);
-            Assert.AreEqual((char)dnaAlphabetInstance.AC, ambiguousCharacters[1]);
-            Assert.AreEqual((char)dnaAlphabetInstance.ACT, ambiguousCharacters[8]);
-            Assert.AreEqual((char)dnaAlphabetInstance.AT, ambiguousCharacters[4]);
-            Assert.AreEqual((char)dnaAlphabetInstance.C, ambiguousCharacters[12]);
-            Assert.AreEqual((char)dnaAlphabetInstance.G, ambiguousCharacters[13]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GA, ambiguousCharacters[2]);
-            Assert.AreEqual((char)dnaAlphabetInstance.Gap, ambiguousCharacters[14]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GAT, ambiguousCharacters[9]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GC, ambiguousCharacters[3]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GCA, ambiguousCharacters[7]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GT, ambiguousCharacters[6]);
-            Assert.AreEqual((char)dnaAlphabetInstance.GTC, ambiguousCharacters[10]);
-            Assert.AreEqual((char)dnaAlphabetInstance.T, ambiguousCharacters[15]);
-            Assert.AreEqual((char)dnaAlphabetInstance.TC, ambiguousCharacters[5]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.A, ambiguousCharacters[0]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.AC, ambiguousCharacters[1]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.ACT, ambiguousCharacters[8]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.AT, ambiguousCharacters[4]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.C, ambiguousCharacters[12]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.G, ambiguousCharacters[13]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GA, ambiguousCharacters[2]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.Gap, ambiguousCharacters[14]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GAT, ambiguousCharacters[9]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GC, ambiguousCharacters[3]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GCA, ambiguousCharacters[7]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GT, ambiguousCharacters[6]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.GTC, ambiguousCharacters[10]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.T, ambiguousCharacters[15]);
+            ClassicAssert.AreEqual((char)dnaAlphabetInstance.TC, ambiguousCharacters[5]);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Ambiguous Dna characters completed successfully."));
         }
@@ -329,17 +330,17 @@ namespace Bio.Tests
                                       Constants.ExpectedFriendlyNamesAmbiguousDnaNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.AC), friendlyNames[0]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GA), friendlyNames[1]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GC), friendlyNames[2]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.AT), friendlyNames[3]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.TC), friendlyNames[4]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GT), friendlyNames[5]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GCA), friendlyNames[6]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.ACT), friendlyNames[7]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GAT), friendlyNames[8]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GTC), friendlyNames[9]);
-            Assert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.Any), friendlyNames[10]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.AC), friendlyNames[0]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GA), friendlyNames[1]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GC), friendlyNames[2]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.AT), friendlyNames[3]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.TC), friendlyNames[4]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GT), friendlyNames[5]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GCA), friendlyNames[6]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.ACT), friendlyNames[7]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GAT), friendlyNames[8]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.GTC), friendlyNames[9]);
+            ClassicAssert.AreEqual(AmbiguousDnaAlphabet.Instance.GetFriendlyName(AmbiguousDnaAlphabet.Instance.Any), friendlyNames[10]);
         }
 
         #endregion DNA Alphabets Bvt TestCases
@@ -366,7 +367,7 @@ namespace Bio.Tests
         public void ValidateRnaAlphabetCompareSymbols()
         {
             RnaAlphabet alp = RnaAlphabet.Instance;
-            Assert.IsTrue(alp.CompareSymbols(65, 65));
+            ClassicAssert.IsTrue(alp.CompareSymbols(65, 65));
 
             ApplicationLog.WriteLine(
                 "Alphabets BVT: Validation of CompareSymbols() method completed successfully.");
@@ -502,11 +503,11 @@ namespace Bio.Tests
                                     Constants.ExpectedFriendlyNamesRnaNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.A), friendlyNames[0]);
-            Assert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.C), friendlyNames[1]);
-            Assert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.G), friendlyNames[2]);
-            Assert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.U), friendlyNames[3]);
-            Assert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.Gap), friendlyNames[4]);
+            ClassicAssert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.A), friendlyNames[0]);
+            ClassicAssert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.C), friendlyNames[1]);
+            ClassicAssert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.G), friendlyNames[2]);
+            ClassicAssert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.U), friendlyNames[3]);
+            ClassicAssert.AreEqual(RnaAlphabet.Instance.GetFriendlyName(RnaAlphabet.Instance.Gap), friendlyNames[4]);
         }
 
         /// <summary>
@@ -521,16 +522,16 @@ namespace Bio.Tests
             char[] ambiguousCharacters = new char[10] { 'M', 'H', 'W', 'R', 'D', 'S', 'V', 'K', 'B', 'Y' };
             AmbiguousRnaAlphabet rnaAlphabetInstance = AmbiguousRnaAlphabet.Instance;
 
-            Assert.AreEqual((char)rnaAlphabetInstance.AC, ambiguousCharacters[0]);
-            Assert.AreEqual((char)rnaAlphabetInstance.ACU, ambiguousCharacters[1]);
-            Assert.AreEqual((char)rnaAlphabetInstance.AU, ambiguousCharacters[2]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GA, ambiguousCharacters[3]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GAU, ambiguousCharacters[4]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GC, ambiguousCharacters[5]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GCA, ambiguousCharacters[6]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GU, ambiguousCharacters[7]);
-            Assert.AreEqual((char)rnaAlphabetInstance.GUC, ambiguousCharacters[8]);
-            Assert.AreEqual((char)rnaAlphabetInstance.UC, ambiguousCharacters[9]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.AC, ambiguousCharacters[0]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.ACU, ambiguousCharacters[1]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.AU, ambiguousCharacters[2]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GA, ambiguousCharacters[3]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GAU, ambiguousCharacters[4]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GC, ambiguousCharacters[5]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GCA, ambiguousCharacters[6]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GU, ambiguousCharacters[7]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.GUC, ambiguousCharacters[8]);
+            ClassicAssert.AreEqual((char)rnaAlphabetInstance.UC, ambiguousCharacters[9]);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Ambiguous Rna characters completed successfully."));
         }
@@ -548,17 +549,17 @@ namespace Bio.Tests
                                     Constants.ExpectedFriendlyNamesAmbiguousRnaNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.Any), friendlyNames[0]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.AC), friendlyNames[1]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GA), friendlyNames[2]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GC), friendlyNames[3]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.AU), friendlyNames[4]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.UC), friendlyNames[5]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GU), friendlyNames[6]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GCA), friendlyNames[7]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.ACU), friendlyNames[8]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GAU), friendlyNames[9]);
-            Assert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GUC), friendlyNames[10]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.Any), friendlyNames[0]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.AC), friendlyNames[1]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GA), friendlyNames[2]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GC), friendlyNames[3]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.AU), friendlyNames[4]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.UC), friendlyNames[5]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GU), friendlyNames[6]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GCA), friendlyNames[7]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.ACU), friendlyNames[8]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GAU), friendlyNames[9]);
+            ClassicAssert.AreEqual(AmbiguousRnaAlphabet.Instance.GetFriendlyName(AmbiguousRnaAlphabet.Instance.GUC), friendlyNames[10]);
         }
 
         #endregion RNA Alphabets Bvt TestCases
@@ -585,7 +586,7 @@ namespace Bio.Tests
         public void ValidateProAlphabetCompareSymbols()
         {
             ProteinAlphabet alp = ProteinAlphabet.Instance;
-            Assert.IsTrue(alp.CompareSymbols(65, 65));
+            ClassicAssert.IsTrue(alp.CompareSymbols(65, 65));
 
             ApplicationLog.WriteLine(
                 "Alphabets BVT: Validation of CompareSymbols() method completed successfully.");
@@ -721,30 +722,30 @@ namespace Bio.Tests
                                     Constants.ExpectedFriendlyNamesProteinNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.A), friendlyNames[0]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.C), friendlyNames[1]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.D), friendlyNames[2]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.E), friendlyNames[3]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.F), friendlyNames[4]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.G), friendlyNames[5]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.H), friendlyNames[6]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.I), friendlyNames[7]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.K), friendlyNames[8]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.L), friendlyNames[9]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.M), friendlyNames[10]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.N), friendlyNames[11]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.O), friendlyNames[12]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.P), friendlyNames[13]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Q), friendlyNames[14]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.R), friendlyNames[15]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.S), friendlyNames[16]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.T), friendlyNames[17]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.U), friendlyNames[18]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.V), friendlyNames[19]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.W), friendlyNames[20]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Y), friendlyNames[21]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Gap), friendlyNames[22]);
-            Assert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Ter), friendlyNames[23]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.A), friendlyNames[0]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.C), friendlyNames[1]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.D), friendlyNames[2]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.E), friendlyNames[3]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.F), friendlyNames[4]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.G), friendlyNames[5]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.H), friendlyNames[6]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.I), friendlyNames[7]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.K), friendlyNames[8]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.L), friendlyNames[9]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.M), friendlyNames[10]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.N), friendlyNames[11]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.O), friendlyNames[12]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.P), friendlyNames[13]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Q), friendlyNames[14]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.R), friendlyNames[15]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.S), friendlyNames[16]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.T), friendlyNames[17]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.U), friendlyNames[18]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.V), friendlyNames[19]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.W), friendlyNames[20]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Y), friendlyNames[21]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Gap), friendlyNames[22]);
+            ClassicAssert.AreEqual(ProteinAlphabet.Instance.GetFriendlyName(ProteinAlphabet.Instance.Ter), friendlyNames[23]);
         }
 
         /// <summary>
@@ -757,10 +758,10 @@ namespace Bio.Tests
         public void ValidateAmbiguousProteinAplhabet()
         {
             AmbiguousProteinAlphabet proteinAlphabetInstance = AmbiguousProteinAlphabet.Instance;
-            Assert.AreEqual(proteinAlphabetInstance.X, (byte)'X');
-            Assert.AreEqual(proteinAlphabetInstance.Z, (byte)'Z');
-            Assert.AreEqual(proteinAlphabetInstance.B, (byte)'B');
-            Assert.AreEqual(proteinAlphabetInstance.J, (byte)'J');
+            ClassicAssert.AreEqual(proteinAlphabetInstance.X, (byte)'X');
+            ClassicAssert.AreEqual(proteinAlphabetInstance.Z, (byte)'Z');
+            ClassicAssert.AreEqual(proteinAlphabetInstance.B, (byte)'B');
+            ClassicAssert.AreEqual(proteinAlphabetInstance.J, (byte)'J');
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Ambiguous Protein characters completed successfully."));
 
@@ -779,10 +780,10 @@ namespace Bio.Tests
                                     Constants.ExpectedFriendlyNamesAmbiguousProteinNode);
             string[] friendlyNames = friendlyName.Split(',');
 
-            Assert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.X), friendlyNames[0]);
-            Assert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.Z), friendlyNames[1]);
-            Assert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.B), friendlyNames[2]);
-            Assert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.J), friendlyNames[3]);
+            ClassicAssert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.X), friendlyNames[0]);
+            ClassicAssert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.Z), friendlyNames[1]);
+            ClassicAssert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.B), friendlyNames[2]);
+            ClassicAssert.AreEqual(AmbiguousProteinAlphabet.Instance.GetFriendlyName(AmbiguousProteinAlphabet.Instance.J), friendlyNames[3]);
         }
 
         #endregion Protein Alphabets Bvt TestCases
@@ -825,7 +826,7 @@ namespace Bio.Tests
 
             for (int i = 0; i < ambiguosCharacters.Length; i++)
             {
-                Assert.IsTrue(ambiguosCharacters.Contains(refCharacters[i]));
+                ClassicAssert.IsTrue(ambiguosCharacters.Contains(refCharacters[i]));
             }
 
         }
@@ -860,7 +861,7 @@ namespace Bio.Tests
             HashSet<byte> validSymbolsByte = new HashSet<byte>();
             validSymbolsByte = alphabetInstance.GetValidSymbols();
             string validSymbols = new string(validSymbolsByte.Select(a => (char)a).ToArray());
-            Assert.AreEqual(referenceCharacters, validSymbols);
+            ClassicAssert.AreEqual(referenceCharacters, validSymbols);
             ApplicationLog.WriteLine(string.Concat(
                    "Alphabets BVT: Validation of Alphabets operation ", option, " completed successfully."));
         }
@@ -898,8 +899,8 @@ namespace Bio.Tests
                     break;
             }
 
-            Assert.AreEqual(byte1, byte2);
-            Assert.AreNotEqual(byte1, byte3);
+            ClassicAssert.AreEqual(byte1, byte2);
+            ClassicAssert.AreNotEqual(byte1, byte3);
             ApplicationLog.WriteLine(string.Concat("Alphabets BVT: Validation of Comparing Symbols operation ",
                                     option, " completed successfully."));
         }
@@ -936,12 +937,12 @@ namespace Bio.Tests
 
             if (!option.Equals(AlphabetsTypes.Protein))
             {
-                Assert.AreEqual(true, alphabetInstance.TryGetComplementSymbol(inputByte, out outputByte));
-                Assert.AreEqual(complementByte, outputByte);
+                ClassicAssert.AreEqual(true, alphabetInstance.TryGetComplementSymbol(inputByte, out outputByte));
+                ClassicAssert.AreEqual(complementByte, outputByte);
             }
             else
             {
-                Assert.AreEqual(false, alphabetInstance.TryGetComplementSymbol(inputByte, out outputByte));
+                ClassicAssert.AreEqual(false, alphabetInstance.TryGetComplementSymbol(inputByte, out outputByte));
             }
 
             ApplicationLog.WriteLine(string.Concat("Alphabets BVT: Validation of Get Complement operation for",
@@ -977,16 +978,16 @@ namespace Bio.Tests
 
             if (option.Equals(AlphabetsTypes.Protein))
             {
-                Assert.AreEqual(true, alphabetInstance.TryGetDefaultTerminationSymbol(out outputDefaultTerminationSymbol));
-                Assert.AreEqual(true, alphabetInstance.TryGetTerminationSymbols(out outputTerminationSymbol));
+                ClassicAssert.AreEqual(true, alphabetInstance.TryGetDefaultTerminationSymbol(out outputDefaultTerminationSymbol));
+                ClassicAssert.AreEqual(true, alphabetInstance.TryGetTerminationSymbols(out outputTerminationSymbol));
                 outputTerminationString = new string(outputTerminationSymbol.Select(a => (char)a).ToArray());
-                Assert.AreEqual('*', (char)outputDefaultTerminationSymbol);
-                Assert.AreEqual("*", outputTerminationString);
+                ClassicAssert.AreEqual('*', (char)outputDefaultTerminationSymbol);
+                ClassicAssert.AreEqual("*", outputTerminationString);
             }
             else
             {
-                Assert.AreEqual(false, alphabetInstance.TryGetDefaultTerminationSymbol(out outputDefaultTerminationSymbol));
-                Assert.AreEqual(false, alphabetInstance.TryGetTerminationSymbols(out outputTerminationSymbol));
+                ClassicAssert.AreEqual(false, alphabetInstance.TryGetDefaultTerminationSymbol(out outputDefaultTerminationSymbol));
+                ClassicAssert.AreEqual(false, alphabetInstance.TryGetTerminationSymbols(out outputTerminationSymbol));
             }
 
             ApplicationLog.WriteLine(string.Concat("Alphabets BVT: Validation of Get Default termination symbol for",
@@ -1018,14 +1019,14 @@ namespace Bio.Tests
 
             byte outputByte;
             alphabetInstance.TryGetDefaultGapSymbol(out outputByte);
-            Assert.AreEqual('-', (char)outputByte);
+            ClassicAssert.AreEqual('-', (char)outputByte);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Try Default gap symbol for ", option, " completed successfully."));
             HashSet<byte> outputGapSymbol = new HashSet<byte>();
             string outputGapString = "";
             alphabetInstance.TryGetGapSymbols(out outputGapSymbol);
             outputGapString = new string(outputGapSymbol.Select(a => (char)a).ToArray());
-            Assert.AreEqual("-", outputGapString);
+            ClassicAssert.AreEqual("-", outputGapString);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Try  Get gap symbol for ", option, " completed successfully."));
         }
@@ -1064,8 +1065,8 @@ namespace Bio.Tests
             }
 
             HashSet<byte> basicSymbols;
-            Assert.AreEqual(true, alphabetInstance.TryGetBasicSymbols(basicSymbol, out basicSymbols));
-            Assert.IsTrue(basicSymbols.All(sy => (sy == expectedSymbol1 || sy == expectedSymbol2)));
+            ClassicAssert.AreEqual(true, alphabetInstance.TryGetBasicSymbols(basicSymbol, out basicSymbols));
+            ClassicAssert.IsTrue(basicSymbols.All(sy => (sy == expectedSymbol1 || sy == expectedSymbol2)));
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Try  Get Basics symbol for ", option, " completed successfully."));
         }
@@ -1104,8 +1105,8 @@ namespace Bio.Tests
                     break;
             }
 
-            Assert.IsTrue(alphabetInstance.TryGetAmbiguousSymbol(basicSymbols, out ambiguousSymbol));
-            Assert.AreEqual(expectedAmbiguousSymbol, ambiguousSymbol);
+            ClassicAssert.IsTrue(alphabetInstance.TryGetAmbiguousSymbol(basicSymbols, out ambiguousSymbol));
+            ClassicAssert.AreEqual(expectedAmbiguousSymbol, ambiguousSymbol);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Try  Get Ambiguous symbol for ", option, " completed successfully."));
         }
@@ -1139,7 +1140,7 @@ namespace Bio.Tests
                     break;
             }
                         
-            Assert.IsTrue(alphabetInstance.ValidateSequence(UTF8Encoding.UTF8.GetBytes(sequence), 0, 4));
+            ClassicAssert.IsTrue(alphabetInstance.ValidateSequence(UTF8Encoding.UTF8.GetBytes(sequence), 0, 4));
             
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Validate Sequence method for ", option, " completed successfully."));
@@ -1189,22 +1190,22 @@ namespace Bio.Tests
                     break;
             }
 
-            Assert.AreEqual(count, alphabetInstance.Count);
+            ClassicAssert.AreEqual(count, alphabetInstance.Count);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Count property for ", option, " completed successfully."));
-            Assert.AreEqual(hasGaps, alphabetInstance.HasGaps);
+            ClassicAssert.AreEqual(hasGaps, alphabetInstance.HasGaps);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 HasGaps property for ", option, " completed successfully."));
-            Assert.AreEqual(hasAmbiguity, alphabetInstance.HasAmbiguity);
+            ClassicAssert.AreEqual(hasAmbiguity, alphabetInstance.HasAmbiguity);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 HasAmbiguity property for ", option, " completed successfully."));
-            Assert.AreEqual(hasTermination, alphabetInstance.HasTerminations);
+            ClassicAssert.AreEqual(hasTermination, alphabetInstance.HasTerminations);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 HasTermination property for ", option, " completed successfully."));
-            Assert.AreEqual(isComplementSupported, alphabetInstance.IsComplementSupported);
+            ClassicAssert.AreEqual(isComplementSupported, alphabetInstance.IsComplementSupported);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 IsComplementSupported property for ", option, " completed successfully."));
-            Assert.AreEqual(name, alphabetInstance.Name);
+            ClassicAssert.AreEqual(name, alphabetInstance.Name);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 Name property for ", option, " completed successfully."));
         }
@@ -1249,9 +1250,9 @@ namespace Bio.Tests
             byte output = 0;
             queryReference = alphabetInstance.GetSymbolValueMap();
             output = queryReference[inputByte1];
-            Assert.AreEqual(outputByte1, output);
+            ClassicAssert.AreEqual(outputByte1, output);
             output = queryReference[inputByte2];
-            Assert.AreEqual(outputByte2, output);
+            ClassicAssert.AreEqual(outputByte2, output);
             ApplicationLog.WriteLine(string.Concat(@"Alphabets BVT: Validation of 
                                 GetSymbolValueMap method for ", option, " completed successfully."));
         }

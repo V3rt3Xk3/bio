@@ -4,6 +4,7 @@ using Bio.Algorithms.Assembly;
 using Bio.Algorithms.Assembly.Padena;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -37,7 +38,7 @@ namespace Bio.Padena.Tests
                 IDeNovoAssembly result = assembler.Assemble(readSeqs);
 
                 // Compare the two graphs
-                Assert.AreEqual(1, result.AssembledSequences.Count());
+                ClassicAssert.AreEqual(1, result.AssembledSequences.Count());
                 HashSet<string> expectedContigs = new HashSet<string>() 
             { 
                 "ATCGCTAGCATCGAACGATCATT" 
@@ -45,7 +46,7 @@ namespace Bio.Padena.Tests
 
                 foreach (ISequence contig in result.AssembledSequences)
                 {
-                    Assert.IsTrue(expectedContigs.Contains(new string(contig.Select(a => (char)a).ToArray())));
+                    ClassicAssert.IsTrue(expectedContigs.Contains(new string(contig.Select(a => (char)a).ToArray())));
                 }
             }
         }
@@ -82,11 +83,11 @@ namespace Bio.Padena.Tests
 
                     IDeNovoAssembly result = assembler.Assemble(seqs);
                     // Compare the two graphs, ensure that an additional base is not added (which might be inco
-                    Assert.AreEqual(1, result.AssembledSequences.Count);
+                    ClassicAssert.AreEqual(1, result.AssembledSequences.Count);
                     bool correctContig = result.AssembledSequences[0].SequenceEqual(testSequence);
                     if (!correctContig)
                         correctContig = result.AssembledSequences[0].GetReverseComplementedSequence().SequenceEqual(testSequence);
-                    Assert.IsTrue(correctContig);
+                    ClassicAssert.IsTrue(correctContig);
                 }
             }
             

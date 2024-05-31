@@ -8,6 +8,7 @@ using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests
 {
@@ -40,9 +41,9 @@ namespace Bio.Tests
                                              long.Parse(expectedStartIndex, null), long.Parse(expectedEndIndex, null));
 
             // Validate created SequenceRange.
-            Assert.AreEqual(expectedRangeId, seqRange.ID.ToString(null));
-            Assert.AreEqual(expectedStartIndex, seqRange.Start.ToString((IFormatProvider) null));
-            Assert.AreEqual(expectedEndIndex, seqRange.End.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedRangeId, seqRange.ID.ToString(null));
+            ClassicAssert.AreEqual(expectedStartIndex, seqRange.Start.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedEndIndex, seqRange.End.ToString((IFormatProvider) null));
             ApplicationLog.WriteLine("SequenceRange BVT : Successfully validated the SequenceStart,SequenceID and SequenceEnd.");
         }
 
@@ -73,7 +74,7 @@ namespace Bio.Tests
             int result = seqRange.CompareTo(secondSeqRange);
 
             // Validate result of comparison.
-            Assert.AreEqual(0, result);
+            ClassicAssert.AreEqual(0, result);
             ApplicationLog.WriteLine("SequenceRange BVT : Successfully validated the SequenceRange comparison");
         }
 
@@ -231,13 +232,13 @@ namespace Bio.Tests
             // Validate created SequenceRanges.
             foreach (ISequenceRange seqRange in rangeList)
             {
-                Assert.AreEqual(rangeStarts[j], seqRange.Start.ToString((IFormatProvider) null));
-                Assert.AreEqual(rangeEnds[j], seqRange.End.ToString((IFormatProvider) null));
-                Assert.AreEqual(rangeIDs[j], seqRange.ID.ToString(null));
+                ClassicAssert.AreEqual(rangeStarts[j], seqRange.Start.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(rangeEnds[j], seqRange.End.ToString((IFormatProvider) null));
+                ClassicAssert.AreEqual(rangeIDs[j], seqRange.ID.ToString(null));
                 j++;
             }
 
-            Assert.AreEqual(expectedSequenceRangeCount, rangeList.Count.ToString((IFormatProvider) null));
+            ClassicAssert.AreEqual(expectedSequenceRangeCount, rangeList.Count.ToString((IFormatProvider) null));
             ApplicationLog.WriteLine("SequenceRange BVT : Successfully validated the SequenceStart,SequenceID and SequenceEnd.");
         }
 
@@ -298,11 +299,11 @@ namespace Bio.Tests
 
             //Validate All property
             parserRange = SequenceRangeParsers.All;
-            Assert.AreEqual(Constants.BedParser, parserRange[0].ToString());
+            ClassicAssert.AreEqual(Constants.BedParser, parserRange[0].ToString());
 
             //Validate Bed property
             Type parserType = SequenceRangeParsers.Bed.GetType();
-            Assert.AreEqual(parserType.ToString(), Constants.BedParser);
+            ClassicAssert.AreEqual(parserType.ToString(), Constants.BedParser);
             ApplicationLog.WriteLine("Sequence Range Parser BVT: Validation of Sequence Range Parser Public properties completed successfully.");
         }
 
@@ -321,11 +322,11 @@ namespace Bio.Tests
 
             //Validate All property
             formatterRange = SequenceRangeFormatters.All;
-            Assert.AreEqual(Constants.BedFormatter, formatterRange[0].ToString());
+            ClassicAssert.AreEqual(Constants.BedFormatter, formatterRange[0].ToString());
 
             //Validate Bed property
             Type formatterType = SequenceRangeFormatters.Bed.GetType();
-            Assert.AreEqual(formatterType.ToString(), Constants.BedFormatter);
+            ClassicAssert.AreEqual(formatterType.ToString(), Constants.BedFormatter);
             ApplicationLog.WriteLine(
                 "Sequence Range Formatter BVT: Validation of Sequence Range Formatter Public properties completed successfully.");
         }
@@ -380,13 +381,13 @@ namespace Bio.Tests
                 // Validate created SequenceRanges.
                 foreach (ISequenceRange seqRange in rangeList)
                 {
-                    Assert.AreEqual(rangeStarts[j], seqRange.Start.ToString((IFormatProvider) null));
-                    Assert.AreEqual(rangeEnds[j], seqRange.End.ToString((IFormatProvider) null));
-                    Assert.AreEqual(rangeIDs[j], seqRange.ID.ToString(null));
+                    ClassicAssert.AreEqual(rangeStarts[j], seqRange.Start.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(rangeEnds[j], seqRange.End.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(rangeIDs[j], seqRange.ID.ToString(null));
                     j++;
                 }
             }
-            Assert.AreEqual(expectedSequenceRangeCount,
+            ClassicAssert.AreEqual(expectedSequenceRangeCount,
                             rangeList.Count.ToString((IFormatProvider) null));
             ApplicationLog.WriteLine(
                 "SequenceRange BVT : Successfully validated the SequenceStart, SequenceID and SequenceEnd.");
@@ -441,16 +442,16 @@ namespace Bio.Tests
                 // Validate intersect sequence range.
                 foreach (ISequenceRange range in rangeList)
                 {
-                    Assert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
+                    ClassicAssert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
                     j++;
                 }
             }
 
             // Validate ParentSeqRanges.
             bool result = ValidateParentSeqRange(intersectGroup, referenceGroup, queryGroup, isParentSeqRangeRequired);
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             ApplicationLog.WriteLine(
                 "Intersect SequenceRangeGrouping BVT: Successfully validated the intersect SequeID, Start and End Ranges");
@@ -492,16 +493,16 @@ namespace Bio.Tests
                 // Validate merged sequence range.
                 foreach (ISequenceRange range in rangeList)
                 {
-                    Assert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
+                    ClassicAssert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
                     j++;
                 }
             }
 
             // Validate Parent SequenceRanges.
             bool result = ValidateParentSeqRange(mergedGroup,referenceGroup, queryGroup, isParentSeqRangesRequired);
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             ApplicationLog.WriteLine("Merge SequenceRangeGrouping BVT: Successfully validated the merged SequeID, Start and End Ranges");
         }
@@ -559,16 +560,16 @@ namespace Bio.Tests
                 // Validate intersect sequence range.
                 foreach (ISequenceRange range in rangeList)
                 {
-                    Assert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
-                    Assert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
+                    ClassicAssert.AreEqual(expectedStartIndex[j], range.Start.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedEndIndex[j], range.End.ToString((IFormatProvider) null));
+                    ClassicAssert.AreEqual(expectedRangeIDs[j], range.ID.ToString(null));
                     j++;
                 }
             }
 
             // Validate ParentSeqRanges.
             result = ValidateParentSeqRange(subtractGroup, referenceGroup, queryGroup, isParentSeqRangeRequired);
-            Assert.IsTrue(result);
+            ClassicAssert.IsTrue(result);
 
             ApplicationLog.WriteLine("Subtract SequenceRangeGrouping BVT: Successfully validated the subtract SequeID, Start and End Ranges");
         }

@@ -1,5 +1,6 @@
 ﻿using Bio.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System;
 using Bio;
 
@@ -58,7 +59,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.AmbiguousDNA;
             bool actual = alphabet.CheckIsAmbiguous('M');
-            Assert.AreEqual(true, actual);
+            ClassicAssert.AreEqual(true, actual);
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.AmbiguousDNA;
             bool actual = alphabet.CheckIsAmbiguous('m');
-            Assert.AreEqual(true, actual);
+            ClassicAssert.AreEqual(true, actual);
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.AmbiguousDNA;
             bool actual = alphabet.CheckIsAmbiguous('A');
-            Assert.AreEqual(false, actual);
+            ClassicAssert.AreEqual(false, actual);
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             bool actual = alphabet.CheckIsAmbiguous('A');
-            Assert.AreEqual(false, actual);
+            ClassicAssert.AreEqual(false, actual);
         }
 
         ///<summary>
@@ -112,7 +113,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             bool actual = alphabet.CheckIsGap('-');
-            Assert.AreEqual(true, actual);
+            ClassicAssert.AreEqual(true, actual);
         }
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             bool actual = alphabet.CheckIsGap('A');
-            Assert.AreEqual(false, actual);
+            ClassicAssert.AreEqual(false, actual);
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.Protein;
             bool actual = alphabet.CheckIsTermination('*');
-            Assert.AreEqual(true, actual);
+            ClassicAssert.AreEqual(true, actual);
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.Protein;
             bool actual = alphabet.CheckIsTermination('A');
-            Assert.AreEqual(false, actual);
+            ClassicAssert.AreEqual(false, actual);
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             bool actual = alphabet.CheckIsTermination('A');
-            Assert.AreEqual(false, actual);
+            ClassicAssert.AreEqual(false, actual);
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             string actual = alphabet.GetFriendlyName('A');
-            Assert.AreEqual("Adenine", actual);
+            ClassicAssert.AreEqual("Adenine", actual);
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace Bio.Tests.Extensions
         {
             IAlphabet alphabet = Alphabets.DNA;
             string actual = alphabet.GetFriendlyName('a');
-            Assert.AreEqual("Adenine", actual);
+            ClassicAssert.AreEqual("Adenine", actual);
         }
 
 

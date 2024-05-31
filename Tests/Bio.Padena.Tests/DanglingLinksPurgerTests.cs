@@ -4,6 +4,7 @@ using Bio.Algorithms.Assembly.Padena;
 using Bio.Extensions;
 using Bio.Tests.Framework;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -45,8 +46,8 @@ namespace Bio.Padena.Tests
             var dangleRemovedGraphNodes = Graph.GetNodes().Select(n => Graph.GetNodeSequence(n)).ToList();
 
             // Compare the two graphs
-            Assert.AreEqual(2, graphCount - dangleRemovedGraphCount);
-            Assert.AreEqual(4, graphEdges - dangleRemovedGraphEdge);
+            ClassicAssert.AreEqual(2, graphCount - dangleRemovedGraphCount);
+            ClassicAssert.AreEqual(4, graphEdges - dangleRemovedGraphEdge);
             var checkList = graphNodes.Except(dangleRemovedGraphNodes, new SequenceEqualityComparer());
 
             HashSet<string> expected = new HashSet<string> { "ATCGAACGATG","TCGAACGATGA" };

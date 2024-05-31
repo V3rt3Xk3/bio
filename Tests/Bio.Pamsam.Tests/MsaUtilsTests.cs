@@ -4,6 +4,7 @@ using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using Bio.SimilarityMatrices;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Pamsam.Tests
 {
@@ -38,28 +39,28 @@ namespace Bio.Pamsam.Tests
             ISequence seqA = new Sequence(Alphabets.AmbiguousDNA, "ACG");
             ISequence seqB = new Sequence(Alphabets.AmbiguousDNA, "ACG");
             float score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
-            //Assert.AreEqual(15, score);
+            //ClassicAssert.AreEqual(15, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "ACG");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "ACC");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(6, score);
+            //ClassicAssert.AreEqual(6, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "AC-");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "ACC");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(2, score);
+            //ClassicAssert.AreEqual(2, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "AC--");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "ACCG");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(1, score);
+            //ClassicAssert.AreEqual(1, score);
 
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "A---");
@@ -67,7 +68,7 @@ namespace Bio.Pamsam.Tests
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(-3, score);
+            //ClassicAssert.AreEqual(-3, score);
 
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "GGGA---AAAATCAGATT");
@@ -75,28 +76,28 @@ namespace Bio.Pamsam.Tests
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(42, score);
+            //ClassicAssert.AreEqual(42, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "GGG---AAAAATCAGATT");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "GGGA--CAAAATCAG---");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(33, score);
+            //ClassicAssert.AreEqual(33, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "GGGA---AAAATCAGATT");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "GGGAATCAAAATCAG---");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(40, score);
+            //ClassicAssert.AreEqual(40, score);
 
             seqA = new Sequence(Alphabets.AmbiguousDNA, "GGGA--CAAAATCAG---");
             seqB = new Sequence(Alphabets.AmbiguousDNA, "GGGAATCAAAATCAG---");
 
             score = MsaUtils.PairWiseScoreFunction(seqA, seqB, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
 
-            //Assert.AreEqual(56, score);
+            //ClassicAssert.AreEqual(56, score);
 
             // Test MultipleAlignmentScoreFunction
             List<ISequence> sequences = new List<ISequence>();
@@ -110,7 +111,7 @@ namespace Bio.Pamsam.Tests
             {
                 Console.WriteLine(sequences[i].ToString());
             }
-            //Assert.AreEqual(42, score);
+            //ClassicAssert.AreEqual(42, score);
 
             sequences.Add(new Sequence(Alphabets.AmbiguousDNA, "GGGAATCAAAATCAG---"));
             score = MsaUtils.MultipleAlignmentScoreFunction(sequences, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
@@ -119,7 +120,7 @@ namespace Bio.Pamsam.Tests
             {
                 Console.WriteLine(sequences[i].ToString());
             }
-            //Assert.AreEqual(46, score);
+            //ClassicAssert.AreEqual(46, score);
 
             sequences[0] = new Sequence(Alphabets.AmbiguousDNA, "GGG---AAAAATCAGATT");
             score = MsaUtils.MultipleAlignmentScoreFunction(sequences, similarityMatrix, gapOpenPenalty, gapExtendPenalty);
@@ -132,7 +133,7 @@ namespace Bio.Pamsam.Tests
             {
                 Console.WriteLine(sequences[i].ToString());
             }
-            //Assert.AreEqual(40, score);
+            //ClassicAssert.AreEqual(40, score);
 
             // Test CalculateOffset
             seqA = new Sequence(Alphabets.AmbiguousDNA, "ABCD");

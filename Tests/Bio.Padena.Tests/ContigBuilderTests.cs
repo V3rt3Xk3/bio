@@ -3,6 +3,7 @@ using System.Linq;
 using Bio;
 using Bio.Algorithms.Assembly.Padena;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Padena.Tests
 {
@@ -44,7 +45,7 @@ namespace Bio.Padena.Tests
             long contigsBuilt = Graph.GetNodes().Select(n => n.ExtensionsCount).Sum();
 
             // Compare the two graphs
-            Assert.AreEqual(1, contigs.Count());
+            ClassicAssert.AreEqual(1, contigs.Count());
             HashSet<string> expectedContigs = new HashSet<string>() 
             { 
                 "ATCGCTAGCATCGAACGATCATT" 
@@ -53,11 +54,11 @@ namespace Bio.Padena.Tests
             foreach (ISequence contig in contigs)
             {
                 string s = new string(contig.Select(a => (char)a).ToArray());
-                Assert.IsTrue(expectedContigs.Contains(s));
+                ClassicAssert.IsTrue(expectedContigs.Contains(s));
             }
 
-            Assert.AreEqual(graphCount, contigsBuiltGraphCount);
-            Assert.AreEqual(graphEdges, contigsBuilt);
+            ClassicAssert.AreEqual(graphCount, contigsBuiltGraphCount);
+            ClassicAssert.AreEqual(graphEdges, contigsBuilt);
         }
 
         /// <summary>
@@ -87,11 +88,11 @@ namespace Bio.Padena.Tests
             long contigsBuilt = Graph.GetNodes().Select(n => n.ExtensionsCount).Sum();
 
             // Compare the two graphs
-            Assert.AreEqual(1, contigs.Count());
+            ClassicAssert.AreEqual(1, contigs.Count());
             string s = new string(contigs.ElementAt(0).Select(a => (char)a).ToArray());
-            Assert.AreEqual("ATGCCTCCTATCTTAGCGATGCGGTGT", s);
-            Assert.AreEqual(graphCount, contigsBuiltGraphCount);
-            Assert.AreEqual(graphEdges, contigsBuilt);
+            ClassicAssert.AreEqual("ATGCCTCCTATCTTAGCGATGCGGTGT", s);
+            ClassicAssert.AreEqual(graphCount, contigsBuiltGraphCount);
+            ClassicAssert.AreEqual(graphEdges, contigsBuilt);
         }
     }
 }

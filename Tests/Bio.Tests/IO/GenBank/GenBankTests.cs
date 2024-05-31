@@ -9,6 +9,7 @@ using Bio.IO;
 using Bio.IO.GenBank;
 using Bio.Util.Logging;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Bio.Properties;
 using Bio.TestAutomation.Util;
 
@@ -26,8 +27,8 @@ namespace Bio.Tests.IO.GenBank
         /// </summary>
         static GenBankTests()
         {
-            Assert.IsTrue(File.Exists(_singleProteinSeqGenBankFilename));
-            Assert.IsTrue(File.Exists(_multipleSeqGenBankFilename));
+            ClassicAssert.IsTrue(File.Exists(_singleProteinSeqGenBankFilename));
+            ClassicAssert.IsTrue(File.Exists(_multipleSeqGenBankFilename));
         }
 
         #region Fields
@@ -268,7 +269,7 @@ ORIGIN
             // parse
             GenBankParser parser = new GenBankParser();
             ISequence seq = parser.Parse(_genBankFile_LocusTokenParserTest).FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
         }
 
         /// <summary>
@@ -282,7 +283,7 @@ ORIGIN
             // parse
             GenBankParser parser = new GenBankParser();
             ISequence seq = parser.Parse(_genBankFile_EmptyOrganismClassificationTest).FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
         }
 
         /// <summary>
@@ -297,7 +298,7 @@ ORIGIN
             // parse
             GenBankParser parser = new GenBankParser();
             ISequence seq = parser.Parse(_genBankFile_ParseVersionEmpty).FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
         }
 
         /// <summary>
@@ -312,7 +313,7 @@ ORIGIN
             // parse
             GenBankParser parser = new GenBankParser();
             ISequence seq = parser.Parse(_genBankFile_ParseOriginShifted).FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
         }
 
         /// <summary>
@@ -326,7 +327,7 @@ ORIGIN
             // parse
             GenBankParser parser = new GenBankParser();
             ISequence seq = parser.Parse(_genBankFile_ParseOriginShifted2).FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
         }
 
         /// <summary>
@@ -368,33 +369,33 @@ ORIGIN
             ISequence seq = parser.Parse(_singleProteinSeqGenBankFilename).FirstOrDefault();
 
             // test the non-metadata properties
-            Assert.AreEqual(Alphabets.DNA, seq.Alphabet);
-            Assert.AreEqual("SCU49845", seq.ID);
+            ClassicAssert.AreEqual(Alphabets.DNA, seq.Alphabet);
+            ClassicAssert.AreEqual("SCU49845", seq.ID);
 
             // test the metadata that is tricky to parse, and will not be tested implicitly by
             // testing the formatting
             GenBankMetadata metadata = (GenBankMetadata)seq.Metadata["GenBank"];
 
-            Assert.AreEqual(metadata.Locus.Strand, SequenceStrandType.None);
-            Assert.AreEqual("none", metadata.Locus.StrandTopology.ToString().ToLower(CultureInfo.CurrentCulture));
-            Assert.AreEqual("PLN", metadata.Locus.DivisionCode.ToString());
-            Assert.AreEqual(DateTime.Parse("21-JUN-1999", (IFormatProvider)null), metadata.Locus.Date);
-            Assert.AreEqual("1", metadata.Version.Version);
-            Assert.AreEqual("1293613", metadata.Version.GiNumber);
+            ClassicAssert.AreEqual(metadata.Locus.Strand, SequenceStrandType.None);
+            ClassicAssert.AreEqual("none", metadata.Locus.StrandTopology.ToString().ToLower(CultureInfo.CurrentCulture));
+            ClassicAssert.AreEqual("PLN", metadata.Locus.DivisionCode.ToString());
+            ClassicAssert.AreEqual(DateTime.Parse("21-JUN-1999", (IFormatProvider)null), metadata.Locus.Date);
+            ClassicAssert.AreEqual("1", metadata.Version.Version);
+            ClassicAssert.AreEqual("1293613", metadata.Version.GiNumber);
 
             // test that we're correctly putting all types of metadata in the right places
-            Assert.AreEqual(1, seq.Metadata.Count);
+            ClassicAssert.AreEqual(1, seq.Metadata.Count);
             IList<CitationReference> referenceList = metadata.References;
-            Assert.AreEqual(3, referenceList.Count);
+            ClassicAssert.AreEqual(3, referenceList.Count);
             IList<FeatureItem> featureList = metadata.Features.All;
-            Assert.AreEqual(6, featureList.Count);
-            Assert.AreEqual(4, featureList[0].Qualifiers.Count);
-            Assert.AreEqual(5, featureList[1].Qualifiers.Count);
-            Assert.AreEqual(1, featureList[2].Qualifiers.Count);
+            ClassicAssert.AreEqual(6, featureList.Count);
+            ClassicAssert.AreEqual(4, featureList[0].Qualifiers.Count);
+            ClassicAssert.AreEqual(5, featureList[1].Qualifiers.Count);
+            ClassicAssert.AreEqual(1, featureList[2].Qualifiers.Count);
 
             // test the sequence string
             string expected = @"gatcctccatatacaacggtatctccacctcaggtttagatctcaacaacggaaccattgccgacatgagacagttaggtatcgtcgagagttacaagctaaaacgagcagtagtcagctctgcatctgaagccgctgaagttctactaagggtggataacatcatccgtgcaagaccaagaaccgccaatagacaacatatgtaacatatttaggatatacctcgaaaataataaaccgccacactgtcattattataattagaaacagaacgcaaaaattatccactatataattcaaagacgcgaaaaaaaaagaacaacgcgtcatagaacttttggcaattcgcgtcacaaataaattttggcaacttatgtttcctcttcgagcagtactcgagccctgtctcaagaatgtaataatacccatcgtaggtatggttaaagatagcatctccacaacctcaaagctccttgccgagagtcgccctcctttgtcgagtaattttcacttttcatatgagaacttattttcttattctttactctcacatcctgtagtgattgacactgcaacagccaccatcactagaagaacagaacaattacttaatagaaaaattatatcttcctcgaaacgatttcctgcttccaacatctacgtatatcaagaagcattcacttaccatgacacagcttcagatttcattattgctgacagctactatatcactactccatctagtagtggccacgccctatgaggcatatcctatcggaaaacaataccccccagtggcaagagtcaatgaatcgtttacatttcaaatttccaatgatacctataaatcgtctgtagacaagacagctcaaataacatacaattgcttcgacttaccgagctggctttcgtttgactctagttctagaacgttctcaggtgaaccttcttctgacttactatctgatgcgaacaccacgttgtatttcaatgtaatactcgagggtacggactctgccgacagcacgtctttgaacaatacataccaatttgttgttacaaaccgtccatccatctcgctatcgtcagatttcaatctattggcgttgttaaaaaactatggttatactaacggcaaaaacgctctgaaactagatcctaatgaagtcttcaacgtgacttttgaccgttcaatgttcactaacgaagaatccattgtgtcgtattacggacgttctcagttgtataatgcgccgttacccaattggctgttcttcgattctggcgagttgaagtttactgggacggcaccggtgataaactcggcgattgctccagaaacaagctacagttttgtcatcatcgctacagacattgaaggattttctgccgttgaggtagaattcgaattagtcatcggggctcaccagttaactacctctattcaaaatagtttgataatcaacgttactgacacaggtaacgtttcatatgacttacctctaaactatgtttatctcgatgacgatcctatttcttctgataaattgggttctataaacttattggatgctccagactgggtggcattagataatgctaccatttccgggtctgtcccagatgaattactcggtaagaactccaatcctgccaatttttctgtgtccatttatgatacttatggtgatgtgatttatttcaacttcgaagttgtctccacaacggatttgtttgccattagttctcttcccaatattaacgctacaaggggtgaatggttctcctactattttttgccttctcagtttacagactacgtgaatacaaacgtttcattagagtttactaattcaagccaagaccatgactgggtgaaattccaatcatctaatttaacattagctggagaagtgcccaagaatttcgacaagctttcattaggtttgaaagcgaaccaaggttcacaatctcaagagctatattttaacatcattggcatggattcaaagataactcactcaaaccacagtgcgaatgcaacgtccacaagaagttctcaccactccacctcaacaagttcttacacatcttctacttacactgcaaaaatttcttctacctccgctgctgctacttcttctgctccagcagcgctgccagcagccaataaaacttcatctcacaataaaaaagcagtagcaattgcgtgcggtgttgctatcccattaggcgttatcctagtagctctcatttgcttcctaatattctggagacgcagaagggaaaatccagacgatgaaaacttaccgcatgctattagtggacctgatttgaataatcctgcaaataaaccaaatcaagaaaacgctacacctttgaacaacccctttgatgatgatgcttcctcgtacgatgatacttcaatagcaagaagattggctgctttgaacactttgaaattggataaccactctgccactgaatctgatatttccagcgtggatgaaaagagagattctctatcaggtatgaatacatacaatgatcagttccaatcccaaagtaaagaagaattattagcaaaacccccagtacagcctccagagagcccgttctttgacccacagaataggtcttcttctgtgtatatggatagtgaaccagcagtaaataaatcctggcgatatactggcaacctgtcaccagtctctgatattgtcagagacagttacggatcacaaaaaactgttgatacagaaaaacttttcgatttagaagcaccagagaaggaaaaacgtacgtcaagggatgtcactatgtcttcactggacccttggaacagcaatattagcccttctcccgtaagaaaatcagtaacaccatcaccatataacgtaacgaagcatcgtaaccgccacttacaaaatattcaagactctcaaagcggtaaaaacggaatcactcccacaacaatgtcaacttcatcttctgacgattttgttccggttaaagatggtgaaaatttttgctgggtccatagcatggaaccagacagaagaccaagtaagaaaaggttagtagatttttcaaataagagtaatgtcaatgttggtcaagttaaggacattcacggacgcatcccagaaatgctgtgattatacgcaacgatattttgcttaattttattttcctgttttattttttattagtggtttacagataccctatattttatttagtttttatacttagagacatttaattttaattccattcttcaaatttcatttttgcacttaaaacaaagatccaaaaatgctctcgccctcttcatattgagaatacactccattcaaaattttgtcgtcaccgctgattaatttttcactaaactgatgaataatcaaaggccccacgtcagaaccgactaaagaagtgagttttattttaggaggttgaaaaccattattgtctggtaaattttcatcttcttgacatttaacccagtttgaatccctttcaatttctgctttttcctccaaactatcgaccctcctgtttctgtccaacttatgtcctagttccaattcgatcgcattaataactgcttcaaatgttattgtgtcatcgttgactttaggtaatttctccaaatgcataatcaaactatttaaggaagatcggaattcgtcgaacacttcagtttccgtaatgatctgatcgtctttatccacatgttgtaattcactaaaatctaaaacgtatttttcaatgcataaatcgttctttttattaataatgcagatggaaaatctgtaaacgtgcgttaatttagaaagaacatccagtataagttcttctatatagtcaattaaagcaggatgcctattaatgggaacgaactgcggcaagttgaatgactggtaagtagtgtagtcgaatgactgaggtgggtatacatttctataaaataaaatcaaattaatgtagcattttaagtataccctcagccacttctctacccatctattcataaagctgacgcaacgattactattttttttttcttcttggatctcagtcgtcgcaaaaacgtataccttctttttccgaccttttttttagctttctggaaaagtttatattagttaaacagggtctagtcttagtgtgaaagctagtggtttcgattgactgatattaagaaagtggaaattaaattagtagtgtagacgtatatgcatatgtatttctcgcctgtttatgtttctacgtacttttgatttatagcaaggggaaaagaaatacatactattttttggtaaaggtgaaagcataatgtaaaagctagaataaaatggacgaaataaagagaggcttagttcatcttttttccaaaaagcacccaatgataataactaaaatgaaaaggatttgccatctgtcagcaacatcagttgtgtgagcaataataaaatcatcacctccgttgcctttagcgcgtttgtcgtttgtatcttccgtaattttagtcttatcaatgggaatcataaattttccaatgaattagcaatttcgtccaattctttttgagcttcttcatatttgctttggaattcttcgcacttcttttcccattcatctctttcttcttccaaagcaacgatccttctacccatttgctcagagttcaaatcggcctctttcagtttatccattgcttccttcagtttggcttcactgtcttctagctgttgttctagatcctggtttttcttggtgtagttctcattattagatctcaagttattggagtcttcagccaattgctttgtatcagacaattgactctctaacttctccacttcactgtcgagttgctcgtttttagcggacaaagatttaatctcgttttctttttcagtgttagattgctctaattctttgagctgttctctcagctcctcatatttttcttgccatgactcagattctaattttaagctattcaatttctctttgatc";
-            Assert.AreEqual(expected, new string(seq.Select(a => (char)a).ToArray()));
+            ClassicAssert.AreEqual(expected, new string(seq.Select(a => (char)a).ToArray()));
 
             // format
             ISequenceFormatter formatter = new GenBankFormatter();
@@ -408,7 +409,7 @@ ORIGIN
             File.Delete(TempGenBankFileName);
 
             // test the formatting
-            Assert.AreEqual(Utility.CleanupWhiteSpace(_singleProteinSeqGenBankFileExpectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(_singleProteinSeqGenBankFileExpectedOutput),
                             Utility.CleanupWhiteSpace(actual));
         }
 
@@ -425,9 +426,9 @@ ORIGIN
 
             // Just check the number of items returned and that they're not empty.  The guts
             // are tested in TestGenBankWhenParsingOne.
-            Assert.AreEqual(2, seqList.Count());
-            Assert.AreEqual(105, seqList.ElementAt(0).Count);
-            Assert.AreEqual(5028, seqList.ElementAt(1).Count);
+            ClassicAssert.AreEqual(2, seqList.Count());
+            ClassicAssert.AreEqual(105, seqList.ElementAt(0).Count);
+            ClassicAssert.AreEqual(5028, seqList.ElementAt(1).Count);
         }
 
         /// <summary>
@@ -441,7 +442,7 @@ ORIGIN
             ISequenceParser parser = new GenBankParser();
             parser.Alphabet = Alphabets.DNA;
             ISequence seq = parser.Parse(_singleProteinSeqGenBankFilename).FirstOrDefault();
-            Assert.AreEqual(Alphabets.DNA, seq.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.DNA, seq.Alphabet);
 
             // format
             ISequenceFormatter formatter = new GenBankFormatter();
@@ -457,7 +458,7 @@ ORIGIN
 
             File.Delete(TempGenBankFileName);
             // test the formatting
-            Assert.AreEqual(Utility.CleanupWhiteSpace(_singleProteinSeqGenBankFileExpectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(_singleProteinSeqGenBankFileExpectedOutput),
                             Utility.CleanupWhiteSpace(actual));
         }
 
@@ -472,7 +473,7 @@ ORIGIN
             ISequenceParser parser = new GenBankParser();
             parser.Alphabet = Alphabets.DNA;
             ISequence seq = parser.Parse(_singleDnaSeqGenBankFilename).FirstOrDefault();
-            Assert.AreEqual(Alphabets.DNA, seq.Alphabet);
+            ClassicAssert.AreEqual(Alphabets.DNA, seq.Alphabet);
 
             // format
             ISequenceFormatter formatter = new GenBankFormatter();
@@ -486,7 +487,7 @@ ORIGIN
             File.Delete(TempGenBankFileName);
 
             // test the formatting
-            Assert.AreEqual(Utility.CleanupWhiteSpace(_singleDnaSeqGenBankFileExpectedOutput),
+            ClassicAssert.AreEqual(Utility.CleanupWhiteSpace(_singleDnaSeqGenBankFileExpectedOutput),
                             Utility.CleanupWhiteSpace(actual));
         }
 
@@ -561,15 +562,15 @@ ORIGIN
         {
             ISequenceParser parser = new GenBankParser();
 
-            Assert.AreEqual(parser.Name, Resource.GENBANK_NAME);
-            Assert.AreEqual(parser.Description, Resource.GENBANKPARSER_DESCRIPTION);
-            Assert.AreEqual(parser.SupportedFileTypes, Resource.GENBANK_FILEEXTENSION);
+            ClassicAssert.AreEqual(parser.Name, Resource.GENBANK_NAME);
+            ClassicAssert.AreEqual(parser.Description, Resource.GENBANKPARSER_DESCRIPTION);
+            ClassicAssert.AreEqual(parser.SupportedFileTypes, Resource.GENBANK_FILEEXTENSION);
 
             ISequenceFormatter formatter = new GenBankFormatter();
 
-            Assert.AreEqual(formatter.Name, Resource.GENBANK_NAME);
-            Assert.AreEqual(formatter.Description, Resource.GENBANKFORMATTER_DESCRIPTION);
-            Assert.AreEqual(formatter.SupportedFileTypes, Resource.GENBANK_FILEEXTENSION);
+            ClassicAssert.AreEqual(formatter.Name, Resource.GENBANK_NAME);
+            ClassicAssert.AreEqual(formatter.Description, Resource.GENBANKFORMATTER_DESCRIPTION);
+            ClassicAssert.AreEqual(formatter.SupportedFileTypes, Resource.GENBANK_FILEEXTENSION);
         }
 
         /// <summary>
@@ -583,40 +584,40 @@ ORIGIN
             ISequence seq = new GenBankParser()
                 .Parse(_singleProteinSeqGenBankFilename)
                 .FirstOrDefault();
-            Assert.IsNotNull(seq);
+            ClassicAssert.IsNotNull(seq);
 
             GenBankMetadata metadata = seq.Metadata["GenBank"] as GenBankMetadata;
-            Assert.IsNotNull(metadata);
+            ClassicAssert.IsNotNull(metadata);
 
             List<CodingSequence> CDS = metadata.Features.CodingSequences;
-            Assert.AreEqual(CDS.Count, 3);
-            Assert.AreEqual(CDS[0].DatabaseCrossReference.Count, 1);
-            Assert.AreEqual(CDS[0].GeneSymbol, string.Empty);
-            Assert.AreEqual(metadata.Features.GetFeatures("source").Count, 1);
-            Assert.IsFalse(CDS[0].Pseudo);
-            Assert.AreEqual(metadata.GetFeatures(1, 109).Count, 2);
-            Assert.AreEqual(metadata.GetFeatures(1, 10).Count, 2);
-            Assert.AreEqual(metadata.GetFeatures(10, 100).Count, 2);
-            Assert.AreEqual(metadata.GetFeatures(120, 150).Count, 2);
-            Assert.AreEqual(metadata.GetCitationsReferredInFeatures().Count, 0);
+            ClassicAssert.AreEqual(CDS.Count, 3);
+            ClassicAssert.AreEqual(CDS[0].DatabaseCrossReference.Count, 1);
+            ClassicAssert.AreEqual(CDS[0].GeneSymbol, string.Empty);
+            ClassicAssert.AreEqual(metadata.Features.GetFeatures("source").Count, 1);
+            ClassicAssert.IsFalse(CDS[0].Pseudo);
+            ClassicAssert.AreEqual(metadata.GetFeatures(1, 109).Count, 2);
+            ClassicAssert.AreEqual(metadata.GetFeatures(1, 10).Count, 2);
+            ClassicAssert.AreEqual(metadata.GetFeatures(10, 100).Count, 2);
+            ClassicAssert.AreEqual(metadata.GetFeatures(120, 150).Count, 2);
+            ClassicAssert.AreEqual(metadata.GetCitationsReferredInFeatures().Count, 0);
 
             ISequence seq1 = new GenBankParser()
                 .Parse(Path.Combine(_genBankDataPath, "NC_001284.gbk"))
                 .FirstOrDefault();
-            Assert.IsNotNull(seq1);
+            ClassicAssert.IsNotNull(seq1);
 
             metadata = seq1.Metadata["GenBank"] as GenBankMetadata;
-            Assert.IsNotNull(metadata);
-            Assert.AreEqual(metadata.Features.All.Count, 743);
-            Assert.AreEqual(metadata.Features.CodingSequences.Count, 117);
-            Assert.AreEqual(metadata.Features.Exons.Count, 32);
-            Assert.AreEqual(metadata.Features.Introns.Count, 22);
-            Assert.AreEqual(metadata.Features.Genes.Count, 60);
-            Assert.AreEqual(metadata.Features.MiscFeatures.Count, 455);
-            Assert.AreEqual(metadata.Features.Promoters.Count, 17);
-            Assert.AreEqual(metadata.Features.TransferRNAs.Count, 21);
-            Assert.AreEqual(metadata.Features.All.FindAll(F => F.Key.Equals(StandardFeatureKeys.CodingSequence)).Count, 117);
-            Assert.AreEqual(metadata.Features.GetFeatures(StandardFeatureKeys.CodingSequence).Count, 117);
+            ClassicAssert.IsNotNull(metadata);
+            ClassicAssert.AreEqual(metadata.Features.All.Count, 743);
+            ClassicAssert.AreEqual(metadata.Features.CodingSequences.Count, 117);
+            ClassicAssert.AreEqual(metadata.Features.Exons.Count, 32);
+            ClassicAssert.AreEqual(metadata.Features.Introns.Count, 22);
+            ClassicAssert.AreEqual(metadata.Features.Genes.Count, 60);
+            ClassicAssert.AreEqual(metadata.Features.MiscFeatures.Count, 455);
+            ClassicAssert.AreEqual(metadata.Features.Promoters.Count, 17);
+            ClassicAssert.AreEqual(metadata.Features.TransferRNAs.Count, 21);
+            ClassicAssert.AreEqual(metadata.Features.All.FindAll(F => F.Key.Equals(StandardFeatureKeys.CodingSequence)).Count, 117);
+            ClassicAssert.AreEqual(metadata.Features.GetFeatures(StandardFeatureKeys.CodingSequence).Count, 117);
             
             ISequence seqTemp = metadata.Features.CodingSequences[0].GetTranslation();
             byte[] tempData = new byte[seqTemp.Count];
@@ -625,8 +626,8 @@ ORIGIN
                 tempData[i] = seqTemp[i];
             }
             string sequenceInString = Encoding.ASCII.GetString(tempData);
-            Assert.AreEqual(metadata.Features.CodingSequences[0].Translation.Trim('"'), sequenceInString.Trim('"'));
-            Assert.AreEqual(2, metadata.GetFeatures(11918, 12241).Count);
+            ClassicAssert.AreEqual(metadata.Features.CodingSequences[0].Translation.Trim('"'), sequenceInString.Trim('"'));
+            ClassicAssert.AreEqual(2, metadata.GetFeatures(11918, 12241).Count);
         }
 
         /// <summary>
@@ -681,7 +682,7 @@ ORIGIN
             }
             var same = Utility.CompareFiles(tempFileName, _genBankFile_WithMultipleDBLines);
             File.Delete(tempFileName);
-            Assert.IsTrue(same);
+            ClassicAssert.IsTrue(same);
             ApplicationLog.WriteLine("GenBank Formatter: Successful read->write loop");
         }
 

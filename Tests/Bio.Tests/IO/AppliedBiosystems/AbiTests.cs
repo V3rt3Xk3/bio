@@ -4,6 +4,7 @@ using System.Linq;
 using Bio.IO.AppliedBiosystems;
 using Bio.IO.AppliedBiosystems.DataParsers;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Bio.Tests.Framework.IO.AppliedBiosystems
 {
@@ -23,15 +24,15 @@ namespace Bio.Tests.Framework.IO.AppliedBiosystems
         {
             AB_RootHeader xmlHeader = xmlData.Items.OfType<AB_RootHeader>().First();
 
-            Assert.AreEqual(xmlHeader.Version, rawData.Header.Version.ToString(CultureInfo.InvariantCulture));
-            Assert.AreEqual(int.Parse(xmlHeader.Directory_Elements, CultureInfo.InvariantCulture), rawData.Header.DirectoryEntries.Count);
-            Assert.AreEqual(xmlHeader.ByteOrder, rawData.Header.FileSignature);
+            ClassicAssert.AreEqual(xmlHeader.Version, rawData.Header.Version.ToString(CultureInfo.InvariantCulture));
+            ClassicAssert.AreEqual(int.Parse(xmlHeader.Directory_Elements, CultureInfo.InvariantCulture), rawData.Header.DirectoryEntries.Count);
+            ClassicAssert.AreEqual(xmlHeader.ByteOrder, rawData.Header.FileSignature);
             // The xml converter messes up the header dir information and reverses the tag name (BUGS!)
-            Assert.AreEqual(xmlHeader.Directory_Tag_Name,
+            ClassicAssert.AreEqual(xmlHeader.Directory_Tag_Name,
                             new string(rawData.Header.DirectoryEntryDefinition.TagName.Reverse().ToArray()));
-            Assert.AreEqual(xmlHeader.Directory_Tag_Number,
+            ClassicAssert.AreEqual(xmlHeader.Directory_Tag_Number,
                             rawData.Header.DirectoryEntryDefinition.TagNumber.ToString(CultureInfo.InvariantCulture));
-            Assert.AreEqual(xmlHeader.Directory_Elements,
+            ClassicAssert.AreEqual(xmlHeader.Directory_Elements,
                             rawData.Header.DirectoryEntryDefinition.ElementCount.ToString(CultureInfo.InvariantCulture));
         }
 

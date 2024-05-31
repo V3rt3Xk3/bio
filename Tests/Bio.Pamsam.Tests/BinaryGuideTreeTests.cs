@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Bio;
 using Bio.Algorithms.Alignment.MultipleSequenceAlignment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Linq;
 
 namespace Bio.Pamsam.Tests
@@ -36,22 +37,22 @@ namespace Bio.Pamsam.Tests
             nodes[3].Parent = nodes[4];
 
 
-            Assert.IsFalse(nodes[0].IsRoot);
-            Assert.IsTrue(nodes[0].IsLeaf);
+            ClassicAssert.IsFalse(nodes[0].IsRoot);
+            ClassicAssert.IsTrue(nodes[0].IsLeaf);
 
-            Assert.IsFalse(nodes[1].IsRoot);
-            Assert.IsTrue(nodes[1].IsLeaf);
+            ClassicAssert.IsFalse(nodes[1].IsRoot);
+            ClassicAssert.IsTrue(nodes[1].IsLeaf);
 
-            Assert.IsFalse(nodes[2].IsRoot);
-            Assert.IsTrue(nodes[2].IsLeaf);
+            ClassicAssert.IsFalse(nodes[2].IsRoot);
+            ClassicAssert.IsTrue(nodes[2].IsLeaf);
 
-            Assert.IsFalse(nodes[3].IsRoot);
-            Assert.IsFalse(nodes[3].IsLeaf);
+            ClassicAssert.IsFalse(nodes[3].IsRoot);
+            ClassicAssert.IsFalse(nodes[3].IsLeaf);
 
-            Assert.IsTrue(nodes[4].IsRoot);
-            Assert.IsFalse(nodes[4].IsLeaf);
+            ClassicAssert.IsTrue(nodes[4].IsRoot);
+            ClassicAssert.IsFalse(nodes[4].IsLeaf);
 
-            Assert.AreEqual(nodes[3], nodes[0].Parent);
+            ClassicAssert.AreEqual(nodes[3], nodes[0].Parent);
 
             int numberOfEdges = 4;
             var edges = Enumerable.Range(0, numberOfEdges)
@@ -82,11 +83,11 @@ namespace Bio.Pamsam.Tests
             IHierarchicalClustering hierarchicalClustering = new HierarchicalClusteringParallel(distanceMatrix);
             BinaryGuideTree binaryGuideTree = new BinaryGuideTree(hierarchicalClustering);
 
-            Assert.AreEqual(7, binaryGuideTree.NumberOfNodes);
-            Assert.AreEqual(6, binaryGuideTree.NumberOfEdges);
-            Assert.AreEqual(4, binaryGuideTree.NumberOfLeaves);
+            ClassicAssert.AreEqual(7, binaryGuideTree.NumberOfNodes);
+            ClassicAssert.AreEqual(6, binaryGuideTree.NumberOfEdges);
+            ClassicAssert.AreEqual(4, binaryGuideTree.NumberOfLeaves);
 
-            Assert.IsTrue(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1].IsRoot);
+            ClassicAssert.IsTrue(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1].IsRoot);
 
             for (int i = 0; i < binaryGuideTree.Nodes.Count; ++i)
             {
@@ -97,25 +98,25 @@ namespace Bio.Pamsam.Tests
             Console.WriteLine("binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[4]).Count : {0}", binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[4]).Count);
             Console.WriteLine("binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count : {0}", binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
             Console.WriteLine("binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[0]).Count : {0}", binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[0]).Count);
-            Assert.AreEqual(3, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[4]).Count);
-            Assert.AreEqual(7, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
-            Assert.AreEqual(1, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[0]).Count);
+            ClassicAssert.AreEqual(3, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[4]).Count);
+            ClassicAssert.AreEqual(7, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
+            ClassicAssert.AreEqual(1, binaryGuideTree.ExtractSubTreeNodes(binaryGuideTree.Nodes[0]).Count);
 
             // Test ExtractSubTreeLeafNodes
             Console.WriteLine("binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[4]).Count : {0}", binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[4]).Count);
             Console.WriteLine("binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Coun : {0}", binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
             Console.WriteLine("binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[0]).Count : {0}", binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[0]).Count);
-            Assert.AreEqual(2, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[4]).Count);
-            Assert.AreEqual(4, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
-            Assert.AreEqual(1, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[0]).Count);
+            ClassicAssert.AreEqual(2, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[4]).Count);
+            ClassicAssert.AreEqual(4, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1]).Count);
+            ClassicAssert.AreEqual(1, binaryGuideTree.ExtractSubTreeLeafNodes(binaryGuideTree.Nodes[0]).Count);
 
 
             // Test FindSmallestTreeDifference
             BinaryGuideTree binaryGuideTreeB = new BinaryGuideTree(hierarchicalClustering);
             BinaryGuideTreeNode node = BinaryGuideTree.FindSmallestTreeDifference(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1], binaryGuideTreeB.Nodes[binaryGuideTreeB.Nodes.Count - 1]);
-            Assert.IsNull(node);
+            ClassicAssert.IsNull(node);
             node = BinaryGuideTree.FindSmallestTreeDifference(binaryGuideTree.Nodes[binaryGuideTree.Nodes.Count - 1], binaryGuideTreeB.Nodes[0]);
-            Assert.IsNotNull(node);
+            ClassicAssert.IsNotNull(node);
 
             // Test CompareTwoTrees
 
@@ -142,19 +143,19 @@ namespace Bio.Pamsam.Tests
                 Console.Write(binaryGuideTreeB.Nodes[i].NeedReAlignment);
                 binaryGuideTreeB.Nodes[i].NeedReAlignment = false;
             }
-            Assert.IsFalse(binaryGuideTree.Nodes[4].NeedReAlignment);
-            Assert.IsFalse(binaryGuideTree.Nodes[5].NeedReAlignment);
-            Assert.IsFalse(binaryGuideTree.Nodes[6].NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Nodes[4].NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Nodes[5].NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Nodes[6].NeedReAlignment);
 
             for (int i = binaryGuideTree.NumberOfLeaves; i < binaryGuideTree.NumberOfNodes; ++i)
             {
-                Assert.IsFalse(binaryGuideTree.Nodes[i].NeedReAlignment);
+                ClassicAssert.IsFalse(binaryGuideTree.Nodes[i].NeedReAlignment);
             }
 
             binaryGuideTreeB.Root.ID = 7;
             BinaryGuideTree.CompareTwoTrees(binaryGuideTree, binaryGuideTreeB);
 
-            Assert.IsFalse(binaryGuideTree.Root.NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Root.NeedReAlignment);
 
             binaryGuideTreeB.Nodes[5].ID = 8;
             BinaryGuideTree.CompareTwoTrees(binaryGuideTree, binaryGuideTreeB);
@@ -170,26 +171,26 @@ namespace Bio.Pamsam.Tests
                 Console.WriteLine(binaryGuideTreeB.Nodes[i].NeedReAlignment);
             }
 
-            Assert.IsFalse(binaryGuideTree.Nodes[5].NeedReAlignment);
-            Assert.IsFalse(binaryGuideTree.Root.NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Nodes[5].NeedReAlignment);
+            ClassicAssert.IsFalse(binaryGuideTree.Root.NeedReAlignment);
 
             binaryGuideTreeB.Nodes[5].LeftChildren = binaryGuideTreeB.Nodes[3];
             BinaryGuideTree.CompareTwoTrees(binaryGuideTree, binaryGuideTreeB);
-            //Assert.IsTrue(binaryGuideTree.Nodes[5].NeedReAlignment);
-            //Assert.IsTrue(binaryGuideTree.Root.NeedReAlignment);
-            //Assert.IsFalse(binaryGuideTree.Nodes[4].NeedReAlignment);
+            //ClassicAssert.IsTrue(binaryGuideTree.Nodes[5].NeedReAlignment);
+            //ClassicAssert.IsTrue(binaryGuideTree.Root.NeedReAlignment);
+            //ClassicAssert.IsFalse(binaryGuideTree.Nodes[4].NeedReAlignment);
 
             // Test SeparateSequencesByCuttingTree
             List<int>[] newSequences = binaryGuideTree.SeparateSequencesByCuttingTree(3);
-            Assert.AreEqual(1, newSequences[0].Count);
-            Assert.AreEqual(3, newSequences[1].Count);
+            ClassicAssert.AreEqual(1, newSequences[0].Count);
+            ClassicAssert.AreEqual(3, newSequences[1].Count);
             Console.WriteLine("newSequences[0].Count: {0}", newSequences[0].Count);
             Console.WriteLine("newSequences[1].Count: {0}", newSequences[1].Count);
 
 
             List<int>[] newSequencesB = binaryGuideTree.SeparateSequencesByCuttingTree(2);
-            Assert.AreEqual(2, newSequencesB[0].Count);
-            Assert.AreEqual(2, newSequencesB[1].Count);
+            ClassicAssert.AreEqual(2, newSequencesB[0].Count);
+            ClassicAssert.AreEqual(2, newSequencesB[1].Count);
             Console.WriteLine("newSequences[0].Count: {0}", newSequencesB[0].Count);
             Console.WriteLine("newSequences[1].Count: {0}", newSequencesB[1].Count);
 
@@ -226,7 +227,7 @@ namespace Bio.Pamsam.Tests
             // CUT Tree
             BinaryGuideTree[] subtrees = binaryGuideTree.CutTree(3);
 
-            Assert.IsNotNull(subtrees);
+            ClassicAssert.IsNotNull(subtrees);
         }
     }
 }
