@@ -14,7 +14,7 @@ namespace Bio.Util
         /// </summary>
         public static Dictionary<TValue, TKey> Invert<TKey, TValue>(this IDictionary<TKey, TValue> dict)
         {
-            return dict.Select(kvp => new KeyValuePair<TValue, TKey>(kvp.Value, kvp.Key)).ToDictionary();
+            return dict.Select(kvp => new KeyValuePair<TValue, TKey>(kvp.Value, kvp.Key)).ToDictionaryBio();
         }
 
 
@@ -39,9 +39,9 @@ namespace Bio.Util
         /// Returns the value associated with key in the dictionary. If not present, adds the default value to the dictionary and returns that
         /// value.
         /// </summary>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, bool insertIfMissing) where TValue : new()
+        public static TValue GetValueOrDefaultBio<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, bool insertIfMissing) where TValue : new()
         {
-            return GetValueOrDefault<TKey, TValue>(dictionary, key, new TValue(), insertIfMissing);
+            return GetValueOrDefaultBio<TKey, TValue>(dictionary, key, new TValue(), insertIfMissing);
         }
 
 
@@ -54,7 +54,7 @@ namespace Bio.Util
         /// <param name="dictionary">The dictionary</param>
         /// <param name="key">The key of the value to retrieve.</param>
         /// <returns>A value for this key.</returns>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
+        public static TValue GetValueOrDefaultBio<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
         {
             TValue value;
             if (!dictionary.TryGetValue(key, out value))
@@ -70,7 +70,7 @@ namespace Bio.Util
         /// Returns the value associated with key in the dictionary. If not present, adds the default value to the dictionary and returns that
         /// value.
         /// </summary>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+        public static TValue GetValueOrDefaultBio<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
         {
             TValue value;
             if (!dictionary.TryGetValue(key, out value))
@@ -91,7 +91,7 @@ namespace Bio.Util
         /// value.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
+        public static TValue GetValueOrDefaultBio<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
             Func<TValue> defaultValueConstructor, bool insertIfMissing = true)
         {
             TValue value;
@@ -114,7 +114,7 @@ namespace Bio.Util
         /// Returns the value associated with key in the dictionary. If not present, adds the default value to the dictionary and returns that
         /// value.
         /// </summary>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
+        public static TValue GetValueOrDefaultBio<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
             TValue defaultValue, bool insertIfMissing)
         {
             TValue value;

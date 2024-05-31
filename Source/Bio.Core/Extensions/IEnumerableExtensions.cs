@@ -159,7 +159,7 @@ namespace Bio.Util
         /// <typeparam name="T">the type of elements of the sequence</typeparam>
         /// <param name="sequence">the input sequence</param>
         /// <returns>a HashSet</returns>
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> sequence)
+        public static HashSet<T> ToHashSetBio<T>(this IEnumerable<T> sequence)
         {
             return new HashSet<T>(sequence);
         }
@@ -195,7 +195,7 @@ namespace Bio.Util
         /// <typeparam name="T2">the type of Value</typeparam>
         /// <param name="pairSequence">the input pair sequence</param>
         /// <returns>a Dictionary</returns>
-        public static Dictionary<T1, T2> ToDictionary<T1, T2>(this IEnumerable<KeyValuePair<T1, T2>> pairSequence)
+        public static Dictionary<T1, T2> ToDictionaryBio<T1, T2>(this IEnumerable<KeyValuePair<T1, T2>> pairSequence)
         {
             return pairSequence.ToDictionary(pair => pair.Key, pair => pair.Value);
         }

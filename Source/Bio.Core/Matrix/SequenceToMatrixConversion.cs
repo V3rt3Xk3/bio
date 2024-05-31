@@ -540,7 +540,7 @@ namespace Bio.Matrix
             var allKeys = nonAaKeys.Concat(multToBinaryPositions).ToList();
 
             Dictionary<string, List<SufficientStatistics>> values = statistics.Select((key, idx) =>
-                new KeyValuePair<string, List<SufficientStatistics>>(columnValues[idx], key)).ToDictionary();
+                new KeyValuePair<string, List<SufficientStatistics>>(columnValues[idx], key)).ToDictionaryBio();
 
             columnValues.Clear();
             ((List<string>)columnValues).AddRange(allKeys.Select(keys => keys.Key));

@@ -29,8 +29,8 @@ namespace Bio.Util.ArgumentParser
             {
                 if (allReferencedAssemblies == null)
                 {
-                    var userAssemblies = EnumerateAllUserAssemblyCodeBases().ToHashSet();
-                    var systemAssemblies = EnumerateReferencedSystemAssemblies(userAssemblies).ToHashSet();
+                    var userAssemblies = EnumerateAllUserAssemblyCodeBases().ToHashSetBio();
+                    var systemAssemblies = EnumerateReferencedSystemAssemblies(userAssemblies).ToHashSetBio();
                     allReferencedAssemblies = userAssemblies.Union(systemAssemblies);
                 }
                 return allReferencedAssemblies;

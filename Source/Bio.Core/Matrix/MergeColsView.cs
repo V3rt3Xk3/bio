@@ -66,8 +66,8 @@ namespace Bio.Matrix
             _rowKeys = rowKeys.ToList().AsReadOnly();
             _colKeys = colKeys.AsReadOnly();
 
-            _indexOfRowKey = _rowKeys.Select((key, i) => new KeyValuePair<TRowKey, int>(key, i)).ToDictionary().AsRestrictedAccessDictionary();
-            _indexOfColKey = _colKeys.Select((key, i) => new KeyValuePair<TColKey, int>(key, i)).ToDictionary().AsRestrictedAccessDictionary();
+            _indexOfRowKey = _rowKeys.Select((key, i) => new KeyValuePair<TRowKey, int>(key, i)).ToDictionaryBio().AsRestrictedAccessDictionary();
+            _indexOfColKey = _colKeys.Select((key, i) => new KeyValuePair<TColKey, int>(key, i)).ToDictionaryBio().AsRestrictedAccessDictionary();
         }
 
 #pragma warning disable 1591

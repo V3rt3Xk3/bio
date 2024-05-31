@@ -59,7 +59,7 @@ namespace Bio.Matrix
             {
                 if (_allReferencedAssemblies == null)
                 {
-                    _allReferencedAssemblies = EnumerateAssemblyAndAllReferencedUserAssemblies(FileUtils.GetEntryOrCallingAssembly(), EnumerateAllUserAssemblyCodeBases().ToHashSet()).ToHashSet();
+                    _allReferencedAssemblies = EnumerateAssemblyAndAllReferencedUserAssemblies(FileUtils.GetEntryOrCallingAssembly(), EnumerateAllUserAssemblyCodeBases().ToHashSetBio()).ToHashSetBio();
                 }
                 return _allReferencedAssemblies;
             }

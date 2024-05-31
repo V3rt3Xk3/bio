@@ -335,13 +335,13 @@ namespace Bio.Matrix
             }
             catch (ArgumentException)
             {
-                var rowSet = matrix.RowKeys.ToHashSet();
+                var rowSet = matrix.RowKeys.ToHashSetBio();
                 if (rowSet.Count != matrix.RowKeys.Count)
                 {
                     var set = new HashSet<TRowKey>();
                     throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "The following row keys are duplicates: {0}", matrix.RowKeys.Where(key => !set.Add(key)).StringJoin(",")));
                 }
-                var colSet = matrix.ColKeys.ToHashSet();
+                var colSet = matrix.ColKeys.ToHashSetBio();
                 if (colSet.Count != matrix.ColKeys.Count)
                 {
                     var set = new HashSet<TColKey>();
