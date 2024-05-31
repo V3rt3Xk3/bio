@@ -10,11 +10,14 @@ using System.IO;
 using Bio.IO.GenBank;
 using Bio.TestAutomation.Util;
 using Bio.Util.Logging;
+using Bio.IO.FastA;
+using Bio.Tests;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.Collections.Generic;
 
 #if (SILVERLIGHT == false)
-    namespace Bio.TestAutomation.IO.GenBank
+namespace Bio.TestAutomation.IO.GenBank
 #else
     namespace Bio.Silverlight.TestAutomation.IO.GenBank
 #endif
@@ -363,6 +366,7 @@ using NUnit.Framework.Legacy;
             FilePath = utilityObj.xmlUtil.GetTextValue(node,
                 Constants.FilePathNode);
 
+            IEnumerable<ISequence> sequences = null;
             try
             {
                 GenBankParser parserObj = new GenBankParser();
@@ -375,7 +379,9 @@ using NUnit.Framework.Legacy;
                     parserObj.Alphabet = Alphabets.RNA;
                 }
 
-                parserObj.Parse(FilePath);
+                string tempFilePath = FilePath.TestDir();
+                sequences = parserObj.Parse(tempFilePath);
+                sequences.GetEnumerator().MoveNext();
                 Assert.Fail();
             }
             catch (InvalidOperationException)
