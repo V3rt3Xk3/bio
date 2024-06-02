@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using Bio.Extensions;
+using Bio.Exceptions;
 using Bio.Util;
 using Bio.Util.Logging;
 
@@ -950,7 +951,9 @@ namespace Bio.IO.GenBank
                     AddQualifierToFeature(feature, qualifierKey, qualifierValue);
                 }
 
-                // still add feature, even if it has no qualifiers
+                if (string.IsNullOrEmpty(feature.Key))
+                    throw new DataInvalidationException("The feature key must not be null or empty.");
+
                 featureList.Add(StandardFeatureMap.GetStandardFeatureItem(feature));
             }
 
