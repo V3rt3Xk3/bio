@@ -5,7 +5,7 @@
     <RootNamespace>Bio</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>NetBio.Core</PackageId>
-    <Version>3.0.0-alpha</Version>
+    <Version>3.0.1-zeta</Version>
     <Authors>Various</Authors>
     <Company />
     <Description>.NET Bio is an open source bioinformatics/genomics library for .NET Standard 2.0 that is designed to enable simple loading, saving and analysis of biological data. It includes several common parsers as well as a variety of algorithms for pairwise/multiple alignment and assembly operations.</Description>

@@ -5,7 +5,7 @@
     <RootNamespace>Bio.Algorithms.Assembly.Padena</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>NetBio.Padena</PackageId>
-    <Version>3.0.0-alpha</Version>
+    <Version>3.0.1-zeta</Version>
     <Authors>Various</Authors>
     <Company />
     <Product>.NET Bio</Product>

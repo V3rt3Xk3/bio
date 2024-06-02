@@ -5,7 +5,7 @@
     <RootNamespace>Bio.Algorithms.Alignment.MultipleSequenceAlignment</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>NetBio.Pamsam</PackageId>
-    <Version>3.0.1-alpha</Version>
+    <Version>3.0.1-zeta</Version>
     <Authors>Various</Authors>
     <Company />
     <Product>.NET Bio</Product>
