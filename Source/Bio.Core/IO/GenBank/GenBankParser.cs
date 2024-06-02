@@ -248,12 +248,16 @@ namespace Bio.IO.GenBank
 
             // parse until we hit the features or sequence section
             bool haveFinishedHeaders = false;
+            // parse every header key only once
+            HashSet<string> headersHashSet = new HashSet<string>();
 
             while ((line != null) && !haveFinishedHeaders)
             {
                 switch (GetLineHeader(line, DataIndent))
                 {
                     case "LOCUS":
+                        CheckDuplicityOfHeader(headersHashSet, "LOCUS");
+
                         if (haveParsedLocus)
                         {
                             string message = String.Format(CultureInfo.CurrentCulture, Properties.Resource.ParserSecondLocus);
@@ -268,6 +272,8 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "VERSION":
+                        CheckDuplicityOfHeader(headersHashSet, "VERSION");
+
                         lineData = GetLineData(line, DataIndent);
 
                         tokens = lineData.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -314,6 +320,8 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "PROJECT":
+                        CheckDuplicityOfHeader(headersHashSet, "PROJECT");
+
                         lineData = GetLineData(line, DataIndent);
                         tokens = lineData.Split(':');
 
@@ -335,24 +343,32 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "SOURCE":
+                        CheckDuplicityOfHeader(headersHashSet, "SOURCE");
+
                         line = ParseSource(line, ref sequence, stream);
                         metadata = (GenBankMetadata)sequence.Metadata[Helper.GenBankMetadataKey];
                         // don't go to next line; current line still needs to be processed
                         break;
 
                     case "REFERENCE":
+                        CheckDuplicityOfHeader(headersHashSet, "REFERENCE");
+
                         line = ParseReferences(line, ref sequence, stream);   // can encounter more than one
                         metadata = (GenBankMetadata)sequence.Metadata[Helper.GenBankMetadataKey];
                         // don't go to next line; current line still needs to be processed
                         break;
 
                     case "COMMENT":
+                        CheckDuplicityOfHeader(headersHashSet, "COMMENT");
+
                         line = ParseComments(line, ref sequence, stream);   // can encounter more than one
                         metadata = (GenBankMetadata)sequence.Metadata[Helper.GenBankMetadataKey];
                         // don't go to next line; current line still needs to be processed
                         break;
 
                     case "PRIMARY":
+                        CheckDuplicityOfHeader(headersHashSet, "PRIMARY");
+
                         // This header is followed by sequence info in a table format that could be
                         // stored in a custom object.  The first line contains column headers.
                         // For now, just validate the presence of the headers, and save the data
@@ -379,9 +395,13 @@ namespace Bio.IO.GenBank
 
                     // all the following are extracted the same way - possibly multiline
                     case "DEFINITION":
+                        CheckDuplicityOfHeader(headersHashSet, "DEFINITION");
+
                         metadata.Definition = ParseMultiLineData(ref line, " ", DataIndent, stream);
                         break;
                     case "ACCESSION":
+                        CheckDuplicityOfHeader(headersHashSet, "ACCESSION");
+
                         data = ParseMultiLineData(ref line, " ", DataIndent, stream);
                         metadata.Accession = new GenBankAccession();
                         string[] accessions = data.Split(' ');
@@ -395,6 +415,8 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "DBLINK":
+                        CheckDuplicityOfHeader(headersHashSet, "DBLINK");
+
                         data = ParseMultiLineData(ref line, "\n", DataIndent, stream);
                         metadata.DbLinks = new List<CrossReferenceLink>();
                         foreach (string link in data.Split('\n'))
@@ -435,14 +457,20 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "DBSOURCE":
+                        CheckDuplicityOfHeader(headersHashSet, "DBSOURCE");
+
                         metadata.DbSource = ParseMultiLineData(ref line, " ", DataIndent, stream);
                         break;
 
                     case "KEYWORDS":
+                        CheckDuplicityOfHeader(headersHashSet, "KEYWORDS");
+
                         metadata.Keywords = ParseMultiLineData(ref line, " ", DataIndent, stream);
                         break;
 
                     case "SEGMENT":
+                        CheckDuplicityOfHeader(headersHashSet, "SEGMENT");
+
                         data = ParseMultiLineData(ref line, " ", DataIndent, stream);
                         const string delimeter = "of";
                         tokens = data.Split(delimeter.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
@@ -505,6 +533,14 @@ namespace Bio.IO.GenBank
             }
 
             return line;
+        }
+
+        private static void CheckDuplicityOfHeader(HashSet<string> headersHashSet, string header)
+        {
+            if (headersHashSet.Contains(header))
+                throw new DataInvalidationException($"The {header} header is duplicated in the GenBank file.");
+            else
+                headersHashSet.Add(header);
         }
 
         /// <summary>
