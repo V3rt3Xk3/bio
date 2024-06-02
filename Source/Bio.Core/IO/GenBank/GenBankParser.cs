@@ -351,16 +351,12 @@ namespace Bio.IO.GenBank
                         break;
 
                     case "REFERENCE":
-                        CheckDuplicityOfHeader(headersHashSet, "REFERENCE");
-
                         line = ParseReferences(line, ref sequence, stream);   // can encounter more than one
                         metadata = (GenBankMetadata)sequence.Metadata[Helper.GenBankMetadataKey];
                         // don't go to next line; current line still needs to be processed
                         break;
 
                     case "COMMENT":
-                        CheckDuplicityOfHeader(headersHashSet, "COMMENT");
-
                         line = ParseComments(line, ref sequence, stream);   // can encounter more than one
                         metadata = (GenBankMetadata)sequence.Metadata[Helper.GenBankMetadataKey];
                         // don't go to next line; current line still needs to be processed
